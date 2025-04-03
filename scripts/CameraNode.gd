@@ -1,6 +1,6 @@
 @tool
 # Node used to denote a location the camera can be positioned.
-class_name camPosNode
+class_name CameraNode
 extends DynamicEntity
 
 @export_category("camera node properties")
@@ -62,9 +62,9 @@ func set_current_node():
 
 # Switch from this current camera positon to the node at the given index in the connected_nodes array
 func switch_to_node(idx:int):
-	if connected_nodes[idx] != null and connected_nodes[idx] is camPosNode:
+	if connected_nodes[idx] != null and connected_nodes[idx] is CameraNode:
 		is_active_cam = false
-		(connected_nodes[idx] as camPosNode).set_current_node()
+		(connected_nodes[idx] as CameraNode).set_current_node()
 	else:
 		print("can not switch to invalid camPosNode")
 	pass

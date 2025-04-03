@@ -14,4 +14,3 @@ extends Node
 @export var south_open: bool = true
 @export var east_open: bool = true
 @export var west_open: bool = true
-

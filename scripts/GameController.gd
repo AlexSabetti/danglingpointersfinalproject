@@ -13,7 +13,7 @@ var paused: bool = false
 
 
 @export_category("CameraControls")
-var cur_cam: camPosNode # current camera node where the viewport is at
+var cur_cam: CameraNode # current camera node where the viewport is at
 @export var camAccel: float = 0.5
 @export var turnSpeed := 0.25
 var twist_input: float = 0.0

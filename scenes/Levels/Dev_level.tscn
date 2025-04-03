@@ -36,21 +36,23 @@ directional_shadow_mode = 1
 
 [node name="Entities" type="Node3D" parent="."]
 
-[node name="CamPosNode1" parent="Entities" instance=ExtResource("3_71sqw")]
+[node name="CameraNode1" parent="Entities" instance=ExtResource("3_71sqw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52371, 0, 0)
 is_active_cam = true
 
-[node name="Camera3D" type="Camera3D" parent="Entities/CamPosNode1"]
+[node name="Camera3D" type="Camera3D" parent="Entities/CameraNode1"]
 
-[node name="CamPosNode2" parent="Entities" instance=ExtResource("3_71sqw")]
+[node name="CameraNode2" parent="Entities" instance=ExtResource("3_71sqw")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 5.32201, -0.238145, -2.94227)
 
-[node name="Camera3D" type="Camera3D" parent="Entities/CamPosNode2"]
+[node name="Camera3D" type="Camera3D" parent="Entities/CameraNode2"]
 
-[node name="TestInteractableObject" type="StaticBody3D" parent="Entities"]
+[node name="TestInteractableObject" type="StaticBody3D" parent="Entities" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97746, 0, -4.65293)
 script = ExtResource("6_hx85v")
 object_name = "Test Obj 1"
+is_interactable = true
+trigger_on_interact = [NodePath("../CameraNode2")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Entities/TestInteractableObject"]
 visible = false
@@ -60,10 +62,12 @@ shape = SubResource("BoxShape3D_2ykvt")
 mesh = SubResource("BoxMesh_65ejx")
 skeleton = NodePath("../../../Geometry")
 
-[node name="TestInteractableObject2" type="StaticBody3D" parent="Entities"]
+[node name="TestInteractableObject2" type="StaticBody3D" parent="Entities" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.70544, 0.44166, -5.85425)
 script = ExtResource("6_hx85v")
 object_name = "Test Obj 2"
+is_interactable = true
+trigger_on_interact = [NodePath("../CameraNode1")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Entities/TestInteractableObject2"]
 visible = false

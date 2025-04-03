@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://bd7icn4pwfdoi"]
 
-[ext_resource type="Script" uid="uid://cl2vq4j5am66a" path="res://Scripts/foliage.gd" id="1_5frix"]
-[ext_resource type="Texture2D" uid="uid://cealpeqkes7xo" path="res://Resources/Textures/Sprites/SeaWeeds1_a1.png" id="2_bxi7t"]
-[ext_resource type="Shader" uid="uid://d2mabvbt22cdl" path="res://Resources/Shaders/VS_Foliage3D.tres" id="3_445nb"]
-[ext_resource type="Texture2D" uid="uid://dhvn8d5topyjo" path="res://Resources/Textures/NormalMaps/7864-normal.jpg" id="4_dkg7b"]
+[ext_resource type="Script" uid="uid://kim4hlaba5td" path="res://scripts/foliage.gd" id="1_obqv8"]
+[ext_resource type="Texture2D" uid="uid://cealpeqkes7xo" path="res://resources/Textures/Sprites/SeaWeeds1_a1.png" id="2_bxi7t"]
+[ext_resource type="Shader" uid="uid://d2mabvbt22cdl" path="res://resources/Shaders/VS_Foliage3D.tres" id="3_445nb"]
+[ext_resource type="Texture2D" uid="uid://dhvn8d5topyjo" path="res://resources/Textures/NormalMaps/7864-normal.jpg" id="4_dkg7b"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_5frix"]
 
@@ -36,10 +36,7 @@ shader_parameter/DistortionAmount = 0.003
 shader_parameter/Texture = ExtResource("2_bxi7t")
 
 [node name="Foliage" type="Node3D"]
-script = ExtResource("1_5frix")
-foliage_Texture = ExtResource("2_bxi7t")
-meshOffset = Vector3(0, 1, 0)
-meshScale = Vector3(1, 2, 1)
+script = ExtResource("1_obqv8")
 
 [node name="MeshInstance3D_1" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 1, 0)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c2uxpo5fna1nn"]
 
-[ext_resource type="Script" uid="uid://cb2ib6fst188" path="res://scripts/camPosNode.gd" id="1_8mso5"]
+[ext_resource type="Script" uid="uid://cb2ib6fst188" path="res://scripts/CameraNode.gd" id="1_8mso5"]
 [ext_resource type="PackedScene" uid="uid://y7uhpjjh3g3i" path="res://resources/Models/FilmCamera1_a1.glb" id="3_pu8xr"]
 [ext_resource type="Material" uid="uid://ck0mxslef5hju" path="res://resources/Materials/M_CameraMaterial.tres" id="4_rigi6"]
 

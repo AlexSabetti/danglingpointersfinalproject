@@ -1,21 +1,21 @@
 [gd_scene load_steps=43 format=3 uid="uid://cw83dccua6vux"]
 
-[ext_resource type="Script" uid="uid://fsm17x6l1oka" path="res://Scripts/UIHandler.gd" id="1_coxev"]
-[ext_resource type="Texture2D" uid="uid://bggjhdu1kdj1j" path="res://Resources/Textures/Sprites/LeftArrow1_b1.png" id="2_iow18"]
-[ext_resource type="Texture2D" uid="uid://vmax1o61lrws" path="res://Resources/Textures/Sprites/Square1_a1.png" id="2_l2gvk"]
-[ext_resource type="Theme" uid="uid://d3u8v3disi16o" path="res://Resources/Themes/theme_genText.tres" id="2_xewkt"]
-[ext_resource type="Texture2D" uid="uid://c555oijau62ut" path="res://Resources/Textures/Sprites/Square1_b1.png" id="3_54dg7"]
-[ext_resource type="Texture2D" uid="uid://dxmlef2hawoi7" path="res://Resources/Textures/Sprites/Square1_c1.png" id="3_lblhk"]
-[ext_resource type="Texture2D" uid="uid://diqpqjbctq43i" path="res://Resources/Textures/Sprites/LeftArrow1_c1.png" id="3_p445d"]
-[ext_resource type="Texture2D" uid="uid://dhixyxldiw4qw" path="res://Resources/Textures/Sprites/LeftArrow1_d1.png" id="4_cmdtj"]
-[ext_resource type="PackedScene" uid="uid://oy11ycs3g0j5" path="res://Scenes/UI/ui_settings_menu.tscn" id="5_lmxud"]
-[ext_resource type="Texture2D" uid="uid://de6amaugo062l" path="res://Resources/Textures/Sprites/LeftArrow1_a1.png" id="5_p28g2"]
-[ext_resource type="Theme" uid="uid://it6hqr6uagyo" path="res://Resources/Themes/theme_ScrollText1.tres" id="5_vysen"]
-[ext_resource type="Texture2D" uid="uid://lt1w8fjefmye" path="res://Resources/Textures/Sprites/RightArrow1_b1.png" id="6_3pdgs"]
-[ext_resource type="Texture2D" uid="uid://d3l1pqivpgxue" path="res://Resources/Textures/Sprites/RightArrow1_c1.png" id="7_2tgps"]
-[ext_resource type="FontFile" uid="uid://dxga040301lgv" path="res://Resources/Fonts/Quenda-Medium.otf" id="8_kgejf"]
-[ext_resource type="Texture2D" uid="uid://b6i6i1uk1gxw6" path="res://Resources/Textures/Sprites/RightArrow1_d1.png" id="8_or8dl"]
-[ext_resource type="Texture2D" uid="uid://dagd43rmtudqu" path="res://Resources/Textures/Sprites/RightArrow1_a1.png" id="9_qkpuu"]
+[ext_resource type="Script" path="res://scripts/UIHandler.gd" id="1_wox0k"]
+[ext_resource type="Texture2D" uid="uid://bggjhdu1kdj1j" path="res://resources/Textures/Sprites/LeftArrow1_b1.png" id="2_iow18"]
+[ext_resource type="Texture2D" uid="uid://vmax1o61lrws" path="res://resources/Textures/Sprites/Square1_a1.png" id="2_l2gvk"]
+[ext_resource type="Theme" uid="uid://d3u8v3disi16o" path="res://resources/Themes/theme_genText.tres" id="2_xewkt"]
+[ext_resource type="Texture2D" uid="uid://c555oijau62ut" path="res://resources/Textures/Sprites/Square1_b1.png" id="3_54dg7"]
+[ext_resource type="Texture2D" uid="uid://dxmlef2hawoi7" path="res://resources/Textures/Sprites/Square1_c1.png" id="3_lblhk"]
+[ext_resource type="Texture2D" uid="uid://diqpqjbctq43i" path="res://resources/Textures/Sprites/LeftArrow1_c1.png" id="3_p445d"]
+[ext_resource type="Texture2D" uid="uid://dhixyxldiw4qw" path="res://resources/Textures/Sprites/LeftArrow1_d1.png" id="4_cmdtj"]
+[ext_resource type="PackedScene" uid="uid://oy11ycs3g0j5" path="res://scenes/UI/ui_settings_menu.tscn" id="5_lmxud"]
+[ext_resource type="Texture2D" uid="uid://de6amaugo062l" path="res://resources/Textures/Sprites/LeftArrow1_a1.png" id="5_p28g2"]
+[ext_resource type="Theme" uid="uid://it6hqr6uagyo" path="res://resources/Themes/theme_ScrollText1.tres" id="5_vysen"]
+[ext_resource type="Texture2D" uid="uid://lt1w8fjefmye" path="res://resources/Textures/Sprites/RightArrow1_b1.png" id="6_3pdgs"]
+[ext_resource type="Texture2D" uid="uid://d3l1pqivpgxue" path="res://resources/Textures/Sprites/RightArrow1_c1.png" id="7_2tgps"]
+[ext_resource type="FontFile" uid="uid://dxga040301lgv" path="res://resources/Fonts/Quenda-Medium.otf" id="8_kgejf"]
+[ext_resource type="Texture2D" uid="uid://b6i6i1uk1gxw6" path="res://resources/Textures/Sprites/RightArrow1_d1.png" id="8_or8dl"]
+[ext_resource type="Texture2D" uid="uid://dagd43rmtudqu" path="res://resources/Textures/Sprites/RightArrow1_a1.png" id="9_qkpuu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h6kub"]
 
@@ -117,7 +117,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_coxev")
+script = ExtResource("1_wox0k")
 
 [node name="FadeToBlack" type="ColorRect" parent="."]
 layout_mode = 1
