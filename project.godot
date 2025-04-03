@@ -14,6 +14,12 @@ config/name="DanglingPointersFinalProject"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*res://scripts/Global.gd"
+SigBus="*res://systems/SignalManagement/SignalBus.gd"
+SoundManager3D="*res://systems/SoundManagement/soundManager3D.gd"
+
 [dotnet]
 
 project/assembly_name="DanglingPointersFinalProject"

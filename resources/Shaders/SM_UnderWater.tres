@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dkabee843hdpt"]
+
+[ext_resource type="Shader" uid="uid://dkdrhgs0r6lnf" path="res://Resources/Shaders/VS_UnderWater.tres" id="1_7qfom"]
+[ext_resource type="Texture2D" uid="uid://dhvn8d5topyjo" path="res://Resources/Textures/NormalMaps/7864-normal.jpg" id="2_o52gb"]
+
+[resource]
+shader = ExtResource("1_7qfom")
+shader_parameter/Speed = Vector2(0.02, 0.03)
+shader_parameter/Frequency = 2.0
+shader_parameter/Noise = ExtResource("2_o52gb")
+shader_parameter/Speed2 = Vector2(-0.015, -0.02)
+shader_parameter/Strength = 0.75

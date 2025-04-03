@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b25jkvemaipnk"]
+
+[ext_resource type="Material" uid="uid://dkabee843hdpt" path="res://Resources/Shaders/SM_UnderWater.tres" id="1_6dx62"]
+
+[node name="CanvasLayerPostProcessing" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = ExtResource("1_6dx62")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://bppmj5dmnvlko"]
+
+[ext_resource type="PackedScene" uid="uid://b25jkvemaipnk" path="res://Scenes/UI/CanvasLayer_PostProcessing.tscn" id="1_65ejx"]
+[ext_resource type="PackedScene" uid="uid://cw83dccua6vux" path="res://Scenes/UI/ui_hud.tscn" id="1_np053"]
+[ext_resource type="PackedScene" uid="uid://v2urofrh3pq5" path="res://Scenes/Entities/GameController.tscn" id="2_2ykvt"]
+[ext_resource type="Script" uid="uid://dj1a4vfx1g8kd" path="res://Scripts/ClickableObject.gd" id="2_j22vu"]
+[ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://Scenes/Entities/CamPosNode.tscn" id="3_71sqw"]
+[ext_resource type="PackedScene" uid="uid://bs1jlas3e61ab" path="res://Resources/Models/EB_SandBar1_a4_GD.glb" id="3_j22vu"]
+[ext_resource type="Material" path="res://Resources/Materials/M_Pink.tres" id="3_sr8fg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_65ejx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ykvt"]
+
+[node name="Dev_Level" type="Node3D"]
+
+[node name="CanvasLayerPostProcessing" parent="." instance=ExtResource("1_65ejx")]
+visible = false
+
+[node name="ColorRect" parent="CanvasLayerPostProcessing" index="0"]
+visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ui_hud" parent="CanvasLayer" instance=ExtResource("1_np053")]
+
+[node name="GameController" parent="." instance=ExtResource("2_2ykvt")]
+
+[node name="Entities" type="Node3D" parent="."]
+
+[node name="CamPosNode" parent="Entities" instance=ExtResource("3_71sqw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52371, 0, 0)
+is_active_cam = true
+
+[node name="Camera3D" type="Camera3D" parent="Entities/CamPosNode"]
+
+[node name="CamPosNode2" parent="Entities" instance=ExtResource("3_71sqw")]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 4.15716, -0.00417352, -2.23455)
+
+[node name="Camera3D" type="Camera3D" parent="Entities/CamPosNode2"]
+
+[node name="TestInteractableObject" type="StaticBody3D" parent="Entities"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97746, 0, -4.65293)
+script = ExtResource("2_j22vu")
+object_name = "TestInteractableObject"
+obj_blurb = "Blurb Here"
+is_interactable = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Entities/TestInteractableObject"]
+mesh = SubResource("BoxMesh_65ejx")
+skeleton = NodePath("../../../Geometry")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Entities/TestInteractableObject"]
+shape = SubResource("BoxShape3D_2ykvt")
+
+[node name="Geometry" type="Node3D" parent="."]
+
+[node name="EB_SandBar1_a4_GD" parent="Geometry" instance=ExtResource("3_j22vu")]
+
+[node name="Sandbar" parent="Geometry/EB_SandBar1_a4_GD" index="0"]
+transform = Transform3D(0.996195, 0, 0.0871556, 0, 1, 0, -0.0871556, 0, 0.996195, -6, 0.0637774, -23)
+surface_material_override/0 = ExtResource("3_sr8fg")
+
+[editable path="CanvasLayerPostProcessing"]
+[editable path="Geometry/EB_SandBar1_a4_GD"]

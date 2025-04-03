@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://7f3ychffrmmt"]
+
+[ext_resource type="Shader" uid="uid://dijotpds2iucp" path="res://Resources/Shaders/VS_Wobble1.tres" id="1_slcru"]
+[ext_resource type="Texture2D" uid="uid://c5hbnn4w6ke30" path="res://Resources/Textures/NormalMaps/7864-normal.jpg" id="2_asd8y"]
+
+[resource]
+shader = ExtResource("1_slcru")
+shader_parameter/ColorTint = Color(1, 1, 1, 1)
+shader_parameter/WobbleRate = 3.8
+shader_parameter/UVOffset1 = Vector2(0.32, 0.4)
+shader_parameter/NormalMap = ExtResource("2_asd8y")
+shader_parameter/UVOffset2 = Vector2(0.32, 0.4)
+shader_parameter/DistortionAmount = 0.004

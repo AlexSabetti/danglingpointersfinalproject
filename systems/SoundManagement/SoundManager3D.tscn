@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmkvlchp5iy01"]
+
+[ext_resource type="PackedScene" uid="uid://b8t4ygipwjedm" path="res://systems/SoundManagement/SoundQueue3D.tscn" id="1_ya6ty"]
+[ext_resource type="AudioStream" uid="uid://crtjlw3it3k2u" path="res://resources/Sounds/Boink.wav" id="7_ufmfj"]
+
+[node name="SoundManager3D" type="Node3D"]
+
+[node name="SQ_Boink" parent="." instance=ExtResource("1_ya6ty")]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SQ_Boink"]
+stream = ExtResource("7_ufmfj")

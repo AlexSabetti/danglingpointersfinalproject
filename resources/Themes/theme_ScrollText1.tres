@@ -1,0 +1,16 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://it6hqr6uagyo"]
+
+[ext_resource type="FontFile" uid="uid://dxga040301lgv" path="res://Resources/Fonts/Quenda-Medium.otf" id="1_dvs8o"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wp8mj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fytr2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nx2hp"]
+
+[resource]
+RichTextLabel/constants/line_separation = 2
+RichTextLabel/fonts/normal_font = ExtResource("1_dvs8o")
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_wp8mj")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_fytr2")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_nx2hp")

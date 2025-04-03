@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://v2urofrh3pq5"]
+
+[ext_resource type="Script" uid="uid://cajb0w0xdbl7y" path="res://Scripts/GameController.gd" id="1_clsi4"]
+[ext_resource type="PackedScene" uid="uid://cw83dccua6vux" path="res://Scenes/UI/ui_hud.tscn" id="2_yhlj5"]
+
+[node name="GameController" type="Node3D"]
+script = ExtResource("1_clsi4")
+
+[node name="CanvasLayer_hud" type="CanvasLayer" parent="."]
+
+[node name="ui_hud" parent="CanvasLayer_hud" instance=ExtResource("2_yhlj5")]
+metadata/_edit_use_anchors_ = true

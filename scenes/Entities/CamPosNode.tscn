@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2uxpo5fna1nn"]
+
+[ext_resource type="Script" uid="uid://cb2ib6fst188" path="res://scripts/camPosNode.gd" id="1_8mso5"]
+[ext_resource type="PackedScene" uid="uid://y7uhpjjh3g3i" path="res://resources/Models/FilmCamera1_a1.glb" id="3_pu8xr"]
+[ext_resource type="Material" uid="uid://ck0mxslef5hju" path="res://resources/Materials/M_CameraMaterial.tres" id="4_rigi6"]
+
+[node name="CameraPosNode" type="Node3D"]
+script = ExtResource("1_8mso5")
+
+[node name="FilmCamera1_a1" parent="." instance=ExtResource("3_pu8xr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.07)
+
+[node name="FilmCamera" parent="FilmCamera1_a1" index="0"]
+material_override = ExtResource("4_rigi6")
+
+[editable path="FilmCamera1_a1"]
