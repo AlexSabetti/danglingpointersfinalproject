@@ -2,7 +2,7 @@ class_name MapManager
 extends Node3D
 
 @export var grid_count: int = 16 # MUST BE A ROOTABLE VALUE
-@export var cell_size = 14 # Change this if we change the room sizes
+@export var cell_size = 16 # Change this if we change the room sizes
 @export var active_cell_count: int = 0 # How many cells we've already placed rooms in
 
 @export node_scene: MapNode # MUST BE FILLED IN
@@ -21,10 +21,11 @@ func Create_Map():
   var root_count = sqrt(grid_count)
   for i in range(0, root_count):
     for j in range(0, root_count):
+      node_cur_pos = {i * cell_size, 0, j * cell_size) # Tweak this
       var scene = load(node_scene)
       var walker = scene.instantiate()
       add_child(walker)
-      walker.global_position = original_node_loc
+      walker.global_position = node_cur_pos
       var placement_above = i * root + j - root
       if placement_above >= 0:
         get_child(placement_above).south_node = walker
