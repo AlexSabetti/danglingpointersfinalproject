@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmqxqobfkcohv"]
+
+[ext_resource type="PackedScene" uid="uid://t7a5rexh74lr" path="res://resources/Models/TestRoom1_a1.glb" id="1_pm3fe"]
+[ext_resource type="Material" uid="uid://dfy4yflrrduf0" path="res://resources/Materials/M_Pink.tres" id="2_ibtje"]
+[ext_resource type="Material" uid="uid://bbllsegw0ygtt" path="res://resources/Materials/M_Purple.tres" id="3_nsu76"]
+
+[node name="TestRoom1_a1" instance=ExtResource("1_pm3fe")]
+
+[node name="SeaFloor" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_ibtje")
+
+[node name="Rock" parent="." index="1"]
+surface_material_override/0 = ExtResource("3_nsu76")

@@ -2,7 +2,7 @@
 class_name Foliage
 extends Node3D
 
-@export var foliage_Texture:Texture2D = load("res://Resources/Sprites/Reeds2_a1.png"):
+@export var foliage_Texture:Texture2D = load("res://resources/Textures/Sprites/Reeds2_a1.png"):
 	set(t):
 		foliage_Texture = t
 		# sets the mesh textures to the given texture

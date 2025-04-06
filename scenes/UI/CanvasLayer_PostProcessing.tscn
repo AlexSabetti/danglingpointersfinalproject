@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b25jkvemaipnk"]
 
-[ext_resource type="Material" uid="uid://dkabee843hdpt" path="res://Resources/Shaders/SM_UnderWater.tres" id="1_6dx62"]
+[ext_resource type="Material" uid="uid://dkabee843hdpt" path="res://resources/Shaders/SM_UnderWater.tres" id="1_6dx62"]
 
 [node name="CanvasLayerPostProcessing" type="CanvasLayer"]
 

@@ -13,12 +13,17 @@ var paused: bool = false
 
 
 @export_category("CameraControls")
-var cur_cam: CameraNode # current camera node where the viewport is at
+@export var cam: Camera3D # camera of the player's character
+var is_screen_focused:bool = false
+var cur_cam: CameraNode # current camera node where the drone viewport is at
 @export var camAccel: float = 0.5
 @export var turnSpeed := 0.25
 var twist_input: float = 0.0
 var min_h_rotation: float = -45.0
 var max_h_rotation: float = 45.0
+
+@export_category("computer screen")
+@export var ScreenViewport: SubViewport
 
 @onready var UI = $CanvasLayer_hud/ui_hud
 
@@ -41,10 +46,12 @@ func _input(event):
 	if event is InputEventMouseButton:
 		var mouse_event: InputEventMouseButton = event
 		if !paused and !mouse_event.pressed and mouse_event.button_index == MOUSE_BUTTON_LEFT:
-			get_mouse_pos(mouse)
+			get_mouse_pos(mouse, get_viewport())
+			if ScreenViewport != null && is_screen_focused:
+				get_mouse_pos(mouse, ScreenViewport)
 
 func camera_movement(delta: float):
-		# accelerate camera turn
+	# accelerate camera turn
 	if Input.is_action_pressed("rotate_left") && !Input.is_action_pressed("rotate_right") && twist_input >= 0:
 		twist_input += camAccel * delta
 	else: if Input.is_action_pressed("rotate_right") && !Input.is_action_pressed("rotate_left")  && twist_input <= 0:
@@ -62,6 +69,7 @@ func camera_movement(delta: float):
 	
 	cur_cam.camera.rotate_y(deg_to_rad(twist_input))
 	
+	# limits degrees of rotation for drone camera
 	if rad_to_deg(cur_cam.camera.rotation.y) <  min_h_rotation:
 		cur_cam.camera.rotation.y = deg_to_rad(min_h_rotation)
 		twist_input = 0
@@ -69,11 +77,28 @@ func camera_movement(delta: float):
 		cur_cam.camera.rotation.y = deg_to_rad(max_h_rotation)
 		twist_input = 0
 	
+	if Input.is_action_pressed("lean_forward"):
+		is_screen_focused = true
+		var tween = create_tween()
+		tween.tween_property(cam, "position", Vector3(-0.378, 2.41, 1.241), 1.0).set_trans(Tween.TRANS_CUBIC)
+		tween.parallel().tween_property(cam, "rotation", Vector3(0.0, deg_to_rad(-90.0), 0.0), 1.0).set_trans(Tween.TRANS_CUBIC)
+		#cam_target_pos = Vector3(-0.3, 0.97, 0.068)
+	else: if Input.is_action_pressed("lean_back"):
+		is_screen_focused = false
+		var tween = create_tween()
+		tween.tween_property(cam, "position", Vector3(-0.809, 2.311, 1.322), 1.0).set_trans(Tween.TRANS_CUBIC)
+		tween.parallel().tween_property(cam, "rotation", Vector3(0.0, deg_to_rad(-80.0), 0.0), 1.0).set_trans(Tween.TRANS_CUBIC)
+		#cam_target_pos = Vector3(0.025, 0.97, 0.068)
+	
+	#if cam_target_pos != cam.position:
+		#cam.position = lerp(cam.position, cam_target_pos, delta * 2.0)
 
 # Gets the mouse positon and checks if a clicable objects was cliked. If so, it emits an object_clicked signal for tha object
-func get_mouse_pos(mouse_loc: Vector2):
-	var start = get_viewport().get_camera_3d().project_ray_origin(mouse_loc)
-	var end = get_viewport().get_camera_3d().project_position(mouse_loc, MAX_DIST)
+func get_mouse_pos(mouse_loc: Vector2, viewport:Viewport):
+	#var start = get_viewport().get_camera_3d().project_ray_origin(mouse_loc)
+	#var end = get_viewport().get_camera_3d().project_position(mouse_loc, MAX_DIST)
+	var start = viewport.get_camera_3d().project_ray_origin(mouse_loc)
+	var end = viewport.get_camera_3d().project_position(mouse_loc, MAX_DIST)
 	var space_state = get_world_3d().direct_space_state
 
 	var para = PhysicsRayQueryParameters3D.new()

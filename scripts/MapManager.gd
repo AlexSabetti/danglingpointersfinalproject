@@ -20,24 +20,24 @@ func Create_Map():
 
   var root_count = sqrt(grid_count)
   for i in range(0, root_count):
-    for j in range(0, root_count):
-      node_cur_pos = {i * cell_size, 0, j * cell_size) # Tweak this
-      var scene = load(node_scene)
-      var walker = scene.instantiate()
-      add_child(walker)
-      walker.global_position = node_cur_pos
-      var placement_above = i * root + j - root
-      if placement_above >= 0:
-        get_child(placement_above).south_node = walker
-        walker.north_node = get_child(placement_above)
-      else :
-        walker.south_node = NULL
-      if j > 0:
-        get(child(i * root + j - 1).east_node = walker
-        walker = get_child(i * root + j - 1)
+	for j in range(0, root_count):
+	  node_cur_pos = {i * cell_size, 0, j * cell_size) # Tweak this
+	  var scene = load(node_scene)
+	  var walker = scene.instantiate()
+	  add_child(walker)
+	  walker.global_position = node_cur_pos
+	  var placement_above = i * root + j - root
+	  if placement_above >= 0:
+		get_child(placement_above).south_node = walker
+		walker.north_node = get_child(placement_above)
+	  else :
+		walker.south_node = NULL
+	  if j > 0:
+		get(child(i * root + j - 1).east_node = walker
+		walker = get_child(i * root + j - 1)
   head = get_child(0)
-        
-    
+		
+	
   head.north_node = NULL
   
   head.west_node = NULL

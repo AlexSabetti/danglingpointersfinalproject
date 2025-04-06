@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://bsgqiciuvs6ok"]
+
+[ext_resource type="Material" uid="uid://cgx4q27pl6kfw" path="res://resources/Materials/M_PilotSeatRoom1.tres" id="1_o30px"]
+[ext_resource type="PackedScene" uid="uid://evbjf4yqam85" path="res://resources/Models/DeskComputer1_a1.glb" id="2_ui7re"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o30px"]
+shading_mode = 2
+disable_ambient_light = true
+disable_fog = true
+albedo_color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i16ht"]
+shading_mode = 2
+disable_ambient_light = true
+disable_fog = true
+albedo_color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qu0ur"]
+shading_mode = 2
+disable_ambient_light = true
+disable_fog = true
+albedo_color = Color(0.370364, 0.370364, 0.370364, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pw7nu"]
+shading_mode = 2
+disable_ambient_light = true
+disable_fog = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_07f4f"]
+shading_mode = 2
+disable_ambient_light = true
+disable_fog = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o7gu8"]
+shading_mode = 2
+disable_ambient_light = true
+disable_fog = true
+albedo_color = Color(0.709804, 0.568627, 0.392157, 1)
+
+[node name="PilotSeat" type="Node3D"]
+
+[node name="DeskComputer1_a1" parent="." instance=ExtResource("2_ui7re")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.657476, 0.759176, 0)
+
+[node name="Comp2" parent="DeskComputer1_a1" index="0"]
+layers = 2
+surface_material_override/0 = ExtResource("1_o30px")
+surface_material_override/1 = SubResource("StandardMaterial3D_o30px")
+
+[node name="SmallComp1" parent="DeskComputer1_a1" index="1"]
+layers = 2
+surface_material_override/0 = ExtResource("1_o30px")
+surface_material_override/1 = SubResource("StandardMaterial3D_i16ht")
+
+[node name="SmallComp1_001" parent="DeskComputer1_a1" index="2"]
+layers = 2
+surface_material_override/0 = ExtResource("1_o30px")
+surface_material_override/1 = SubResource("StandardMaterial3D_qu0ur")
+
+[node name="CounterTop2" parent="DeskComputer1_a1" index="3"]
+layers = 2
+surface_material_override/0 = ExtResource("1_o30px")
+
+[node name="Desk" parent="DeskComputer1_a1" index="4"]
+layers = 2
+
+[node name="ShipCabin" parent="DeskComputer1_a1" index="5"]
+layers = 2
+material_override = ExtResource("1_o30px")
+surface_material_override/0 = ExtResource("1_o30px")
+surface_material_override/1 = SubResource("StandardMaterial3D_pw7nu")
+surface_material_override/2 = SubResource("StandardMaterial3D_07f4f")
+surface_material_override/3 = SubResource("StandardMaterial3D_o7gu8")
+
+[editable path="DeskComputer1_a1"]
