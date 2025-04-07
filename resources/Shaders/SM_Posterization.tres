@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bg2bjdrabdhn5"]
+
+[ext_resource type="Shader" uid="uid://dm2og8vefjkqh" path="res://resources/Shaders/VS_Posterization.tres" id="1_w1ao5"]
+
+[resource]
+shader = ExtResource("1_w1ao5")
+shader_parameter/NumberOfColors = 24.0

@@ -1,0 +1,464 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3728ytvs6bn0"]
+
+[ext_resource type="Theme" uid="uid://b7dmjh57doq5k" path="res://resources/Themes/theme_ScreenText.tres" id="1_ux1rw"]
+
+[node name="ui_mapDisplay" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0375775, 0.0464977, 0.0321647, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Grid" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 305
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Grid"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Grid/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="ColorRect4" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Grid/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="ColorRect4" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/Grid/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="ColorRect4" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/Grid/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="ColorRect4" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/Grid/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="ColorRect4" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="MarginContainer/Grid/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="ColorRect4" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="MarginContainer/Grid/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="ColorRect4" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="MarginContainer/Grid/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="ColorRect4" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="MarginContainer/Grid/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_ux1rw")
+theme_override_font_sizes/normal_font_size = 80
+text = "   Map
+   Here
+      :)"
