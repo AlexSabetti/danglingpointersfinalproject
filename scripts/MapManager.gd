@@ -31,24 +31,24 @@ func Create_Map():
 
   
   for i in range(0, root_count):
-    for j in range(0, root_count):
-      node_cur_pos = (i * cell_size, 0, j * cell_size) # Tweak this
-      var scene = load(node_scene)
-      var walker = scene.instantiate()
-      add_child(walker)
-      walker.global_position = node_cur_pos
-      var placement_above = i * root + j - root
-      if placement_above >= 0:
-        get_child(placement_above).south_node = walker
-        walker.north_node = get_child(placement_above)
-      else :
-        walker.south_node = NULL
-      if j > 0:
-        get_child(i * root + j - 1).east_node = walker
-        walker = get_child(i * root + j - 1)
+	for j in range(0, root_count):
+	  node_cur_pos = (i * cell_size, 0, j * cell_size) # Tweak this
+	  var scene = load(node_scene)
+	  var walker = scene.instantiate()
+	  add_child(walker)
+	  walker.global_position = node_cur_pos
+	  var placement_above = i * root + j - root
+	  if placement_above >= 0:
+		get_child(placement_above).south_node = walker
+		walker.north_node = get_child(placement_above)
+	  else :
+		walker.south_node = NULL
+	  if j > 0:
+		get_child(i * root + j - 1).east_node = walker
+		walker = get_child(i * root + j - 1)
   head = get_child(0)
-        
-    
+		
+	
 func start_map():
   var rng = RandomNumberGenerator.new()
   var starting_tile = rng.rand_range(0, grid_count)
@@ -65,13 +65,13 @@ func start_map():
   # Don't know the specifics for how we're going to put up blockers yet, but we'll start with the bools
 
   if(starting_node.north_node == NULL):
-    starting_node.north_open = false
+	starting_node.north_open = false
   if(starting_node.south_node == NULL):
-    starting_node.south_open = false
+	starting_node.south_open = false
   if(starting_node.east_node == NULL):
-    starting_node.east_open = false
+	starting_node.east_open = false
   if(starting_node.west_node == NULL): 
-    starting_node.west_open = false
+	starting_node.west_open = false
 
 func expand_map():
   var rng = RandomNumberGenerator.new()
@@ -82,8 +82,8 @@ func expand_map():
   var second_key_area = -1
 
   while first_key_area == second_key_area || first_key_area == starting_node_place || second_key_area == starting_node_place:
-    first_key_area = rng.rand_range(0, grid_count)
-    second_key_area = rng.rand_range(0, grid_count)
+	first_key_area = rng.rand_range(0, grid_count)
+	second_key_area = rng.rand_range(0, grid_count)
   # On smaller maps, this might loop for a long time, so this is the first and last time we're doing this
 
   key_areas.append(get_child(first_key_area))
@@ -91,7 +91,6 @@ func expand_map():
 
   var num = starting_node_place - first_key_area
   if num < 0:
-    # Below or to the right
-    var rows_away = abs(num) / root_count
-    var cols_away = abs(num) % root_count
-
+	# Below or to the right
+	var rows_away = abs(num) / root_count
+	var cols_away = abs(num) % root_count

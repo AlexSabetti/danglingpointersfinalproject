@@ -14,6 +14,7 @@ class_name UIHandler
 @onready var blurbTimer := $BlurbTimer
 @onready var settingsMenu := $settings_menu
 @onready var FadeTimer : Timer = $FadeTimer
+@onready var CursorIcon: = $CursorSprite2D
 
 var fadeBlackColor : Color = Color(0.08,0.02,0.04,1.0)
 var fadeTransColor : Color = Color(0.08,0.02,0.04,0.0)
@@ -51,6 +52,19 @@ func _ready():
 	
 	fade_from_black()
 
+func _process(_delta: float) -> void:
+	CursorIcon.position = get_global_mouse_position()
+
+# 
+func show_coursor_sprite(type:int):
+	if type == 0:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		CursorIcon.visible = false
+	else: if type == 1:
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		CursorIcon.visible = true
+		CursorIcon.texture = load("res://resources/Textures/Sprites/PointerArrow1_b1.png")
+	
 
 func respond_to_pause():
 	Global.gameControllerRef.paused = true

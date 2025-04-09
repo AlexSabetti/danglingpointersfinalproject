@@ -6,7 +6,7 @@ extends Node3D
 @export var is_active:bool = true
 
 #base function for triggering the entity
-func _trigger():
+func _on_trigger():
 	pass
 
 # activates the entity

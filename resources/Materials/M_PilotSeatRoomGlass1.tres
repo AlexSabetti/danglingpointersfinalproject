@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://da2amojqhctyv"]
+
+[resource]
+transparency = 1
+disable_ambient_light = true
+disable_fog = true
+emission_enabled = true
+emission = Color(0.701206, 0.620034, 0.387258, 1)

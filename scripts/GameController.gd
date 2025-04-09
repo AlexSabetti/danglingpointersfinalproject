@@ -8,22 +8,23 @@ var mouse: Vector2 = Vector2.ZERO
 const MAX_DIST = 800
 
 var signal_manager: SignalBus = SigBus
-
 var paused: bool = false
 
 
 @export_category("CameraControls")
-@export var cam: Camera3D # camera of the player's character
+@export var player_cam: Camera3D # camera of the player's character
+@export var drone:Drone # drone to be used by the player
 var is_screen_focused:bool = false
-var cur_cam: CameraNode # current camera node where the drone viewport is at
 @export var camAccel: float = 0.5
 @export var turnSpeed := 0.25
 var twist_input: float = 0.0
 var min_h_rotation: float = -45.0
 var max_h_rotation: float = 45.0
+# current object being hovered over by the player
+var cur_target_object
 
 @export_category("computer screen")
-@export var ScreenViewport: SubViewport
+@export var VirtualScreenViewport: SubViewport
 
 @onready var UI = $CanvasLayer_hud/ui_hud
 
@@ -37,6 +38,13 @@ func _process(delta: float):
 	# Check for camera movement inputs
 	camera_movement(delta)
 	
+	# check if user is hovering over an object
+	if !paused:
+		if is_screen_focused && VirtualScreenViewport != null:
+			get_mouse_pos(mouse, VirtualScreenViewport)
+		else:
+			get_mouse_pos(mouse, get_viewport())
+	
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel") && !UI.settings_locked:
@@ -46,9 +54,11 @@ func _input(event):
 	if event is InputEventMouseButton:
 		var mouse_event: InputEventMouseButton = event
 		if !paused and !mouse_event.pressed and mouse_event.button_index == MOUSE_BUTTON_LEFT:
-			get_mouse_pos(mouse, get_viewport())
-			if ScreenViewport != null && is_screen_focused:
-				get_mouse_pos(mouse, ScreenViewport)
+			interact()
+			# moved mouse detection to process to include detecting hovering over things
+			#get_mouse_pos(mouse, get_viewport())
+			#if VirtualScreenViewport != null && is_screen_focused:
+				#get_mouse_pos(mouse, VirtualScreenViewport)
 
 func camera_movement(delta: float):
 	# accelerate camera turn
@@ -67,36 +77,35 @@ func camera_movement(delta: float):
 		
 	twist_input = clamp(twist_input, -turnSpeed, turnSpeed)
 	
-	cur_cam.camera.rotate_y(deg_to_rad(twist_input))
+	drone.DroneCamera.rotate_y(deg_to_rad(twist_input))
 	
 	# limits degrees of rotation for drone camera
-	if rad_to_deg(cur_cam.camera.rotation.y) <  min_h_rotation:
-		cur_cam.camera.rotation.y = deg_to_rad(min_h_rotation)
+	if rad_to_deg(drone.DroneCamera.rotation.y) <  min_h_rotation:
+		drone.DroneCamera.rotation.y = deg_to_rad(min_h_rotation)
 		twist_input = 0
-	else: if rad_to_deg(cur_cam.camera.rotation.y) >  max_h_rotation:
-		cur_cam.camera.rotation.y = deg_to_rad(max_h_rotation)
+	else: if rad_to_deg(drone.DroneCamera.rotation.y) >  max_h_rotation:
+		drone.DroneCamera.rotation.y = deg_to_rad(max_h_rotation)
 		twist_input = 0
 	
-	if Input.is_action_pressed("lean_forward"):
+	# When the lean forward button is pressed, lerp the camera to focus on the computer screen, and focuses the computers audio as wellw
+	if Input.is_action_pressed("lean_forward") && !is_screen_focused:
 		is_screen_focused = true
 		var tween = create_tween()
-		tween.tween_property(cam, "position", Vector3(-0.378, 2.41, 1.241), 1.0).set_trans(Tween.TRANS_CUBIC)
-		tween.parallel().tween_property(cam, "rotation", Vector3(0.0, deg_to_rad(-90.0), 0.0), 1.0).set_trans(Tween.TRANS_CUBIC)
-		#cam_target_pos = Vector3(-0.3, 0.97, 0.068)
-	else: if Input.is_action_pressed("lean_back"):
+		tween.tween_property(player_cam, "position", Vector3(-0.360, 2.41, 1.241), 1.0).set_trans(Tween.TRANS_CUBIC)
+		tween.parallel().tween_property(player_cam, "rotation", Vector3(0.0, deg_to_rad(-90.0), 0.0), 1.0).set_trans(Tween.TRANS_CUBIC)
+		tween.parallel().tween_method(change_outside_bus_volume,-4, -20, 1.0).set_trans(Tween.TRANS_CUBIC)
+		tween.parallel().tween_method(change_speaker_bus_volume,-20, -4, 1.0).set_trans(Tween.TRANS_CUBIC)
+	# When the lean back button is pressed, lerp the camera to zooom out from the computer screen
+	else: if Input.is_action_pressed("lean_back") && is_screen_focused:
 		is_screen_focused = false
 		var tween = create_tween()
-		tween.tween_property(cam, "position", Vector3(-0.809, 2.311, 1.322), 1.0).set_trans(Tween.TRANS_CUBIC)
-		tween.parallel().tween_property(cam, "rotation", Vector3(0.0, deg_to_rad(-80.0), 0.0), 1.0).set_trans(Tween.TRANS_CUBIC)
-		#cam_target_pos = Vector3(0.025, 0.97, 0.068)
-	
-	#if cam_target_pos != cam.position:
-		#cam.position = lerp(cam.position, cam_target_pos, delta * 2.0)
+		tween.tween_property(player_cam, "position", Vector3(-0.809, 2.311, 1.298), 1.0).set_trans(Tween.TRANS_CUBIC)
+		tween.parallel().tween_property(player_cam, "rotation", Vector3(0.0, deg_to_rad(-80.0), 0.0), 1.0).set_trans(Tween.TRANS_CUBIC)
+		tween.parallel().tween_method(change_outside_bus_volume,-20, -4, 1.0).set_trans(Tween.TRANS_CUBIC)
+		tween.parallel().tween_method(change_speaker_bus_volume,-4, -20, 1.0).set_trans(Tween.TRANS_CUBIC)
 
 # Gets the mouse positon and checks if a clicable objects was cliked. If so, it emits an object_clicked signal for tha object
 func get_mouse_pos(mouse_loc: Vector2, viewport:Viewport):
-	#var start = get_viewport().get_camera_3d().project_ray_origin(mouse_loc)
-	#var end = get_viewport().get_camera_3d().project_position(mouse_loc, MAX_DIST)
 	var start = viewport.get_camera_3d().project_ray_origin(mouse_loc)
 	var end = viewport.get_camera_3d().project_position(mouse_loc, MAX_DIST)
 	var space_state = get_world_3d().direct_space_state
@@ -106,21 +115,38 @@ func get_mouse_pos(mouse_loc: Vector2, viewport:Viewport):
 	para.to = end
 	
 	var result = space_state.intersect_ray(para)
-	if result.size() > 0:
+	if result.size() > 0 && result.get("collider") != null:
 		var obj = result.get("collider")
-		# if the object is clickable, emit the signal
-		if obj is ClickableObject:
-			print(obj)
-			var click_obj: ClickableObject = obj
+		# if the object is a DynamicEntity, emit the signal
+		if obj is DynamicEntity:
+			# only set value if not already set
+			if cur_target_object != obj:
+				cur_target_object = obj
+				print("hovered over: " + str(obj))
+				UI.show_coursor_sprite(1)
+		# if the object is NOT a DynamicEntity, log current target object as NULL
+		else: if cur_target_object != null:
+			cur_target_object = null
+			print("no longer hovered over anything of value")
+			UI.show_coursor_sprite(0)
+	# if no colliders are caught by the ray cast, log the current target object as NULL
+	else: if cur_target_object != null:
+		cur_target_object = null
+		print("nothin hovered over")
+		UI.show_coursor_sprite(0)
+
+	
+# Attempts to interact with the currently hovered over object
+func interact()->void:
+	if cur_target_object != null:
+		if cur_target_object is ClickableObject:
+			print(cur_target_object)
+			var click_obj: ClickableObject = cur_target_object
 			if click_obj.is_interactable:
-				signal_manager.emit_signal("object_clicked", obj)
-				if click_obj.trigger_on_interact.size() > 0:
-					click_obj.trigger_objects()
+				signal_manager.emit_signal("object_clicked", cur_target_object)
+				click_obj._on_trigger()
 				#mark_off(click_obj)
-	else:
-		print("No object clicked")
-	
-	
+
 # marks the given object as found and removes it from the progress order list
 #func mark_off(obj: ClickableObject):
 	#print("clicked")
@@ -174,6 +200,13 @@ func toggle_pause_menu() -> void:
 		paused = true
 		signal_manager.emit_signal("pause_game")
 
+func change_outside_bus_volume(value: float):
+	var index = AudioServer.get_bus_index("Outside")
+	AudioServer.set_bus_volume_db(index, value)
+
+func change_speaker_bus_volume(value: float):
+	var index = AudioServer.get_bus_index("ComputerSpeaker")
+	AudioServer.set_bus_volume_db(index, value)
 
 # function for when the player finds everything
 func win_game() -> void:

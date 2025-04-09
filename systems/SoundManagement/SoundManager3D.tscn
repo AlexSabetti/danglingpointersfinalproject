@@ -1,11 +1,97 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmkvlchp5iy01"]
+[gd_scene load_steps=13 format=3 uid="uid://bmkvlchp5iy01"]
 
+[ext_resource type="Script" uid="uid://bp2uw0yooxat7" path="res://systems/SoundManagement/soundManager3D.gd" id="1_bq6yj"]
 [ext_resource type="PackedScene" uid="uid://b8t4ygipwjedm" path="res://systems/SoundManagement/SoundQueue3D.tscn" id="1_ya6ty"]
+[ext_resource type="PackedScene" uid="uid://dsbf6idbiqkfl" path="res://systems/SoundManagement/SoundPool3D.tscn" id="3_ov475"]
+[ext_resource type="AudioStream" uid="uid://dhq8dovhqgfrl" path="res://resources/Sounds/RotaryPhoneTick0.wav" id="4_iei81"]
+[ext_resource type="AudioStream" uid="uid://c4lekkylf3tnv" path="res://resources/Sounds/PhoneV_1.wav" id="4_roa0k"]
+[ext_resource type="AudioStream" uid="uid://bw8007pubgjow" path="res://resources/Sounds/ComputerFonk1_a1.wav" id="5_2a7s3"]
+[ext_resource type="AudioStream" uid="uid://dfmirjqrvacvd" path="res://resources/Sounds/PhoneV_2.wav" id="5_roa0k"]
 [ext_resource type="AudioStream" uid="uid://crtjlw3it3k2u" path="res://resources/Sounds/Boink.wav" id="7_ufmfj"]
+[ext_resource type="AudioStream" uid="uid://cpfue8en4scuo" path="res://resources/Sounds/PhoneV_3.wav" id="8_sd7m2"]
+[ext_resource type="AudioStream" uid="uid://dxq1qmos6jlvh" path="res://resources/Sounds/PhoneV_4.wav" id="9_1ckgb"]
+[ext_resource type="AudioStream" uid="uid://dlk6oti6vglnp" path="res://resources/Sounds/PhoneV_5.wav" id="10_1ckgb"]
+[ext_resource type="AudioStream" uid="uid://ldm80jo27erl" path="res://resources/Sounds/PhoneV_6.wav" id="11_eihy1"]
 
 [node name="SoundManager3D" type="Node3D"]
+script = ExtResource("1_bq6yj")
 
 [node name="SQ_Boink" parent="." instance=ExtResource("1_ya6ty")]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SQ_Boink"]
 stream = ExtResource("7_ufmfj")
+
+[node name="SQ_Tick" parent="." instance=ExtResource("1_ya6ty")]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SQ_Tick"]
+stream = ExtResource("4_iei81")
+panning_strength = 0.25
+
+[node name="SQ_CFonk" parent="." instance=ExtResource("1_ya6ty")]
+count = 2
+minPitch = 0.8
+maxPitch = 1.2
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SQ_CFonk"]
+stream = ExtResource("5_2a7s3")
+panning_strength = 0.25
+bus = &"ComputerSpeaker"
+
+[node name="SP_Voice" parent="." instance=ExtResource("3_ov475")]
+overrideSoundQueueSettings = true
+minPitch = 0.7
+maxPitch = 0.8
+
+[node name="SoundQueue3D" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
+count = 2
+minPitch = 0.7
+maxPitch = 0.8
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SP_Voice/SoundQueue3D"]
+stream = ExtResource("4_roa0k")
+panning_strength = 0.4
+
+[node name="SoundQueue3D2" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
+count = 2
+minPitch = 0.7
+maxPitch = 0.8
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SP_Voice/SoundQueue3D2"]
+stream = ExtResource("5_roa0k")
+panning_strength = 0.4
+
+[node name="SoundQueue3D3" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
+count = 2
+minPitch = 0.7
+maxPitch = 0.8
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SP_Voice/SoundQueue3D3"]
+stream = ExtResource("8_sd7m2")
+panning_strength = 0.4
+
+[node name="SoundQueue3D4" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
+count = 2
+minPitch = 0.7
+maxPitch = 0.8
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SP_Voice/SoundQueue3D4"]
+stream = ExtResource("9_1ckgb")
+panning_strength = 0.4
+
+[node name="SoundQueue3D5" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
+count = 2
+minPitch = 0.7
+maxPitch = 0.8
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SP_Voice/SoundQueue3D5"]
+stream = ExtResource("10_1ckgb")
+panning_strength = 0.4
+
+[node name="SoundQueue3D6" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
+count = 2
+minPitch = 0.7
+maxPitch = 0.8
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SP_Voice/SoundQueue3D6"]
+stream = ExtResource("11_eihy1")
+panning_strength = 0.4

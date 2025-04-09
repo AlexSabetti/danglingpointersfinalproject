@@ -1,17 +1,28 @@
-[gd_resource type="Environment" format=3 uid="uid://crvgdsl4qcv1t"]
+[gd_resource type="Environment" load_steps=2 format=3 uid="uid://crvgdsl4qcv1t"]
+
+[ext_resource type="Sky" uid="uid://dv57ov182qtxf" path="res://resources/Environments/sky_underwater.tres" id="1_tx15k"]
 
 [resource]
-background_mode = 1
-background_color = Color(0.597057, 0.548156, 0.312989, 1)
+background_mode = 2
+sky = ExtResource("1_tx15k")
 ambient_light_source = 2
-ambient_light_color = Color(0.17265, 0.122705, 0.0641605, 1)
+ambient_light_color = Color(0.148236, 0.119662, 0.141133, 1)
 tonemap_mode = 2
-fog_enabled = true
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 0.4
+glow_bloom = 0.5
 fog_mode = 1
-fog_light_color = Color(0.388687, 0.322621, 0.124922, 1)
+fog_light_color = Color(0.435737, 0.40532, 0.144303, 1)
+fog_light_energy = 0.5
 fog_density = 1.0
+fog_sky_affect = 0.9
 fog_height = -18.0
-fog_height_density = 0.6
-fog_depth_curve = 0.392292
+fog_depth_curve = 0.287175
 fog_depth_begin = 1.0
-fog_depth_end = 22.0
+fog_depth_end = 20.0
+volumetric_fog_density = 0.28
+volumetric_fog_albedo = Color(0.820705, 0.693027, 0.466876, 1)
+volumetric_fog_emission = Color(0.219744, 0.233004, 0.0651309, 1)
+volumetric_fog_detail_spread = 0.652913
+volumetric_fog_temporal_reprojection_amount = 0.99

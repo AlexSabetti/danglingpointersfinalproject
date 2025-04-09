@@ -1,0 +1,204 @@
+[gd_scene load_steps=12 format=3 uid="uid://bsgqiciuvs6ok"]
+
+[ext_resource type="Script" uid="uid://155c6kohf0em" path="res://scripts/control_room.gd" id="1_sn4b0"]
+[ext_resource type="AudioStream" uid="uid://dqlehpverg8ci" path="res://resources/Sounds/small-electronic-motor-loop.wav" id="3_2ueky"]
+[ext_resource type="PackedScene" uid="uid://bauq7oy160mfr" path="res://resources/Models/desk_computer_1_a_1.tscn" id="3_o30px"]
+[ext_resource type="AudioStream" uid="uid://jkhiq7ucmter" path="res://resources/Sounds/OceanAmbienceLoop.wav" id="4_mguck"]
+[ext_resource type="AudioStream" uid="uid://dk78cqh1ki2af" path="res://resources/Sounds/CreakyWoodenFloor.wav" id="5_h1del"]
+[ext_resource type="AudioStream" uid="uid://bltttna1u40b0" path="res://resources/Sounds/UnderwaterAmbience_loop.wav" id="6_e5gbh"]
+[ext_resource type="Texture2D" uid="uid://caiwp8ajuh861" path="res://resources/Textures/Sprites/Painting3_a1.png" id="7_h1del"]
+
+[sub_resource type="Animation" id="Animation_h1del"]
+resource_name = "anim_paintingSway"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1.605, -0.25, 0, 0.25, 0, -1.605, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(3, 3, 3),
+"points": PackedFloat32Array(0.05, -0.75, 0, 0.75, 0, -0.05, -0.75, 0, 0.75, 0, 0.05, -0.75, 0, 0.75, 0),
+"times": PackedFloat32Array(0, 2, 4)
+}
+
+[sub_resource type="Animation" id="Animation_e5gbh"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1.6, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rt0ox"]
+_data = {
+&"RESET": SubResource("Animation_e5gbh"),
+&"anim_paintingSway": SubResource("Animation_h1del")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h1del"]
+transparency = 1
+specular_mode = 1
+disable_ambient_light = true
+disable_fog = true
+albedo_texture = ExtResource("7_h1del")
+texture_filter = 0
+
+[node name="Control_Room" type="Node3D"]
+script = ExtResource("1_sn4b0")
+
+[node name="DeskComputer1_a2" parent="." instance=ExtResource("3_o30px")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.657, 0.759, 0)
+
+[node name="TurnSoundEffect" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.369144, 2.34495, 1.41057)
+stream = ExtResource("3_2ueky")
+pitch_scale = 0.5
+panning_strength = 0.5
+bus = &"DroneAudio"
+
+[node name="OceanAmbience" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.94519, 2.55647, 0.929874)
+stream = ExtResource("4_mguck")
+volume_db = -20.0
+autoplay = true
+panning_strength = 0.0
+bus = &"Outside"
+
+[node name="CreakingAmbience" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.34966, 0.292364, 0.132299)
+stream = ExtResource("5_h1del")
+volume_db = -20.0
+pitch_scale = 0.5
+autoplay = true
+bus = &"Muffled"
+
+[node name="UnderWaterAmbience" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.369144, 2.34495, 1.27951)
+stream = ExtResource("6_e5gbh")
+volume_db = -5.0
+autoplay = true
+panning_strength = 0.5
+bus = &"DroneAudio"
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.997139, 4.10584e-10, 0.0755878, -0.0731407, -0.25239, 0.964857, 0.0190776, -0.967626, -0.251668, -0.741424, 3.38899, 0.680125)
+visible = false
+light_color = Color(0.624076, 0.579077, 0.509913, 1)
+light_energy = 0.25
+light_bake_mode = 1
+spot_range = 5.8321
+spot_angle = 55.0522
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(0.593858, -0.529284, 0.605964, 0.342995, 0.847829, 0.4044, -0.727796, -0.0323132, 0.685032, 2.22323, 5.17279, 6.97536)
+visible = false
+light_color = Color(0.953355, 0.79197, 0.588883, 1)
+light_bake_mode = 1
+shadow_enabled = true
+shadow_blur = 0.755
+spot_range = 16.5945
+spot_angle = 16.6701
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.188677, 2.4133, 1.24219)
+visible = false
+light_color = Color(0.710422, 0.533057, 0.275189, 1)
+light_energy = 0.025
+light_volumetric_fog_energy = 0.0
+omni_range = 0.328865
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.991772, 2.94033, 2.30763)
+light_color = Color(0.907986, 0.734473, 0.495702, 1)
+light_energy = 0.2
+light_volumetric_fog_energy = 0.0
+omni_range = 3.95205
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54133, 2.94033, 2.30763)
+light_color = Color(0.835294, 0.647059, 0.376471, 1)
+light_energy = 0.15
+light_volumetric_fog_energy = 0.0
+omni_range = 2.89277
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.194292, 2.34629, 0.954331)
+light_color = Color(0.32178, 0.298488, 0.236073, 1)
+light_energy = 0.025
+light_volumetric_fog_energy = 0.0
+omni_range = 0.328865
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.188041, 2.13815, 0.942103)
+light_color = Color(0.32178, 0.298488, 0.236073, 1)
+light_energy = 0.025
+light_volumetric_fog_energy = 0.0
+omni_range = 0.328865
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Painting")
+libraries = {
+&"": SubResource("AnimationLibrary_rt0ox")
+}
+autoplay = "anim_paintingSway"
+speed_scale = 0.5
+
+[node name="Painting" type="Sprite3D" parent="."]
+transform = Transform3D(-0.0291995, 0, -0.999574, 0, 1, 0, 0.999574, 0, -0.0291995, 0.234899, 2.96121, 0.664337)
+material_override = SubResource("StandardMaterial3D_h1del")
+offset = Vector2(-6.735, -38.91)
+pixel_size = 0.0025
+texture = ExtResource("7_h1del")

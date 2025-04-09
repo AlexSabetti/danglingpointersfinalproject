@@ -20,6 +20,10 @@ extends DynamicEntity
 			if child is CollisionShape3D:
 				col_box = child as CollisionShape3D
 		update_configuration_warnings()
+
+# whether or not this node should be able to be triggered multiple times
+@export var oneShot: bool = false
+
 # array of objects to send a trigger signal to on interact
 @export var trigger_on_interact: Array[DynamicEntity] = []:
 	set(arr):
@@ -54,11 +58,18 @@ func _activate_in_scene(id_to_activate: int):
 	else:
 		is_interactable = false
 
+func _on_trigger():
+	if is_active && trigger_on_interact.size() > 0:
+		if oneShot:
+			is_active = false
+		
+		trigger_objects()
+
 # triggers any objects in the array of objects to trigger, as long as the objects are dynamicEntities and active
 func trigger_objects():
 	for obj in trigger_on_interact:
 		if obj is DynamicEntity and (obj as DynamicEntity).is_active:
-			(obj as DynamicEntity)._trigger()
+			(obj as DynamicEntity)._on_trigger()
 
 #func lower_progress_requirement():
 	#if progress_requirement > 0:

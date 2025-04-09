@@ -19,13 +19,16 @@ config/icon="res://icon.svg"
 
 Global="*res://scripts/Global.gd"
 SigBus="*res://systems/SignalManagement/SignalBus.gd"
-SoundManager3D="*res://systems/SoundManagement/soundManager3D.gd"
+SoundManager3D="*res://systems/SoundManagement/SoundManager3D.tscn"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=960
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_width"
+mouse_cursor/custom_image="uid://dktq2be554m4r"
+mouse_cursor/custom_image_hotspot=Vector2(20, 8)
 
 [dotnet]
 

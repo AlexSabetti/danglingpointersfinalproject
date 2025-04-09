@@ -1,21 +1,12 @@
-[gd_scene load_steps=43 format=3 uid="uid://cw83dccua6vux"]
+[gd_scene load_steps=21 format=3 uid="uid://cw83dccua6vux"]
 
-[ext_resource type="Script" path="res://scripts/UIHandler.gd" id="1_wox0k"]
-[ext_resource type="Texture2D" uid="uid://bggjhdu1kdj1j" path="res://resources/Textures/Sprites/LeftArrow1_b1.png" id="2_iow18"]
+[ext_resource type="Script" uid="uid://fsm17x6l1oka" path="res://scripts/UIHandler.gd" id="1_wox0k"]
 [ext_resource type="Texture2D" uid="uid://vmax1o61lrws" path="res://resources/Textures/Sprites/Square1_a1.png" id="2_l2gvk"]
 [ext_resource type="Theme" uid="uid://d3u8v3disi16o" path="res://resources/Themes/theme_genText.tres" id="2_xewkt"]
 [ext_resource type="Texture2D" uid="uid://c555oijau62ut" path="res://resources/Textures/Sprites/Square1_b1.png" id="3_54dg7"]
 [ext_resource type="Texture2D" uid="uid://dxmlef2hawoi7" path="res://resources/Textures/Sprites/Square1_c1.png" id="3_lblhk"]
-[ext_resource type="Texture2D" uid="uid://diqpqjbctq43i" path="res://resources/Textures/Sprites/LeftArrow1_c1.png" id="3_p445d"]
-[ext_resource type="Texture2D" uid="uid://dhixyxldiw4qw" path="res://resources/Textures/Sprites/LeftArrow1_d1.png" id="4_cmdtj"]
 [ext_resource type="PackedScene" uid="uid://oy11ycs3g0j5" path="res://scenes/UI/ui_settings_menu.tscn" id="5_lmxud"]
-[ext_resource type="Texture2D" uid="uid://de6amaugo062l" path="res://resources/Textures/Sprites/LeftArrow1_a1.png" id="5_p28g2"]
-[ext_resource type="Theme" uid="uid://it6hqr6uagyo" path="res://resources/Themes/theme_ScrollText1.tres" id="5_vysen"]
-[ext_resource type="Texture2D" uid="uid://lt1w8fjefmye" path="res://resources/Textures/Sprites/RightArrow1_b1.png" id="6_3pdgs"]
-[ext_resource type="Texture2D" uid="uid://d3l1pqivpgxue" path="res://resources/Textures/Sprites/RightArrow1_c1.png" id="7_2tgps"]
-[ext_resource type="FontFile" uid="uid://dxga040301lgv" path="res://resources/Fonts/Quenda-Medium.otf" id="8_kgejf"]
-[ext_resource type="Texture2D" uid="uid://b6i6i1uk1gxw6" path="res://resources/Textures/Sprites/RightArrow1_d1.png" id="8_or8dl"]
-[ext_resource type="Texture2D" uid="uid://dagd43rmtudqu" path="res://resources/Textures/Sprites/RightArrow1_a1.png" id="9_qkpuu"]
+[ext_resource type="Texture2D" uid="uid://ck42exbdttdc0" path="res://resources/Textures/Sprites/PointerArrow1_b1.png" id="17_1rx2y"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h6kub"]
 
@@ -38,47 +29,6 @@ texture = ExtResource("3_lblhk")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_od6b3"]
 texture = ExtResource("3_54dg7")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_40ubk"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5h77u"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_im458"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ktv0d"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_edi3g"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_muyxy"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ki31v"]
-texture = ExtResource("2_l2gvk")
-texture_margin_left = 8.0
-texture_margin_top = 4.0
-texture_margin_right = 8.0
-texture_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_shxfx"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g7hll"]
-texture = ExtResource("3_lblhk")
-texture_margin_left = 8.0
-texture_margin_top = 4.0
-texture_margin_right = 8.0
-texture_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_og5vh"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0d8oo"]
-texture = ExtResource("3_54dg7")
-texture_margin_left = 8.0
-texture_margin_top = 4.0
-texture_margin_right = 8.0
-texture_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l0vc5"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l1n7l"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vgyam"]
 
@@ -181,11 +131,9 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_od6b3")
 text = "exit"
 
 [node name="settings_menu" parent="." instance=ExtResource("5_lmxud")]
-visible = false
 layout_mode = 1
 
 [node name="Ingame_UI" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -197,250 +145,6 @@ grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(0, 126)
 theme_override_constants/separation = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="Ingame_UI"]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="btn_EndGame" type="Button" parent="Ingame_UI/MarginContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-mouse_filter = 2
-theme = ExtResource("2_xewkt")
-theme_override_colors/font_hover_color = Color(0.914881, 0.820293, 0.684292, 1)
-theme_override_colors/font_color = Color(0.745098, 0.670588, 0.509804, 1)
-theme_override_colors/font_focus_color = Color(0.745098, 0.670588, 0.509804, 1)
-theme_override_colors/font_pressed_color = Color(0.913725, 0.819608, 0.682353, 1)
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = SubResource("StyleBoxEmpty_40ubk")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_5h77u")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_im458")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ktv0d")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_edi3g")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_muyxy")
-theme_override_styles/hover = SubResource("StyleBoxTexture_ki31v")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_shxfx")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_g7hll")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_og5vh")
-theme_override_styles/normal = SubResource("StyleBoxTexture_0d8oo")
-text = "   leave ship?   "
-
-[node name="btn_ToggleBar" type="Button" parent="Ingame_UI/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-theme = ExtResource("2_xewkt")
-theme_override_colors/font_hover_color = Color(0.914881, 0.820293, 0.684292, 1)
-theme_override_colors/font_color = Color(0.745098, 0.670588, 0.509804, 1)
-theme_override_colors/font_focus_color = Color(0.745098, 0.670588, 0.509804, 1)
-theme_override_colors/font_pressed_color = Color(0.913725, 0.819608, 0.682353, 1)
-theme_override_constants/outline_size = 0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_40ubk")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_5h77u")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_im458")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ktv0d")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_edi3g")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_muyxy")
-theme_override_styles/hover = SubResource("StyleBoxTexture_ki31v")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_shxfx")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_g7hll")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_og5vh")
-theme_override_styles/normal = SubResource("StyleBoxTexture_0d8oo")
-text = "toggle notes"
-
-[node name="TaskBar" type="HBoxContainer" parent="Ingame_UI"]
-layout_mode = 2
-
-[node name="Requests" type="ColorRect" parent="Ingame_UI/TaskBar"]
-custom_minimum_size = Vector2(0, 131)
-layout_mode = 2
-size_flags_horizontal = 3
-color = Color(0.682353, 0.470588, 0.215686, 0)
-
-[node name="TextureRect" type="TextureRect" parent="Ingame_UI/TaskBar/Requests"]
-modulate = Color(0.925314, 0.85472, 0.804706, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_l2gvk")
-expand_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Ingame_UI/TaskBar/Requests"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 42
-
-[node name="r_box" type="VBoxContainer" parent="Ingame_UI/TaskBar/Requests/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Ingame_UI/TaskBar/Requests/MarginContainer/r_box"]
-z_index = 1
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("2_xewkt")
-theme_override_colors/default_color = Color(0.852032, 0.790908, 0.65973, 1)
-text = "temp1"
-fit_content = true
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Ingame_UI/TaskBar/Requests/MarginContainer/r_box"]
-z_index = 1
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("2_xewkt")
-theme_override_colors/default_color = Color(0.85098, 0.792157, 0.658824, 1)
-text = "temp2"
-fit_content = true
-
-[node name="RichTextLabel3" type="RichTextLabel" parent="Ingame_UI/TaskBar/Requests/MarginContainer/r_box"]
-z_index = 1
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("2_xewkt")
-theme_override_colors/default_color = Color(0.85098, 0.792157, 0.658824, 1)
-theme_override_font_sizes/normal_font_size = 0
-text = "temp3"
-fit_content = true
-
-[node name="MarginContainer" type="MarginContainer" parent="Ingame_UI/TaskBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 3.0
-theme_override_constants/margin_top = 8
-
-[node name="Panel2" type="Panel" parent="Ingame_UI/TaskBar/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 3.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_l0vc5")
-
-[node name="TextureRect" type="TextureRect" parent="Ingame_UI/TaskBar/MarginContainer/Panel2"]
-modulate = Color(0.92549, 0.854902, 0.803922, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_54dg7")
-expand_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Ingame_UI/TaskBar/MarginContainer/Panel2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 6
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 42
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Ingame_UI/TaskBar/MarginContainer/Panel2/MarginContainer"]
-layout_mode = 2
-theme = ExtResource("5_vysen")
-theme_override_colors/default_color = Color(0.745098, 0.670588, 0.509804, 1)
-theme_override_constants/line_separation = 2
-theme_override_fonts/normal_font = ExtResource("8_kgejf")
-
-[node name="Panel3" type="Panel" parent="Ingame_UI/TaskBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_l1n7l")
-
-[node name="TextureRect" type="TextureRect" parent="Ingame_UI/TaskBar/Panel3"]
-modulate = Color(0.92549, 0.854902, 0.803922, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_54dg7")
-expand_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Ingame_UI/TaskBar/Panel3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 42
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Ingame_UI/TaskBar/Panel3/MarginContainer"]
-visible = false
-layout_mode = 2
-
-[node name="LB_VBoxContainer" type="VBoxContainer" parent="Ingame_UI/TaskBar/Panel3/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Btn_Left" type="TextureButton" parent="Ingame_UI/TaskBar/Panel3/MarginContainer/HBoxContainer/LB_VBoxContainer"]
-modulate = Color(0.92549, 0.854902, 0.803922, 1)
-layout_mode = 2
-size_flags_vertical = 3
-texture_normal = ExtResource("2_iow18")
-texture_pressed = ExtResource("3_p445d")
-texture_hover = ExtResource("4_cmdtj")
-texture_disabled = ExtResource("5_p28g2")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="TextLabel" type="Label" parent="Ingame_UI/TaskBar/Panel3/MarginContainer/HBoxContainer/LB_VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
-theme = ExtResource("2_xewkt")
-theme_override_colors/font_color = Color(0.745098, 0.670588, 0.509804, 1)
-theme_override_font_sizes/font_size = 18
-text = "to helm"
-horizontal_alignment = 1
-
-[node name="RB_VBoxContainer" type="VBoxContainer" parent="Ingame_UI/TaskBar/Panel3/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Btn_Right" type="TextureButton" parent="Ingame_UI/TaskBar/Panel3/MarginContainer/HBoxContainer/RB_VBoxContainer"]
-modulate = Color(0.92549, 0.854902, 0.803922, 1)
-layout_mode = 2
-size_flags_vertical = 3
-texture_normal = ExtResource("6_3pdgs")
-texture_pressed = ExtResource("7_2tgps")
-texture_hover = ExtResource("8_or8dl")
-texture_disabled = ExtResource("9_qkpuu")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="TextLabel" type="Label" parent="Ingame_UI/TaskBar/Panel3/MarginContainer/HBoxContainer/RB_VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
-theme = ExtResource("2_xewkt")
-theme_override_colors/font_color = Color(0.745098, 0.670588, 0.509804, 1)
-theme_override_font_sizes/font_size = 18
-text = "to kitchen"
-horizontal_alignment = 1
 
 [node name="bar_Pos" type="Control" parent="."]
 layout_mode = 1
@@ -516,4 +220,6 @@ metadata/_edit_lock_ = true
 wait_time = 1.1
 one_shot = true
 
-[connection signal="pressed" from="Ingame_UI/MarginContainer/btn_ToggleBar" to="." method="_on_btn_toggle_bar_pressed"]
+[node name="CursorSprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("17_1rx2y")

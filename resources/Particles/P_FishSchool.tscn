@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtnwjuldmwsxb"]
+
+[ext_resource type="Material" uid="uid://dhir8xas81j1m" path="res://resources/Materials/M_Fish1.tres" id="1_wpjwj"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_phm8g"]
+material = ExtResource("1_wpjwj")
+
+[sub_resource type="Curve" id="Curve_wpjwj"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.228288, 0.510019), 2.17064, 2.17064, 0, 0, Vector2(0.848635, 0.48521), -1.81215, -1.81215, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[node name="FishParticles3D" type="CPUParticles3D"]
+amount = 4
+lifetime = 8.0
+mesh = SubResource("QuadMesh_phm8g")
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(-1, 0, 0)
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 3.6
+angle_max = 256.5
+scale_amount_curve = SubResource("Curve_wpjwj")

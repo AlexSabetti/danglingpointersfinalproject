@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://duilebgkb2y3m"]
+
+[ext_resource type="PackedScene" uid="uid://c2eo32be4erp0" path="res://resources/Models/UnderWaterRoom2_a1.glb" id="1_84jjh"]
+[ext_resource type="Material" uid="uid://dfy4yflrrduf0" path="res://resources/Materials/M_Pink.tres" id="2_46ijn"]
+[ext_resource type="Material" uid="uid://bbllsegw0ygtt" path="res://resources/Materials/M_Purple.tres" id="3_3pwad"]
+
+[node name="UnderWaterRoom2_a1" instance=ExtResource("1_84jjh")]
+
+[node name="SeaFloor_002" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_46ijn")
+
+[node name="Rock_002" parent="." index="1"]
+surface_material_override/0 = ExtResource("3_3pwad")

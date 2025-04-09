@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkee2nim7qyu7"]
+
+[ext_resource type="Script" uid="uid://d3tkd5eutouwg" path="res://scripts/drone.gd" id="1_ch8l7"]
+[ext_resource type="Texture2D" uid="uid://ccp2qkvh2aj00" path="res://resources/Textures/Sprites/HookBall1_a2.png" id="2_g7tdt"]
+[ext_resource type="PackedScene" uid="uid://tfx4rwdf6oow" path="res://resources/Particles/P_Bubbles.tscn" id="3_c0tn5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c0tn5"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+albedo_texture = ExtResource("2_g7tdt")
+texture_filter = 0
+billboard_mode = 1
+
+[node name="Drone" type="Node3D"]
+script = ExtResource("1_ch8l7")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+material_override = SubResource("StandardMaterial3D_c0tn5")
+gi_mode = 0
+pixel_size = 0.001
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("2_g7tdt")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+current = true
+
+[node name="CPUParticles3D" parent="." instance=ExtResource("3_c0tn5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+amount = 256

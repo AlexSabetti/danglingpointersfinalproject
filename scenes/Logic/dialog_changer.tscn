@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dybogvrii8h3g"]
+
+[ext_resource type="Script" uid="uid://boysmxa8sb2ag" path="res://scripts/dialog_changer.gd" id="1_1qqf7"]
+[ext_resource type="Texture2D" uid="uid://ltcvo58grb4o" path="res://resources/Textures/Sprites/SpeachBubbleSprite1_a1.png" id="2_5decg"]
+[ext_resource type="Material" uid="uid://c5p2kre1hy8qu" path="res://resources/Materials/M_SpriteUnshaded.tres" id="2_xsp0s"]
+
+[node name="DialogChanger" type="Node3D"]
+script = ExtResource("1_1qqf7")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+material_override = ExtResource("2_xsp0s")
+cast_shadow = 0
+pixel_size = 0.001
+billboard = 1
+texture_filter = 0
+texture = ExtResource("2_5decg")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,6 @@
+[gd_resource type="Sky" load_steps=2 format=3 uid="uid://dv57ov182qtxf"]
+
+[ext_resource type="Material" uid="uid://ceo2ef2pi0ftp" path="res://resources/Environments/sm_underwater.tres" id="1_f32na"]
+
+[resource]
+sky_material = ExtResource("1_f32na")

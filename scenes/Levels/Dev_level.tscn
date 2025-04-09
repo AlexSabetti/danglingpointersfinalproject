@@ -1,25 +1,73 @@
-[gd_scene load_steps=17 format=3 uid="uid://bppmj5dmnvlko"]
+[gd_scene load_steps=35 format=3 uid="uid://bppmj5dmnvlko"]
 
 [ext_resource type="PackedScene" uid="uid://b25jkvemaipnk" path="res://scenes/UI/CanvasLayer_PostProcessing.tscn" id="1_65ejx"]
 [ext_resource type="Environment" uid="uid://crvgdsl4qcv1t" path="res://resources/Environments/env_test.tres" id="1_x61il"]
 [ext_resource type="PackedScene" uid="uid://v2urofrh3pq5" path="res://scenes/Entities/GameController.tscn" id="2_2ykvt"]
 [ext_resource type="Material" uid="uid://bg2bjdrabdhn5" path="res://resources/Shaders/SM_Posterization.tres" id="2_i1dou"]
 [ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://scenes/Entities/CamPosNode.tscn" id="3_71sqw"]
-[ext_resource type="Script" path="res://scripts/world_environment.gd" id="3_t8fsm"]
-[ext_resource type="PackedScene" uid="uid://bsgqiciuvs6ok" path="res://scenes/Levels/PilotSeat.tscn" id="4_e5ioo"]
+[ext_resource type="Script" uid="uid://dybrp2bdnyair" path="res://scripts/world_environment.gd" id="3_t8fsm"]
+[ext_resource type="PackedScene" uid="uid://bsgqiciuvs6ok" path="res://scenes/Levels/ControlRoom.tscn" id="4_e5ioo"]
 [ext_resource type="Script" uid="uid://b8260neigo27n" path="res://scripts/ClickableObject.gd" id="6_hx85v"]
 [ext_resource type="PackedScene" uid="uid://dl5x0m77shd62" path="res://scenes/UI/ui_message_display.tscn" id="8_sou27"]
 [ext_resource type="PackedScene" uid="uid://b3728ytvs6bn0" path="res://scenes/UI/ui_map_display.tscn" id="9_v4ldq"]
-[ext_resource type="PackedScene" uid="uid://cgvgni8obca17" path="res://scenes/Levels/TestMapNode.tscn" id="11_hx85v"]
+[ext_resource type="PackedScene" uid="uid://cgvgni8obca17" path="res://scenes/Levels/Rooms/Room1_a1.tscn" id="11_hx85v"]
+[ext_resource type="PackedScene" uid="uid://c6veimdajceyb" path="res://scenes/UI/ui_drone_display.tscn" id="12_t40tb"]
+[ext_resource type="PackedScene" uid="uid://tfx4rwdf6oow" path="res://resources/Particles/P_Bubbles.tscn" id="12_xqkv0"]
+[ext_resource type="PackedScene" uid="uid://dkee2nim7qyu7" path="res://scenes/Entities/Drone.tscn" id="13_xklfb"]
+[ext_resource type="PackedScene" uid="uid://dybogvrii8h3g" path="res://scenes/Logic/dialog_changer.tscn" id="17_oj8la"]
+[ext_resource type="PackedScene" uid="uid://cf16x4d6gkv8e" path="res://scenes/Levels/Rooms/Room2_a1.tscn" id="18_t40tb"]
+[ext_resource type="PackedScene" uid="uid://dxgfd5vloh5y2" path="res://scenes/Levels/Rooms/Room3_a1.tscn" id="19_i3nvf"]
+[ext_resource type="PackedScene" uid="uid://oke55a7wgf5n" path="res://scenes/Levels/Rooms/Room4_a1.tscn" id="20_sakc8"]
+[ext_resource type="PackedScene" uid="uid://cjhqgtvl0c4r4" path="res://scenes/Levels/Rooms/Room5_a1.tscn" id="21_dtj52"]
+[ext_resource type="PackedScene" uid="uid://bqnjyqolsuecm" path="res://scenes/Levels/Rooms/Room6_a1.tscn" id="22_eki53"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_sakc8"]
+viewport_path = NodePath("Entities/SubViewport_DroneCam")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dtj52"]
+viewport_path = NodePath("Entities/SubViewport_DroneCam")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eki53"]
+resource_local_to_scene = true
+disable_fog = true
+albedo_texture = SubResource("ViewportTexture_sakc8")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_dtj52")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_xqkv0"]
-viewport_path = NodePath("Entities/SubViewport")
+viewport_path = NodePath("Entities/SubViewport_DroneCam")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_oj8la"]
+viewport_path = NodePath("Entities/SubViewport_Map")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6t6iq"]
+viewport_path = NodePath("Entities/SubViewport_Map")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6t6iq"]
+resource_local_to_scene = true
+disable_fog = true
+albedo_texture = SubResource("ViewportTexture_oj8la")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_6t6iq")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_sou27"]
-viewport_path = NodePath("Entities/SubViewport2")
+viewport_path = NodePath("Entities/SubViewport_Map")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_t40tb"]
+viewport_path = NodePath("Entities/SubViewport_MsgScreen")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_i3nvf"]
+viewport_path = NodePath("Entities/SubViewport_MsgScreen")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sakc8"]
+resource_local_to_scene = true
+disable_fog = true
+albedo_texture = SubResource("ViewportTexture_t40tb")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_i3nvf")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_v4ldq"]
-viewport_path = NodePath("Entities/SubViewport3")
+viewport_path = NodePath("Entities/SubViewport_MsgScreen")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2ykvt"]
 
@@ -32,110 +80,123 @@ viewport_path = NodePath("Entities/SubViewport3")
 [node name="ColorRect" parent="CanvasLayerPostProcessing2" index="0"]
 material = ExtResource("2_i1dou")
 
-[node name="PilotSeat" parent="." instance=ExtResource("4_e5ioo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -7, 14.5)
-
-[node name="MainScreen" type="Sprite3D" parent="PilotSeat"]
-transform = Transform3D(4.92883e-09, 0, -0.0253141, 0, 0.0253141, 0, 0.0253141, 0, 4.92883e-09, -0.0932883, 2.40874, 1.23992)
-texture = SubResource("ViewportTexture_xqkv0")
-
-[node name="UpperSmallScreen" type="Sprite3D" parent="PilotSeat"]
-transform = Transform3D(0.00551308, 0, -0.0118228, 0, 0.0130451, 0, 0.0118228, 0, 0.00551308, -0.154454, 2.3477, 0.948218)
-double_sided = false
-texture = SubResource("ViewportTexture_sou27")
-
-[node name="LowerSmallScreen" type="Sprite3D" parent="PilotSeat"]
-transform = Transform3D(0.00551308, 0, -0.0118228, 0, 0.0130451, 0, 0.0118228, 0, 0.00551308, -0.154231, 2.16265, 0.94521)
-double_sided = false
-texture = SubResource("ViewportTexture_v4ldq")
-
-[node name="PlayerCamera3D" type="Camera3D" parent="PilotSeat"]
-transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, -0.808575, 2.31077, 1.32187)
-current = true
-fov = 50.1
-
-[node name="SpotLight3D" type="SpotLight3D" parent="PilotSeat"]
-transform = Transform3D(0.997139, -2.83972e-09, 0.0755879, -0.0752526, -0.0940736, 0.992717, 0.00711082, -0.995565, -0.0938045, -0.639279, 3.65025, 1.06233)
-light_color = Color(0.58928, 0.59888, 0.458443, 1)
-light_energy = 0.5
-light_bake_mode = 1
-spot_range = 5.8321
-spot_angle = 37.8641
-
-[node name="OmniLight3D" type="OmniLight3D" parent="PilotSeat"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.188677, 2.4133, 1.24219)
-light_color = Color(0.710422, 0.533057, 0.275189, 1)
-light_energy = 0.025
-light_volumetric_fog_energy = 0.0
-omni_range = 0.328865
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="PilotSeat"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.194292, 2.32221, 0.954331)
-light_color = Color(0.32178, 0.298488, 0.236073, 1)
-light_energy = 0.025
-light_volumetric_fog_energy = 0.0
-omni_range = 0.328865
-
-[node name="OmniLight3D3" type="OmniLight3D" parent="PilotSeat"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.173542, 2.13815, 0.975772)
-light_color = Color(0.32178, 0.298488, 0.236073, 1)
-light_energy = 0.025
-light_volumetric_fog_energy = 0.0
-omni_range = 0.328865
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_x61il")
 script = ExtResource("3_t8fsm")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(0.866025, -0.25, -0.433013, 0.5, 0.433013, 0.75, 0, -0.866025, 0.5, 1.90681, 6.2019, -2.95414)
-light_color = Color(0.736992, 0.501011, 0.205053, 1)
-light_energy = 0.1
-light_volumetric_fog_energy = 0.0
+light_color = Color(0.948912, 0.878842, 0.61507, 1)
+light_energy = 0.4
+light_bake_mode = 1
 light_cull_mask = 4294967293
 shadow_enabled = true
 shadow_blur = 10.0
 directional_shadow_mode = 1
+directional_shadow_split_1 = 0.279
 
-[node name="GameController" parent="." node_paths=PackedStringArray("cam", "ScreenViewport") instance=ExtResource("2_2ykvt")]
-cam = NodePath("../PilotSeat/PlayerCamera3D")
+[node name="Control_Room" parent="." instance=ExtResource("4_e5ioo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -7, 14.5)
+
+[node name="ViewPortScreens" type="Node3D" parent="Control_Room"]
+
+[node name="MainScreen" type="Sprite3D" parent="Control_Room/ViewPortScreens"]
+transform = Transform3D(4.86768e-09, 0, -0.025, 0, 0.025, 0, 0.025, 0, 4.86768e-09, -0.0932884, 2.40874, 1.23992)
+material_override = SubResource("StandardMaterial3D_eki53")
+double_sided = false
+texture = SubResource("ViewportTexture_xqkv0")
+
+[node name="UpperSmallScreen" type="Sprite3D" parent="Control_Room/ViewPortScreens"]
+transform = Transform3D(0.00551308, 0, -0.0118228, 0, 0.0130451, 0, 0.0118228, 0, 0.00551308, -0.152615, 2.3477, 0.95004)
+material_override = SubResource("StandardMaterial3D_6t6iq")
+double_sided = false
+texture = SubResource("ViewportTexture_sou27")
+
+[node name="LowerSmallScreen" type="Sprite3D" parent="Control_Room/ViewPortScreens"]
+transform = Transform3D(0.00551308, 0, -0.0118228, 0, 0.0130451, 0, 0.0118228, 0, 0.00551308, -0.152458, 2.16265, 0.945473)
+material_override = SubResource("StandardMaterial3D_sakc8")
+double_sided = false
+texture = SubResource("ViewportTexture_v4ldq")
+
+[node name="PlayerCamera3D" type="Camera3D" parent="Control_Room"]
+transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, -0.808825, 2.31077, 1.29759)
+current = true
+fov = 50.1
+
+[node name="GameController" parent="." node_paths=PackedStringArray("player_cam", "drone", "VirtualScreenViewport") instance=ExtResource("2_2ykvt")]
+player_cam = NodePath("../Control_Room/PlayerCamera3D")
+drone = NodePath("../Entities/SubViewport_DroneCam/Drone")
 turnSpeed = 0.15
-ScreenViewport = NodePath("../Entities/SubViewport")
+VirtualScreenViewport = NodePath("../Entities/SubViewport_DroneCam")
 
 [node name="Entities" type="Node3D" parent="."]
 
-[node name="SubViewport" type="SubViewport" parent="Entities"]
+[node name="SubViewport_DroneCam" type="SubViewport" parent="Entities"]
 size = Vector2i(1280, 960)
 
-[node name="CanvasLayerPostProcessing" parent="Entities/SubViewport" instance=ExtResource("1_65ejx")]
+[node name="CanvasLayerPostProcessing" parent="Entities/SubViewport_DroneCam" instance=ExtResource("1_65ejx")]
 
-[node name="CameraNode1" parent="Entities/SubViewport" instance=ExtResource("3_71sqw")]
+[node name="ui_droneDisplay" parent="Entities/SubViewport_DroneCam" instance=ExtResource("12_t40tb")]
+
+[node name="Drone" parent="Entities/SubViewport_DroneCam" node_paths=PackedStringArray("active_cam_node") instance=ExtResource("13_xklfb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.968046, 1.7085, 7.32821)
+active_cam_node = NodePath("../CameraNode1")
+
+[node name="CameraNode1" parent="Entities/SubViewport_DroneCam" instance=ExtResource("3_71sqw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52371, 1.16639, 6.94119)
-is_active_cam = true
 
-[node name="Camera3D" type="Camera3D" parent="Entities/SubViewport/CameraNode1"]
+[node name="TestCamera3D" type="Camera3D" parent="Entities/SubViewport_DroneCam/CameraNode1"]
+visible = false
 
-[node name="CameraNode2" parent="Entities/SubViewport" instance=ExtResource("3_71sqw")]
+[node name="CameraNode2" parent="Entities/SubViewport_DroneCam" instance=ExtResource("3_71sqw")]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 2.47652, 0.92824, -0.201287)
 
-[node name="Camera3D" type="Camera3D" parent="Entities/SubViewport/CameraNode2"]
+[node name="TestCamera3D" type="Camera3D" parent="Entities/SubViewport_DroneCam/CameraNode2"]
+visible = false
 
-[node name="SubViewport2" type="SubViewport" parent="Entities"]
+[node name="CameraNode3" parent="Entities/SubViewport_DroneCam" instance=ExtResource("3_71sqw")]
+transform = Transform3D(-1, 0.000157768, 0.000990465, 0.000157359, 1, -0.000406088, -0.00099054, -0.000405929, -1, -5.72815, 0.92824, -3.37036)
+min_h_rotation = -80.0
+max_h_rotation = 60.0
+
+[node name="TestCamera3D" type="Camera3D" parent="Entities/SubViewport_DroneCam/CameraNode3"]
+
+[node name="CameraNode4" parent="Entities/SubViewport_DroneCam" instance=ExtResource("3_71sqw")]
+transform = Transform3D(-0.707807, -0.000175476, -0.706406, 0.000157359, 1, -0.000406088, 0.706406, -0.000398594, -0.707807, 6.8221, 0.92824, -2.85305)
+min_h_rotation = -60.0
+max_h_rotation = 60.0
+
+[node name="TestCamera3D" type="Camera3D" parent="Entities/SubViewport_DroneCam/CameraNode4"]
+
+[node name="CameraNode5" parent="Entities/SubViewport_DroneCam" instance=ExtResource("3_71sqw")]
+transform = Transform3D(0.966001, -0.000962594, 0.258537, 0.00136281, 0.999998, -0.00136884, -0.258535, 0.00167463, 0.966001, 18.5687, 0.92824, 6.9854)
+min_h_rotation = -60.0
+max_h_rotation = 60.0
+
+[node name="TestCamera3D" type="Camera3D" parent="Entities/SubViewport_DroneCam/CameraNode5"]
+
+[node name="SubViewport_MsgScreen" type="SubViewport" parent="Entities"]
 size = Vector2i(1280, 960)
 
-[node name="ui_msgDisplay" parent="Entities/SubViewport2" instance=ExtResource("8_sou27")]
+[node name="ui_msgDisplay" parent="Entities/SubViewport_MsgScreen" instance=ExtResource("8_sou27")]
+SoundSourcePos = Vector3(-0.154231, 2.16265, 0.94521)
 
-[node name="SubViewport3" type="SubViewport" parent="Entities"]
+[node name="SubViewport_Map" type="SubViewport" parent="Entities"]
 size = Vector2i(1280, 960)
 
-[node name="ui_mapDisplay" parent="Entities/SubViewport3" instance=ExtResource("9_v4ldq")]
+[node name="ui_mapDisplay" parent="Entities/SubViewport_Map" instance=ExtResource("9_v4ldq")]
+
+[node name="CPUParticles3D" parent="Entities" instance=ExtResource("12_xqkv0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.918675, -0.689662, 0.345228)
+visible = false
+amount = 256
 
 [node name="TestInteractableObject" type="StaticBody3D" parent="Entities" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.41271, 1.101, -1.54066)
 script = ExtResource("6_hx85v")
 object_name = "Test Obj 1"
 is_interactable = true
-trigger_on_interact = [NodePath("../SubViewport/CameraNode2")]
+trigger_on_interact = [NodePath("../SubViewport_DroneCam/CameraNode2"), NodePath("../../Logic/DialogChanger")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Entities/TestInteractableObject"]
 shape = SubResource("BoxShape3D_2ykvt")
@@ -144,12 +205,40 @@ shape = SubResource("BoxShape3D_2ykvt")
 mesh = SubResource("BoxMesh_65ejx")
 skeleton = NodePath("../../../Rooms")
 
+[node name="TestInteractableObject4" type="StaticBody3D" parent="Entities" node_paths=PackedStringArray("trigger_on_interact")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.85419, 1.98763, -2.87489)
+script = ExtResource("6_hx85v")
+object_name = "Test Obj 1"
+is_interactable = true
+trigger_on_interact = [NodePath("../SubViewport_DroneCam/CameraNode4")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Entities/TestInteractableObject4"]
+shape = SubResource("BoxShape3D_2ykvt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Entities/TestInteractableObject4"]
+mesh = SubResource("BoxMesh_65ejx")
+skeleton = NodePath("../../../Rooms")
+
+[node name="TestInteractableObject5" type="StaticBody3D" parent="Entities" node_paths=PackedStringArray("trigger_on_interact")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2364, 2.101, 7.07159)
+script = ExtResource("6_hx85v")
+object_name = "Test Obj 1"
+is_interactable = true
+trigger_on_interact = [NodePath("../SubViewport_DroneCam/CameraNode5")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Entities/TestInteractableObject5"]
+shape = SubResource("BoxShape3D_2ykvt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Entities/TestInteractableObject5"]
+mesh = SubResource("BoxMesh_65ejx")
+skeleton = NodePath("../../../Rooms")
+
 [node name="TestInteractableObject2" type="StaticBody3D" parent="Entities" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.81031, 1.63403, 7.0518)
 script = ExtResource("6_hx85v")
 object_name = "Test Obj 2"
 is_interactable = true
-trigger_on_interact = [NodePath("../SubViewport/CameraNode1")]
+trigger_on_interact = [NodePath("../SubViewport_DroneCam/CameraNode1")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Entities/TestInteractableObject2"]
 shape = SubResource("BoxShape3D_2ykvt")
@@ -158,12 +247,48 @@ shape = SubResource("BoxShape3D_2ykvt")
 mesh = SubResource("BoxMesh_65ejx")
 skeleton = NodePath("../../../Rooms")
 
+[node name="TestInteractableObject3" type="StaticBody3D" parent="Entities" node_paths=PackedStringArray("trigger_on_interact")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.92921, 1.64932, -3.66088)
+script = ExtResource("6_hx85v")
+object_name = "Test Obj 2"
+is_interactable = true
+trigger_on_interact = [NodePath("../SubViewport_DroneCam/CameraNode3")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Entities/TestInteractableObject3"]
+shape = SubResource("BoxShape3D_2ykvt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Entities/TestInteractableObject3"]
+mesh = SubResource("BoxMesh_65ejx")
+skeleton = NodePath("../../../Rooms")
+
 [node name="Rooms" type="Node3D" parent="."]
 
 [node name="TestMapNode" parent="Rooms" instance=ExtResource("11_hx85v")]
 
-[node name="TestMapNode2" parent="Rooms" instance=ExtResource("11_hx85v")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -20, 0, 0)
+[node name="Room2_a1" parent="Rooms" instance=ExtResource("18_t40tb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
+
+[node name="Room3_a1" parent="Rooms" instance=ExtResource("19_i3nvf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
+
+[node name="Room3_a2" parent="Rooms" instance=ExtResource("19_i3nvf")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 20, 0, 0)
+
+[node name="Room4_a1" parent="Rooms" instance=ExtResource("20_sakc8")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20, 0, -40)
+
+[node name="Room5_a1" parent="Rooms" instance=ExtResource("21_dtj52")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+
+[node name="Room6_a2" parent="Rooms" instance=ExtResource("22_eki53")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -20)
+
+[node name="Logic" type="Node3D" parent="."]
+
+[node name="DialogChanger" parent="Logic" instance=ExtResource("17_oj8la")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.85961, -4.75221, 13.7569)
+newDialog = "Testing! Testing! 1 2 3... Is this working?"
+delay_before_trigger = 1.0
 
 [editable path="CanvasLayerPostProcessing2"]
-[editable path="Entities/SubViewport/CanvasLayerPostProcessing"]
+[editable path="Entities/SubViewport_DroneCam/CanvasLayerPostProcessing"]
