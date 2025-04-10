@@ -97,16 +97,45 @@ func expand_map():
     var cols_away: int = abs(num) % root_count
     cross_pos = first_key_area - cols_away
     if cross_pos !=first_key_area:
-      get_child(cross_pos).west_open = true
+      get_child(cross_pos).east_open = true
+      get_child(first_key_area).west_open = true
       for i in range(1, cols_away):
-        get_child(cross_pos + i)
-    else:
-      get_child(cross_pos).south_open = true
-
-
-    # This will be the cross section
+	var potential_path: MapNode = get_child(cross_pos + i)
+        potential_path.west_open = true
+	potential_path.east_open = true
+	potential_path.active = true
+	paths.append(potential_path)
+    get_child(cross_pos).north_open = true
+    for i in range(1, rows_away):
+	var potential_path: MapNode = get_child(cross_pos - (i * root_count))
+	potential_path.north_open = true
+	potential_path.south_open = true
+	potential_path.active = true
+	paths.append(potential_path)
+    starting_node.south_open = true
+    cross_pos.active = true
+    paths.append(cross_pos)
   else:
     # Above or to the left
     var rows_away = abs(num) / root_count
     var cols_away = abs(num) % root_count
     cross_pos = first_key_area + cols_away
+    if cross_pos != first_key_area:
+	get_child(cross_pos).west_open = true
+	get_child(first_key_area).east_open = true
+	for i in range(1, cols_away):
+		var potential_path: MapNode = get_child(cross_pos - i)
+		potential_path.west_open = true
+		potential_path.east_open = true
+		potential_path.active = true
+		paths.append(potential_path)
+     get_child(cross_pos).south_open = true
+     for i in range(1, rows_away):
+   	var potential_path: MapNode = get_child(cross_pos + (i * root_count))
+	potential_path.north_open = true
+	potential_path.south_open = true
+	potential_path.active = true
+	paths.append(potential_path)
+     starting_node.north_open = true
+     cross_pos.active = true
+  
