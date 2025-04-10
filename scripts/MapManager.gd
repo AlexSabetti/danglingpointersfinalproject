@@ -90,8 +90,23 @@ func expand_map():
   key_areas.append(get_child(second_key_area))
 
   var num = starting_node_place - first_key_area
+  var cross_pos = -1
   if num < 0:
     # Below or to the right
     var rows_away = abs(num) / root_count
     var cols_away = abs(num) % root_count
+    cross_pos = first_key_area - cols_away
+    if cross_pos !=first_key_area:
+      get_child(cross_pos).west_open = true
+      for i in range(0, cols_away):
+        get_child(cross_pos + i)
+    else:
+      get_child(cross_pos).south_open = true
 
+
+    # This will be the cross section
+  else:
+    # Above or to the left
+    var rows_away = abs(num) / root_count
+    var cols_away = abs(num) % root_count
+    cross_pos = first_key_area + cols_away
