@@ -93,12 +93,12 @@ func expand_map():
   var cross_pos = -1
   if num < 0:
     # Below or to the right
-    var rows_away = abs(num) / root_count
-    var cols_away = abs(num) % root_count
+    var rows_away: int = abs(num) / root_count
+    var cols_away: int = abs(num) % root_count
     cross_pos = first_key_area - cols_away
     if cross_pos !=first_key_area:
       get_child(cross_pos).west_open = true
-      for i in range(0, cols_away):
+      for i in range(1, cols_away):
         get_child(cross_pos + i)
     else:
       get_child(cross_pos).south_open = true
