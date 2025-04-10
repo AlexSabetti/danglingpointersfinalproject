@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6veimdajceyb"]
+
+[ext_resource type="Script" uid="uid://bgdyd26ycqcwh" path="res://scripts/ui_drone_display.gd" id="1_01chn"]
+[ext_resource type="Shader" uid="uid://jhmbi4fs662c" path="res://resources/Shaders/VS_CRTFilter.tres" id="2_tcw1t"]
+[ext_resource type="Theme" uid="uid://b7dmjh57doq5k" path="res://resources/Themes/theme_ScreenText.tres" id="3_tcw1t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gse5x"]
+shader = ExtResource("2_tcw1t")
+shader_parameter/ScanLine_Intensity = 0.025
+shader_parameter/Curvature = 5.0
+shader_parameter/BackColor = Color(0.044862, 0.020364, 0.007147, 1)
+
+[node name="ui_droneDisplay" type="CanvasLayer"]
+script = ExtResource("1_01chn")
+
+[node name="CRTFilter" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_gse5x")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DroneScreenOverlay" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Compass" type="Control" parent="DroneScreenOverlay"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DroneScreenOverlay/Compass"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -56.0
+offset_right = 58.0
+grow_vertical = 0
+pivot_offset = Vector2(28.47, 27.28)
+theme = ExtResource("3_tcw1t")
+theme_override_font_sizes/font_size = 60
+text = "↑"
+horizontal_alignment = 1
+
+[node name="BlankScreen" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0392157, 0.0470588, 0.0313726, 1)
+
+[node name="Timer1" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
+one_shot = true
+
+[node name="LoadingText" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -245.0
+offset_top = -37.0
+offset_right = 245.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_tcw1t")
+theme_override_font_sizes/font_size = 80
+text = "..."
+horizontal_alignment = 1
+
+[connection signal="timeout" from="Timer1" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

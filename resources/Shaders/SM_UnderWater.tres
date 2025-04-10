@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dkabee843hdpt"]
 
-[ext_resource type="Shader" uid="uid://dkdrhgs0r6lnf" path="res://Resources/Shaders/VS_UnderWater.tres" id="1_7qfom"]
-[ext_resource type="Texture2D" uid="uid://dhvn8d5topyjo" path="res://Resources/Textures/NormalMaps/7864-normal.jpg" id="2_o52gb"]
+[ext_resource type="Shader" uid="uid://dkdrhgs0r6lnf" path="res://resources/Shaders/VS_UnderWater.tres" id="1_7qfom"]
+[ext_resource type="Texture2D" uid="uid://dhvn8d5topyjo" path="res://resources/Textures/NormalMaps/7864-normal.jpg" id="2_o52gb"]
 
 [resource]
 shader = ExtResource("1_7qfom")

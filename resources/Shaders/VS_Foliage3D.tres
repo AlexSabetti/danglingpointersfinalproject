@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=67 format=3 uid="uid://d2mabvbt22cdl"]
+[gd_resource type="VisualShader" load_steps=68 format=3 uid="uid://d2mabvbt22cdl"]
 
 [ext_resource type="Texture2D" uid="uid://dhvn8d5topyjo" path="res://resources/Textures/NormalMaps/7864-normal.jpg" id="1_2466p"]
 
@@ -105,10 +105,15 @@ input_name = "uv"
 input_name = "uv"
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_del4c"]
-input_name = "texture"
+input_name = "color"
 
 [sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_nf3lw"]
+output_port_for_preview = 0
 function = 15
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_c6i3l"]
+output_port_for_preview = 0
+operator = 2
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_hog8f"]
 
@@ -503,6 +508,7 @@ void fragment() {
 // Output:0
 	ALBEDO = vec3(n_out2p0.xyz);
 	ALPHA = n_out35p0;
+	BACKLIGHT = vec3(n_out2p0.xyz);
 
 
 }
@@ -513,6 +519,7 @@ modes/specular = 1
 flags/depth_prepass_alpha = true
 flags/shadows_disabled = true
 preview_params/NormalMap = "Resource(\"res://Resources/Textures/NormalMaps/7864-normal.jpg\")"
+preview_params/Texture = "Resource(\"res://resources/Textures/Sprites/SeaWeeds1_a1.png\")"
 nodes/vertex/0/position = Vector2(660, 120)
 nodes/vertex/2/node = SubResource("VisualShaderNodeInput_g60gh")
 nodes/vertex/2/position = Vector2(-2900, 40)
@@ -643,7 +650,9 @@ nodes/fragment/32/position = Vector2(-2000, 800)
 nodes/fragment/33/node = SubResource("VisualShaderNodeInput_7ji0j")
 nodes/fragment/33/position = Vector2(-1018.76, 309.55)
 nodes/fragment/34/node = SubResource("VisualShaderNodeInput_del4c")
-nodes/fragment/34/position = Vector2(-560, 360)
+nodes/fragment/34/position = Vector2(-260, 800)
 nodes/fragment/35/node = SubResource("VisualShaderNodeFloatFunc_nf3lw")
-nodes/fragment/35/position = Vector2(120, 280)
-nodes/fragment/connections = PackedInt32Array(13, 0, 17, 1, 13, 0, 12, 0, 12, 0, 10, 0, 9, 0, 11, 1, 10, 0, 11, 0, 26, 0, 21, 1, 28, 0, 20, 1, 11, 0, 19, 1, 14, 0, 18, 1, 17, 0, 16, 0, 16, 0, 18, 0, 20, 0, 15, 1, 22, 0, 23, 0, 23, 1, 24, 0, 23, 2, 24, 1, 27, 0, 23, 2, 18, 0, 22, 1, 19, 0, 25, 0, 27, 0, 25, 2, 25, 1, 26, 0, 25, 2, 26, 1, 24, 0, 21, 0, 21, 0, 20, 0, 15, 0, 2, 0, 2, 0, 0, 0, 29, 0, 17, 0, 31, 0, 22, 0, 30, 0, 12, 1, 32, 0, 19, 0, 33, 0, 15, 0, 3, 0, 2, 2, 2, 4, 35, 0, 35, 0, 0, 1)
+nodes/fragment/35/position = Vector2(100, 260)
+nodes/fragment/36/node = SubResource("VisualShaderNodeVectorOp_c6i3l")
+nodes/fragment/36/position = Vector2(220, 680)
+nodes/fragment/connections = PackedInt32Array(13, 0, 17, 1, 13, 0, 12, 0, 12, 0, 10, 0, 9, 0, 11, 1, 10, 0, 11, 0, 26, 0, 21, 1, 28, 0, 20, 1, 11, 0, 19, 1, 14, 0, 18, 1, 17, 0, 16, 0, 16, 0, 18, 0, 20, 0, 15, 1, 22, 0, 23, 0, 23, 1, 24, 0, 23, 2, 24, 1, 27, 0, 23, 2, 18, 0, 22, 1, 19, 0, 25, 0, 27, 0, 25, 2, 25, 1, 26, 0, 25, 2, 26, 1, 24, 0, 21, 0, 21, 0, 20, 0, 15, 0, 2, 0, 29, 0, 17, 0, 31, 0, 22, 0, 30, 0, 12, 1, 32, 0, 19, 0, 33, 0, 15, 0, 3, 0, 2, 2, 2, 4, 35, 0, 35, 0, 0, 1, 2, 0, 0, 18, 2, 0, 0, 0, 2, 0, 36, 0, 2, 4, 36, 1)

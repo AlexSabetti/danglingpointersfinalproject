@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c5p2kre1hy8qu"]
+
+[ext_resource type="Texture2D" uid="uid://ltcvo58grb4o" path="res://resources/Textures/Sprites/SpeachBubbleSprite1_a1.png" id="1_0acqk"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+albedo_texture = ExtResource("1_0acqk")
+texture_filter = 0
+billboard_mode = 1

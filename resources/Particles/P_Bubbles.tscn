@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://tfx4rwdf6oow"]
+
+[ext_resource type="Material" uid="uid://cgxbw12kqhelh" path="res://resources/Materials/M_Bubble.tres" id="1_w8dmb"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mix5x"]
+material = ExtResource("1_w8dmb")
+size = Vector2(0.1, 0.1)
+orientation = 2
+
+[sub_resource type="Curve" id="Curve_g2n7x"]
+_data = [Vector2(0, 0), 0.0, 0.0751896, 0, 0, Vector2(0.272953, 0.237118), 2.04506, 2.04506, 0, 0, Vector2(0.431762, 0.598247), 0.972036, 0.972036, 0, 0, Vector2(0.563275, 0.578244), -1.63699, -1.63699, 0, 0, Vector2(0.707196, 0.243321), -1.99962, -1.99962, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[node name="BubbleParticles3D" type="CPUParticles3D"]
+amount = 128
+lifetime = 8.0
+speed_scale = 0.64
+mesh = SubResource("PlaneMesh_mix5x")
+emission_shape = 3
+emission_box_extents = Vector3(8, 0.5, 8)
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0.25, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 0.2
+scale_amount_min = 0.0
+scale_amount_curve = SubResource("Curve_g2n7x")

@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://byfw0a0wyb7l8"]
+
+[ext_resource type="Script" uid="uid://duqjrpiu3aqag" path="res://scripts/relay.gd" id="1_m8lsd"]
+[ext_resource type="Texture2D" uid="uid://dtklhq4stlk12" path="res://resources/Textures/Sprites/RelayIcon.png" id="2_3joud"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3joud"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+albedo_texture = ExtResource("2_3joud")
+texture_filter = 0
+billboard_mode = 1
+
+[node name="Relay" type="Node3D"]
+script = ExtResource("1_m8lsd")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+material_override = SubResource("StandardMaterial3D_3joud")
+gi_mode = 0
+pixel_size = 0.001
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("2_3joud")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

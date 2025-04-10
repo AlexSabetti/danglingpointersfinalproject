@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtnwjuldmwsxb"]
+
+[ext_resource type="Script" uid="uid://dd025v80bk3y8" path="res://scripts/fish_school.gd" id="1_8n8ux"]
+[ext_resource type="ArrayMesh" uid="uid://idy68r6u834v" path="res://resources/Models/FishMesh.res" id="2_phm8g"]
+
+[sub_resource type="Curve3D" id="Curve3D_wpjwj"]
+closed = true
+_data = {
+"points": PackedVector3Array(-2.83316, 0.710264, 0.0249143, 2.83316, -0.710264, -0.0249143, 0.901178, -0.13562, -3.77941, -0.299519, 0.199463, -2.12159, 0.299519, -0.199463, 2.12159, 5.49379, 0.111694, -0.260069, 1.81806, -0.382579, -0.898611, -1.81806, 0.382579, 0.898611, 2.92293, 0.024292, 4.55718, 1.57188, -0.505915, 1.37285, -1.57188, 0.505915, -1.37285, -3.64151, -0.0253906, 3.08455, -0.819499, 0.383483, 1.77213, 0.819499, -0.383483, -1.77213, -5.56141, -0.0377197, -1.80754),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="Curve" id="Curve_wpjwj"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0621891, 0.595694), 0.431117, 0.431117, 0, 0, Vector2(0.788557, 0.601914), -0.250047, -0.250047, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[node name="Fishies" type="Node3D"]
+script = ExtResource("1_8n8ux")
+speed = 0.1
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_wpjwj")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(0.00879286, 0.243144, -0.969891, 7.45009e-09, 0.969948, 0.243149, 0.999896, -0.00213816, 0.008529, 0.901178, -0.13562, -3.77941)
+
+[node name="FishParticles3D" type="CPUParticles3D" parent="Path3D/PathFollow3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+lifetime = 80.0
+local_coords = true
+draw_order = 2
+mesh = ExtResource("2_phm8g")
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(-1, 0, 0)
+gravity = Vector3(0, 0, 0)
+linear_accel_max = 0.01
+scale_amount_curve = SubResource("Curve_wpjwj")

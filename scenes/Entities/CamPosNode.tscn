@@ -13,4 +13,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.07)
 [node name="FilmCamera" parent="FilmCamera1_a1" index="0"]
 material_override = ExtResource("4_rigi6")
 
+[node name="Delay" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[connection signal="timeout" from="Delay" to="." method="_on_delay_timeout"]
+
 [editable path="FilmCamera1_a1"]

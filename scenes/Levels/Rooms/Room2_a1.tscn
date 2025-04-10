@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://cf16x4d6gkv8e"]
+
+[ext_resource type="Script" uid="uid://br3bhxpyvy3lu" path="res://scripts/Room.gd" id="1_fg57v"]
+[ext_resource type="PackedScene" uid="uid://duilebgkb2y3m" path="res://resources/Models/under_water_room_2_a_1.tscn" id="1_urqbu"]
+[ext_resource type="PackedScene" uid="uid://bd7icn4pwfdoi" path="res://scenes/Entities/Foliage.tscn" id="2_fg57v"]
+[ext_resource type="Texture2D" uid="uid://cealpeqkes7xo" path="res://resources/Textures/Sprites/SeaWeeds1_a1.png" id="3_o6sok"]
+[ext_resource type="Texture2D" uid="uid://cufcff04171uc" path="res://resources/Textures/Sprites/SeaWeeds1_b1.png" id="4_8cjeu"]
+
+[node name="Room2_a1" type="Node3D"]
+script = ExtResource("1_fg57v")
+
+[node name="UnderWaterRoom2_a1" parent="." instance=ExtResource("1_urqbu")]
+
+[node name="Foliage" parent="." instance=ExtResource("2_fg57v")]
+transform = Transform3D(1.39763, 0, 0, 0, 1.61444, 0, 0, 0, 1.41973, -1.9918, -0.0917924, 3.26062)
+foliage_Texture = ExtResource("3_o6sok")
+
+[node name="Foliage4" parent="." instance=ExtResource("2_fg57v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.11135, -0.100905, -2.82006)
+foliage_Texture = ExtResource("3_o6sok")
+
+[node name="Foliage8" parent="." instance=ExtResource("2_fg57v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.301724, 0.0745663, 7.7941)
+foliage_Texture = ExtResource("3_o6sok")
+meshOffset = Vector3(0, 2.05, 0)
+meshScale = Vector3(2, 4.68, 2)
+
+[node name="Foliage2" parent="." instance=ExtResource("2_fg57v")]
+transform = Transform3D(0.354389, 0, 0.935098, 0, 1, 0, -0.935098, 0, 0.354389, 1.72011, -0.0413748, 2.76232)
+foliage_Texture = ExtResource("4_8cjeu")
+meshOffset = Vector3(0, 1.3, 0)
+meshScale = Vector3(1, 2.665, 1)
+
+[node name="Foliage3" parent="." instance=ExtResource("2_fg57v")]
+transform = Transform3D(-0.550932, 0, -0.83455, 0, 1.88495, 0, 0.83455, 0, -0.550932, -1.61175, -0.0257116, 7.52965)
+foliage_Texture = ExtResource("4_8cjeu")
+meshScale = Vector3(1, 2.02, 1)
+
+[node name="Foliage5" parent="." instance=ExtResource("2_fg57v")]
+transform = Transform3D(-0.550932, 0, -0.83455, 0, 1.91179, 0, 0.83455, 0, -0.550932, 0.00510511, -0.227692, -1.19185)
+foliage_Texture = ExtResource("4_8cjeu")
+meshScale = Vector3(1, 2.02, 1)
+
+[node name="Foliage6" parent="." instance=ExtResource("2_fg57v")]
+transform = Transform3D(-0.550932, 0, -0.83455, 0, 1.91179, 0, 0.83455, 0, -0.550932, 0.285123, -0.100793, -5.60838)
+foliage_Texture = ExtResource("4_8cjeu")
+meshScale = Vector3(1, 2.02, 1)
+
+[node name="Foliage7" parent="." instance=ExtResource("2_fg57v")]
+transform = Transform3D(-1.75494, 0, -0.146213, 0, 1.50104, 0, 0.127367, 0, -2.01461, 0.904083, -0.269041, -4.79572)
+foliage_Texture = ExtResource("4_8cjeu")
+meshScale = Vector3(1, 2.02, 1)

@@ -1,10 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://dl5x0m77shd62"]
+[gd_scene load_steps=5 format=3 uid="uid://dl5x0m77shd62"]
 
+[ext_resource type="Script" uid="uid://c0aqelltcweb4" path="res://scripts/ui_message_display.gd" id="1_54y4t"]
 [ext_resource type="Theme" uid="uid://b7dmjh57doq5k" path="res://resources/Themes/theme_ScreenText.tres" id="1_wolgk"]
+[ext_resource type="Shader" uid="uid://jhmbi4fs662c" path="res://resources/Shaders/VS_CRTFilter.tres" id="3_844fy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n2lf5"]
+shader = ExtResource("3_844fy")
+shader_parameter/ScanLine_Intensity = 0.1
+shader_parameter/Curvature = 5.0
+shader_parameter/BackColor = Color(0.044862, 0.020364, 0.007147, 1)
 
 [node name="ui_msgDisplay" type="CanvasLayer"]
+script = ExtResource("1_54y4t")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="BGColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -29,9 +38,22 @@ layout_mode = 2
 [node name="Container" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+[node name="TextBox" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_wolgk")
-theme_override_font_sizes/normal_font_size = 80
-text = "Frank: sup bro"
+theme_override_font_sizes/normal_font_size = 100
+text = "Jhonny: ..."
+
+[node name="Filter" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_n2lf5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0375775, 0.0464977, 0.0321647, 1)
+
+[node name="LetterTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="LetterTimer" to="." method="_on_letter_timer_timeout"]
