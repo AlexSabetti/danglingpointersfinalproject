@@ -3,14 +3,14 @@ class_name UIHandler
 
 
 @onready var inGame_UI: VBoxContainer = $Ingame_UI
-@onready var taskBar: HBoxContainer = $Ingame_UI/TaskBar
+#@onready var taskBar: HBoxContainer = $Ingame_UI/TaskBar
 @onready var pauseMenu: VBoxContainer = $PauseMenu
 @onready var barPos : Control = $bar_Pos
 @onready var FadeToBlack : ColorRect = $FadeToBlack
 
 @onready var rb_container := $Ingame_UI/TaskBar/Panel3/MarginContainer/HBoxContainer/RB_VBoxContainer
 @onready var lb_container := $Ingame_UI/TaskBar/Panel3/MarginContainer/HBoxContainer/LB_VBoxContainer
-@onready var blurbContainer := $Ingame_UI/TaskBar/MarginContainer/Panel2/MarginContainer/RichTextLabel
+#@onready var blurbContainer := $Ingame_UI/TaskBar/MarginContainer/Panel2/MarginContainer/RichTextLabel
 @onready var blurbTimer := $BlurbTimer
 @onready var settingsMenu := $settings_menu
 @onready var FadeTimer : Timer = $FadeTimer
@@ -96,22 +96,23 @@ func _settings_pressed():
 func _exit():
 	get_tree().quit()
 
-func _update_requests(requests: Array):
-	var tween = create_tween()
+func _update_requests(_requests: Array):
+	pass
+	#var tween = create_tween()
 	
 	# Not the optimal way to do this
-	print(taskBar.get_node("Requests/MarginContainer/r_box").get_child_count())
+	#print(taskBar.get_node("Requests/MarginContainer/r_box").get_child_count())
 	
 	# add top most 3 items from request list
-	var idx := 0
-	for child in taskBar.get_node("Requests/MarginContainer/r_box").get_children():
-		var label: RichTextLabel = child
-		if idx < requests.size():
-			label.text = requests[idx]
-		else:
-			label.text = " "
-		label.fit_content = true
-		idx += 1
+	#var idx := 0
+	#for child in taskBar.get_node("Requests/MarginContainer/r_box").get_children():
+		#var label: RichTextLabel = child
+		#if idx < requests.size():
+			#label.text = requests[idx]
+		#else:
+			#label.text = " "
+		#label.fit_content = true
+		#idx += 1
 	
 	#var label: RichTextLabel = taskBar.get_node("Requests/MarginContainer/r_box").get_child(0)
 	#label.text = requests[0]
@@ -119,24 +120,24 @@ func _update_requests(requests: Array):
 	
 		
 	# open taskbar to show new task if it's currently hidden
-	if isTaskBarHidden:
-		show_bar()
+	#if isTaskBarHidden:
+		#show_bar()
 	
-	if firstTaskUpdate:
-		tween.tween_property($Ingame_UI/TaskBar/Requests/MarginContainer/r_box/RichTextLabel, "modulate", Color(1.0,1.0,1.0,1.0), 1.0).from(Color(1.0,0.7,0.2,0.0)).set_trans(Tween.TRANS_SINE)
-		tween.parallel().tween_property($Ingame_UI/TaskBar/Requests/MarginContainer/r_box/RichTextLabel2, "modulate", Color(1.0,1.0,1.0,1.0), 1.5).from(Color(1.0,0.7,0.2,0.0)).set_trans(Tween.TRANS_SINE)
-		tween.parallel().tween_property($Ingame_UI/TaskBar/Requests/MarginContainer/r_box/RichTextLabel3, "modulate", Color(1.0,1.0,1.0,1.0), 2.0).from(Color(1.0,0.7,0.2,0.0)).set_trans(Tween.TRANS_SINE)
-		firstTaskUpdate = false
-	else:
-		#tween.tween_property($Ingame_UI/TaskBar/Requests/MarginContainer, "rotation", 0.0, 1.0).from(deg_to_rad(90)).set_trans(Tween.TRANS_ELASTIC)
-		tween.tween_property($Ingame_UI/TaskBar/Requests/MarginContainer/r_box/RichTextLabel3, "modulate", Color(1.0,1.0,1.0,1.0), 1.5).from(Color(1.0,0.7,0.2,0.0)).set_trans(Tween.TRANS_SINE)
+	#if firstTaskUpdate:
+		#tween.tween_property($Ingame_UI/TaskBar/Requests/MarginContainer/r_box/RichTextLabel, "modulate", Color(1.0,1.0,1.0,1.0), 1.0).from(Color(1.0,0.7,0.2,0.0)).set_trans(Tween.TRANS_SINE)
+		#tween.parallel().tween_property($Ingame_UI/TaskBar/Requests/MarginContainer/r_box/RichTextLabel2, "modulate", Color(1.0,1.0,1.0,1.0), 1.5).from(Color(1.0,0.7,0.2,0.0)).set_trans(Tween.TRANS_SINE)
+		#tween.parallel().tween_property($Ingame_UI/TaskBar/Requests/MarginContainer/r_box/RichTextLabel3, "modulate", Color(1.0,1.0,1.0,1.0), 2.0).from(Color(1.0,0.7,0.2,0.0)).set_trans(Tween.TRANS_SINE)
+		#firstTaskUpdate = false
+	#else:
+		##tween.tween_property($Ingame_UI/TaskBar/Requests/MarginContainer, "rotation", 0.0, 1.0).from(deg_to_rad(90)).set_trans(Tween.TRANS_ELASTIC)
+		#tween.tween_property($Ingame_UI/TaskBar/Requests/MarginContainer/r_box/RichTextLabel3, "modulate", Color(1.0,1.0,1.0,1.0), 1.5).from(Color(1.0,0.7,0.2,0.0)).set_trans(Tween.TRANS_SINE)
 
 # updates the blurb text in the middle of the task bar
-func _update_blurb(blurbText: String):
-	blurbContainer.modulate = Color(0.0,0.0,0.0,0.0) # hide container
-	blurbContainer.text = "..." # empties out blurb to return scroll bar to top if there was one prior
-	blurbTimer.start() # short pause, but when timer is done, updatees blurb
-	blurb_text = blurbText
+#func _update_blurb(blurbText: String):
+	#blurbContainer.modulate = Color(0.0,0.0,0.0,0.0) # hide container
+	#blurbContainer.text = "..." # empties out blurb to return scroll bar to top if there was one prior
+	#blurbTimer.start() # short pause, but when timer is done, updatees blurb
+	#blurb_text = blurbText
 
 # toggles the taskbar from view
 func _on_btn_toggle_bar_pressed() -> void:

@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cv3p54e1twhiv"]
 
-[ext_resource type="Texture2D" uid="uid://m6uc37am74p6" path="res://Resources/Textures/EB_RedWoodTexture_b1.png" id="1_712ci"]
+[ext_resource type="Texture2D" uid="uid://m6uc37am74p6" path="res://resources/Textures/EB_RedWoodTexture_b1.png" id="1_712ci"]
 
 [resource]
 diffuse_mode = 3

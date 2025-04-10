@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bppmj5dmnvlko"]
+[gd_scene load_steps=37 format=3 uid="uid://bppmj5dmnvlko"]
 
 [ext_resource type="PackedScene" uid="uid://b25jkvemaipnk" path="res://scenes/UI/CanvasLayer_PostProcessing.tscn" id="1_65ejx"]
 [ext_resource type="Environment" uid="uid://crvgdsl4qcv1t" path="res://resources/Environments/env_test.tres" id="1_x61il"]
@@ -14,11 +14,13 @@
 [ext_resource type="PackedScene" uid="uid://c6veimdajceyb" path="res://scenes/UI/ui_drone_display.tscn" id="12_t40tb"]
 [ext_resource type="PackedScene" uid="uid://tfx4rwdf6oow" path="res://resources/Particles/P_Bubbles.tscn" id="12_xqkv0"]
 [ext_resource type="PackedScene" uid="uid://dkee2nim7qyu7" path="res://scenes/Entities/Drone.tscn" id="13_xklfb"]
+[ext_resource type="PackedScene" uid="uid://dtnwjuldmwsxb" path="res://resources/Particles/P_FishSchool.tscn" id="14_sakc8"]
 [ext_resource type="PackedScene" uid="uid://dybogvrii8h3g" path="res://scenes/Logic/dialog_changer.tscn" id="17_oj8la"]
 [ext_resource type="PackedScene" uid="uid://cf16x4d6gkv8e" path="res://scenes/Levels/Rooms/Room2_a1.tscn" id="18_t40tb"]
 [ext_resource type="PackedScene" uid="uid://dxgfd5vloh5y2" path="res://scenes/Levels/Rooms/Room3_a1.tscn" id="19_i3nvf"]
 [ext_resource type="PackedScene" uid="uid://oke55a7wgf5n" path="res://scenes/Levels/Rooms/Room4_a1.tscn" id="20_sakc8"]
 [ext_resource type="PackedScene" uid="uid://cjhqgtvl0c4r4" path="res://scenes/Levels/Rooms/Room5_a1.tscn" id="21_dtj52"]
+[ext_resource type="PackedScene" uid="uid://c558naetylum2" path="res://scenes/Levels/Rooms/Room7_a1.tscn" id="21_eki53"]
 [ext_resource type="PackedScene" uid="uid://bqnjyqolsuecm" path="res://scenes/Levels/Rooms/Room6_a1.tscn" id="22_eki53"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_sakc8"]
@@ -261,6 +263,10 @@ shape = SubResource("BoxShape3D_2ykvt")
 mesh = SubResource("BoxMesh_65ejx")
 skeleton = NodePath("../../../Rooms")
 
+[node name="Fishies" parent="Entities" instance=ExtResource("14_sakc8")]
+transform = Transform3D(0.258819, 0, -0.965926, -0.05949, 0.998102, -0.0159403, 0.964092, 0.0615886, 0.258328, -2.01825, 1.85304, 0.932465)
+speed = 0.05
+
 [node name="Rooms" type="Node3D" parent="."]
 
 [node name="TestMapNode" parent="Rooms" instance=ExtResource("11_hx85v")]
@@ -282,6 +288,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 
 [node name="Room6_a2" parent="Rooms" instance=ExtResource("22_eki53")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -20)
+
+[node name="Room7_a1" parent="Rooms" instance=ExtResource("21_eki53")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 20)
 
 [node name="Logic" type="Node3D" parent="."]
 

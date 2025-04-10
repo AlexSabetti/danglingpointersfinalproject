@@ -42,8 +42,8 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_wolgk")
-theme_override_font_sizes/normal_font_size = 80
-text = "Frank: sup bro"
+theme_override_font_sizes/normal_font_size = 100
+text = "Jhonny: ..."
 
 [node name="Filter" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_n2lf5")

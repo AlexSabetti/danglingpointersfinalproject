@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cox501uplfiur"]
+
+[ext_resource type="PackedScene" uid="uid://d1kvl3pb6x5vu" path="res://resources/Models/UnderWaterRoom7_a1.glb" id="1_l4g6q"]
+[ext_resource type="Material" uid="uid://dfy4yflrrduf0" path="res://resources/Materials/M_Pink.tres" id="2_4wwvo"]
+[ext_resource type="Material" uid="uid://bbllsegw0ygtt" path="res://resources/Materials/M_Purple.tres" id="3_21aye"]
+[ext_resource type="Material" uid="uid://d1y3bx2agv0pq" path="res://resources/Materials/M_Grey.tres" id="4_h8tnw"]
+
+[node name="UnderWaterRoom7_a1" instance=ExtResource("1_l4g6q")]
+
+[node name="SeaFloor_007" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_4wwvo")
+
+[node name="Rock_007" parent="." index="1"]
+surface_material_override/0 = ExtResource("3_21aye")
+
+[node name="WoodPilingCrooked1_003" parent="." index="2"]
+surface_material_override/0 = ExtResource("4_h8tnw")
+
+[node name="WoodPilingCrooked1_004" parent="." index="3"]
+surface_material_override/0 = ExtResource("4_h8tnw")
+
+[node name="WoodPilingCrooked1_Stump_001" parent="." index="4"]
+surface_material_override/0 = ExtResource("4_h8tnw")
