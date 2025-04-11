@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bppmj5dmnvlko"]
+[gd_scene load_steps=33 format=3 uid="uid://bppmj5dmnvlko"]
 
 [ext_resource type="PackedScene" uid="uid://b25jkvemaipnk" path="res://scenes/UI/CanvasLayer_PostProcessing.tscn" id="1_65ejx"]
 [ext_resource type="Environment" uid="uid://crvgdsl4qcv1t" path="res://resources/Environments/env_test.tres" id="1_x61il"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://scenes/Entities/CamPosNode.tscn" id="3_71sqw"]
 [ext_resource type="Script" uid="uid://dybrp2bdnyair" path="res://scripts/world_environment.gd" id="3_t8fsm"]
 [ext_resource type="PackedScene" uid="uid://bsgqiciuvs6ok" path="res://scenes/Levels/ControlRoom.tscn" id="4_e5ioo"]
-[ext_resource type="Script" uid="uid://b8260neigo27n" path="res://scripts/ClickableObject.gd" id="6_hx85v"]
 [ext_resource type="PackedScene" uid="uid://dl5x0m77shd62" path="res://scenes/UI/ui_message_display.tscn" id="8_sou27"]
 [ext_resource type="PackedScene" uid="uid://b3728ytvs6bn0" path="res://scenes/UI/ui_map_display.tscn" id="9_v4ldq"]
 [ext_resource type="PackedScene" uid="uid://cgvgni8obca17" path="res://scenes/Levels/Rooms/Room1_a1.tscn" id="11_hx85v"]
@@ -69,10 +68,6 @@ emission_texture = SubResource("ViewportTexture_i3nvf")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_v4ldq"]
 viewport_path = NodePath("Entities/SubViewport_MsgScreen")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_2ykvt"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_65ejx"]
 
 [node name="Dev_Level" type="Node3D"]
 
@@ -148,33 +143,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47629, 2.20184, 24.9412)
 
 [node name="TestCamera3D" type="Camera3D" parent="Entities/SubViewport_DroneCam/CameraNode1"]
 
-[node name="CameraNode2" parent="Entities/SubViewport_DroneCam" instance=ExtResource("3_71sqw")]
-transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 2.47652, 0.92824, -0.201287)
-
-[node name="TestCamera3D" type="Camera3D" parent="Entities/SubViewport_DroneCam/CameraNode2"]
-visible = false
-
-[node name="CameraNode3" parent="Entities/SubViewport_DroneCam" instance=ExtResource("3_71sqw")]
-transform = Transform3D(-1, 0.000157768, 0.000990465, 0.000157359, 1, -0.000406088, -0.00099054, -0.000405929, -1, -5.72815, 0.92824, -3.37036)
-min_h_rotation = -80.0
-max_h_rotation = 60.0
-
-[node name="TestCamera3D" type="Camera3D" parent="Entities/SubViewport_DroneCam/CameraNode3"]
-
-[node name="CameraNode4" parent="Entities/SubViewport_DroneCam" instance=ExtResource("3_71sqw")]
-transform = Transform3D(-0.707807, -0.000175476, -0.706406, 0.000157359, 1, -0.000406088, 0.706406, -0.000398594, -0.707807, 6.8221, 0.92824, -2.85305)
-min_h_rotation = -60.0
-max_h_rotation = 60.0
-
-[node name="TestCamera3D" type="Camera3D" parent="Entities/SubViewport_DroneCam/CameraNode4"]
-
-[node name="CameraNode5" parent="Entities/SubViewport_DroneCam" instance=ExtResource("3_71sqw")]
-transform = Transform3D(0.966001, -0.000962594, 0.258537, 0.00136281, 0.999998, -0.00136884, -0.258535, 0.00167463, 0.966001, 18.5687, 0.92824, 6.9854)
-min_h_rotation = -60.0
-max_h_rotation = 60.0
-
-[node name="TestCamera3D" type="Camera3D" parent="Entities/SubViewport_DroneCam/CameraNode5"]
-
 [node name="SubViewport_MsgScreen" type="SubViewport" parent="Entities"]
 size = Vector2i(1280, 960)
 
@@ -190,76 +158,6 @@ size = Vector2i(1280, 960)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.918675, -0.689662, 0.345228)
 visible = false
 amount = 256
-
-[node name="TestInteractableObject" type="StaticBody3D" parent="Entities" node_paths=PackedStringArray("trigger_on_interact")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.41271, 1.101, -1.54066)
-script = ExtResource("6_hx85v")
-object_name = "Test Obj 1"
-is_interactable = true
-trigger_on_interact = [NodePath("../SubViewport_DroneCam/CameraNode2"), NodePath("../../Logic/DialogChanger")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Entities/TestInteractableObject"]
-shape = SubResource("BoxShape3D_2ykvt")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Entities/TestInteractableObject"]
-mesh = SubResource("BoxMesh_65ejx")
-skeleton = NodePath("../../../Rooms")
-
-[node name="TestInteractableObject4" type="StaticBody3D" parent="Entities" node_paths=PackedStringArray("trigger_on_interact")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.85419, 1.98763, -2.87489)
-script = ExtResource("6_hx85v")
-object_name = "Test Obj 1"
-is_interactable = true
-trigger_on_interact = [NodePath("../SubViewport_DroneCam/CameraNode4")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Entities/TestInteractableObject4"]
-shape = SubResource("BoxShape3D_2ykvt")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Entities/TestInteractableObject4"]
-mesh = SubResource("BoxMesh_65ejx")
-skeleton = NodePath("../../../Rooms")
-
-[node name="TestInteractableObject5" type="StaticBody3D" parent="Entities" node_paths=PackedStringArray("trigger_on_interact")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2364, 2.101, 7.07159)
-script = ExtResource("6_hx85v")
-object_name = "Test Obj 1"
-is_interactable = true
-trigger_on_interact = [NodePath("../SubViewport_DroneCam/CameraNode5")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Entities/TestInteractableObject5"]
-shape = SubResource("BoxShape3D_2ykvt")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Entities/TestInteractableObject5"]
-mesh = SubResource("BoxMesh_65ejx")
-skeleton = NodePath("../../../Rooms")
-
-[node name="TestInteractableObject2" type="StaticBody3D" parent="Entities" node_paths=PackedStringArray("trigger_on_interact")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.81031, 1.63403, 7.0518)
-script = ExtResource("6_hx85v")
-object_name = "Test Obj 2"
-is_interactable = true
-trigger_on_interact = [NodePath("../SubViewport_DroneCam/CameraNode1")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Entities/TestInteractableObject2"]
-shape = SubResource("BoxShape3D_2ykvt")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Entities/TestInteractableObject2"]
-mesh = SubResource("BoxMesh_65ejx")
-skeleton = NodePath("../../../Rooms")
-
-[node name="TestInteractableObject3" type="StaticBody3D" parent="Entities" node_paths=PackedStringArray("trigger_on_interact")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.92921, 1.64932, -3.66088)
-script = ExtResource("6_hx85v")
-object_name = "Test Obj 2"
-is_interactable = true
-trigger_on_interact = [NodePath("../SubViewport_DroneCam/CameraNode3")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Entities/TestInteractableObject3"]
-shape = SubResource("BoxShape3D_2ykvt")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Entities/TestInteractableObject3"]
-mesh = SubResource("BoxMesh_65ejx")
-skeleton = NodePath("../../../Rooms")
 
 [node name="Rooms" type="Node3D" parent="."]
 

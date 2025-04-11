@@ -7,6 +7,8 @@
 [node name="CameraPosNode" type="Node3D"]
 script = ExtResource("1_8mso5")
 can_player_rotate = false
+min_h_rotation = -45.0
+max_h_rotation = 45.0
 
 [node name="FilmCamera1_a1" parent="." instance=ExtResource("3_pu8xr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.07)

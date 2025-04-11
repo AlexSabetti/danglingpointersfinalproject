@@ -5,7 +5,7 @@ extends DynamicEntity
 
 @export_group("Object Interaction")
 # This is for when the player clicks on the item but isn't in the proper section (This would happen usually by accident). It just denies the signal unless it's true.
-@export var is_interactable: bool = false:
+@export var is_interactable: bool = true:
 	set(i):
 		is_interactable = i
 		# checks for collision shape

@@ -7,8 +7,8 @@ extends DynamicEntity
 var camera:Camera3D
 var cam_default_rotation: Vector3 = Vector3.ZERO  # default rotation of the camera
 @export var can_player_rotate: bool = true       # whether or not the player is able to rotate the camera
-@export var min_h_rotation: float = -45           # min degrees of rotation from the starting point that the camera can be rotated horizontally by
-@export var max_h_rotation: float = 45            # max degrees of rotation from the starting point that the camera can be rotated horizontally by
+@export var min_h_rotation: float = -60           # min degrees of rotation from the starting point that the camera can be rotated horizontally by
+@export var max_h_rotation: float = 60            # max degrees of rotation from the starting point that the camera can be rotated horizontally by
 #@export var connected_nodes: Array[CameraNode] = []: # array of other camera positon nodes that can be reached from this one
 	#set(nodes):
 		#connected_nodes = nodes
@@ -52,6 +52,8 @@ func _on_trigger():
 # Sets this camera node as the viewport
 func set_current_node():
 	Global.gameControllerRef.drone.active_cam_node = self
+	Global.gameControllerRef.min_h_rotation = min_h_rotation
+	Global.gameControllerRef.max_h_rotation = max_h_rotation
 	Global.gameControllerRef.drone.update_cam_position()
 
 

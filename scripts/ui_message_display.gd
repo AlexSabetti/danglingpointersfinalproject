@@ -10,7 +10,7 @@ var letterIdx := 0
 # Size of the text
 @export var textSize := 100
 # Time between letters being shown
-@export var textSpeed := 0.1:
+@export var textSpeed := 0.075:
 	set(speed):
 		textSpeed = speed
 @export var textScaler := 1.75

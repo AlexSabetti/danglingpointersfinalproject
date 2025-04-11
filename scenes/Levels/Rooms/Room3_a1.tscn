@@ -1,13 +1,71 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxgfd5vloh5y2"]
+[gd_scene load_steps=9 format=3 uid="uid://dxgfd5vloh5y2"]
 
 [ext_resource type="PackedScene" uid="uid://crwrhmxlk0mc6" path="res://resources/Models/under_water_room_3_a_1.tscn" id="1_6x3y3"]
 [ext_resource type="Script" uid="uid://br3bhxpyvy3lu" path="res://scripts/Room.gd" id="1_nu0df"]
+[ext_resource type="Script" uid="uid://bs8y8lrwcb8ml" path="res://scripts/CameraChangeObject.gd" id="2_e8vfg"]
 [ext_resource type="PackedScene" uid="uid://bd7icn4pwfdoi" path="res://scenes/Entities/Foliage.tscn" id="2_nu0df"]
 [ext_resource type="Texture2D" uid="uid://cealpeqkes7xo" path="res://resources/Textures/Sprites/SeaWeeds1_a1.png" id="3_j8hn1"]
+[ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://scenes/Entities/CamPosNode.tscn" id="3_kxr2k"]
 [ext_resource type="Texture2D" uid="uid://cufcff04171uc" path="res://resources/Textures/Sprites/SeaWeeds1_b1.png" id="4_e8vfg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2yek6"]
+size = Vector3(0.5, 3, 11)
 
 [node name="Room3_a1" type="Node3D"]
 script = ExtResource("1_nu0df")
+
+[node name="RoomChangers" type="Node3D" parent="."]
+
+[node name="RoomChangeCollider_N" type="StaticBody3D" parent="RoomChangers" node_paths=PackedStringArray("trigger_on_interact")]
+script = ExtResource("2_e8vfg")
+trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_W")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_N"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.25, 1.5, 0)
+shape = SubResource("BoxShape3D_2yek6")
+
+[node name="RoomChangeCollider_E" type="StaticBody3D" parent="RoomChangers" node_paths=PackedStringArray("trigger_on_interact")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("2_e8vfg")
+trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_E")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_E"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.25, 1.5, 0)
+shape = SubResource("BoxShape3D_2yek6")
+
+[node name="RoomChangeCollider_W" type="StaticBody3D" parent="RoomChangers" node_paths=PackedStringArray("trigger_on_interact")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0, 0, 0)
+script = ExtResource("2_e8vfg")
+trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_W")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_W"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.25, 1.5, 0)
+shape = SubResource("BoxShape3D_2yek6")
+
+[node name="CameraNodes" type="Node3D" parent="."]
+
+[node name="CameraNode_N" parent="CameraNodes" instance=ExtResource("3_kxr2k")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 5.47652, 0.92824, -3.20129)
+visible = false
+min_h_rotation = -90.0
+max_h_rotation = 90.0
+
+[node name="TestCamera3D" type="Camera3D" parent="CameraNodes/CameraNode_N"]
+visible = false
+
+[node name="CameraNode_E" parent="CameraNodes" instance=ExtResource("3_kxr2k")]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 1.52371, 1.16639, 6.94119)
+min_h_rotation = -100.0
+max_h_rotation = 90.0
+
+[node name="TestCamera3D" type="Camera3D" parent="CameraNodes/CameraNode_E"]
+visible = false
+
+[node name="CameraNode_W" parent="CameraNodes" instance=ExtResource("3_kxr2k")]
+transform = Transform3D(-0.966182, 4.733e-05, -0.257862, 0.000157359, 1, -0.000406088, 0.257862, -0.000432931, -0.966182, 1.61964, 0.92824, -6.86411)
+max_h_rotation = 160.0
+
+[node name="TestCamera3D" type="Camera3D" parent="CameraNodes/CameraNode_W"]
 
 [node name="UnderWaterRoom3_a1" parent="." instance=ExtResource("1_6x3y3")]
 

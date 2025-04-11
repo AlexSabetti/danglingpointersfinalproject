@@ -19,7 +19,6 @@ script = ExtResource("1_8v58j")
 [node name="RoomChangeCollider_E" type="StaticBody3D" parent="RoomChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("2_sv4q7")
-is_interactable = true
 trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_E")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_E"]
@@ -48,7 +47,6 @@ visible = false
 transform = Transform3D(-1, 0.000157768, 0.000990465, 0.000157359, 1, -0.000406088, -0.00099054, -0.000405929, -1, -5.72815, 0.92824, -3.37036)
 visible = false
 min_h_rotation = -80.0
-max_h_rotation = 60.0
 
 [node name="TestCamera3D" type="Camera3D" parent="CameraNodes/CameraNode_S"]
 
@@ -56,7 +54,6 @@ max_h_rotation = 60.0
 transform = Transform3D(1, -0.000157768, -0.000990378, 0.000157359, 1, -0.000406088, 0.000990453, 0.000405929, 1, -0.72815, 0.92824, -4.37036)
 visible = false
 min_h_rotation = -80.0
-max_h_rotation = 60.0
 
 [node name="TestCamera3D" type="Camera3D" parent="CameraNodes/CameraNode_W"]
 
