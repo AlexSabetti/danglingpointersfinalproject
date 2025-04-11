@@ -9,7 +9,7 @@ extends Node3D
 
 @export node_scene: MapNode # MUST BE FILLED IN
 @export starting_area: PackedScene # MUST BE FILLED IN
-
+ 
 @export var expanding_tries: int = 12 # Perhaps change this to be a percentage of the grid_count
 @export var original_node_loc: Vector3 = {0, 0, 0}
 
