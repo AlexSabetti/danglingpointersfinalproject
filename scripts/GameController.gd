@@ -146,6 +146,13 @@ func interact()->void:
 				signal_manager.emit_signal("object_clicked", cur_target_object)
 				click_obj._on_trigger()
 				#mark_off(click_obj)
+		if cur_target_object is CameraChangeObject:
+			print(cur_target_object)
+			var click_obj: CameraChangeObject = cur_target_object
+			if click_obj.is_interactable:
+				signal_manager.emit_signal("object_clicked", cur_target_object)
+				click_obj._on_trigger()
+				#mark_off(click_obj)
 
 # marks the given object as found and removes it from the progress order list
 #func mark_off(obj: ClickableObject):

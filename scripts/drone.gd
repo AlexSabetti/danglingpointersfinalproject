@@ -3,6 +3,7 @@ class_name Drone
 extends DynamicEntity
 
 @export var active_cam_node:CameraNode
+@export var active_map_node:MapNode
 
 var signal_manager: SignalBus = SigBus
 

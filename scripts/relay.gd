@@ -15,6 +15,16 @@ extends DynamicEntity
 	set(arr):
 		trigger_on_interact = arr
 
+# array of objects to set as active on interact
+@export var activate_on_interact: Array[DynamicEntity] = []:
+	set(arr):
+		activate_on_interact = arr
+
+# array of objects to set as inactive on interact
+@export var deactivate_on_interact: Array[DynamicEntity] = []:
+	set(arr):
+		deactivate_on_interact = arr
+
 
 @onready var Delay: Timer = $Timer
 
@@ -44,3 +54,11 @@ func trigger_objects():
 	for obj in trigger_on_interact:
 		if obj is DynamicEntity and (obj as DynamicEntity).is_active:
 			(obj as DynamicEntity)._on_trigger()
+	
+	for obj in activate_on_interact:
+		if obj is DynamicEntity:
+			(obj as DynamicEntity).is_active = true
+	
+	for obj in deactivate_on_interact:
+		if obj is DynamicEntity:
+			(obj as DynamicEntity).is_active = false

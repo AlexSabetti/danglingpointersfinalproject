@@ -17,13 +17,13 @@ point_count = 4
 
 [node name="Fishies" type="Node3D"]
 script = ExtResource("1_8n8ux")
-speed = 0.1
 
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_wpjwj")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.00879286, 0.243144, -0.969891, 7.45009e-09, 0.969948, 0.243149, 0.999896, -0.00213816, 0.008529, 0.901178, -0.13562, -3.77941)
+transform = Transform3D(-0.620925, 0.0433365, 0.782477, -0.0420107, 0.995018, -0.0884485, -0.782542, -0.0878037, -0.616125, 3.8206, -0.122338, 3.99287)
+progress = 11.2854
 
 [node name="FishParticles3D" type="CPUParticles3D" parent="Path3D/PathFollow3D"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)

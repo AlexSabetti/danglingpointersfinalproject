@@ -6,7 +6,7 @@ extends DynamicEntity
 @export_category("camera node properties")
 var camera:Camera3D
 var cam_default_rotation: Vector3 = Vector3.ZERO  # default rotation of the camera
-@export var can_player_rotate: bool = false       # whether or not the player is able to rotate the camera
+@export var can_player_rotate: bool = true       # whether or not the player is able to rotate the camera
 @export var min_h_rotation: float = -45           # min degrees of rotation from the starting point that the camera can be rotated horizontally by
 @export var max_h_rotation: float = 45            # max degrees of rotation from the starting point that the camera can be rotated horizontally by
 #@export var connected_nodes: Array[CameraNode] = []: # array of other camera positon nodes that can be reached from this one
@@ -30,7 +30,7 @@ func _ready():
 		$FilmCamera1_a1.visible = false
 		
 		
-		cam_default_rotation = rotation
+		cam_default_rotation = global_rotation
 
 #func _get_configuration_warnings():
 	## Looks for Camera3D child
