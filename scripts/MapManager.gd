@@ -162,3 +162,4 @@ func connect_to( position_from: int, position_to: int):
         position_to.north_open = true
         cross_pos.active = true
 
+
