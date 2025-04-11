@@ -113,6 +113,7 @@ func connect_to( position_from: int, position_to: int):
   var dist = position_to - position_from
   var cross_pos = -1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   if dist < 0:
     # Below or to the right
     var rows_away: int = abs(dist) / root_count
@@ -179,8 +180,28 @@ func connect_to( position_from: int, position_to: int):
 
 	# This will be the cross section
   else:
+=======
+  if num < 0:
+	# Below or to the right
+	var rows_away = abs(num) / root_count
+	var cols_away = abs(num) % root_count
+	cross_pos = first_key_area - cols_away
+	if cross_pos !=first_key_area:
+	  get_child(cross_pos).west_open = true
+	  for i in range(0, cols_away):
+		get_child(cross_pos + i)
+	else:
+	  get_child(cross_pos).south_open = true
+
+
+	# This will be the cross section
+  else:
+>>>>>>> Stashed changes
 	# Above or to the left
 	var rows_away = abs(num) / root_count
 	var cols_away = abs(num) % root_count
 	cross_pos = first_key_area + cols_away
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
