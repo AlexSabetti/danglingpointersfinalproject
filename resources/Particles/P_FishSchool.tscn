@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtnwjuldmwsxb"]
+[gd_scene load_steps=6 format=3 uid="uid://dtnwjuldmwsxb"]
 
 [ext_resource type="Script" uid="uid://dd025v80bk3y8" path="res://scripts/fish_school.gd" id="1_8n8ux"]
+[ext_resource type="Texture2D" uid="uid://og61w53u2j6" path="res://resources/Textures/Sprites/GreyFish1_a1.png" id="2_c33hr"]
 [ext_resource type="ArrayMesh" uid="uid://idy68r6u834v" path="res://resources/Models/FishMesh.res" id="2_phm8g"]
 
 [sub_resource type="Curve3D" id="Curve3D_wpjwj"]
@@ -12,18 +13,19 @@ _data = {
 point_count = 5
 
 [sub_resource type="Curve" id="Curve_wpjwj"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0621891, 0.595694), 0.431117, 0.431117, 0, 0, Vector2(0.788557, 0.601914), -0.250047, -0.250047, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.079602, 0.396651), 0.431117, 0.431117, 0, 0, Vector2(0.79602, 0.433971), -0.250047, -0.250047, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [node name="Fishies" type="Node3D"]
 script = ExtResource("1_8n8ux")
+fishSprite = ExtResource("2_c33hr")
 
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_wpjwj")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.620925, 0.0433365, 0.782477, -0.0420107, 0.995018, -0.0884485, -0.782542, -0.0878037, -0.616125, 3.8206, -0.122338, 3.99287)
-progress = 11.2854
+transform = Transform3D(-0.835989, -0.0436135, 0.546732, -0.0341551, 0.998866, 0.0274588, -0.547403, 0.0042821, -0.836679, 4.82755, -0.163109, 2.89893)
+progress = 9.7905
 
 [node name="FishParticles3D" type="CPUParticles3D" parent="Path3D/PathFollow3D"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)

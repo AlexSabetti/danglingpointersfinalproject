@@ -13,14 +13,6 @@ shader_parameter/BackColor = Color(0.044862, 0.020364, 0.007147, 1)
 [node name="ui_droneDisplay" type="CanvasLayer"]
 script = ExtResource("1_01chn")
 
-[node name="CRTFilter" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_gse5x")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="DroneScreenOverlay" type="MarginContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,22 +25,34 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
 [node name="Compass" type="Control" parent="DroneScreenOverlay"]
-visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="DroneScreenOverlay/Compass"]
+[node name="CompassPointer" type="Label" parent="DroneScreenOverlay/Compass"]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -56.0
-offset_right = 58.0
+offset_left = -74.0
+offset_top = -67.0
+offset_right = -16.0
+offset_bottom = -11.0
+grow_horizontal = 0
 grow_vertical = 0
 pivot_offset = Vector2(28.47, 27.28)
 theme = ExtResource("3_tcw1t")
 theme_override_font_sizes/font_size = 60
 text = "↑"
 horizontal_alignment = 1
+
+[node name="CRTFilter" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_gse5x")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="BlankScreen" type="ColorRect" parent="."]
 visible = false

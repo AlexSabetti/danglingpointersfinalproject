@@ -19,7 +19,7 @@ script = ExtResource("1_fg57v")
 [node name="RoomChangeCollider_E" type="StaticBody3D" parent="RoomChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("2_8cjeu")
-trigger_on_interact = [null]
+trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_E")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_E"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.25, 1.5, 0)
@@ -28,7 +28,7 @@ shape = SubResource("BoxShape3D_82mtp")
 [node name="RoomChangeCollider_W" type="StaticBody3D" parent="RoomChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0, 0, 0)
 script = ExtResource("2_8cjeu")
-trigger_on_interact = [null]
+trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_W")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_W"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.25, 1.5, 0)

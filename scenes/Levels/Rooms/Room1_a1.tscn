@@ -76,11 +76,12 @@ shape = SubResource("BoxShape3D_v31mo")
 [node name="CameraNodes" type="Node3D" parent="."]
 
 [node name="CameraNode_N" parent="CameraNodes" instance=ExtResource("3_j8fw3")]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 4.06231, 1.92824, -0.372862)
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 6.85726, 1.92824, -0.62632)
 min_h_rotation = -90.0
 max_h_rotation = 90.0
 
 [node name="TestCamera3D" type="Camera3D" parent="CameraNodes/CameraNode_N"]
+visible = false
 
 [node name="CameraNode_E" parent="CameraNodes" instance=ExtResource("3_j8fw3")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 1.52371, 1.16639, 6.94119)

@@ -113,36 +113,36 @@ func connect_to( position_from: int, position_to: int):
   var dist = position_to - position_from
   var cross_pos = -1
   if dist < 0:
-    # Below or to the right
-    var rows_away: int = abs(dist) / root_count
-    var cols_away: int = abs(dist) % root_count
-    cross_pos = position_from - cols_away
-    if cross_pos !=position_from:
-      get_child(cross_pos).east_open = true
-      get_child(position_from).west_open = true
-      for i in range(1, cols_away):
+	# Below or to the right
+	var rows_away: int = abs(dist) / root_count
+	var cols_away: int = abs(dist) % root_count
+	cross_pos = position_from - cols_away
+	if cross_pos !=position_from:
+	  get_child(cross_pos).east_open = true
+	  get_child(position_from).west_open = true
+	  for i in range(1, cols_away):
 	var potential_path: MapNode = get_child(cross_pos + i)
-        potential_path.west_open = true
+		potential_path.west_open = true
 	potential_path.east_open = true
 	potential_path.active = true
 	paths.append(potential_path)
-      if(cross_pos != position_to):
-        get_child(cross_pos).north_open = true
-        for i in range(1, rows_away):
+	  if(cross_pos != position_to):
+		get_child(cross_pos).north_open = true
+		for i in range(1, rows_away):
 		var potential_path: MapNode = get_child(cross_pos - (i * root_count))
 		potential_path.north_open = true
 		potential_path.south_open = true
 		potential_path.active = true
 		paths.append(potential_path)
-       starting_node.south_open = true
-       cross_pos.active = true
-       paths.append(cross_pos)
+	   starting_node.south_open = true
+	   cross_pos.active = true
+	   paths.append(cross_pos)
   else:
-    # Above or to the left
-    var rows_away = abs(dist) / root_count
-    var cols_away = abs(dist) % root_count
-    cross_pos = position_from + cols_away
-    if cross_pos != position_from:
+	# Above or to the left
+	var rows_away = abs(dist) / root_count
+	var cols_away = abs(dist) % root_count
+	cross_pos = position_from + cols_away
+	if cross_pos != position_from:
 	get_child(cross_pos).west_open = true
 	get_child(position_from).east_open = true
 	for i in range(1, cols_away):
@@ -151,13 +151,13 @@ func connect_to( position_from: int, position_to: int):
 		potential_path.east_open = true
 		potential_path.active = true
 		paths.append(potential_path)
-    if(cross_pos != position_to):
-    	get_child(cross_pos).south_open = true
+	if(cross_pos != position_to):
+		get_child(cross_pos).south_open = true
 	for i in range(1, rows_away):
 		var potential_path: MapNode = get_child(cross_pos + (i * root_count))
 		potential_path.north_open = true
 		potential_path.south_open = true
 		potential_path.active = true
 		paths.append(potential_path)
-        position_to.north_open = true
-        cross_pos.active = true
+		position_to.north_open = true
+		cross_pos.active = true

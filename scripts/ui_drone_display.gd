@@ -9,6 +9,7 @@ var fade_time:float = 0.05
 @onready var delay2:Timer = $Timer2
 @onready var BlankScreen:ColorRect = $BlankScreen
 @onready var LoadingText:Label = $LoadingText
+@onready var CompassPointer := $DroneScreenOverlay/Compass/CompassPointer
 
 var signal_manager: SignalBus = SigBus
 
@@ -21,6 +22,10 @@ func _ready() -> void:
 	else:
 		BlankScreen.visible = true
 		LoadingText.visible = false
+
+func _process(delta: float) -> void:
+	# updates compass rotation
+	CompassPointer.rotation = -Global.gameControllerRef.drone.DroneCamera.global_rotation.y
 
 func cam_change_anim(id:int)->void:
 	fade_out()

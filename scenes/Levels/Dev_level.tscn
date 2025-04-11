@@ -81,7 +81,7 @@ environment = ExtResource("1_x61il")
 script = ExtResource("3_t8fsm")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(0.866025, -0.25, -0.433013, 0.5, 0.433013, 0.75, 0, -0.866025, 0.5, 1.90681, 6.2019, -2.95414)
+transform = Transform3D(0.559555, -0.414397, -0.717756, 0.828793, 0.279778, 0.484588, 2.58096e-08, -0.866025, 0.500001, 1.90681, 6.2019, -2.95414)
 light_color = Color(0.948912, 0.878842, 0.61507, 1)
 light_energy = 0.4
 light_bake_mode = 1
@@ -166,20 +166,17 @@ amount = 256
 [node name="Room2_a1" parent="Rooms" instance=ExtResource("18_t40tb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
 
-[node name="Room3_a1" parent="Rooms" instance=ExtResource("19_i3nvf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
-
 [node name="Room3_a2" parent="Rooms" instance=ExtResource("19_i3nvf")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 20, 0, 0)
-
-[node name="Room4_a1" parent="Rooms" instance=ExtResource("20_sakc8")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20, 0, -40)
-
-[node name="Room5_a1" parent="Rooms" instance=ExtResource("21_dtj52")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 
+[node name="Room4_a1" parent="Rooms" instance=ExtResource("20_sakc8")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20, 0, -20)
+
+[node name="Room5_a1" parent="Rooms" instance=ExtResource("21_dtj52")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
+
 [node name="Room6_a2" parent="Rooms" instance=ExtResource("22_eki53")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
 
 [node name="Room7_a1" parent="Rooms" instance=ExtResource("21_eki53")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 20)
