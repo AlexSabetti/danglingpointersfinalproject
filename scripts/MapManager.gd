@@ -37,15 +37,15 @@ func Create_Map():
 	  var walker = scene.instantiate()
 	  add_child(walker)
 	  walker.global_position = node_cur_pos
+	  walker.place_pos = i * root + j
 	  var placement_above = i * root + j - root
 	  if placement_above >= 0:
 		get_child(placement_above).south_node = walker
 		walker.north_node = get_child(placement_above)
-	  else :
-		walker.south_node = NULL
+	  walker.south_node = NULL
 	  if j > 0:
 		get_child(i * root + j - 1).east_node = walker
-		walker = get_child(i * root + j - 1)
+		walker.west_node = get_child(i * root + j - 1)
   head = get_child(0)
 		
 	
@@ -89,53 +89,75 @@ func expand_map():
   key_areas.append(get_child(first_key_area))
   key_areas.append(get_child(second_key_area))
 
-  var num = starting_node_place - first_key_area
+  connect_to(first_key_area, starting_node_place)
+  
+  # Second key area
+  var second_key_area_node = get_child(second_key_area)
+  var connection_dist = second_key_area - first_key_area
+  var connection = get_child(first_key_area)
+  if(abs(second_key_area - starting_node_place) < abs(connection_dist)): 
+	connection_dist = second_key_area - starting_node_place
+	connection = starting_node
+  for i in range(0, paths.size):
+	if(abs(second_key_area - paths[i].place_pos) < abs(connection_dist)):
+		connection_dist = second_key_area - paths[i].place_pos
+		connection = paths[i]
+
+  connect_to(second_key_area, connection.place_pos)
+  
+
+
+
+func connect_to( position_from: int, position_to: int):
+  var dist = position_to - position_from
   var cross_pos = -1
-  if num < 0:
+  if dist < 0:
     # Below or to the right
-    var rows_away: int = abs(num) / root_count
-    var cols_away: int = abs(num) % root_count
-    cross_pos = first_key_area - cols_away
-    if cross_pos !=first_key_area:
+    var rows_away: int = abs(dist) / root_count
+    var cols_away: int = abs(dist) % root_count
+    cross_pos = position_from - cols_away
+    if cross_pos !=position_from:
       get_child(cross_pos).east_open = true
-      get_child(first_key_area).west_open = true
+      get_child(position_from).west_open = true
       for i in range(1, cols_away):
 	var potential_path: MapNode = get_child(cross_pos + i)
         potential_path.west_open = true
 	potential_path.east_open = true
 	potential_path.active = true
 	paths.append(potential_path)
-    get_child(cross_pos).north_open = true
-    for i in range(1, rows_away):
-	var potential_path: MapNode = get_child(cross_pos - (i * root_count))
-	potential_path.north_open = true
-	potential_path.south_open = true
-	potential_path.active = true
-	paths.append(potential_path)
-    starting_node.south_open = true
-    cross_pos.active = true
-    paths.append(cross_pos)
+      if(cross_pos != position_to):
+        get_child(cross_pos).north_open = true
+        for i in range(1, rows_away):
+		var potential_path: MapNode = get_child(cross_pos - (i * root_count))
+		potential_path.north_open = true
+		potential_path.south_open = true
+		potential_path.active = true
+		paths.append(potential_path)
+       starting_node.south_open = true
+       cross_pos.active = true
+       paths.append(cross_pos)
   else:
     # Above or to the left
-    var rows_away = abs(num) / root_count
-    var cols_away = abs(num) % root_count
-    cross_pos = first_key_area + cols_away
-    if cross_pos != first_key_area:
+    var rows_away = abs(dist) / root_count
+    var cols_away = abs(dist) % root_count
+    cross_pos = position_from + cols_away
+    if cross_pos != position_from:
 	get_child(cross_pos).west_open = true
-	get_child(first_key_area).east_open = true
+	get_child(position_from).east_open = true
 	for i in range(1, cols_away):
 		var potential_path: MapNode = get_child(cross_pos - i)
 		potential_path.west_open = true
 		potential_path.east_open = true
 		potential_path.active = true
 		paths.append(potential_path)
-     get_child(cross_pos).south_open = true
-     for i in range(1, rows_away):
-   	var potential_path: MapNode = get_child(cross_pos + (i * root_count))
-	potential_path.north_open = true
-	potential_path.south_open = true
-	potential_path.active = true
-	paths.append(potential_path)
-     starting_node.north_open = true
-     cross_pos.active = true
-  
+    if(cross_pos != position_to):
+    	get_child(cross_pos).south_open = true
+	for i in range(1, rows_away):
+		var potential_path: MapNode = get_child(cross_pos + (i * root_count))
+		potential_path.north_open = true
+		potential_path.south_open = true
+		potential_path.active = true
+		paths.append(potential_path)
+        position_to.north_open = true
+        cross_pos.active = true
+
