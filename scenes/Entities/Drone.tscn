@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkee2nim7qyu7"]
+[gd_scene load_steps=6 format=3 uid="uid://dkee2nim7qyu7"]
 
 [ext_resource type="Script" uid="uid://d3tkd5eutouwg" path="res://scripts/drone.gd" id="1_ch8l7"]
 [ext_resource type="Texture2D" uid="uid://ccp2qkvh2aj00" path="res://resources/Textures/Sprites/HookBall1_a2.png" id="2_g7tdt"]
@@ -15,6 +15,11 @@ albedo_texture = ExtResource("2_g7tdt")
 texture_filter = 0
 billboard_mode = 1
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_c0tn5"]
+top_radius = 0.12
+bottom_radius = 0.1
+height = 1.0
+
 [node name="Drone" type="Node3D"]
 script = ExtResource("1_ch8l7")
 
@@ -30,6 +35,21 @@ texture = ExtResource("2_g7tdt")
 [node name="Camera3D" type="Camera3D" parent="."]
 current = true
 
+[node name="SpotLight3D1" type="SpotLight3D" parent="Camera3D"]
+transform = Transform3D(0.999522, 0.0257137, -0.0171873, -0.0223427, 0.984554, 0.173648, 0.0213869, -0.173181, 0.984658, -0.25, 0.2, 0)
+light_color = Color(0.772549, 0.835294, 0.65098, 1)
+light_energy = 0.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Camera3D"]
+transform = Transform3D(0.999522, -0.0257137, 0.0171873, 0.0223427, 0.984554, 0.173648, -0.0213869, -0.173181, 0.984658, 0.25, 0.2, 0)
+light_color = Color(0.772118, 0.834899, 0.651208, 1)
+light_energy = 0.0
+
 [node name="CPUParticles3D" parent="." instance=ExtResource("3_c0tn5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 amount = 256
+local_coords = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.599594, 0)
+mesh = SubResource("CylinderMesh_c0tn5")

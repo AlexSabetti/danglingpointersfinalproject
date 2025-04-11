@@ -59,6 +59,8 @@ func _input(event):
 			#get_mouse_pos(mouse, get_viewport())
 			#if VirtualScreenViewport != null && is_screen_focused:
 				#get_mouse_pos(mouse, VirtualScreenViewport)
+	if event.is_action_pressed("toggle_light") && drone != null:
+		drone.toggle_light()
 
 func camera_movement(delta: float):
 	# accelerate camera turn
@@ -80,12 +82,12 @@ func camera_movement(delta: float):
 	drone.DroneCamera.rotate_y(deg_to_rad(twist_input))
 	
 	# limits degrees of rotation for drone camera
-	if rad_to_deg(drone.DroneCamera.rotation.y) <  min_h_rotation:
-		drone.DroneCamera.rotation.y = deg_to_rad(min_h_rotation)
-		twist_input = 0
-	else: if rad_to_deg(drone.DroneCamera.rotation.y) >  max_h_rotation:
-		drone.DroneCamera.rotation.y = deg_to_rad(max_h_rotation)
-		twist_input = 0
+	#if rad_to_deg(drone.DroneCamera.rotation.y) <  min_h_rotation:
+		#drone.DroneCamera.rotation.y = deg_to_rad(min_h_rotation)
+		#twist_input = 0
+	#else: if rad_to_deg(drone.DroneCamera.rotation.y) >  max_h_rotation:
+		#drone.DroneCamera.rotation.y = deg_to_rad(max_h_rotation)
+		#twist_input = 0
 	
 	# When the lean forward button is pressed, lerp the camera to focus on the computer screen, and focuses the computers audio as wellw
 	if Input.is_action_pressed("lean_forward") && !is_screen_focused:

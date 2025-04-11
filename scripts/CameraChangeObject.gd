@@ -15,7 +15,9 @@ extends DynamicEntity
 		update_configuration_warnings()
 
 # whether or not this node should be able to be triggered multiple times
-@export var oneShot: bool = false
+@export var oneShot:bool = false
+
+@export var isRoomChanger:bool = false
 
 # array of objects to send a trigger signal to on interact
 @export var trigger_on_interact: Array[DynamicEntity] = []:
@@ -36,6 +38,12 @@ func _ready():
 	for child in get_children():
 		if child is CollisionShape3D:
 			col_box = child as CollisionShape3D
+	
+	if col_box != null:
+		if isRoomChanger:
+			col_box.debug_color = Color("ffcb06", 1.0)
+		else:
+			col_box.debug_color = Color("ffc58f", 1.0)
 	
 	update_configuration_warnings()
 

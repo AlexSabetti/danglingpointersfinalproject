@@ -34,7 +34,7 @@ surface_material_override/0 = ExtResource("3_esqmk")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Rock_004/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_yjyn2")
 
-[node name="Boat_Body" parent="." index="2"]
+[node name="Boat_Body" parent="." index="3"]
 surface_material_override/0 = ExtResource("4_yjyn2")
 surface_material_override/1 = ExtResource("5_vdua7")
 surface_material_override/2 = ExtResource("6_vnfk8")
@@ -44,5 +44,5 @@ surface_material_override/6 = ExtResource("3_esqmk")
 surface_material_override/7 = ExtResource("8_60ldd")
 surface_material_override/8 = ExtResource("9_p5f4j")
 
-[node name="Barrel_001" parent="." index="9"]
+[node name="Barrel_001" parent="." index="10"]
 surface_material_override/0 = ExtResource("3_esqmk")

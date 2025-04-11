@@ -1,10 +1,10 @@
 [gd_scene load_steps=33 format=3 uid="uid://bppmj5dmnvlko"]
 
 [ext_resource type="PackedScene" uid="uid://b25jkvemaipnk" path="res://scenes/UI/CanvasLayer_PostProcessing.tscn" id="1_65ejx"]
-[ext_resource type="Environment" uid="uid://crvgdsl4qcv1t" path="res://resources/Environments/env_test.tres" id="1_x61il"]
 [ext_resource type="PackedScene" uid="uid://v2urofrh3pq5" path="res://scenes/Entities/GameController.tscn" id="2_2ykvt"]
 [ext_resource type="Material" uid="uid://bg2bjdrabdhn5" path="res://resources/Shaders/SM_Posterization.tres" id="2_i1dou"]
 [ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://scenes/Entities/CamPosNode.tscn" id="3_71sqw"]
+[ext_resource type="Environment" uid="uid://crvgdsl4qcv1t" path="res://resources/Environments/env_underwater1.tres" id="3_i3nvf"]
 [ext_resource type="Script" uid="uid://dybrp2bdnyair" path="res://scripts/world_environment.gd" id="3_t8fsm"]
 [ext_resource type="PackedScene" uid="uid://bsgqiciuvs6ok" path="res://scenes/Levels/ControlRoom.tscn" id="4_e5ioo"]
 [ext_resource type="PackedScene" uid="uid://dl5x0m77shd62" path="res://scenes/UI/ui_message_display.tscn" id="8_sou27"]
@@ -77,13 +77,25 @@ viewport_path = NodePath("Entities/SubViewport_MsgScreen")
 material = ExtResource("2_i1dou")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("1_x61il")
+environment = ExtResource("3_i3nvf")
 script = ExtResource("3_t8fsm")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(0.559555, -0.414397, -0.717756, 0.828793, 0.279778, 0.484588, 2.58096e-08, -0.866025, 0.500001, 1.90681, 6.2019, -2.95414)
-light_color = Color(0.948912, 0.878842, 0.61507, 1)
-light_energy = 0.4
+light_color = Color(0.810689, 0.774534, 0.546898, 1)
+light_energy = 0.175
+light_bake_mode = 1
+light_cull_mask = 4294967293
+shadow_enabled = true
+shadow_blur = 10.0
+directional_shadow_mode = 1
+directional_shadow_split_1 = 0.279
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.559555, -0.414397, -0.717756, 0.828793, 0.279778, 0.484588, 2.58096e-08, -0.866025, 0.500001, 1.90681, 6.2019, -2.95414)
+visible = false
+light_color = Color(0.630941, 0.778981, 0.453285, 1)
+light_energy = 0.15
 light_bake_mode = 1
 light_cull_mask = 4294967293
 shadow_enabled = true
@@ -135,11 +147,11 @@ size = Vector2i(1280, 960)
 [node name="ui_droneDisplay" parent="Entities/SubViewport_DroneCam" instance=ExtResource("12_t40tb")]
 
 [node name="Drone" parent="Entities/SubViewport_DroneCam" node_paths=PackedStringArray("active_cam_node") instance=ExtResource("13_xklfb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.03195, 2.38695, 25.0276)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.03195, 2.38695, 22.0276)
 active_cam_node = NodePath("../CameraNode1")
 
 [node name="CameraNode1" parent="Entities/SubViewport_DroneCam" instance=ExtResource("3_71sqw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47629, 2.20184, 24.9412)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47629, 2.20184, 21.9412)
 
 [node name="TestCamera3D" type="Camera3D" parent="Entities/SubViewport_DroneCam/CameraNode1"]
 
@@ -177,6 +189,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
 
 [node name="Room6_a2" parent="Rooms" instance=ExtResource("22_eki53")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+
+[node name="Room6_a3" parent="Rooms" instance=ExtResource("22_eki53")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
 
 [node name="Room7_a1" parent="Rooms" instance=ExtResource("21_eki53")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 20)

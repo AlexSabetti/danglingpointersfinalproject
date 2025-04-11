@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=31 format=3 uid="uid://dijotpds2iucp"]
 
-[ext_resource type="Texture2D" uid="uid://c5hbnn4w6ke30" path="res://Resources/Textures/NormalMaps/7864-normal.jpg" id="1_di2nu"]
+[ext_resource type="Texture2D" uid="uid://dhvn8d5topyjo" path="res://Resources/Textures/NormalMaps/7864-normal.jpg" id="1_di2nu"]
 
 [sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_85icu"]
 parameter_name = "WobbleRate"
