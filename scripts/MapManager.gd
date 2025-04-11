@@ -106,7 +106,8 @@ func expand_map():
   connect_to(second_key_area, connection.place_pos)
   
 
-
+func find_closest_tile(position_from: int) -> int:
+	 
 
 func connect_to( position_from: int, position_to: int):
   var dist = position_to - position_from
