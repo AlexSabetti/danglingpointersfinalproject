@@ -9,12 +9,15 @@ var fade_time:float = 0.05
 @onready var delay2:Timer = $Timer2
 @onready var BlankScreen:ColorRect = $BlankScreen
 @onready var LoadingText:Label = $LoadingText
-@onready var CompassPointer := $DroneScreenOverlay/Compass/CompassPointer
+@onready var CursorSprite := $CursorSprite2D
+@onready var CompassPointer := $DroneScreenOverlay/Compass/CompassSprite
 
 var signal_manager: SignalBus = SigBus
 
 func _ready() -> void:
 	signal_manager.connect("camera_changed", cam_change_anim)
+	signal_manager.connect("screen_cursor_changed", set_cursor_type)
+	signal_manager.connect("focus_screen", focus_screen)
 	
 	if is_on:
 		BlankScreen.visible = false
@@ -26,6 +29,34 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	# updates compass rotation
 	CompassPointer.rotation = -Global.gameControllerRef.drone.DroneCamera.global_rotation.y
+	
+	CursorSprite.position = Global.gameControllerRef.UI.get_global_mouse_position()
+	
+
+func set_cursor_type(type:int):
+	
+	if type == 0: # default cursor
+		CursorSprite.texture = load("res://resources/Textures/Sprites/CompPointerArrow1_b1.png")
+		CursorSprite.offset = Vector2(10.0,20.0)
+		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	else: if type == 1: # camera change sprite
+		#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		CursorSprite.texture = load("res://resources/Textures/Sprites/CompPointerArrow3_b1.png")
+		CursorSprite.offset = Vector2.ZERO
+	else: if type == 2: # room change sprite
+		#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		CursorSprite.texture = load("res://resources/Textures/Sprites/CompPointerArrow2_b1.png")
+		CursorSprite.offset = Vector2.ZERO
+	else: if type == 3: # inspect sprite
+		#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		CursorSprite.texture = load("res://resources/Textures/Sprites/CompPointerArrow4_b1.png")
+		CursorSprite.offset = Vector2.ZERO
+
+func focus_screen(focused:bool):
+	if focused:
+		CursorSprite.visible = true
+	else:
+		CursorSprite.visible = false
 
 func cam_change_anim(id:int)->void:
 	fade_out()

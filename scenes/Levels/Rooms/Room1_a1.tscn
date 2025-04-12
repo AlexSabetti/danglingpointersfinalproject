@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cgvgni8obca17"]
+[gd_scene load_steps=21 format=3 uid="uid://cgvgni8obca17"]
 
 [ext_resource type="PackedScene" uid="uid://h26dlkf7ctm8" path="res://resources/Models/under_water_room_1_a_1.tscn" id="1_jnume"]
 [ext_resource type="Script" uid="uid://br3bhxpyvy3lu" path="res://scripts/Room.gd" id="1_o0shy"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bd7icn4pwfdoi" path="res://scenes/Entities/Foliage.tscn" id="2_jnume"]
 [ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://scenes/Entities/CamPosNode.tscn" id="3_j8fw3"]
 [ext_resource type="Texture2D" uid="uid://cealpeqkes7xo" path="res://resources/Textures/Sprites/SeaWeeds1_a1.png" id="3_mq1ee"]
-[ext_resource type="PackedScene" uid="uid://b3erkpgxdstdg" path="res://resources/Models/rock_wall_1_a_1.tscn" id="3_v31mo"]
 [ext_resource type="Texture2D" uid="uid://cufcff04171uc" path="res://resources/Textures/Sprites/SeaWeeds1_b1.png" id="4_e1uft"]
 [ext_resource type="PackedScene" uid="uid://dtnwjuldmwsxb" path="res://resources/Particles/P_FishSchool.tscn" id="6_5b44e"]
 [ext_resource type="Shader" uid="uid://d2mabvbt22cdl" path="res://resources/Shaders/VS_Foliage3D.tres" id="10_cclgi"]
@@ -172,7 +171,7 @@ debug_color = Color(1, 0.772549, 0.560784, 1)
 [node name="CameraNodes" type="Node3D" parent="."]
 
 [node name="CameraNode_N" parent="CameraNodes" instance=ExtResource("3_j8fw3")]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 7.85726, 1.92824, -0.62632)
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 7.85726, 1.92824, -0.988663)
 min_h_rotation = -90.0
 max_h_rotation = 90.0
 
@@ -188,14 +187,15 @@ max_h_rotation = 90.0
 visible = false
 
 [node name="CameraNode_S" parent="CameraNodes" instance=ExtResource("3_j8fw3")]
-transform = Transform3D(-0.966182, 0.000157768, -0.257862, 0.000257099, 1, -0.000351522, 0.257862, -0.000405929, -0.966182, -6.32746, 1.32377, 0.88672)
+transform = Transform3D(-0.966182, 0.000157768, -0.257862, 0.000257099, 1, -0.000351522, 0.257862, -0.000405929, -0.966182, -7.10765, 1.32377, 0.158259)
 min_h_rotation = -90.0
 max_h_rotation = 60.0
 
 [node name="TestCamera3D" type="Camera3D" parent="CameraNodes/CameraNode_S"]
+transform = Transform3D(1, 7.29779e-09, 7.45058e-08, 0, 1, 3.0559e-09, 1.49012e-08, 2.91038e-11, 1, 0.966181, -0.000157833, 0.257862)
 
 [node name="CameraNode_W" parent="CameraNodes" instance=ExtResource("3_j8fw3")]
-transform = Transform3D(-0.966182, 0.000157768, -0.257862, 0.000257099, 1, -0.000351522, 0.257862, -0.000405929, -0.966182, -0.32746, 1.32377, -4.11328)
+transform = Transform3D(-0.966182, 0.000157768, -0.257862, 0.000257099, 1, -0.000351522, 0.257862, -0.000405929, -0.966182, -0.32746, 1.32377, -4.66004)
 min_h_rotation = -90.0
 max_h_rotation = 60.0
 
@@ -277,15 +277,15 @@ meshScale = Vector3(1, 2.02, 1)
 transform = Transform3D(0.0812245, -0.0110756, -0.996634, -0.05949, 0.998102, -0.0159403, 0.994919, 0.0605845, 0.0804117, -2.01825, 1.85304, 0.932465)
 speed = 0.05
 
-[node name="RockWall1_a1" parent="." instance=ExtResource("3_v31mo")]
-visible = false
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(0.999991, 0, 0, 0, 1, 0, 0, 0, 0.999991, 7.14531, 1.5, -5.99233)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_cclgi")
 
 [node name="StaticBody3D7" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50671, 0, 1.15969)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D7"]
-transform = Transform3D(0.999991, 0, 0, 0, 1, 0, 0, 0, 0.999991, 9.65202, 1.5, -7.15202)
-shape = SubResource("BoxShape3D_cclgi")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D7"]
 transform = Transform3D(0.965931, 0, -0.25882, 0, 1, 0, 0.25882, 0, 0.965931, 5.04937, 1.5, 0.985445)

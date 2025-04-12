@@ -46,6 +46,7 @@ func _ready():
 	signal_manager.pause_game.connect(respond_to_pause)
 	signal_manager.unpause_game.connect(respond_to_unpause)
 	signal_manager.toggle_bar.connect(_on_btn_toggle_bar_pressed)
+	signal_manager.connect("focus_screen", focus_screen)
 	pauseMenu.get_node("Resume").pressed.connect(_resume_pressed)
 	pauseMenu.get_node("Settings").pressed.connect(_settings_pressed)
 	pauseMenu.get_node("Exit").pressed.connect(_exit)
@@ -56,15 +57,32 @@ func _process(_delta: float) -> void:
 	CursorIcon.position = get_global_mouse_position()
 
 # 
-func show_coursor_sprite(type:int):
-	if type == 0:
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		CursorIcon.visible = false
-	else: if type == 1:
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-		CursorIcon.visible = true
-		CursorIcon.texture = load("res://resources/Textures/Sprites/PointerArrow1_b1.png")
+func set_cursor_type(type:int):
+	signal_manager.emit_signal("screen_cursor_changed", type)
+	#if type == 0: # default cursor
+		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		#CursorIcon.visible = false
+	#else: if type == 1: # camera change sprite
+		#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		#CursorIcon.visible = true
+		#CursorIcon.texture = load("res://resources/Textures/Sprites/CompPointerArrow3_b1.png")
+	#else: if type == 2: # room change sprite
+		#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		#CursorIcon.visible = true
+		#CursorIcon.texture = load("res://resources/Textures/Sprites/CompPointerArrow2_b1.png")
+	#else: if type == 3: # inspect sprite
+		#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		#CursorIcon.visible = true
+		#CursorIcon.texture = load("res://resources/Textures/Sprites/CompPointerArrow4_b1.png")
 	
+
+func focus_screen(focused:bool):
+	if focused:
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		CursorIcon.visible = false
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		#CursorIcon.visible = true
 
 func respond_to_pause():
 	Global.gameControllerRef.paused = true

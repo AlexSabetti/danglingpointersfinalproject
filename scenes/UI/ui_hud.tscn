@@ -222,4 +222,5 @@ one_shot = true
 
 [node name="CursorSprite2D" type="Sprite2D" parent="."]
 visible = false
+modulate = Color(0.862745, 0.854902, 0.839216, 0.835294)
 texture = ExtResource("17_1rx2y")

@@ -1,8 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6veimdajceyb"]
+[gd_scene load_steps=9 format=3 uid="uid://c6veimdajceyb"]
 
 [ext_resource type="Script" uid="uid://bgdyd26ycqcwh" path="res://scripts/ui_drone_display.gd" id="1_01chn"]
 [ext_resource type="Shader" uid="uid://jhmbi4fs662c" path="res://resources/Shaders/VS_CRTFilter.tres" id="2_tcw1t"]
+[ext_resource type="Material" uid="uid://dkabee843hdpt" path="res://resources/Shaders/SM_UnderWater.tres" id="2_uor4o"]
+[ext_resource type="Texture2D" uid="uid://yyyt2l08idnr" path="res://resources/Textures/Sprites/CompassOverlay1_a1.png" id="3_dgjav"]
 [ext_resource type="Theme" uid="uid://b7dmjh57doq5k" path="res://resources/Themes/theme_ScreenText.tres" id="3_tcw1t"]
+[ext_resource type="Texture2D" uid="uid://bscddtqbve2oj" path="res://resources/Textures/Sprites/CamOverlay1_a1.png" id="4_3lj18"]
+[ext_resource type="Texture2D" uid="uid://bqj8n3jxtx40o" path="res://resources/Textures/Sprites/CompPointerArrow1_b1.png" id="5_jplk7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gse5x"]
 shader = ExtResource("2_tcw1t")
@@ -12,6 +16,14 @@ shader_parameter/BackColor = Color(0.044862, 0.020364, 0.007147, 1)
 
 [node name="ui_droneDisplay" type="CanvasLayer"]
 script = ExtResource("1_01chn")
+
+[node name="UnderwaterFilter" type="ColorRect" parent="."]
+material = ExtResource("2_uor4o")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="DroneScreenOverlay" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -24,10 +36,18 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
+[node name="CamOverlay" type="Sprite2D" parent="DroneScreenOverlay"]
+self_modulate = Color(1, 1, 1, 0.27451)
+position = Vector2(640, 480)
+texture = ExtResource("4_3lj18")
+
 [node name="Compass" type="Control" parent="DroneScreenOverlay"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="CompassPointer" type="Label" parent="DroneScreenOverlay/Compass"]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -46,13 +66,16 @@ theme_override_font_sizes/font_size = 60
 text = "↑"
 horizontal_alignment = 1
 
-[node name="CRTFilter" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_gse5x")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="CompassSprite" type="Sprite2D" parent="DroneScreenOverlay/Compass"]
+modulate = Color(1, 1, 1, 0.27451)
+position = Vector2(0, -820)
+texture = ExtResource("3_dgjav")
+
+[node name="CursorSprite2D" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.718242, 0.695634, 0.573654, 1)
+texture = ExtResource("5_jplk7")
+offset = Vector2(10, 20)
 
 [node name="BlankScreen" type="ColorRect" parent="."]
 visible = false
@@ -62,6 +85,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
+
+[node name="CRTFilter" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_gse5x")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Timer1" type="Timer" parent="."]
 one_shot = true

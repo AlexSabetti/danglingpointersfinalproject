@@ -34,18 +34,21 @@ texture = ExtResource("2_g7tdt")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 current = true
+fov = 80.0
 
 [node name="SpotLight3D1" type="SpotLight3D" parent="Camera3D"]
 transform = Transform3D(0.999522, 0.0257137, -0.0171873, -0.0223427, 0.984554, 0.173648, 0.0213869, -0.173181, 0.984658, -0.25, 0.2, 0)
 light_color = Color(0.772549, 0.835294, 0.65098, 1)
 light_energy = 0.0
+light_volumetric_fog_energy = 0.5
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="Camera3D"]
 transform = Transform3D(0.999522, -0.0257137, 0.0171873, 0.0223427, 0.984554, 0.173648, -0.0213869, -0.173181, 0.984658, 0.25, 0.2, 0)
 light_color = Color(0.772118, 0.834899, 0.651208, 1)
 light_energy = 0.0
+light_volumetric_fog_energy = 0.5
 
-[node name="CPUParticles3D" parent="." instance=ExtResource("3_c0tn5")]
+[node name="CPUParticles3D_bubbles" parent="." instance=ExtResource("3_c0tn5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 amount = 256
 local_coords = true

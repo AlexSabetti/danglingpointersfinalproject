@@ -92,6 +92,7 @@ func camera_movement(delta: float):
 	# When the lean forward button is pressed, lerp the camera to focus on the computer screen, and focuses the computers audio as wellw
 	if Input.is_action_pressed("lean_forward") && !is_screen_focused:
 		is_screen_focused = true
+		signal_manager.emit_signal("focus_screen", true)
 		var tween = create_tween()
 		tween.tween_property(player_cam, "position", Vector3(-0.360, 2.41, 1.241), 1.0).set_trans(Tween.TRANS_CUBIC)
 		tween.parallel().tween_property(player_cam, "rotation", Vector3(0.0, deg_to_rad(-90.0), 0.0), 1.0).set_trans(Tween.TRANS_CUBIC)
@@ -100,6 +101,7 @@ func camera_movement(delta: float):
 	# When the lean back button is pressed, lerp the camera to zooom out from the computer screen
 	else: if Input.is_action_pressed("lean_back") && is_screen_focused:
 		is_screen_focused = false
+		signal_manager.emit_signal("focus_screen", false)
 		var tween = create_tween()
 		tween.tween_property(player_cam, "position", Vector3(-0.809, 2.311, 1.298), 1.0).set_trans(Tween.TRANS_CUBIC)
 		tween.parallel().tween_property(player_cam, "rotation", Vector3(0.0, deg_to_rad(-80.0), 0.0), 1.0).set_trans(Tween.TRANS_CUBIC)
@@ -122,20 +124,27 @@ func get_mouse_pos(mouse_loc: Vector2, viewport:Viewport):
 		# if the object is a DynamicEntity, emit the signal
 		if obj is DynamicEntity:
 			# only set value if not already set
-			if cur_target_object != obj:
+			if cur_target_object != obj && obj.is_active == true:
 				cur_target_object = obj
 				print("hovered over: " + str(obj))
-				UI.show_coursor_sprite(1)
+				# change cursor icon type
+				if cur_target_object is CameraChangeObject && !(cur_target_object as CameraChangeObject).isRoomChanger:
+					UI.set_cursor_type(1)
+				else: if cur_target_object is CameraChangeObject  && (cur_target_object as CameraChangeObject).isRoomChanger:
+					UI.set_cursor_type(2)
+				else: if cur_target_object is ClickableObject:
+					UI.set_cursor_type(3)
+				
 		# if the object is NOT a DynamicEntity, log current target object as NULL
 		else: if cur_target_object != null:
 			cur_target_object = null
 			print("no longer hovered over anything of value")
-			UI.show_coursor_sprite(0)
+			UI.set_cursor_type(0)
 	# if no colliders are caught by the ray cast, log the current target object as NULL
 	else: if cur_target_object != null:
 		cur_target_object = null
 		print("nothin hovered over")
-		UI.show_coursor_sprite(0)
+		UI.set_cursor_type(0)
 
 	
 # Attempts to interact with the currently hovered over object
