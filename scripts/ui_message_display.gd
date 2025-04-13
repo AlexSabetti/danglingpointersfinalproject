@@ -20,6 +20,7 @@ var letterIdx := 0
 var talkFreqCount := 0
 @export var talkSoundPoolName:String = "SP_Voice"
 @export var SoundSourcePos:Vector3 = Vector3.ZERO
+@export var continuousText:bool = true # if true, new text is added onto previously existing text
 
 # whether or not the dialogbox is finished displaying all letters of current text
 var dialogFinished := true
@@ -30,7 +31,7 @@ var shortPause := false
 
 var signal_manager: SignalBus = SigBus
 
-@onready var TextBox := $MarginContainer/VBoxContainer/TextBox
+@onready var TextBox := $MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/TextBox
 @onready var LetterTimer := $LetterTimer
 
 func _ready() -> void:
@@ -49,6 +50,10 @@ func startDialog() -> void:
 	talkFreqCount = talkSoundFrequency - 1
 	dialogFinished = false
 	letterIdx = 0
+	
+	if continuousText:
+		TextBox.set_text(TextBox.text + "\n" + characterName + ": ")
+	
 	continueDialog()
 	
 
@@ -67,7 +72,10 @@ func continueDialog() -> void:
 	if letterIdx < queuedText.length():
 		# get text up to the current text index
 		#displayedText = queuedText.left(letterIdx)
-		TextBox.set_text(characterName + ": " + queuedText.left(letterIdx + 1))
+		if continuousText:
+			TextBox.set_text(TextBox.text + queuedText[letterIdx])
+		else:
+			TextBox.set_text("[b]" + characterName + ":[/b] " + queuedText.left(letterIdx + 1))
 		#print("dialog: ", queuedText.left(letterIdx + 1))
 	
 		# play talk sound whenever the talkSoundFrequency value is reached 
@@ -88,6 +96,8 @@ func continueDialog() -> void:
 	else:
 		letterIdx = 0
 		dialogFinished = true
+		if continuousText:
+			TextBox.set_text(TextBox.text + "\n")
 
 # on letter timer complete
 func _on_letter_timer_timeout() -> void:

@@ -8,8 +8,8 @@ class_name UIHandler
 @onready var barPos : Control = $bar_Pos
 @onready var FadeToBlack : ColorRect = $FadeToBlack
 
-@onready var rb_container := $Ingame_UI/TaskBar/Panel3/MarginContainer/HBoxContainer/RB_VBoxContainer
-@onready var lb_container := $Ingame_UI/TaskBar/Panel3/MarginContainer/HBoxContainer/LB_VBoxContainer
+#@onready var rb_container := $Ingame_UI/TaskBar/Panel3/MarginContainer/HBoxContainer/RB_VBoxContainer
+#@onready var lb_container := $Ingame_UI/TaskBar/Panel3/MarginContainer/HBoxContainer/LB_VBoxContainer
 #@onready var blurbContainer := $Ingame_UI/TaskBar/MarginContainer/Panel2/MarginContainer/RichTextLabel
 @onready var blurbTimer := $BlurbTimer
 @onready var settingsMenu := $settings_menu
@@ -193,48 +193,48 @@ func fade_from_black():
 	tween.tween_property(FadeToBlack, "color", fadeTransColor, 1.0).from(fadeBlackColor).set_trans(Tween.TRANS_SINE)
 
 # set status of left button
-func set_left_btn(isActive:bool, camNum:int, displayText:String):
-	if isActive:
-		# activate button
-		lb_container.get_node("Btn_Left").disabled = false
-		lb_container.get_node("Btn_Left").mouse_filter = MOUSE_FILTER_STOP
-		# change text
-		lb_container.get_node("TextLabel").text = displayText
-		
-		# set camera number to use when pressed
-		lb_cam = camNum
-	else:
-		# deactivate button
-		lb_container.get_node("Btn_Left").disabled = true
-		lb_container.get_node("Btn_Left").mouse_filter = MOUSE_FILTER_IGNORE
-		# remove text
-		lb_container.get_node("TextLabel").text = ""
+#func set_left_btn(isActive:bool, camNum:int, displayText:String):
+	#if isActive:
+		## activate button
+		#lb_container.get_node("Btn_Left").disabled = false
+		#lb_container.get_node("Btn_Left").mouse_filter = MOUSE_FILTER_STOP
+		## change text
+		#lb_container.get_node("TextLabel").text = displayText
+		#
+		## set camera number to use when pressed
+		#lb_cam = camNum
+	#else:
+		## deactivate button
+		#lb_container.get_node("Btn_Left").disabled = true
+		#lb_container.get_node("Btn_Left").mouse_filter = MOUSE_FILTER_IGNORE
+		## remove text
+		#lb_container.get_node("TextLabel").text = ""
+#
+## set status of right button
+#func set_right_btn(isActive:bool, camNum:int, displayText:String):
+	#if isActive:
+		## activate button
+		#rb_container.get_node("Btn_Right").disabled = false
+		#rb_container.get_node("Btn_Right").mouse_filter = MOUSE_FILTER_STOP
+		## change text
+		#rb_container.get_node("TextLabel").text = displayText
+		#
+		## set camera number to use when pressed
+		#rb_cam = camNum
+	#else:
+		## deactivate button
+		#rb_container.get_node("Btn_Right").disabled = true
+		#rb_container.get_node("Btn_Right").mouse_filter = MOUSE_FILTER_IGNORE
+		## remove text
+		#rb_container.get_node("TextLabel").text = ""
 
-# set status of right button
-func set_right_btn(isActive:bool, camNum:int, displayText:String):
-	if isActive:
-		# activate button
-		rb_container.get_node("Btn_Right").disabled = false
-		rb_container.get_node("Btn_Right").mouse_filter = MOUSE_FILTER_STOP
-		# change text
-		rb_container.get_node("TextLabel").text = displayText
-		
-		# set camera number to use when pressed
-		rb_cam = camNum
-	else:
-		# deactivate button
-		rb_container.get_node("Btn_Right").disabled = true
-		rb_container.get_node("Btn_Right").mouse_filter = MOUSE_FILTER_IGNORE
-		# remove text
-		rb_container.get_node("TextLabel").text = ""
-
-func show_end_button(showBtn:bool):
-	if showBtn:
-		$Ingame_UI/MarginContainer/btn_EndGame.mouse_filter = MOUSE_FILTER_STOP
-		$Ingame_UI/MarginContainer/btn_EndGame.visible = true
-	else:
-		$Ingame_UI/MarginContainer/btn_EndGame.mouse_filter = MOUSE_FILTER_IGNORE
-		$Ingame_UI/MarginContainer/btn_EndGame.visible = false
+#func show_end_button(showBtn:bool):
+	#if showBtn:
+		#$Ingame_UI/MarginContainer/btn_EndGame.mouse_filter = MOUSE_FILTER_STOP
+		#$Ingame_UI/MarginContainer/btn_EndGame.visible = true
+	#else:
+		#$Ingame_UI/MarginContainer/btn_EndGame.mouse_filter = MOUSE_FILTER_IGNORE
+		#$Ingame_UI/MarginContainer/btn_EndGame.visible = false
 
 
 # when button is hovered over

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bppmj5dmnvlko"]
+[gd_scene load_steps=38 format=3 uid="uid://bppmj5dmnvlko"]
 
 [ext_resource type="PackedScene" uid="uid://b25jkvemaipnk" path="res://scenes/UI/CanvasLayer_PostProcessing.tscn" id="1_65ejx"]
 [ext_resource type="PackedScene" uid="uid://v2urofrh3pq5" path="res://scenes/Entities/GameController.tscn" id="2_2ykvt"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://c558naetylum2" path="res://scenes/Levels/Rooms/Room7_a1.tscn" id="21_eki53"]
 [ext_resource type="PackedScene" uid="uid://d4cyqu5i5wyu" path="res://scenes/Levels/Rooms/Room9_a1.tscn" id="21_f0jn2"]
 [ext_resource type="PackedScene" uid="uid://bqnjyqolsuecm" path="res://scenes/Levels/Rooms/Room6_a1.tscn" id="22_eki53"]
+[ext_resource type="PackedScene" uid="uid://253weudhtvis" path="res://scenes/Levels/Rooms/Room10_a1.tscn" id="23_f0jn2"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_sakc8"]
 viewport_path = NodePath("Entities/SubViewport_DroneCam")
@@ -159,11 +160,11 @@ size = Vector2i(1280, 960)
 material = SubResource("ShaderMaterial_f0jn2")
 
 [node name="Drone" parent="Entities/SubViewport_DroneCam" node_paths=PackedStringArray("active_cam_node") instance=ExtResource("13_xklfb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.03195, 2.38695, 22.0276)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03195, 1.59657, 20.0276)
 active_cam_node = NodePath("../CameraNode1")
 
 [node name="CameraNode1" parent="Entities/SubViewport_DroneCam" instance=ExtResource("3_71sqw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47629, 2.20184, 21.9412)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52371, 1.61494, 19.9412)
 
 [node name="TestCamera3D" type="Camera3D" parent="Entities/SubViewport_DroneCam/CameraNode1"]
 
@@ -185,7 +186,7 @@ amount = 256
 
 [node name="Rooms" type="Node3D" parent="."]
 
-[node name="TestMapNode" parent="Rooms" instance=ExtResource("11_hx85v")]
+[node name="Room1_a1" parent="Rooms" instance=ExtResource("11_hx85v")]
 
 [node name="Room2_a1" parent="Rooms" instance=ExtResource("18_t40tb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
@@ -211,11 +212,14 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 [node name="Room8_a1" parent="Rooms" instance=ExtResource("20_dtj52")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -20)
 
-[node name="Room8_a2" parent="Rooms" instance=ExtResource("20_dtj52")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 20, 0, 0)
-
 [node name="Room9_a1" parent="Rooms" instance=ExtResource("21_f0jn2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+
+[node name="Room9_a2" parent="Rooms" instance=ExtResource("21_f0jn2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -80)
+
+[node name="Room10_a1" parent="Rooms" instance=ExtResource("23_f0jn2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -40)
 
 [node name="Logic" type="Node3D" parent="."]
 

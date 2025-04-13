@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c558naetylum2"]
+[gd_scene load_steps=11 format=3 uid="uid://c558naetylum2"]
 
 [ext_resource type="Script" uid="uid://br3bhxpyvy3lu" path="res://scripts/Room.gd" id="1_8v58j"]
 [ext_resource type="PackedScene" uid="uid://cox501uplfiur" path="res://resources/Models/under_water_room_7_a_1.tscn" id="2_8v58j"]
@@ -11,6 +11,9 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a18b4"]
 size = Vector3(0.5, 3, 11)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e3pbx"]
+size = Vector3(2, 3, 4)
 
 [node name="Room7_a1" type="Node3D"]
 script = ExtResource("1_8v58j")
@@ -128,3 +131,13 @@ transform = Transform3D(-1.72811, 0, 0.380189, 0, 1.50104, 0, -0.331185, 0, -1.9
 foliage_Texture = ExtResource("8_e3pbx")
 meshOffset = Vector3(0, 1.375, 0)
 meshScale = Vector3(1.305, 2.77, 1.47)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D14" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.5, 1.5, 10)
+shape = SubResource("BoxShape3D_e3pbx")
+
+[node name="CollisionShape3D15" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.5, 1.5, 10)
+shape = SubResource("BoxShape3D_e3pbx")

@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3728ytvs6bn0"]
+[gd_scene load_steps=7 format=3 uid="uid://b3728ytvs6bn0"]
 
+[ext_resource type="Script" uid="uid://dl31a2hbiv4p3" path="res://scripts/ui_map_display.gd" id="1_orryn"]
 [ext_resource type="Theme" uid="uid://b7dmjh57doq5k" path="res://resources/Themes/theme_ScreenText.tres" id="1_ux1rw"]
+[ext_resource type="Texture2D" uid="uid://3cp8remnrdnp" path="res://resources/Textures/Sprites/Compass1_a1.png" id="2_scagj"]
 [ext_resource type="Shader" uid="uid://jhmbi4fs662c" path="res://resources/Shaders/VS_CRTFilter.tres" id="2_w3i8y"]
+[ext_resource type="Texture2D" uid="uid://de3fyto3npapl" path="res://resources/Textures/Sprites/Compass1_b1.png" id="3_orryn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gse5x"]
 shader = ExtResource("2_w3i8y")
@@ -10,6 +13,7 @@ shader_parameter/Curvature = 5.0
 shader_parameter/BackColor = Color(0.044862, 0.020364, 0.007147, 1)
 
 [node name="ui_mapDisplay" type="CanvasLayer"]
+script = ExtResource("1_orryn")
 
 [node name="BGColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -32,8 +36,8 @@ theme_override_constants/margin_bottom = 32
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 321
-theme_override_constants/margin_top = 16
+theme_override_constants/margin_left = 369
+theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
@@ -473,9 +477,59 @@ color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 layout_mode = 2
 theme = ExtResource("1_ux1rw")
 theme_override_font_sizes/normal_font_size = 80
-text = "   Map
-   Here
-      :)"
+
+[node name="Labels" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label_Letters" type="Label" parent="MarginContainer/Labels"]
+layout_mode = 0
+offset_left = 387.0
+offset_top = -15.0
+offset_right = 1201.0
+offset_bottom = 105.0
+theme = ExtResource("1_ux1rw")
+theme_override_colors/font_color = Color(0.623529, 0.517647, 0.392157, 1)
+theme_override_font_sizes/font_size = 82
+text = "A   B   C   D   E   F   G   H"
+
+[node name="Label_Numbers" type="Label" parent="MarginContainer/Labels"]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 73.0
+offset_right = 1114.0
+offset_bottom = 870.0
+theme = ExtResource("1_ux1rw")
+theme_override_colors/font_color = Color(0.623529, 0.517647, 0.392157, 1)
+theme_override_constants/line_spacing = 28
+theme_override_font_sizes/font_size = 82
+text = "1
+2
+3
+4
+5
+6
+7
+8"
+
+[node name="Compass" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 160.0
+offset_top = 137.0
+offset_right = 200.0
+offset_bottom = 177.0
+
+[node name="CompassBG" type="Sprite2D" parent="Compass"]
+self_modulate = Color(0.97487, 0.894997, 0.798066, 1)
+position = Vector2(0, 22)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_scagj")
+
+[node name="CompassPointer" type="Sprite2D" parent="Compass"]
+modulate = Color(0.985481, 0.934657, 0.876984, 1)
+position = Vector2(0, 22)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_orryn")
 
 [node name="Filter" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_gse5x")
