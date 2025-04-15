@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://d4cyqu5i5wyu"]
+[gd_scene load_steps=22 format=3 uid="uid://d4cyqu5i5wyu"]
 
 [ext_resource type="Script" uid="uid://br3bhxpyvy3lu" path="res://scripts/Room.gd" id="1_c7t41"]
 [ext_resource type="Script" uid="uid://bs8y8lrwcb8ml" path="res://scripts/CameraChangeObject.gd" id="2_s6tfm"]
@@ -7,8 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://bd7icn4pwfdoi" path="res://scenes/Entities/Foliage.tscn" id="5_bnhkn"]
 [ext_resource type="Texture2D" uid="uid://cealpeqkes7xo" path="res://resources/Textures/Sprites/SeaWeeds1_a1.png" id="6_2yxgk"]
 [ext_resource type="Texture2D" uid="uid://cufcff04171uc" path="res://resources/Textures/Sprites/SeaWeeds1_b1.png" id="7_eal6x"]
+[ext_resource type="Texture2D" uid="uid://drf0umkah0oxa" path="res://resources/Textures/Sprites/SeaWeeds1_c1.png" id="8_alh53"]
 [ext_resource type="PackedScene" uid="uid://dxjc0svffolo" path="res://resources/Particles/P_SalmonSchool.tscn" id="8_c7t41"]
 [ext_resource type="Texture2D" uid="uid://c5ysupr677wro" path="res://resources/Textures/Sprites/SeaWeeds3_a1.png" id="8_s6tfm"]
+[ext_resource type="Texture2D" uid="uid://b8wiily0nbdbj" path="res://resources/Textures/Sprites/SeaWeeds2_c1.png" id="9_s6tfm"]
 [ext_resource type="Shader" uid="uid://d2mabvbt22cdl" path="res://resources/Shaders/VS_Foliage3D.tres" id="10_nf34x"]
 [ext_resource type="Texture2D" uid="uid://dhvn8d5topyjo" path="res://resources/Textures/NormalMaps/7864-normal.jpg" id="11_1j1qt"]
 [ext_resource type="Texture2D" uid="uid://chng0opds5tf2" path="res://resources/Textures/Sprites/Reeds2_b1.png" id="12_lu4xy"]
@@ -220,107 +222,130 @@ max_h_rotation = 60.0
 [node name="Foliage" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
 transform = Transform3D(1.39763, 0, 0, 0, 1.61444, 0, 0, 0, 1.41973, -1.8238, -1.82838, 0.495241)
 foliage_Texture = ExtResource("6_2yxgk")
+meshOffset = Vector3(0, 0.09, 0)
 
 [node name="Foliage16" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
 transform = Transform3D(-0.988274, 0, -1.0039, 0, 1.61444, 0, 0.988274, 0, -1.0039, -1.35861, -1.82838, 3.27595)
 foliage_Texture = ExtResource("6_2yxgk")
+meshOffset = Vector3(0, 0.005, 0)
 
 [node name="Foliage17" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
 transform = Transform3D(-0.988274, 0, -1.0039, 0, 1.61444, 0, 0.988274, 0, -1.0039, 2.38463, -1.82838, 2.87895)
 foliage_Texture = ExtResource("6_2yxgk")
+meshOffset = Vector3(0, 0.07, 0)
 
 [node name="Foliage9" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
-transform = Transform3D(0.698817, 0, -1.22952, 0, 1.61444, 0, 1.21038, 0, 0.709862, 3.31946, 0.0117978, 3.07003)
+transform = Transform3D(0.698817, 0, -1.22952, 0, 1.61444, 0, 1.21038, 0, 0.709862, 3.274, 0.0117978, 2.94215)
 foliage_Texture = ExtResource("6_2yxgk")
-meshOffset = Vector3(0, 1.115, 0)
-meshScale = Vector3(2, 2.5, 2)
+meshOffset = Vector3(0, -0.2, 0)
+meshScale = Vector3(1.795, 2.08, 1.85)
 
 [node name="Foliage10" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
 transform = Transform3D(0, 0, -1.41973, 0, 1.61444, 0, 1.39763, 0, -1.78814e-07, 4.01, 0.12935, 6.96191)
 foliage_Texture = ExtResource("6_2yxgk")
-meshOffset = Vector3(0, 1.285, 0)
+meshOffset = Vector3(0, -0.34, 0)
 meshScale = Vector3(2, 3, 2)
 
 [node name="Foliage19" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
 transform = Transform3D(-0.988274, 0, -1.0039, 0, 1.61444, 0, 0.988274, 0, -1.0039, -0.306399, -1.27145, -1.94278)
 foliage_Texture = ExtResource("6_2yxgk")
-meshOffset = Vector3(0, 1.285, 0)
-meshScale = Vector3(2, 3, 2)
+meshOffset = Vector3(0, -0.42, 0)
+meshScale = Vector3(1.715, 2.545, 1.8)
 
 [node name="Foliage13" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
 transform = Transform3D(-1.21038, 0, -0.709865, 0, 1.61444, 0, 0.698815, 0, -1.22952, 2.78386, -1.56443, 1.61296)
 foliage_Texture = ExtResource("6_2yxgk")
-meshOffset = Vector3(0, 0.875, 0)
+meshOffset = Vector3(0, -0.105, 0)
 meshScale = Vector3(2, 2, 2)
 
 [node name="Foliage11" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
 transform = Transform3D(-0.361733, 0, 1.37135, 0, 1.61444, 0, -1.35001, 0, -0.367453, 0.641779, -1.78426, -0.796253)
 foliage_Texture = ExtResource("7_eal6x")
-meshOffset = Vector3(0, 1.2, 0)
+meshOffset = Vector3(0, 0.04, 0)
 meshScale = Vector3(1.75, 2.5, 1.75)
+
+[node name="Foliage26" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
+transform = Transform3D(-0.361735, 0, -1.37135, 0, 1.61444, 0, 1.35001, 0, -0.367451, 1.26567, -1.78426, 0.31335)
+foliage_Texture = ExtResource("8_alh53")
+meshOffset = Vector3(0, 0.04, 0)
+meshScale = Vector3(1.82, 2.5, 1.945)
 
 [node name="Foliage12" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
 transform = Transform3D(-0.988276, 0, -1.0039, 0, 1.61444, 0, 0.988275, 0, -1.0039, -2.46655, -1.33581, 2.17625)
 foliage_Texture = ExtResource("7_eal6x")
-meshOffset = Vector3(0, 1.38, 0)
-meshScale = Vector3(1.75, 3.415, 1.75)
+meshOffset = Vector3(0, -0.34, 0)
+meshScale = Vector3(1.75, 3.185, 1.75)
 
 [node name="Foliage20" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
 transform = Transform3D(-1.39763, 0, 0, 0, 1.61444, 0, -7.15256e-07, 0, -1.41973, 0.0997515, -1.33581, 0.6953)
 foliage_Texture = ExtResource("8_s6tfm")
-meshOffset = Vector3(0, 1.66, 0)
-meshScale = Vector3(1.75, 4, 1.75)
+meshOffset = Vector3(0, -0.445, 0)
+meshScale = Vector3(1.75, 4.31, 1.75)
 
 [node name="Foliage21" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
-transform = Transform3D(-0.698816, 0, 1.22952, 0, 1.61444, 0, -1.21039, 0, -0.709864, -1.38887, -1.06824, 1.42348)
+transform = Transform3D(1.35001, 0, 0.367453, 0, 1.61444, 0, -0.361733, 0, 1.37135, -1.38887, -1.06824, 1.42348)
 foliage_Texture = ExtResource("8_s6tfm")
-meshOffset = Vector3(0, 0.645, 0)
+meshOffset = Vector3(0, -0.55, 0)
 meshScale = Vector3(1.16, 2.44, 1.095)
 
 [node name="Foliage22" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
-transform = Transform3D(-0.698816, 0, 1.22952, 0, 1.61444, 0, -1.21039, 0, -0.709864, 1.73792, -1.03918, -1.89652)
-foliage_Texture = ExtResource("8_s6tfm")
-meshOffset = Vector3(0, 0.645, 0)
+transform = Transform3D(-0.698816, 0, 1.22952, 0, 1.61444, 0, -1.21039, 0, -0.709864, 1.96485, 0.407801, -4.18444)
+foliage_Texture = ExtResource("9_s6tfm")
+meshOffset = Vector3(0, -0.225, 0)
 meshScale = Vector3(0.755, 1.745, 0.755)
+
+[node name="Foliage24" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
+transform = Transform3D(-1.21039, 0, -0.709864, 0, 1.61444, 0, 0.698816, 0, -1.22952, 7.10756, 0.505386, 3.10168)
+foliage_Texture = ExtResource("9_s6tfm")
+meshOffset = Vector3(0, -0.225, 0)
+meshScale = Vector3(0.625, 1.105, 0.64)
+
+[node name="Foliage25" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
+transform = Transform3D(-1.21039, 0, 0.709864, 0, 1.61444, 0, -0.698821, 0, -1.22952, -2.03624, 0.526338, 7.52962)
+foliage_Texture = ExtResource("9_s6tfm")
+meshOffset = Vector3(0, -0.225, 0)
+meshScale = Vector3(0.625, 1.105, 0.64)
 
 [node name="Foliage14" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
 transform = Transform3D(1.39763, 0, 5.96046e-08, 0, 1.61444, 0, 5.96046e-07, 0, 1.41973, 1.85331, -1.33581, 2.25833)
 foliage_Texture = ExtResource("7_eal6x")
-meshOffset = Vector3(0, 1.635, 0)
-meshScale = Vector3(2.045, 3.9, 2.23)
+meshOffset = Vector3(0, -0.41, 0)
+meshScale = Vector3(1.785, 3.405, 2.11)
 
 [node name="Foliage18" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
 transform = Transform3D(-0.988276, 0, -1.0039, 0, 1.61444, 0, 0.988275, 0, -1.0039, 3.22832, -1.33581, 0.351867)
 foliage_Texture = ExtResource("7_eal6x")
-meshOffset = Vector3(0, 1.6, 0)
-meshScale = Vector3(2.045, 3.41, 2.23)
+meshOffset = Vector3(0, 0.015, 0)
+meshScale = Vector3(2.045, 2.425, 2.23)
 
 [node name="Foliage15" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
 transform = Transform3D(-0.361733, 0, -1.37135, 0, 1.61444, 0, 1.35001, 0, -0.367453, -1.28753, -1.25703, -0.337127)
 foliage_Texture = ExtResource("6_2yxgk")
-meshOffset = Vector3(0, 1.125, 0)
+meshOffset = Vector3(0, -0.285, 0)
 meshScale = Vector3(1.75, 2.65, 1.75)
 
 [node name="Foliage4" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56391, -1.38913, -0.633626)
 foliage_Texture = ExtResource("6_2yxgk")
+meshOffset = Vector3(0, -0.075, 0)
 
 [node name="Foliage8" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25638, -0.0394961, 3.18655)
 foliage_Texture = ExtResource("6_2yxgk")
-meshOffset = Vector3(0, 2.05, 0)
-meshScale = Vector3(2, 4.68, 2)
+meshOffset = Vector3(0, -0.54, 0)
+meshScale = Vector3(1.61, 2.505, 1.555)
 
 [node name="Foliage2" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
 transform = Transform3D(0.354389, 0, 0.935098, 0, 1, 0, -0.935098, 0, 0.354389, 6.61735, 0.612732, -4.66612)
 foliage_Texture = ExtResource("7_eal6x")
-meshOffset = Vector3(0, 1.3, 0)
+meshOffset = Vector3(0, -0.135, 0)
 meshScale = Vector3(1, 2.665, 1)
 
 [node name="Foliage3" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
 transform = Transform3D(-0.550932, 0, -0.83455, 0, 1.88495, 0, 0.83455, 0, -0.550932, 2.30918, -1.62726, -0.790351)
 foliage_Texture = ExtResource("7_eal6x")
-meshScale = Vector3(1, 2.02, 1)
+meshOffset = Vector3(0, 0.115, 0)
+meshScale = Vector3(1, 1.5, 1)
 
 [node name="Foliage5" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
 transform = Transform3D(0.200548, 0, -0.979684, 0, 1.91179, 0, 0.979684, 0, 0.200548, 1.90918, -0.280221, 5.25989)
@@ -330,18 +355,20 @@ meshScale = Vector3(1, 2.02, 1)
 [node name="Foliage6" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
 transform = Transform3D(-0.550932, 0, -0.83455, 0, 1.91179, 0, 0.83455, 0, -0.550932, 3.75902, -0.00812903, -6.85524)
 foliage_Texture = ExtResource("7_eal6x")
+meshOffset = Vector3(0, 0.105, 0)
 meshScale = Vector3(1, 2.02, 1)
 
 [node name="Foliage7" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
 transform = Transform3D(0.331185, 0, 1.98381, 0, 1.50104, 0, -1.72811, 0, 0.380189, -6.79677, -0.194602, -3.37393)
 foliage_Texture = ExtResource("7_eal6x")
+meshOffset = Vector3(0, -0.03, 0)
 meshScale = Vector3(1, 2.02, 1)
 
 [node name="Foliage23" parent="UnderWaterRoom9_a1" instance=ExtResource("5_bnhkn")]
-transform = Transform3D(-1.15087, 0, -1.52793, 0, 1.50104, 0, 1.33099, 0, -1.32116, -2.96422, -1.07742, -2.59192)
+transform = Transform3D(1.45614, 0, 1.13393, 0, 1.50104, 0, -0.98777, 0, 1.6716, -2.96422, -1.07742, -2.59192)
 foliage_Texture = ExtResource("7_eal6x")
-meshOffset = Vector3(0, 1.175, 0)
-meshScale = Vector3(2, 2.5, 2)
+meshOffset = Vector3(0, -0.265, 0)
+meshScale = Vector3(1.44, 2.51, 1.58)
 
 [node name="Fishies" parent="." instance=ExtResource("8_c7t41")]
 transform = Transform3D(1, 0, 0, 0, 0.992525, -0.122043, 0, 0.122043, 0.992525, 1.04614, 3.08255, -2.9971)

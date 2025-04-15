@@ -43,6 +43,39 @@ tracks/2/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../BoatCenter:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../BoatCenter:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../BoatCenter:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_h1del"]
 resource_name = "anim_paintingSway"
@@ -80,6 +113,39 @@ tracks/2/keys = {
 "handle_modes": PackedInt32Array(3, 3, 3),
 "points": PackedFloat32Array(0.05, -0.75, 0, 0.75, 0, -0.05, -0.75, 0, 0.75, 0, 0.05, -0.75, 0, 0.75, 0),
 "times": PackedFloat32Array(0, 2, 4)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../BoatCenter:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(3, 3, 3),
+"points": PackedFloat32Array(-0.01, -0.75, 0, 0.75, 0, 0.01, -0.75, 0, 0.75, 0, -0.01, -0.75, 0, 0.75, 0),
+"times": PackedFloat32Array(0, 2, 4)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../BoatCenter:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 3),
+"points": PackedFloat32Array(0.01, -0.5, 0, 0.5, 0, 0, -0.5, 0, 0.5, 0, 0.02, -0.5, 0, 0.5, 0, 0.01, -0.5, 0, 0.5, 0),
+"times": PackedFloat32Array(0, 1, 3, 4)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../BoatCenter:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rt0ox"]
@@ -133,6 +199,51 @@ autoplay = true
 panning_strength = 0.5
 bus = &"DroneAudio"
 
+[node name="BoatCenter" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0.006)
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="BoatCenter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.991772, 3.94034, 2.27095)
+light_color = Color(0.907986, 0.734473, 0.495702, 1)
+light_energy = 0.2
+light_volumetric_fog_energy = 0.0
+omni_range = 3.61886
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="BoatCenter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.991772, 3.94034, 2.27095)
+visible = false
+light_color = Color(0.840497, 0.756752, 0.598078, 1)
+light_energy = 0.2
+light_volumetric_fog_energy = 0.0
+omni_range = 3.95205
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="BoatCenter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54133, 3.94034, 2.31163)
+light_color = Color(0.835294, 0.647059, 0.376471, 1)
+light_energy = 0.15
+light_volumetric_fog_energy = 0.0
+omni_range = 2.89277
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="BoatCenter"]
+transform = Transform3D(-0.267872, -0.0160025, -0.963322, 0.108167, 0.993041, -0.0465745, 0.957363, -0.116676, -0.264277, -6.78525, 3.14019, -0.00894243)
+visible = false
+light_color = Color(0.953355, 0.79197, 0.588883, 1)
+light_energy = 5.0
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+shadow_bias = 0.01
+shadow_blur = 2.125
+spot_range = 16.5945
+spot_angle = 16.6701
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="BoatCenter"]
+transform = Transform3D(0.827033, 0.259626, -0.498609, 0.208396, 0.682169, 0.700868, 0.5221, -0.683549, 0.510071, 1.27329e-11, 0.485654, -0.00393758)
+visible = false
+layers = 2
+light_color = Color(0.952941, 0.792157, 0.588235, 1)
+light_energy = 0.7
+shadow_enabled = true
+
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(0.997139, 4.10584e-10, 0.0755878, -0.0731407, -0.25239, 0.964857, 0.0190776, -0.967626, -0.251668, -0.741424, 3.38899, 0.680125)
 visible = false
@@ -142,16 +253,6 @@ light_bake_mode = 1
 spot_range = 5.8321
 spot_angle = 55.0522
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="."]
-transform = Transform3D(0.593858, -0.529284, 0.605964, 0.342995, 0.847829, 0.4044, -0.727796, -0.0323132, 0.685032, 2.22323, 5.17279, 6.97536)
-visible = false
-light_color = Color(0.953355, 0.79197, 0.588883, 1)
-light_bake_mode = 1
-shadow_enabled = true
-shadow_blur = 0.755
-spot_range = 16.5945
-spot_angle = 16.6701
-
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.188677, 2.4133, 1.24219)
 visible = false
@@ -160,22 +261,9 @@ light_energy = 0.025
 light_volumetric_fog_energy = 0.0
 omni_range = 0.328865
 
-[node name="OmniLight3D4" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.991772, 2.94033, 2.30763)
-light_color = Color(0.907986, 0.734473, 0.495702, 1)
-light_energy = 0.2
-light_volumetric_fog_energy = 0.0
-omni_range = 3.95205
-
-[node name="OmniLight3D5" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54133, 2.94033, 2.30763)
-light_color = Color(0.835294, 0.647059, 0.376471, 1)
-light_energy = 0.15
-light_volumetric_fog_energy = 0.0
-omni_range = 2.89277
-
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.194292, 2.34629, 0.954331)
+visible = false
 light_color = Color(0.32178, 0.298488, 0.236073, 1)
 light_energy = 0.025
 light_volumetric_fog_energy = 0.0
@@ -183,6 +271,7 @@ omni_range = 0.328865
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.188041, 2.13815, 0.942103)
+visible = false
 light_color = Color(0.32178, 0.298488, 0.236073, 1)
 light_energy = 0.025
 light_volumetric_fog_energy = 0.0
@@ -194,7 +283,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_rt0ox")
 }
 autoplay = "anim_paintingSway"
-speed_scale = 0.5
+speed_scale = 0.4
 
 [node name="Painting" type="Sprite3D" parent="."]
 transform = Transform3D(-0.0291996, 0, -0.999574, 0, 1, 0, 0.999574, 0, -0.0291996, 0.234899, 2.96121, 0.664337)

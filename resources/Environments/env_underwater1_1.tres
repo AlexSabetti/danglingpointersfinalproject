@@ -1,10 +1,10 @@
-[gd_resource type="Environment" load_steps=2 format=3 uid="uid://crvgdsl4qcv1t"]
+[gd_resource type="Environment" load_steps=2 format=3 uid="uid://c8wr6jqwlnict"]
 
-[ext_resource type="Sky" uid="uid://dv57ov182qtxf" path="res://resources/Environments/sky_underwater.tres" id="1_renvk"]
+[ext_resource type="Sky" uid="uid://dv57ov182qtxf" path="res://resources/Environments/sky_underwater.tres" id="1_l7vag"]
 
 [resource]
 background_mode = 2
-sky = ExtResource("1_renvk")
+sky = ExtResource("1_l7vag")
 ambient_light_source = 2
 ambient_light_color = Color(0.148236, 0.119662, 0.141133, 1)
 tonemap_mode = 2
@@ -25,5 +25,6 @@ volumetric_fog_enabled = true
 volumetric_fog_density = 0.4
 volumetric_fog_albedo = Color(0.819608, 0.694118, 0.466667, 1)
 volumetric_fog_emission = Color(0.216164, 0.228311, 0.0830483, 1)
+volumetric_fog_emission_energy = 0.3
 volumetric_fog_detail_spread = 0.659754
 volumetric_fog_temporal_reprojection_amount = 0.99

@@ -1,12 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bd7icn4pwfdoi"]
+[gd_scene load_steps=8 format=3 uid="uid://bd7icn4pwfdoi"]
 
 [ext_resource type="Script" uid="uid://kim4hlaba5td" path="res://scripts/foliage.gd" id="1_obqv8"]
 [ext_resource type="Texture2D" uid="uid://d3uwmcgiluguf" path="res://resources/Textures/Sprites/Reeds2_a1.png" id="2_52d54"]
 [ext_resource type="Texture2D" uid="uid://cealpeqkes7xo" path="res://resources/Textures/Sprites/SeaWeeds1_a1.png" id="2_bxi7t"]
 [ext_resource type="Shader" uid="uid://d2mabvbt22cdl" path="res://resources/Shaders/VS_Foliage3D.tres" id="3_445nb"]
 [ext_resource type="Texture2D" uid="uid://dhvn8d5topyjo" path="res://resources/Textures/NormalMaps/7864-normal.jpg" id="4_dkg7b"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_5frix"]
+[ext_resource type="ArrayMesh" uid="uid://dxeps44k062n8" path="res://resources/Models/GrassQuadMesh.res" id="6_hqfd5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dkg7b"]
 resource_local_to_scene = true
@@ -22,30 +21,11 @@ shader_parameter/UVOffset2 = Vector2(0.32, 0.4)
 shader_parameter/DistortionAmount = 0.003
 shader_parameter/Texture = ExtResource("2_bxi7t")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2k3u2"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("3_445nb")
-shader_parameter/sway_amount_x = 0.1
-shader_parameter/sway_speed = 0.3
-shader_parameter/sway_amount_z = -0.1
-shader_parameter/WobbleRate = 3.8
-shader_parameter/UVOffset1 = Vector2(0.32, 0.4)
-shader_parameter/NormalMap = ExtResource("4_dkg7b")
-shader_parameter/UVOffset2 = Vector2(0.32, 0.4)
-shader_parameter/DistortionAmount = 0.003
-shader_parameter/Texture = ExtResource("2_bxi7t")
-
 [node name="Foliage" type="Node3D"]
 script = ExtResource("1_obqv8")
 foliage_Texture = ExtResource("2_52d54")
 
-[node name="MeshInstance3D_1" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("QuadMesh_5frix")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.25, 0, 0, 0, 2, 0, 0, 0, 1.25, 0, 0, 0)
+mesh = ExtResource("6_hqfd5")
 surface_material_override/0 = SubResource("ShaderMaterial_dkg7b")
-
-[node name="MeshInstance3D_2" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 2, 0, 1, 0, -4.37114e-08, 0, 1, 0)
-mesh = SubResource("QuadMesh_5frix")
-surface_material_override/0 = SubResource("ShaderMaterial_2k3u2")

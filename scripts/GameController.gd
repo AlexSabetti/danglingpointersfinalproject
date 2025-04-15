@@ -25,6 +25,8 @@ var cur_target_object
 
 @export_category("computer screen")
 @export var VirtualScreenViewport: SubViewport
+@export var MessageScreenUI: UI_MsgDisplay
+@export var screenInteractionEnabled:bool = true
 
 @onready var UI = $CanvasLayer_hud/ui_hud
 
@@ -44,6 +46,12 @@ func _process(delta: float):
 			get_mouse_pos(mouse, VirtualScreenViewport)
 		else:
 			get_mouse_pos(mouse, get_viewport())
+		
+		if Input.is_action_pressed("scroll_up"):
+			
+			MessageScreenUI.scroll_up()
+		if Input.is_action_pressed("scroll_down"):
+			MessageScreenUI.scroll_down()
 	
 
 func _input(event):
@@ -63,6 +71,9 @@ func _input(event):
 		drone.toggle_light()
 
 func camera_movement(delta: float):
+	if Input.is_action_just_pressed("rotate_left") or Input.is_action_just_pressed("rotate_right"):
+		SoundManager3D.PlaySoundPool3D("SP_KeyHold", Global.controlRoomRef.global_position)
+		
 	# accelerate camera turn
 	if Input.is_action_pressed("rotate_left") && !Input.is_action_pressed("rotate_right") && twist_input >= 0:
 		twist_input += camAccel * delta
@@ -96,7 +107,7 @@ func camera_movement(delta: float):
 		var tween = create_tween()
 		tween.tween_property(player_cam, "position", Vector3(-0.360, 2.41, 1.241), 1.0).set_trans(Tween.TRANS_CUBIC)
 		tween.parallel().tween_property(player_cam, "rotation", Vector3(0.0, deg_to_rad(-90.0), 0.0), 1.0).set_trans(Tween.TRANS_CUBIC)
-		tween.parallel().tween_method(change_outside_bus_volume,-4, -20, 1.0).set_trans(Tween.TRANS_CUBIC)
+		tween.parallel().tween_method(change_room_bus_volume,-4, -20, 1.0).set_trans(Tween.TRANS_CUBIC)
 		tween.parallel().tween_method(change_speaker_bus_volume,-20, -4, 1.0).set_trans(Tween.TRANS_CUBIC)
 	# When the lean back button is pressed, lerp the camera to zooom out from the computer screen
 	else: if Input.is_action_pressed("lean_back") && is_screen_focused:
@@ -105,7 +116,7 @@ func camera_movement(delta: float):
 		var tween = create_tween()
 		tween.tween_property(player_cam, "position", Vector3(-0.809, 2.311, 1.298), 1.0).set_trans(Tween.TRANS_CUBIC)
 		tween.parallel().tween_property(player_cam, "rotation", Vector3(0.0, deg_to_rad(-80.0), 0.0), 1.0).set_trans(Tween.TRANS_CUBIC)
-		tween.parallel().tween_method(change_outside_bus_volume,-20, -4, 1.0).set_trans(Tween.TRANS_CUBIC)
+		tween.parallel().tween_method(change_room_bus_volume,-20, -4, 1.0).set_trans(Tween.TRANS_CUBIC)
 		tween.parallel().tween_method(change_speaker_bus_volume,-4, -20, 1.0).set_trans(Tween.TRANS_CUBIC)
 
 # Gets the mouse positon and checks if a clicable objects was cliked. If so, it emits an object_clicked signal for tha object
@@ -149,20 +160,22 @@ func get_mouse_pos(mouse_loc: Vector2, viewport:Viewport):
 	
 # Attempts to interact with the currently hovered over object
 func interact()->void:
-	if cur_target_object != null:
+	if cur_target_object != null && screenInteractionEnabled:
 		if cur_target_object is ClickableObject:
 			print(cur_target_object)
 			var click_obj: ClickableObject = cur_target_object
 			if click_obj.is_interactable:
 				signal_manager.emit_signal("object_clicked", cur_target_object)
 				click_obj._on_trigger()
+				SoundManager3D.PlaySoundQueue3D("SQ_CDing", Global.controlRoomRef.global_position)
 				#mark_off(click_obj)
-		if cur_target_object is CameraChangeObject:
+		if cur_target_object is CameraChangeObject && is_screen_focused == true:
 			print(cur_target_object)
 			var click_obj: CameraChangeObject = cur_target_object
 			if click_obj.is_interactable:
 				signal_manager.emit_signal("object_clicked", cur_target_object)
 				click_obj._on_trigger()
+				SoundManager3D.PlaySoundQueue3D("SQ_CFink", Global.controlRoomRef.global_position)
 				#mark_off(click_obj)
 
 # marks the given object as found and removes it from the progress order list
@@ -218,15 +231,16 @@ func toggle_pause_menu() -> void:
 		paused = true
 		signal_manager.emit_signal("pause_game")
 
-func change_outside_bus_volume(value: float):
-	var index = AudioServer.get_bus_index("Outside")
+# for use in tweens
+func change_room_bus_volume(value: float):
+	var index = AudioServer.get_bus_index("ControlRoom")
 	AudioServer.set_bus_volume_db(index, value)
-
+# for use in tweens
 func change_speaker_bus_volume(value: float):
 	var index = AudioServer.get_bus_index("ComputerSpeaker")
 	AudioServer.set_bus_volume_db(index, value)
 
-# function for when the player finds everything
+# function for when the player beats the game
 func win_game() -> void:
 	print("you win!")
 	

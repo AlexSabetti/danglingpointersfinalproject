@@ -130,51 +130,59 @@ script = ExtResource("3_e7gaw")
 [node name="Foliage" parent="UnderWaterRoom4_a2" instance=ExtResource("2_c8qsn")]
 transform = Transform3D(1.39763, 0, 0, 0, 1.61444, 0, 0, 0, 1.41973, 5.74885, 0.0484384, 5.95928)
 foliage_Texture = ExtResource("3_23lw4")
+meshOffset = Vector3(0, -0.125, 0)
 
 [node name="Foliage4" parent="UnderWaterRoom4_a2" instance=ExtResource("2_c8qsn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56391, 0.730937, -0.633626)
 foliage_Texture = ExtResource("3_23lw4")
+meshOffset = Vector3(0, -0.05, 0)
 
 [node name="Foliage8" parent="UnderWaterRoom4_a2" instance=ExtResource("2_c8qsn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.59103, 0.432974, 3.06871)
 foliage_Texture = ExtResource("3_23lw4")
-meshOffset = Vector3(0, 2.05, 0)
-meshScale = Vector3(2, 4.68, 2)
+meshOffset = Vector3(0, -0.275, 0)
+meshScale = Vector3(2, 4, 2)
 
 [node name="Foliage2" parent="UnderWaterRoom4_a2" instance=ExtResource("2_c8qsn")]
 transform = Transform3D(0.354389, 0, 0.935098, 0, 1, 0, -0.935098, 0, 0.354389, 2.23538, 1.48611, -4.14252)
 foliage_Texture = ExtResource("4_e7gaw")
-meshOffset = Vector3(0, 1.3, 0)
+meshOffset = Vector3(0, -0.11, 0)
 meshScale = Vector3(1, 2.665, 1)
 
 [node name="Foliage3" parent="UnderWaterRoom4_a2" instance=ExtResource("2_c8qsn")]
 transform = Transform3D(-0.550932, 0, -0.83455, 0, 1.88495, 0, 0.83455, 0, -0.550932, 1.21055, 0.548571, 0.195009)
 foliage_Texture = ExtResource("4_e7gaw")
+meshOffset = Vector3(0, -0.07, 0)
 meshScale = Vector3(1, 2.02, 1)
 
 [node name="Foliage5" parent="UnderWaterRoom4_a2" instance=ExtResource("2_c8qsn")]
 transform = Transform3D(-0.550932, 0, -0.83455, 0, 1.91179, 0, 0.83455, 0, -0.550932, 0.00510511, 0.908927, -1.19185)
 foliage_Texture = ExtResource("4_e7gaw")
+meshOffset = Vector3(0, -0.105, 0)
 meshScale = Vector3(1, 2.02, 1)
 
 [node name="Foliage6" parent="UnderWaterRoom4_a2" instance=ExtResource("2_c8qsn")]
 transform = Transform3D(-0.550932, 0, -0.83455, 0, 1.91179, 0, 0.83455, 0, -0.550932, 3.64124, 1.68869, -6.77756)
 foliage_Texture = ExtResource("4_e7gaw")
-meshScale = Vector3(1, 2.02, 1)
+meshOffset = Vector3(0, -0.11, 0)
+meshScale = Vector3(1, 1.5, 1)
 
 [node name="Foliage7" parent="UnderWaterRoom4_a2" instance=ExtResource("2_c8qsn")]
 transform = Transform3D(-1.75494, 0, -0.146213, 0, 1.50104, 0, 0.127367, 0, -2.01461, -7.70643, 0.159469, -2.61591)
 foliage_Texture = ExtResource("4_e7gaw")
+meshOffset = Vector3(0, -0.075, 0)
 meshScale = Vector3(1, 2.02, 1)
 
 [node name="Foliage9" parent="UnderWaterRoom4_a2" instance=ExtResource("2_c8qsn")]
 transform = Transform3D(-1.75494, 0, -0.146213, 0, 1.50104, 0, 0.127367, 0, -2.01461, 8.22388, 3.43063, -0.0830028)
 foliage_Texture = ExtResource("4_e7gaw")
+meshOffset = Vector3(0, -0.03, 0)
 meshScale = Vector3(1, 2.02, 1)
 
 [node name="w" parent="UnderWaterRoom4_a2" instance=ExtResource("2_c8qsn")]
 transform = Transform3D(0.767167, 0, 1.81781, 0, 1.50104, 0, -1.58351, 0, 0.880681, 8.65897, 3.4948, -8.10629)
 foliage_Texture = ExtResource("4_e7gaw")
+meshOffset = Vector3(0, -0.06, 0)
 meshScale = Vector3(1, 2.02, 1)
 
 [node name="Fishies" parent="UnderWaterRoom4_a2" instance=ExtResource("9_jrdm3")]
@@ -222,21 +230,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0.5)
 shape = SubResource("BoxShape3D_2ufit")
 debug_color = Color(0, 0.556863, 0.898039, 1)
 
-[node name="DialogChanger_noticeShip" parent="." node_paths=PackedStringArray("trigger_on_interact") instance=ExtResource("14_evpny")]
+[node name="DialogChanger_noticeShip" parent="." instance=ExtResource("14_evpny")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.23906, 2.63405, 2.06855)
-newDialog = "Damn. That's a whole ship wreck! Looks recent too... "
+newDialog = Array[String](["Damn... That's a whole ship wreck! Looks pretty recent too.", "I'll log it's position. Keep going for now."])
 delay_before_trigger = 1.0
-trigger_on_interact = [NodePath("../DialogChanger_noticeShip2")]
-
-[node name="DialogChanger_noticeShip2" parent="." instance=ExtResource("14_evpny")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.23906, 2.63405, 3.06855)
-newDialog = "I'll note down it's position. Carry on for now."
-delay_before_trigger = 6.0
 
 [node name="DialogChanger_noticeSomething" parent="." instance=ExtResource("14_evpny")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23906, 2.63405, 2.06855)
-newDialog = "Hold on, I think I see something...  Could you get a closer look? "
-delay_before_trigger = 2.0
+newDialog = Array[String](["Hold up... I think I see something... could you get a closer look?"])
+delay_before_trigger = 2.5
 oneShot = true
 
 [editable path="UnderWaterRoom4_a2"]

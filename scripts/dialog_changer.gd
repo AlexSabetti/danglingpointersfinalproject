@@ -4,13 +4,16 @@ class_name DialogChanger
 extends DynamicEntity
 
 # dialog to change to
-@export var newDialog:String = ""
+@export var newDialog:Array[String] = [""]
 
 # time before triggering given entities
 @export var delay_before_trigger: float = 0.0
 
 # whether or not this node should be able to be triggered multiple times
 @export var oneShot: bool = false
+
+# whether or not this node should trigger upon entering the scene
+@export var trigger_on_start: bool = false
 
 # array of objects to send a trigger signal to on interact
 @export var trigger_on_interact: Array[DynamicEntity] = []:
@@ -26,6 +29,9 @@ func _ready():
 	if !Engine.is_editor_hint():
 		Delay.wait_time = delay_before_trigger
 		$Sprite3D.visible = false
+		
+		if trigger_on_start:
+			_on_trigger()
 
 func _on_trigger():
 	if is_active:

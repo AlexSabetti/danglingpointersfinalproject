@@ -12,7 +12,6 @@ shader_parameter/BackColor = Color(0.044862, 0.020364, 0.007147, 1)
 
 [node name="ui_msgDisplay" type="CanvasLayer"]
 script = ExtResource("1_54y4t")
-textSize = 90
 textSpeed = 0.06
 
 [node name="BGColorRect" type="ColorRect" parent="."]
@@ -41,6 +40,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HeaderBar" type="Control" parent="MarginContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
@@ -74,10 +74,13 @@ size_flags_vertical = 3
 theme = ExtResource("1_wolgk")
 theme_override_font_sizes/normal_font_size = 90
 theme_override_font_sizes/bold_font_size = 90
-scroll_following = true
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
 shortcut_keys_enabled = false
 
 [node name="FooterBar" type="Control" parent="MarginContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 14.965)
 layout_mode = 2
 
