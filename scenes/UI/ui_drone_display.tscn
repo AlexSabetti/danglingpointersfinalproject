@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6veimdajceyb"]
+[gd_scene load_steps=10 format=3 uid="uid://c6veimdajceyb"]
 
 [ext_resource type="Script" uid="uid://bgdyd26ycqcwh" path="res://scripts/ui_drone_display.gd" id="1_01chn"]
 [ext_resource type="Shader" uid="uid://jhmbi4fs662c" path="res://resources/Shaders/VS_CRTFilter.tres" id="2_tcw1t"]
@@ -7,6 +7,7 @@
 [ext_resource type="Theme" uid="uid://b7dmjh57doq5k" path="res://resources/Themes/theme_ScreenText.tres" id="3_tcw1t"]
 [ext_resource type="Texture2D" uid="uid://bscddtqbve2oj" path="res://resources/Textures/Sprites/CamOverlay1_a1.png" id="4_3lj18"]
 [ext_resource type="Texture2D" uid="uid://bqj8n3jxtx40o" path="res://resources/Textures/Sprites/CompPointerArrow1_b1.png" id="5_jplk7"]
+[ext_resource type="Texture2D" uid="uid://bcdtul6ykwl24" path="res://resources/Textures/Sprites/SpeachBubbleWhiteSprite1_a1.png" id="7_3qw63"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gse5x"]
 shader = ExtResource("2_tcw1t")
@@ -46,32 +47,13 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="CompassPointer" type="Label" parent="DroneScreenOverlay/Compass"]
-visible = false
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -74.0
-offset_top = -67.0
-offset_right = -16.0
-offset_bottom = -11.0
-grow_horizontal = 0
-grow_vertical = 0
-pivot_offset = Vector2(28.47, 27.28)
-theme = ExtResource("3_tcw1t")
-theme_override_font_sizes/font_size = 60
-text = "↑"
-horizontal_alignment = 1
-
 [node name="CompassSprite" type="Sprite2D" parent="DroneScreenOverlay/Compass"]
 modulate = Color(1, 1, 1, 0.27451)
 position = Vector2(0, -820)
 texture = ExtResource("3_dgjav")
 
 [node name="SampleCollectionOverlay" type="MarginContainer" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -119,6 +101,33 @@ visible = false
 modulate = Color(0.718242, 0.695634, 0.573654, 1)
 texture = ExtResource("5_jplk7")
 offset = Vector2(10, 20)
+
+[node name="MessageNotif" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MessageNotifSprite" type="Sprite2D" parent="MessageNotif"]
+modulate = Color(1, 1, 1, 0.588235)
+position = Vector2(69, 66)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("7_3qw63")
+flip_h = true
+
+[node name="Label" type="Label" parent="MessageNotif"]
+modulate = Color(1, 1, 1, 0.588235)
+layout_mode = 0
+offset_left = 98.0
+offset_top = 56.0
+offset_right = 317.0
+offset_bottom = 79.0
+theme = ExtResource("3_tcw1t")
+theme_override_colors/font_color = Color(0.858824, 0.8, 0.670588, 1)
+text = "Receiving Message..."
 
 [node name="BlankScreen" type="ColorRect" parent="."]
 visible = false

@@ -5,6 +5,9 @@ extends Node
 signal object_clicked(obj: ClickableObject)
 signal camera_changed(cam_id: int)
 
+# for when the current occupide room changes. emits the new room 
+signal map_node_change(room:MapNode)
+
 # for changing the cursor apperance on the computer screen
 signal screen_cursor_changed(type:int)
 
@@ -17,6 +20,7 @@ signal focus_screen(focus:bool)
 
 # For when dialog is to be displayed on the players message screen
 signal dialog_event(text: String)
+signal dialog_notif()
 
 # for when collecting a sample
 signal collect_sample_start()

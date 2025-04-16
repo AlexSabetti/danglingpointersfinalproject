@@ -8,6 +8,17 @@ extends Node3D
 		# sets the mesh textures to the given texture
 		if has_node("MeshInstance3D"):
 			$MeshInstance3D.get_surface_override_material(0).set_shader_parameter("Texture", foliage_Texture)
+@export var emission_Texture:Texture2D = null:
+	set(t):
+		emission_Texture = t
+		# sets the emission textures to the given texture
+		if has_node("MeshInstance3D") && emission_Texture != null:
+			$MeshInstance3D.get_surface_override_material(0).set_shader_parameter("EmissionTexture", emission_Texture)
+@export var emission_amount:float = 0.0:
+	set(e):
+		emission_amount = e
+		if has_node("MeshInstance3D"):
+			$MeshInstance3D.get_surface_override_material(0).set_shader_parameter("EmissionAmount", emission_amount)
 @export var meshOffset := Vector3(0.0, 0.5, 0.0):
 	set(offset):
 		meshOffset = offset

@@ -36,18 +36,17 @@ stream = ExtResource("4_iei81")
 panning_strength = 0.25
 
 [node name="SQ_CDing" parent="." instance=ExtResource("1_ya6ty")]
-volumeDBModifier = 0.6
-minPitch = 0.6
-maxPitch = 0.8
+minPitch = 0.8
+maxPitch = 0.9
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SQ_CDing"]
 stream = ExtResource("5_83yrx")
-volume_db = 0.36
 panning_strength = 0.25
-bus = &"DroneAudio"
+bus = &"ComputerSpeaker"
 
 [node name="SQ_CFink" parent="." instance=ExtResource("1_ya6ty")]
-volumeDBModifier = 0.75
+count = 2
+volumeDBModifier = 0.9
 minPitch = 0.4
 maxPitch = 0.6
 
@@ -59,7 +58,7 @@ bus = &"DroneAudio"
 
 [node name="SQ_CFonk" parent="." instance=ExtResource("1_ya6ty")]
 count = 2
-volumeDBModifier = 0.75
+volumeDBModifier = 0.9
 minPitch = 0.5
 maxPitch = 0.6
 
@@ -71,11 +70,13 @@ bus = &"DroneAudio"
 
 [node name="SP_Voice" parent="." instance=ExtResource("3_ov475")]
 overrideSoundQueueSettings = true
+volumeDBModifier = 1.25
 minPitch = 0.7
 maxPitch = 0.8
 
 [node name="SoundQueue3D" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
 count = 2
+volumeDBModifier = 1.25
 minPitch = 0.7
 maxPitch = 0.8
 
@@ -85,6 +86,7 @@ panning_strength = 0.4
 
 [node name="SoundQueue3D2" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
 count = 2
+volumeDBModifier = 1.25
 minPitch = 0.7
 maxPitch = 0.8
 
@@ -94,6 +96,7 @@ panning_strength = 0.4
 
 [node name="SoundQueue3D3" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
 count = 2
+volumeDBModifier = 1.25
 minPitch = 0.7
 maxPitch = 0.8
 
@@ -103,6 +106,7 @@ panning_strength = 0.4
 
 [node name="SoundQueue3D4" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
 count = 2
+volumeDBModifier = 1.25
 minPitch = 0.7
 maxPitch = 0.8
 
@@ -112,6 +116,7 @@ panning_strength = 0.4
 
 [node name="SoundQueue3D5" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
 count = 2
+volumeDBModifier = 1.25
 minPitch = 0.7
 maxPitch = 0.8
 
@@ -121,6 +126,7 @@ panning_strength = 0.4
 
 [node name="SoundQueue3D6" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
 count = 2
+volumeDBModifier = 1.25
 minPitch = 0.7
 maxPitch = 0.8
 
@@ -130,13 +136,13 @@ panning_strength = 0.4
 
 [node name="SP_KeyPress" parent="." instance=ExtResource("3_ov475")]
 overrideSoundQueueSettings = true
-volumeDBModifier = 0.15
+volumeDBModifier = 0.4
 minPitch = 0.7
 maxPitch = 0.8
 
 [node name="SoundQueue3D" parent="SP_KeyPress" instance=ExtResource("1_ya6ty")]
 count = 2
-volumeDBModifier = 0.15
+volumeDBModifier = 0.4
 minPitch = 0.7
 maxPitch = 0.8
 
@@ -147,7 +153,7 @@ bus = &"ControlRoom"
 
 [node name="SoundQueue3D2" parent="SP_KeyPress" instance=ExtResource("1_ya6ty")]
 count = 2
-volumeDBModifier = 0.15
+volumeDBModifier = 0.4
 minPitch = 0.7
 maxPitch = 0.8
 
@@ -158,7 +164,7 @@ bus = &"ControlRoom"
 
 [node name="SoundQueue3D3" parent="SP_KeyPress" instance=ExtResource("1_ya6ty")]
 count = 2
-volumeDBModifier = 0.15
+volumeDBModifier = 0.4
 minPitch = 0.7
 maxPitch = 0.8
 
@@ -169,13 +175,13 @@ bus = &"ControlRoom"
 
 [node name="SP_KeyHold" parent="." instance=ExtResource("3_ov475")]
 overrideSoundQueueSettings = true
-volumeDBModifier = 0.3
+volumeDBModifier = 0.5
 minPitch = 0.7
 maxPitch = 0.8
 
 [node name="SoundQueue3D" parent="SP_KeyHold" instance=ExtResource("1_ya6ty")]
 count = 2
-volumeDBModifier = 0.3
+volumeDBModifier = 0.5
 minPitch = 0.7
 maxPitch = 0.8
 
@@ -186,7 +192,7 @@ bus = &"ControlRoom"
 
 [node name="SoundQueue3D2" parent="SP_KeyHold" instance=ExtResource("1_ya6ty")]
 count = 2
-volumeDBModifier = 0.3
+volumeDBModifier = 0.5
 minPitch = 0.7
 maxPitch = 0.8
 
@@ -197,7 +203,7 @@ bus = &"ControlRoom"
 
 [node name="SoundQueue3D3" parent="SP_KeyHold" instance=ExtResource("1_ya6ty")]
 count = 2
-volumeDBModifier = 0.3
+volumeDBModifier = 0.5
 minPitch = 0.7
 maxPitch = 0.8
 

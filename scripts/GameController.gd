@@ -42,6 +42,7 @@ func _ready():
 	Global.gameControllerRef = self
 	
 	signal_manager.connect("collect_sample_end", finish_collecting_sample)
+	signal_manager.connect("dialog_notif", dialog_notif)
 	
 	#signal_manager.emit_signal("camera_changed", 1)
 	#UI._update_requests(["- find " + progress_order[0], "- find " + progress_order[1], "- find " + progress_order[2]])
@@ -138,8 +139,8 @@ func focusScreen():
 	var tween = create_tween()
 	tween.tween_property(player_cam, "position", Vector3(-0.360, 2.41, 1.241), 1.0).set_trans(Tween.TRANS_CUBIC)
 	tween.parallel().tween_property(player_cam, "rotation", Vector3(0.0, deg_to_rad(-90.0), 0.0), 1.0).set_trans(Tween.TRANS_CUBIC)
-	tween.parallel().tween_method(change_room_bus_volume,-4, -20, 1.0).set_trans(Tween.TRANS_CUBIC)
-	tween.parallel().tween_method(change_speaker_bus_volume,-20, -4, 1.0).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_method(change_room_bus_volume,0, -15, 1.0).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_method(change_speaker_bus_volume,-15, 0, 1.0).set_trans(Tween.TRANS_CUBIC)
 
 func unfocusScreen():
 	is_screen_focused = false
@@ -148,8 +149,9 @@ func unfocusScreen():
 	var tween = create_tween()
 	tween.tween_property(player_cam, "position", Vector3(-0.809, 2.311, 1.287), 1.0).set_trans(Tween.TRANS_CUBIC)
 	tween.parallel().tween_property(player_cam, "rotation", Vector3(0.0, deg_to_rad(-80.0), 0.0), 1.0).set_trans(Tween.TRANS_CUBIC)
-	tween.parallel().tween_method(change_room_bus_volume,-20, -4, 1.0).set_trans(Tween.TRANS_CUBIC)
-	tween.parallel().tween_method(change_speaker_bus_volume,-4, -20, 1.0).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_method(change_room_bus_volume,-15, 0, 1.0).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_method(change_speaker_bus_volume,0, -15, 1.0).set_trans(Tween.TRANS_CUBIC)
+	DroneScreenUI.showMessageNotif(false)
 
 # Gets the mouse positon and checks if a clicable objects was cliked. If so, it emits an object_clicked signal for tha object
 func get_mouse_pos(mouse_loc: Vector2, viewport:Viewport):
@@ -225,6 +227,12 @@ func finish_collecting_sample() -> void:
 	is_collecting_samples = false
 	samples_collected += 1
 	MapScreenUI.updateSamplesStatus()
+	
+
+# shows a notification on screen if you recieve a message while focused on the computer screen
+func dialog_notif():
+	if is_screen_focused:
+		DroneScreenUI.showMessageNotif(true)
 	
 
 # marks the given object as found and removes it from the progress order list

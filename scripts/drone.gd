@@ -18,6 +18,7 @@ var signal_manager: SignalBus = SigBus
 @onready var DroneLight2 := $Camera3D/SpotLight3D2
 
 func _ready()->void:
+	signal_manager.connect("map_node_change", set_map_node)
 	
 	# hide editor icon
 	$Sprite3D.visible = false

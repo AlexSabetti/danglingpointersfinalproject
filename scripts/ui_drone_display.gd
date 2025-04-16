@@ -10,10 +10,11 @@ var fade_time:float = 0.05
 @onready var sampleCollectionTimer:Timer = $SampleCollectionTimer
 @onready var BlankScreen:ColorRect = $BlankScreen
 @onready var LoadingText:Label = $LoadingText
-@onready var CursorSprite := $CursorSprite2D
-@onready var CompassPointer := $DroneScreenOverlay/Compass/CompassSprite
+@onready var CursorSprite:Sprite2D = $CursorSprite2D
+@onready var CompassPointer:Sprite2D = $DroneScreenOverlay/Compass/CompassSprite
 @onready var SampleCollectionOverlay := $SampleCollectionOverlay
 @onready var SampleProgressBar := $"SampleCollectionOverlay/VBoxContainer/BG-Color/MarginContainer/ProgressBar"
+@onready var MessageNotif:Control = $MessageNotif
 
 var signal_manager: SignalBus = SigBus
 
@@ -57,6 +58,12 @@ func set_cursor_type(type:int):
 		#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		CursorSprite.texture = load("res://resources/Textures/Sprites/CompPointerArrow4_b1.png")
 		CursorSprite.offset = Vector2.ZERO
+
+func showMessageNotif(show:bool):
+	if show:
+		MessageNotif.visible = true
+	else:
+		MessageNotif.visible = false
 
 func focus_screen(focused:bool):
 	if focused:

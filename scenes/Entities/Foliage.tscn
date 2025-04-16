@@ -20,6 +20,7 @@ shader_parameter/NormalMap = ExtResource("4_dkg7b")
 shader_parameter/UVOffset2 = Vector2(0.32, 0.4)
 shader_parameter/DistortionAmount = 0.003
 shader_parameter/Texture = ExtResource("2_bxi7t")
+shader_parameter/EmissionAmount = 0.0
 
 [node name="Foliage" type="Node3D"]
 script = ExtResource("1_obqv8")

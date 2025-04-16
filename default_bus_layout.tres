@@ -26,8 +26,8 @@ db = 3
 
 [sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_n8wo2"]
 resource_name = "LowPassFilter"
-cutoff_hz = 1754.0
-db = 1
+cutoff_hz = 1000.0
+db = 3
 
 [resource]
 bus/1/name = &"ControlRoom"
@@ -58,7 +58,7 @@ bus/4/name = &"ComputerSpeaker"
 bus/4/solo = false
 bus/4/mute = false
 bus/4/bypass_fx = false
-bus/4/volume_db = -80.0
+bus/4/volume_db = -15.1981
 bus/4/send = &"Master"
 bus/4/effect/0/effect = SubResource("AudioEffectDistortion_j3pel")
 bus/4/effect/0/enabled = true
@@ -72,3 +72,9 @@ bus/5/effect/0/effect = SubResource("AudioEffectHighPassFilter_j3pel")
 bus/5/effect/0/enabled = true
 bus/5/effect/1/effect = SubResource("AudioEffectLowPassFilter_n8wo2")
 bus/5/effect/1/enabled = true
+bus/6/name = &"CreepyFoump"
+bus/6/solo = false
+bus/6/mute = false
+bus/6/bypass_fx = false
+bus/6/volume_db = -80.0
+bus/6/send = &"DroneAudio"

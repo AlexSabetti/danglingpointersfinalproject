@@ -30,6 +30,7 @@ shader_parameter/NormalMap = ExtResource("11_s33xv")
 shader_parameter/UVOffset2 = Vector2(0.32, 0.4)
 shader_parameter/DistortionAmount = 0.003
 shader_parameter/Texture = ExtResource("12_pxy2a")
+shader_parameter/EmissionAmount = 0.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_5hkas"]
 material = SubResource("ShaderMaterial_mm3h6")
@@ -47,30 +48,29 @@ size = Vector3(2, 3, 4)
 
 [node name="Room11_a1" type="Node3D"]
 script = ExtResource("1_vq82w")
-north_open = true
-south_open = true
+west_open = true
 
 [node name="RoomChangers" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="RoomChangeCollider_S" type="StaticBody3D" parent="RoomChangers" node_paths=PackedStringArray("trigger_on_interact")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+[node name="RoomChangeCollider_E" type="StaticBody3D" parent="RoomChangers" node_paths=PackedStringArray("trigger_on_interact")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("2_inim6")
 isRoomChanger = true
-trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_S")]
+trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_E")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_S"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_E"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.25, 1.5, 0)
 shape = SubResource("BoxShape3D_ht8tc")
 debug_color = Color(1, 0.796078, 0.0235294, 1)
 
-[node name="RoomChangeCollider_N" type="StaticBody3D" parent="RoomChangers" node_paths=PackedStringArray("trigger_on_interact")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+[node name="RoomChangeCollider_W" type="StaticBody3D" parent="RoomChangers" node_paths=PackedStringArray("trigger_on_interact")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("2_inim6")
 isRoomChanger = true
-trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_N")]
+trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_W")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_N"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_W"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.25, 1.5, 0)
 shape = SubResource("BoxShape3D_ht8tc")
 debug_color = Color(1, 0.796078, 0.0235294, 1)
@@ -81,7 +81,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 [node name="CameraChanger3" type="StaticBody3D" parent="CameraChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 0, 8.74228e-08)
 script = ExtResource("2_inim6")
-trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_S")]
+trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_W")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/CameraChanger3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.5, 1.09278e-08)
@@ -91,7 +91,7 @@ debug_color = Color(1, 0.772549, 0.560784, 1)
 [node name="CameraChanger4" type="StaticBody3D" parent="CameraChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 0, 8.74228e-08)
 script = ExtResource("2_inim6")
-trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_N")]
+trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_E")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/CameraChanger4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 1.5, 0)
@@ -101,19 +101,19 @@ debug_color = Color(1, 0.772549, 0.560784, 1)
 [node name="CameraNodes" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="CameraNode_S" parent="CameraNodes" instance=ExtResource("3_y34u4")]
+[node name="CameraNode_E" parent="CameraNodes" instance=ExtResource("3_y34u4")]
+transform = Transform3D(-1, 0.000157768, 0.000990465, 0.000157359, 1, -0.000406088, -0.00099054, -0.000405929, -1, 0.354263, 0.936311, -7.49218)
+min_h_rotation = -80.0
+
+[node name="TestCamera3D" type="Camera3D" parent="CameraNodes/CameraNode_E"]
+
+[node name="CameraNode_W" parent="CameraNodes" instance=ExtResource("3_y34u4")]
 transform = Transform3D(1, 0, -7.35137e-08, 0, 1, 0, 7.35137e-08, 0, 1, 0.65264, 1.16639, 6.47963)
 min_h_rotation = -90.0
 max_h_rotation = 90.0
 
-[node name="TestCamera3D" type="Camera3D" parent="CameraNodes/CameraNode_S"]
+[node name="TestCamera3D" type="Camera3D" parent="CameraNodes/CameraNode_W"]
 visible = false
-
-[node name="CameraNode_N" parent="CameraNodes" instance=ExtResource("3_y34u4")]
-transform = Transform3D(-1, 0.000157768, 0.000990465, 0.000157359, 1, -0.000406088, -0.00099054, -0.000405929, -1, 0.354263, 0.936311, -7.49218)
-min_h_rotation = -80.0
-
-[node name="TestCamera3D" type="Camera3D" parent="CameraNodes/CameraNode_N"]
 
 [node name="UnderWaterRoom11_a1" parent="." instance=ExtResource("4_vq82w")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)

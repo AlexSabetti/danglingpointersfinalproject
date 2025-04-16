@@ -61,6 +61,7 @@ func startDialog() -> void:
 			TextBox.set_text(TextBox.text + "\n[color=#9f8464]" + characterName + ":[/color] ")
 	
 		LetterTimer.start()
+	signal_manager.emit_signal("dialog_notif")
 
 
 # update the current queued dialog

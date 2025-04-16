@@ -225,8 +225,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 
 [node name="Room9_a2" parent="Rooms" instance=ExtResource("21_f0jn2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -80)
-east_blocked = true
 south_blocked = true
+east_blocked = true
 west_blocked = true
 
 [node name="Room10_a1" parent="Rooms" instance=ExtResource("23_f0jn2")]

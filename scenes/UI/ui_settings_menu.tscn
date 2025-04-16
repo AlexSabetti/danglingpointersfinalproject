@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://oy11ycs3g0j5"]
 
 [ext_resource type="Texture2D" uid="uid://c555oijau62ut" path="res://resources/Textures/Sprites/Square1_b1.png" id="1_l2fr7"]
-[ext_resource type="Script" path="res://scripts/ui_settings_menu.gd" id="1_ybfen"]
+[ext_resource type="Script" uid="uid://ccwcglqnlh66d" path="res://scripts/ui_settings_menu.gd" id="1_ybfen"]
 [ext_resource type="Theme" uid="uid://ddc8g2xpg5652" path="res://resources/Themes/theme_Slider.tres" id="3_1lfpr"]
 [ext_resource type="Theme" uid="uid://d3u8v3disi16o" path="res://resources/Themes/theme_genText.tres" id="3_q8bd1"]
 
@@ -60,7 +60,7 @@ layout_mode = 2
 theme = ExtResource("3_q8bd1")
 theme_override_colors/font_color = Color(0.745098, 0.670588, 0.509804, 1)
 theme_override_font_sizes/font_size = 48
-text = "Settings"
+text = "S E T T I N G S"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="settings/settings_panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -69,7 +69,7 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("3_q8bd1")
 theme_override_colors/font_color = Color(0.745098, 0.670588, 0.509804, 1)
-text = "Volume:"
+text = "VOLUME:"
 
 [node name="VolumeSlider" type="HSlider" parent="settings/settings_panel/MarginContainer/VBoxContainer/HBoxContainer"]
 modulate = Color(0.941176, 0.882353, 0.72549, 1)
@@ -82,11 +82,11 @@ step = 0.01
 value = 1.0
 
 [node name="VolumeNumber" type="Label" parent="settings/settings_panel/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(64, 0)
+custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 theme = ExtResource("3_q8bd1")
 theme_override_colors/font_color = Color(0.745098, 0.670588, 0.509804, 1)
-text = "50%"
+text = "100%"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="settings/settings_panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -95,7 +95,7 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("3_q8bd1")
 theme_override_colors/font_color = Color(0.745098, 0.670588, 0.509804, 1)
-text = "Brightness:"
+text = "BRIGHTNESS:"
 
 [node name="BrightnessSlider" type="HSlider" parent="settings/settings_panel/MarginContainer/VBoxContainer/HBoxContainer2"]
 modulate = Color(0.942588, 0.883698, 0.725873, 1)
@@ -109,13 +109,14 @@ step = 0.01
 value = 1.0
 
 [node name="BrightnessNumber" type="Label" parent="settings/settings_panel/MarginContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(64, 0)
+custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 theme = ExtResource("3_q8bd1")
 theme_override_colors/font_color = Color(0.745098, 0.670588, 0.509804, 1)
-text = "50%"
+text = "100%"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="settings/settings_panel/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="settings/settings_panel/MarginContainer/VBoxContainer/HBoxContainer3"]

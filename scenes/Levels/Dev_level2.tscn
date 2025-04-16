@@ -1,0 +1,344 @@
+[gd_scene load_steps=40 format=3 uid="uid://cepjmrvlfuup"]
+
+[ext_resource type="PackedScene" uid="uid://b25jkvemaipnk" path="res://scenes/UI/CanvasLayer_PostProcessing.tscn" id="1_iakjx"]
+[ext_resource type="Material" uid="uid://bg2bjdrabdhn5" path="res://resources/Shaders/SM_Posterization.tres" id="2_gfn2s"]
+[ext_resource type="Environment" uid="uid://c8wr6jqwlnict" path="res://resources/Environments/env_underwater1_1.tres" id="3_o3s2r"]
+[ext_resource type="Script" uid="uid://dybrp2bdnyair" path="res://scripts/world_environment.gd" id="4_wpkti"]
+[ext_resource type="PackedScene" uid="uid://bsgqiciuvs6ok" path="res://scenes/Levels/ControlRoom.tscn" id="5_6mjc3"]
+[ext_resource type="PackedScene" uid="uid://v2urofrh3pq5" path="res://scenes/Entities/GameController.tscn" id="6_fqbdl"]
+[ext_resource type="PackedScene" uid="uid://c6veimdajceyb" path="res://scenes/UI/ui_drone_display.tscn" id="7_rbhdm"]
+[ext_resource type="Shader" uid="uid://jhmbi4fs662c" path="res://resources/Shaders/VS_CRTFilter.tres" id="8_50hmc"]
+[ext_resource type="PackedScene" uid="uid://dkee2nim7qyu7" path="res://scenes/Entities/Drone.tscn" id="9_ohqt4"]
+[ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://scenes/Entities/CamPosNode.tscn" id="10_8dunf"]
+[ext_resource type="PackedScene" uid="uid://dl5x0m77shd62" path="res://scenes/UI/ui_message_display.tscn" id="11_j7okh"]
+[ext_resource type="PackedScene" uid="uid://b3728ytvs6bn0" path="res://scenes/UI/ui_map_display.tscn" id="12_n7174"]
+[ext_resource type="PackedScene" uid="uid://tfx4rwdf6oow" path="res://resources/Particles/P_Bubbles.tscn" id="13_pvwu2"]
+[ext_resource type="PackedScene" uid="uid://cy0ooj71pt2v5" path="res://scenes/Entities/MapNode.tscn" id="14_624t5"]
+[ext_resource type="PackedScene" uid="uid://cgvgni8obca17" path="res://scenes/Levels/Rooms/Room1_a1.tscn" id="14_gb6t6"]
+[ext_resource type="PackedScene" uid="uid://cf16x4d6gkv8e" path="res://scenes/Levels/Rooms/Room2_a1.tscn" id="15_xw5gs"]
+[ext_resource type="PackedScene" uid="uid://dxgfd5vloh5y2" path="res://scenes/Levels/Rooms/Room3_a1.tscn" id="16_rlh4i"]
+[ext_resource type="PackedScene" uid="uid://oke55a7wgf5n" path="res://scenes/Levels/Rooms/Room4_a1.tscn" id="17_htuc0"]
+[ext_resource type="PackedScene" uid="uid://cjhqgtvl0c4r4" path="res://scenes/Levels/Rooms/Room5_a1.tscn" id="18_axywr"]
+[ext_resource type="PackedScene" uid="uid://bqnjyqolsuecm" path="res://scenes/Levels/Rooms/Room6_a1.tscn" id="19_bly6u"]
+[ext_resource type="PackedScene" uid="uid://c558naetylum2" path="res://scenes/Levels/Rooms/Room7_a1.tscn" id="20_c5yqf"]
+[ext_resource type="PackedScene" uid="uid://c20xyr28c8w0n" path="res://scenes/Levels/Rooms/Room8_a1.tscn" id="21_7vo0u"]
+[ext_resource type="PackedScene" uid="uid://d4cyqu5i5wyu" path="res://scenes/Levels/Rooms/Room9_a1.tscn" id="22_ml7aq"]
+[ext_resource type="PackedScene" uid="uid://253weudhtvis" path="res://scenes/Levels/Rooms/Room10_a1.tscn" id="23_25uhl"]
+[ext_resource type="PackedScene" uid="uid://cwsmufvibi5uc" path="res://scenes/Levels/Rooms/Room11_a1.tscn" id="24_y7vij"]
+[ext_resource type="PackedScene" uid="uid://dybogvrii8h3g" path="res://scenes/Logic/dialog_changer.tscn" id="25_qc2m8"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_sakc8"]
+viewport_path = NodePath("Entities/SubViewport_DroneCam")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dtj52"]
+viewport_path = NodePath("Entities/SubViewport_DroneCam")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eki53"]
+resource_local_to_scene = true
+disable_fog = true
+albedo_texture = SubResource("ViewportTexture_sakc8")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_dtj52")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xqkv0"]
+viewport_path = NodePath("Entities/SubViewport_DroneCam")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_oj8la"]
+viewport_path = NodePath("Entities/SubViewport_Map")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6t6iq"]
+viewport_path = NodePath("Entities/SubViewport_Map")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6t6iq"]
+resource_local_to_scene = true
+disable_fog = true
+albedo_texture = SubResource("ViewportTexture_oj8la")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_6t6iq")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_sou27"]
+viewport_path = NodePath("Entities/SubViewport_Map")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_t40tb"]
+viewport_path = NodePath("Entities/SubViewport_MsgScreen")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_i3nvf"]
+viewport_path = NodePath("Entities/SubViewport_MsgScreen")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sakc8"]
+resource_local_to_scene = true
+disable_fog = true
+albedo_texture = SubResource("ViewportTexture_t40tb")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_i3nvf")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_v4ldq"]
+viewport_path = NodePath("Entities/SubViewport_MsgScreen")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f0jn2"]
+shader = ExtResource("8_50hmc")
+shader_parameter/ScanLine_Intensity = 0.025
+shader_parameter/Curvature = 5.0
+shader_parameter/BackColor = Color(0.044862, 0.020364, 0.007147, 1)
+
+[node name="Dev_Level" type="Node3D"]
+
+[node name="CanvasLayerPostProcessing2" parent="." instance=ExtResource("1_iakjx")]
+
+[node name="ColorRect" parent="CanvasLayerPostProcessing2" index="0"]
+material = ExtResource("2_gfn2s")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_o3s2r")
+script = ExtResource("4_wpkti")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.559555, -0.414397, -0.717756, 0.828793, 0.279778, 0.484589, 2.23135e-08, -0.866025, 0.500001, 1.90681, 6.2019, -2.95414)
+visible = false
+light_color = Color(0.810689, 0.774534, 0.546898, 1)
+light_energy = 0.2
+light_volumetric_fog_energy = 1.5
+light_bake_mode = 1
+light_cull_mask = 4294967293
+shadow_enabled = true
+shadow_blur = 10.0
+directional_shadow_mode = 1
+directional_shadow_split_1 = 0.279
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.559555, -0.414397, -0.717756, 0.828793, 0.279778, 0.484588, 2.58096e-08, -0.866025, 0.500001, 1.90681, 6.2019, -2.95414)
+light_color = Color(0.713506, 0.743926, 0.544914, 1)
+light_energy = 0.4
+light_bake_mode = 1
+light_cull_mask = 4294967292
+shadow_enabled = true
+shadow_blur = 10.0
+directional_shadow_mode = 1
+directional_shadow_split_1 = 0.279
+
+[node name="Control_Room" parent="." instance=ExtResource("5_6mjc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -7, 14.5)
+
+[node name="ViewPortScreens" type="Node3D" parent="Control_Room"]
+
+[node name="MainScreen" type="Sprite3D" parent="Control_Room/ViewPortScreens"]
+transform = Transform3D(4.86768e-09, 0, -0.025, 0, 0.025, 0, 0.025, 0, 4.86768e-09, -0.0932884, 2.40874, 1.23992)
+material_override = SubResource("StandardMaterial3D_eki53")
+double_sided = false
+texture = SubResource("ViewportTexture_xqkv0")
+
+[node name="UpperSmallScreen" type="Sprite3D" parent="Control_Room/ViewPortScreens"]
+transform = Transform3D(0.00551308, 0, -0.0118228, 0, 0.0130451, 0, 0.0118228, 0, 0.00551308, -0.179727, 2.3477, 0.962683)
+material_override = SubResource("StandardMaterial3D_6t6iq")
+double_sided = false
+texture = SubResource("ViewportTexture_sou27")
+
+[node name="LowerSmallScreen" type="Sprite3D" parent="Control_Room/ViewPortScreens"]
+transform = Transform3D(0.00551308, 0, -0.0118228, 0, 0.0130451, 0, 0.0118228, 0, 0.00551308, -0.180402, 2.16265, 0.958504)
+material_override = SubResource("StandardMaterial3D_sakc8")
+double_sided = false
+texture = SubResource("ViewportTexture_v4ldq")
+
+[node name="PlayerCamera3D" type="Camera3D" parent="Control_Room"]
+transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, -0.808659, 2.31077, 1.28714)
+current = true
+fov = 50.1
+
+[node name="DialogChanger" parent="Control_Room" instance=ExtResource("25_qc2m8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.161235, 2.18827, -0.118445)
+newDialog = Array[String](["Alright, the cam should be in position now.", "Try using your arrow keys to look around real quick."])
+delay_before_trigger = 3.0
+trigger_on_start = true
+
+[node name="GameController" parent="." node_paths=PackedStringArray("player_cam", "drone", "VirtualScreenViewport", "MessageScreenUI", "DroneScreenUI", "MapScreenUI") instance=ExtResource("6_fqbdl")]
+player_cam = NodePath("../Control_Room/PlayerCamera3D")
+drone = NodePath("../Entities/SubViewport_DroneCam/Drone")
+turnSpeed = 0.15
+VirtualScreenViewport = NodePath("../Entities/SubViewport_DroneCam")
+MessageScreenUI = NodePath("../Entities/SubViewport_MsgScreen/ui_msgDisplay")
+DroneScreenUI = NodePath("../Entities/SubViewport_DroneCam/ui_droneDisplay")
+MapScreenUI = NodePath("../Entities/SubViewport_Map/ui_mapDisplay")
+
+[node name="Entities" type="Node3D" parent="."]
+
+[node name="SubViewport_DroneCam" type="SubViewport" parent="Entities"]
+size = Vector2i(1280, 960)
+
+[node name="ui_droneDisplay" parent="Entities/SubViewport_DroneCam" instance=ExtResource("7_rbhdm")]
+
+[node name="CanvasLayerPostProcessing2" parent="Entities/SubViewport_DroneCam" instance=ExtResource("1_iakjx")]
+
+[node name="ColorRect" parent="Entities/SubViewport_DroneCam/CanvasLayerPostProcessing2" index="0"]
+material = SubResource("ShaderMaterial_f0jn2")
+
+[node name="Drone" parent="Entities/SubViewport_DroneCam" node_paths=PackedStringArray("active_cam_node") instance=ExtResource("9_ohqt4")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 2.68095, 1.59657, 25.4862)
+active_cam_node = NodePath("../CameraNode1")
+
+[node name="CameraNode1" parent="Entities/SubViewport_DroneCam" instance=ExtResource("10_8dunf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.923, 1.61494, 59.9178)
+
+[node name="TestCamera3D" type="Camera3D" parent="Entities/SubViewport_DroneCam/CameraNode1"]
+
+[node name="SubViewport_MsgScreen" type="SubViewport" parent="Entities"]
+size = Vector2i(1280, 960)
+
+[node name="ui_msgDisplay" parent="Entities/SubViewport_MsgScreen" instance=ExtResource("11_j7okh")]
+SoundSourcePos = Vector3(-0.154231, 2.16265, 0.94521)
+
+[node name="SubViewport_Map" type="SubViewport" parent="Entities"]
+size = Vector2i(1280, 960)
+
+[node name="ui_mapDisplay" parent="Entities/SubViewport_Map" instance=ExtResource("12_n7174")]
+
+[node name="CPUParticles3D" parent="Entities" instance=ExtResource("13_pvwu2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.918675, -0.689662, 0.345228)
+visible = false
+amount = 256
+
+[node name="MapNodes (test)" type="Node3D" parent="."]
+
+[node name="Row1" type="Node3D" parent="MapNodes (test)"]
+
+[node name="MapNode1" parent="MapNodes (test)/Row1" node_paths=PackedStringArray("south", "east") instance=ExtResource("14_624t5")]
+south = NodePath("../../Row2/MapNode5")
+east = NodePath("../MapNode2")
+
+[node name="MapNode2" parent="MapNodes (test)/Row1" node_paths=PackedStringArray("south", "east", "west") instance=ExtResource("14_624t5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+south = NodePath("../../Row2/MapNode6")
+east = NodePath("../MapNode3")
+west = NodePath("../MapNode1")
+
+[node name="MapNode3" parent="MapNodes (test)/Row1" node_paths=PackedStringArray("south", "east", "west") instance=ExtResource("14_624t5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0)
+south = NodePath("../../Row2/MapNode7")
+east = NodePath("../MapNode4")
+west = NodePath("../MapNode2")
+
+[node name="Room10_a1" parent="MapNodes (test)/Row1/MapNode3" node_paths=PackedStringArray("mapNode") instance=ExtResource("23_25uhl")]
+mapNode = NodePath("..")
+west_blocked = true
+
+[node name="MapNode4" parent="MapNodes (test)/Row1" node_paths=PackedStringArray("south", "west") instance=ExtResource("14_624t5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 0)
+south = NodePath("../../Row2/MapNode8")
+west = NodePath("../MapNode3")
+
+[node name="Room4_a1" parent="MapNodes (test)/Row1/MapNode4" node_paths=PackedStringArray("mapNode") instance=ExtResource("17_htuc0")]
+mapNode = NodePath("..")
+
+[node name="Row2" type="Node3D" parent="MapNodes (test)"]
+
+[node name="MapNode5" parent="MapNodes (test)/Row2" node_paths=PackedStringArray("north", "south", "east") instance=ExtResource("14_624t5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+north = NodePath("../../Row1/MapNode1")
+south = NodePath("../../Row3/MapNode9")
+east = NodePath("../MapNode6")
+
+[node name="Room9_a1" parent="MapNodes (test)/Row2/MapNode5" node_paths=PackedStringArray("mapNode") instance=ExtResource("22_ml7aq")]
+mapNode = NodePath("..")
+north_blocked = true
+west_blocked = true
+
+[node name="MapNode6" parent="MapNodes (test)/Row2" node_paths=PackedStringArray("north", "south", "east", "west") instance=ExtResource("14_624t5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 20)
+north = NodePath("../../Row1/MapNode2")
+south = NodePath("../../Row3/MapNode10")
+east = NodePath("../MapNode7")
+west = NodePath("../MapNode5")
+
+[node name="Room11_a1" parent="MapNodes (test)/Row2/MapNode6" node_paths=PackedStringArray("mapNode") instance=ExtResource("24_y7vij")]
+mapNode = NodePath("..")
+
+[node name="MapNode7" parent="MapNodes (test)/Row2" node_paths=PackedStringArray("north", "south", "east", "west") instance=ExtResource("14_624t5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 20)
+north = NodePath("../../Row1/MapNode3")
+south = NodePath("../../Row3/MapNode11")
+east = NodePath("../MapNode8")
+west = NodePath("../MapNode6")
+
+[node name="Room6_a1" parent="MapNodes (test)/Row2/MapNode7" node_paths=PackedStringArray("mapNode") instance=ExtResource("19_bly6u")]
+mapNode = NodePath("..")
+
+[node name="MapNode8" parent="MapNodes (test)/Row2" node_paths=PackedStringArray("north", "south", "west") instance=ExtResource("14_624t5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.8864, 0, 20)
+north = NodePath("../../Row1/MapNode4")
+south = NodePath("../../Row3/MapNode12")
+west = NodePath("../MapNode7")
+
+[node name="Room2_a1" parent="MapNodes (test)/Row2/MapNode8" node_paths=PackedStringArray("mapNode") instance=ExtResource("15_xw5gs")]
+mapNode = NodePath("..")
+
+[node name="Row3" type="Node3D" parent="MapNodes (test)"]
+
+[node name="MapNode9" parent="MapNodes (test)/Row3" node_paths=PackedStringArray("north", "south", "east") instance=ExtResource("14_624t5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40)
+north = NodePath("../../Row2/MapNode5")
+south = NodePath("../../Row4/MapNode13")
+east = NodePath("../MapNode10")
+
+[node name="Room5_a1" parent="MapNodes (test)/Row3/MapNode9" node_paths=PackedStringArray("mapNode") instance=ExtResource("18_axywr")]
+mapNode = NodePath("..")
+
+[node name="MapNode10" parent="MapNodes (test)/Row3" node_paths=PackedStringArray("north", "south", "east", "west") instance=ExtResource("14_624t5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 40)
+north = NodePath("../../Row2/MapNode6")
+south = NodePath("../../Row4/MapNode14")
+east = NodePath("../MapNode9")
+west = NodePath("../MapNode11")
+
+[node name="Room8_a1" parent="MapNodes (test)/Row3/MapNode10" node_paths=PackedStringArray("mapNode") instance=ExtResource("21_7vo0u")]
+mapNode = NodePath("..")
+
+[node name="MapNode11" parent="MapNodes (test)/Row3" node_paths=PackedStringArray("north", "south", "east", "west") instance=ExtResource("14_624t5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 40)
+north = NodePath("../../Row2/MapNode7")
+south = NodePath("../../Row4/MapNode15")
+east = NodePath("../MapNode10")
+west = NodePath("../MapNode12")
+
+[node name="Room1_a1" parent="MapNodes (test)/Row3/MapNode11" node_paths=PackedStringArray("mapNode") instance=ExtResource("14_gb6t6")]
+mapNode = NodePath("..")
+
+[node name="MapNode12" parent="MapNodes (test)/Row3" node_paths=PackedStringArray("north", "south", "west") instance=ExtResource("14_624t5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.886, 0, 40)
+north = NodePath("../../Row2/MapNode8")
+south = NodePath("../../Row4/MapNode16")
+west = NodePath("../MapNode11")
+
+[node name="Room3_a1" parent="MapNodes (test)/Row3/MapNode12" node_paths=PackedStringArray("mapNode") instance=ExtResource("16_rlh4i")]
+mapNode = NodePath("..")
+south_blocked = true
+
+[node name="Row4" type="Node3D" parent="MapNodes (test)"]
+
+[node name="MapNode13" parent="MapNodes (test)/Row4" node_paths=PackedStringArray("north", "east") instance=ExtResource("14_624t5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 60)
+north = NodePath("../../Row3/MapNode9")
+east = NodePath("../MapNode14")
+
+[node name="MapNode14" parent="MapNodes (test)/Row4" node_paths=PackedStringArray("north", "east", "west") instance=ExtResource("14_624t5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 60)
+north = NodePath("../../Row3/MapNode10")
+east = NodePath("../MapNode15")
+west = NodePath("../MapNode13")
+
+[node name="MapNode15" parent="MapNodes (test)/Row4" node_paths=PackedStringArray("north", "east", "west") instance=ExtResource("14_624t5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 60)
+north = NodePath("../../Row3/MapNode11")
+east = NodePath("../MapNode14")
+west = NodePath("../MapNode16")
+
+[node name="Room7_a1" parent="MapNodes (test)/Row4/MapNode15" node_paths=PackedStringArray("mapNode") instance=ExtResource("20_c5yqf")]
+mapNode = NodePath("..")
+
+[node name="MapNode16" parent="MapNodes (test)/Row4" node_paths=PackedStringArray("north", "west") instance=ExtResource("14_624t5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.886, 0, 60)
+north = NodePath("../../Row3/MapNode12")
+west = NodePath("../MapNode15")
+
+[node name="Rooms" type="Node3D" parent="."]
+
+[editable path="CanvasLayerPostProcessing2"]
+[editable path="Entities/SubViewport_DroneCam/CanvasLayerPostProcessing2"]
