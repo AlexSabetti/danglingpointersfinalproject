@@ -50,6 +50,9 @@ size = Vector3(2, 3, 4)
 
 [node name="Room6_a1" type="Node3D"]
 script = ExtResource("1_3qa2d")
+east_open = true
+south_open = true
+west_open = true
 
 [node name="RoomChangers" type="Node3D" parent="."]
 

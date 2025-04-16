@@ -41,7 +41,7 @@ transform = Transform3D(0.999522, 0.0257137, -0.0171873, -0.0223427, 0.984554, 0
 light_color = Color(0.829938, 0.820217, 0.585807, 1)
 light_energy = 0.0
 light_volumetric_fog_energy = 0.5
-spot_range = 32.0
+spot_range = 48.0
 spot_angle = 20.0
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="Camera3D"]
@@ -49,7 +49,7 @@ transform = Transform3D(0.999522, -0.0257137, 0.0171873, 0.0223427, 0.984554, 0.
 light_color = Color(0.831373, 0.819608, 0.584314, 1)
 light_energy = 0.0
 light_volumetric_fog_energy = 0.5
-spot_range = 32.0
+spot_range = 48.0
 spot_angle = 20.0
 
 [node name="CPUParticles3D_bubbles" parent="." instance=ExtResource("3_c0tn5")]

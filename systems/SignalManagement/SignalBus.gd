@@ -18,6 +18,11 @@ signal focus_screen(focus:bool)
 # For when dialog is to be displayed on the players message screen
 signal dialog_event(text: String)
 
+# for when collecting a sample
+signal collect_sample_start()
+signal collect_sample_end()
+
+
 signal pause_game()
 signal unpause_game()  
 

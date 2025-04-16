@@ -71,6 +71,49 @@ modulate = Color(1, 1, 1, 0.27451)
 position = Vector2(0, -820)
 texture = ExtResource("3_dgjav")
 
+[node name="SampleCollectionOverlay" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 800
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SampleCollectionOverlay"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SampleCollectionOverlay/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_tcw1t")
+text = " Collecting Sample..."
+
+[node name="BG-Color" type="ColorRect" parent="SampleCollectionOverlay/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.045755, 0.0494231, 0.0386864, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="SampleCollectionOverlay/VBoxContainer/BG-Color"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ProgressBar" type="ColorRect" parent="SampleCollectionOverlay/VBoxContainer/BG-Color/MarginContainer"]
+custom_minimum_size = Vector2(864, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+color = Color(0.729412, 0.654902, 0.498039, 1)
+
 [node name="CursorSprite2D" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(0.718242, 0.695634, 0.573654, 1)
@@ -85,21 +128,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
-
-[node name="CRTFilter" type="ColorRect" parent="."]
-visible = false
-material = SubResource("ShaderMaterial_gse5x")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Timer1" type="Timer" parent="."]
-one_shot = true
-
-[node name="Timer2" type="Timer" parent="."]
-one_shot = true
 
 [node name="LoadingText" type="Label" parent="."]
 visible = false
@@ -119,5 +147,25 @@ theme_override_font_sizes/font_size = 80
 text = "..."
 horizontal_alignment = 1
 
+[node name="CRTFilter" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_gse5x")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Timer1" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
+one_shot = true
+
+[node name="SampleCollectionTimer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
 [connection signal="timeout" from="Timer1" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+[connection signal="timeout" from="SampleCollectionTimer" to="." method="_on_sample_collection_timer_timeout"]

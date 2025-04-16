@@ -26,12 +26,23 @@ var cur_target_object
 @export_category("computer screen")
 @export var VirtualScreenViewport: SubViewport
 @export var MessageScreenUI: UI_MsgDisplay
+@export var DroneScreenUI: UI_DroneDisplay
+@export var MapScreenUI: UI_MapDisplay
 @export var screenInteractionEnabled:bool = true
+
+# game progression
+var goal_room:MapNode # next goal room where the player needs to collect samples
+var samples_collected:int = 0 # number of samples collected
+var is_collecting_samples:bool = false
+var poi_encounters:int = 0 # number of points of interest encountered
 
 @onready var UI = $CanvasLayer_hud/ui_hud
 
 func _ready():
 	Global.gameControllerRef = self
+	
+	signal_manager.connect("collect_sample_end", finish_collecting_sample)
+	
 	#signal_manager.emit_signal("camera_changed", 1)
 	#UI._update_requests(["- find " + progress_order[0], "- find " + progress_order[1], "- find " + progress_order[2]])
 	
@@ -47,16 +58,31 @@ func _process(delta: float):
 		else:
 			get_mouse_pos(mouse, get_viewport())
 		
-		if Input.is_action_pressed("scroll_up"):
+		# drone flashlight controls
+		if Input.is_action_just_pressed("toggle_light") && drone != null:
+			drone.toggle_light()
+		
+		# collect samples for room if correct room to do so
+		if Input.is_action_just_pressed("enter_key"):
+			collectSamples()
+		
+		# message scrolling button press sound
+		if Input.is_action_just_pressed("scroll_up"):
+			SoundManager3D.PlaySoundPool3D("SP_KeyHold", Global.controlRoomRef.global_position)
+		if Input.is_action_just_pressed("scroll_down"):
+			SoundManager3D.PlaySoundPool3D("SP_KeyHold", Global.controlRoomRef.global_position)
 			
+		# message scrolling
+		if Input.is_action_pressed("scroll_up"):
 			MessageScreenUI.scroll_up()
 		if Input.is_action_pressed("scroll_down"):
 			MessageScreenUI.scroll_down()
-	
+		
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel") && !UI.settings_locked:
 		toggle_pause_menu()
+	
 	if event is InputEventMouseMotion:
 		mouse = event.position
 	if event is InputEventMouseButton:
@@ -67,8 +93,6 @@ func _input(event):
 			#get_mouse_pos(mouse, get_viewport())
 			#if VirtualScreenViewport != null && is_screen_focused:
 				#get_mouse_pos(mouse, VirtualScreenViewport)
-	if event.is_action_pressed("toggle_light") && drone != null:
-		drone.toggle_light()
 
 func camera_movement(delta: float):
 	if Input.is_action_just_pressed("rotate_left") or Input.is_action_just_pressed("rotate_right"):
@@ -102,22 +126,30 @@ func camera_movement(delta: float):
 	
 	# When the lean forward button is pressed, lerp the camera to focus on the computer screen, and focuses the computers audio as wellw
 	if Input.is_action_pressed("lean_forward") && !is_screen_focused:
-		is_screen_focused = true
-		signal_manager.emit_signal("focus_screen", true)
-		var tween = create_tween()
-		tween.tween_property(player_cam, "position", Vector3(-0.360, 2.41, 1.241), 1.0).set_trans(Tween.TRANS_CUBIC)
-		tween.parallel().tween_property(player_cam, "rotation", Vector3(0.0, deg_to_rad(-90.0), 0.0), 1.0).set_trans(Tween.TRANS_CUBIC)
-		tween.parallel().tween_method(change_room_bus_volume,-4, -20, 1.0).set_trans(Tween.TRANS_CUBIC)
-		tween.parallel().tween_method(change_speaker_bus_volume,-20, -4, 1.0).set_trans(Tween.TRANS_CUBIC)
+		focusScreen()
 	# When the lean back button is pressed, lerp the camera to zooom out from the computer screen
 	else: if Input.is_action_pressed("lean_back") && is_screen_focused:
-		is_screen_focused = false
-		signal_manager.emit_signal("focus_screen", false)
-		var tween = create_tween()
-		tween.tween_property(player_cam, "position", Vector3(-0.809, 2.311, 1.298), 1.0).set_trans(Tween.TRANS_CUBIC)
-		tween.parallel().tween_property(player_cam, "rotation", Vector3(0.0, deg_to_rad(-80.0), 0.0), 1.0).set_trans(Tween.TRANS_CUBIC)
-		tween.parallel().tween_method(change_room_bus_volume,-20, -4, 1.0).set_trans(Tween.TRANS_CUBIC)
-		tween.parallel().tween_method(change_speaker_bus_volume,-4, -20, 1.0).set_trans(Tween.TRANS_CUBIC)
+		unfocusScreen()
+
+func focusScreen():
+	is_screen_focused = true
+	signal_manager.emit_signal("focus_screen", true)
+	SoundManager3D.PlaySoundPool3D("SP_KeyHold", Global.controlRoomRef.global_position)
+	var tween = create_tween()
+	tween.tween_property(player_cam, "position", Vector3(-0.360, 2.41, 1.241), 1.0).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property(player_cam, "rotation", Vector3(0.0, deg_to_rad(-90.0), 0.0), 1.0).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_method(change_room_bus_volume,-4, -20, 1.0).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_method(change_speaker_bus_volume,-20, -4, 1.0).set_trans(Tween.TRANS_CUBIC)
+
+func unfocusScreen():
+	is_screen_focused = false
+	signal_manager.emit_signal("focus_screen", false)
+	SoundManager3D.PlaySoundPool3D("SP_KeyHold", Global.controlRoomRef.global_position)
+	var tween = create_tween()
+	tween.tween_property(player_cam, "position", Vector3(-0.809, 2.311, 1.287), 1.0).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property(player_cam, "rotation", Vector3(0.0, deg_to_rad(-80.0), 0.0), 1.0).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_method(change_room_bus_volume,-20, -4, 1.0).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_method(change_speaker_bus_volume,-4, -20, 1.0).set_trans(Tween.TRANS_CUBIC)
 
 # Gets the mouse positon and checks if a clicable objects was cliked. If so, it emits an object_clicked signal for tha object
 func get_mouse_pos(mouse_loc: Vector2, viewport:Viewport):
@@ -159,7 +191,7 @@ func get_mouse_pos(mouse_loc: Vector2, viewport:Viewport):
 
 	
 # Attempts to interact with the currently hovered over object
-func interact()->void:
+func interact() -> void:
 	if cur_target_object != null && screenInteractionEnabled:
 		if cur_target_object is ClickableObject:
 			print(cur_target_object)
@@ -169,7 +201,7 @@ func interact()->void:
 				click_obj._on_trigger()
 				SoundManager3D.PlaySoundQueue3D("SQ_CDing", Global.controlRoomRef.global_position)
 				#mark_off(click_obj)
-		if cur_target_object is CameraChangeObject && is_screen_focused == true:
+		if cur_target_object is CameraChangeObject && is_screen_focused == true && !is_collecting_samples && DroneScreenUI.is_on:
 			print(cur_target_object)
 			var click_obj: CameraChangeObject = cur_target_object
 			if click_obj.is_interactable:
@@ -177,6 +209,23 @@ func interact()->void:
 				click_obj._on_trigger()
 				SoundManager3D.PlaySoundQueue3D("SQ_CFink", Global.controlRoomRef.global_position)
 				#mark_off(click_obj)
+
+# begins the sample collection process for the room you are in
+func collectSamples() -> void:
+	# check if in correct "goal" room
+	#if goal_room != null && goal_room == drone.active_map_node && !is_collecting_samples:
+	if !is_collecting_samples && DroneScreenUI.is_on:
+		is_collecting_samples = true
+		signal_manager.emit_signal("collect_sample_start")
+		SoundManager3D.PlaySoundQueue3D("SQ_CFink", Global.controlRoomRef.global_position)
+		SoundManager3D.PlaySoundPool3D("SP_KeyPress", Global.controlRoomRef.global_position)
+
+# when the collect_samples_end signal is recieved
+func finish_collecting_sample() -> void:
+	is_collecting_samples = false
+	samples_collected += 1
+	MapScreenUI.updateSamplesStatus()
+	
 
 # marks the given object as found and removes it from the progress order list
 #func mark_off(obj: ClickableObject):
@@ -230,6 +279,8 @@ func toggle_pause_menu() -> void:
 	else:	# if not already paused, toggle pause menu ON
 		paused = true
 		signal_manager.emit_signal("pause_game")
+		if is_screen_focused:
+			unfocusScreen()
 
 # for use in tweens
 func change_room_bus_volume(value: float):

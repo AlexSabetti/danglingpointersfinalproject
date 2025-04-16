@@ -127,28 +127,30 @@ double_sided = false
 texture = SubResource("ViewportTexture_xqkv0")
 
 [node name="UpperSmallScreen" type="Sprite3D" parent="Control_Room/ViewPortScreens"]
-transform = Transform3D(0.00551308, 0, -0.0118228, 0, 0.0130451, 0, 0.0118228, 0, 0.00551308, -0.152615, 2.3477, 0.95004)
+transform = Transform3D(0.00551308, 0, -0.0118228, 0, 0.0130451, 0, 0.0118228, 0, 0.00551308, -0.179727, 2.3477, 0.962683)
 material_override = SubResource("StandardMaterial3D_6t6iq")
 double_sided = false
 texture = SubResource("ViewportTexture_sou27")
 
 [node name="LowerSmallScreen" type="Sprite3D" parent="Control_Room/ViewPortScreens"]
-transform = Transform3D(0.00551308, 0, -0.0118228, 0, 0.0130451, 0, 0.0118228, 0, 0.00551308, -0.152458, 2.16265, 0.945473)
+transform = Transform3D(0.00551308, 0, -0.0118228, 0, 0.0130451, 0, 0.0118228, 0, 0.00551308, -0.180402, 2.16265, 0.958504)
 material_override = SubResource("StandardMaterial3D_sakc8")
 double_sided = false
 texture = SubResource("ViewportTexture_v4ldq")
 
 [node name="PlayerCamera3D" type="Camera3D" parent="Control_Room"]
-transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, -0.808825, 2.31077, 1.29759)
+transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, -0.808659, 2.31077, 1.28714)
 current = true
 fov = 50.1
 
-[node name="GameController" parent="." node_paths=PackedStringArray("player_cam", "drone", "VirtualScreenViewport", "MessageScreenUI") instance=ExtResource("2_2ykvt")]
+[node name="GameController" parent="." node_paths=PackedStringArray("player_cam", "drone", "VirtualScreenViewport", "MessageScreenUI", "DroneScreenUI", "MapScreenUI") instance=ExtResource("2_2ykvt")]
 player_cam = NodePath("../Control_Room/PlayerCamera3D")
 drone = NodePath("../Entities/SubViewport_DroneCam/Drone")
 turnSpeed = 0.15
 VirtualScreenViewport = NodePath("../Entities/SubViewport_DroneCam")
 MessageScreenUI = NodePath("../Entities/SubViewport_MsgScreen/ui_msgDisplay")
+DroneScreenUI = NodePath("../Entities/SubViewport_DroneCam/ui_droneDisplay")
+MapScreenUI = NodePath("../Entities/SubViewport_Map/ui_mapDisplay")
 
 [node name="Entities" type="Node3D" parent="."]
 
@@ -205,12 +207,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
 
 [node name="Room6_a2" parent="Rooms" instance=ExtResource("22_eki53")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, -20)
+east_blocked = true
+west_blocked = true
 
 [node name="Room6_a3" parent="Rooms" instance=ExtResource("22_eki53")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -80)
+west_blocked = true
 
 [node name="Room7_a1" parent="Rooms" instance=ExtResource("21_eki53")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 
 [node name="Room8_a1" parent="Rooms" instance=ExtResource("20_dtj52")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -20)
@@ -220,12 +225,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 
 [node name="Room9_a2" parent="Rooms" instance=ExtResource("21_f0jn2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -80)
+east_blocked = true
+south_blocked = true
+west_blocked = true
 
 [node name="Room10_a1" parent="Rooms" instance=ExtResource("23_f0jn2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -40)
+south_blocked = true
+west_blocked = true
 
-[node name="Room10_a2" parent="Rooms" instance=ExtResource("24_xklfb")]
+[node name="Room11_a1" parent="Rooms" instance=ExtResource("24_xklfb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+north_blocked = true
 
 [node name="Logic" type="Node3D" parent="."]
 

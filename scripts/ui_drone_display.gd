@@ -7,10 +7,13 @@ var fade_time:float = 0.05
 
 @onready var delay1:Timer = $Timer1
 @onready var delay2:Timer = $Timer2
+@onready var sampleCollectionTimer:Timer = $SampleCollectionTimer
 @onready var BlankScreen:ColorRect = $BlankScreen
 @onready var LoadingText:Label = $LoadingText
 @onready var CursorSprite := $CursorSprite2D
 @onready var CompassPointer := $DroneScreenOverlay/Compass/CompassSprite
+@onready var SampleCollectionOverlay := $SampleCollectionOverlay
+@onready var SampleProgressBar := $"SampleCollectionOverlay/VBoxContainer/BG-Color/MarginContainer/ProgressBar"
 
 var signal_manager: SignalBus = SigBus
 
@@ -18,6 +21,9 @@ func _ready() -> void:
 	signal_manager.connect("camera_changed", cam_change_anim)
 	signal_manager.connect("screen_cursor_changed", set_cursor_type)
 	signal_manager.connect("focus_screen", focus_screen)
+	signal_manager.connect("collect_sample_start", startSampleCollection)
+	
+	SampleCollectionOverlay.visible = false
 	
 	if is_on:
 		BlankScreen.visible = false
@@ -85,6 +91,12 @@ func fade_in()->void:
 	var tween = create_tween()
 	tween.parallel().tween_method(change_drone_bus_volume, -40, 0, 0.25).set_trans(Tween.TRANS_BOUNCE)  # re-enable audio from drone
 
+func startSampleCollection() -> void:
+	SampleCollectionOverlay.visible = true
+	var tween = create_tween()
+	tween.tween_property(SampleProgressBar, "custom_minimum_size", Vector2(864.0, 0.0), 6.0).from(Vector2(0.0,0.0)).set_trans(Tween.TRANS_EXPO)
+	sampleCollectionTimer.start()
+
 # After first delay
 func _on_timer_timeout() -> void:
 	# if screen was fading in from black
@@ -123,3 +135,9 @@ func _on_timer_2_timeout() -> void:
 func change_drone_bus_volume(value: float):
 	var index = AudioServer.get_bus_index("DroneAudio")
 	AudioServer.set_bus_volume_db(index, value)
+
+
+func _on_sample_collection_timer_timeout() -> void:
+	SampleCollectionOverlay.visible = false
+	SoundManager3D.PlaySoundQueue3D("SQ_CDing", Global.controlRoomRef.global_position)
+	signal_manager.emit_signal("collect_sample_end")

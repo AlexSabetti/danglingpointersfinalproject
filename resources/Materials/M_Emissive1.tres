@@ -10,4 +10,3 @@ albedo_texture = ExtResource("1_bb6fe")
 emission_enabled = true
 emission = Color(0.730809, 0.660479, 0.496145, 1)
 uv1_scale = Vector3(2, 2, 2)
-shadow_to_opacity = true
