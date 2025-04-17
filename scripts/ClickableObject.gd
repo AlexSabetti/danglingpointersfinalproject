@@ -44,6 +44,9 @@ func _ready():
 		if child is CollisionShape3D:
 			col_box = child as CollisionShape3D
 	
+	if col_box != null:
+		col_box.debug_color = Color("008ee5", 1.0)
+	
 	update_configuration_warnings()
 
 func _get_configuration_warnings():

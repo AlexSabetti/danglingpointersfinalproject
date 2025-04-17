@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3728ytvs6bn0"]
+[gd_scene load_steps=7 format=3 uid="uid://b3728ytvs6bn0"]
 
+[ext_resource type="Script" uid="uid://dl31a2hbiv4p3" path="res://scripts/ui_map_display.gd" id="1_orryn"]
 [ext_resource type="Theme" uid="uid://b7dmjh57doq5k" path="res://resources/Themes/theme_ScreenText.tres" id="1_ux1rw"]
+[ext_resource type="Texture2D" uid="uid://3cp8remnrdnp" path="res://resources/Textures/Sprites/Compass1_a1.png" id="2_scagj"]
 [ext_resource type="Shader" uid="uid://jhmbi4fs662c" path="res://resources/Shaders/VS_CRTFilter.tres" id="2_w3i8y"]
+[ext_resource type="Texture2D" uid="uid://de3fyto3npapl" path="res://resources/Textures/Sprites/Compass1_b1.png" id="3_orryn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gse5x"]
 shader = ExtResource("2_w3i8y")
@@ -10,6 +13,7 @@ shader_parameter/Curvature = 5.0
 shader_parameter/BackColor = Color(0.044862, 0.020364, 0.007147, 1)
 
 [node name="ui_mapDisplay" type="CanvasLayer"]
+script = ExtResource("1_orryn")
 
 [node name="BGColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -30,452 +34,543 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+[node name="MarginContainer_Grid" type="MarginContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 321
-theme_override_constants/margin_top = 16
+theme_override_constants/margin_left = 401
+theme_override_constants/margin_top = 96
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="GridBackGround" type="ColorRect" parent="MarginContainer/MarginContainer"]
+[node name="GridBackGround" type="ColorRect" parent="MarginContainer/MarginContainer_Grid"]
 layout_mode = 2
 color = Color(0.624702, 0.516195, 0.392268, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer_Grid"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 8
-
-[node name="ColorRect4" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color(0.0392157, 0.0470588, 0.0313726, 1)
-
-[node name="ColorRect3" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color(0.0392157, 0.0470588, 0.0313726, 1)
-
-[node name="ColorRect2" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color(0.0392157, 0.0470588, 0.0313726, 1)
-
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color(0.0392157, 0.0470588, 0.0313726, 1)
-
-[node name="ColorRect5" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color(0.0392157, 0.0470588, 0.0313726, 1)
-
-[node name="ColorRect6" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color(0.0392157, 0.0470588, 0.0313726, 1)
-
-[node name="ColorRect7" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color(0.0392157, 0.0470588, 0.0313726, 1)
-
-[node name="ColorRect8" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color(0.0392157, 0.0470588, 0.0313726, 1)
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Row1" type="HBoxContainer" parent="MarginContainer/MarginContainer_Grid/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="ColorRect4" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="ColumnA" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row1"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="ColumnB" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row1"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="ColumnC" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row1"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="ColumnD" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row1"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect5" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="ColumnE" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row1"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect6" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="ColumnF" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row1"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect7" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="ColumnG" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row1"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect8" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="ColumnH" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row1"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Row2" type="HBoxContainer" parent="MarginContainer/MarginContainer_Grid/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="ColorRect4" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="ColumnA" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="ColumnB" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="ColumnC" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="ColumnD" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect5" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="ColumnE" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect6" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="ColumnF" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect7" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="ColumnG" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect8" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="ColumnH" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Row3" type="HBoxContainer" parent="MarginContainer/MarginContainer_Grid/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="ColorRect4" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="ColumnA" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row3"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="ColumnB" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row3"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="ColumnC" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row3"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="ColumnD" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row3"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect5" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="ColumnE" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row3"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect6" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="ColumnF" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row3"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect7" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="ColumnG" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row3"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect8" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="ColumnH" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row3"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Row4" type="HBoxContainer" parent="MarginContainer/MarginContainer_Grid/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="ColorRect4" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+[node name="ColumnA" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row4"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+[node name="ColumnB" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row4"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+[node name="ColumnC" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row4"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+[node name="ColumnD" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row4"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect5" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+[node name="ColumnE" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row4"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect6" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+[node name="ColumnF" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row4"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect7" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+[node name="ColumnG" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row4"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect8" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+[node name="ColumnH" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row4"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="HBoxContainer6" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Row5" type="HBoxContainer" parent="MarginContainer/MarginContainer_Grid/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="ColorRect4" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
+[node name="ColumnA" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row5"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
+[node name="ColumnB" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row5"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
+[node name="ColumnC" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row5"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
+[node name="ColumnD" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row5"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect5" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
+[node name="ColumnE" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row5"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect6" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
+[node name="ColumnF" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row5"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect7" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
+[node name="ColumnG" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row5"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect8" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
+[node name="ColumnH" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row5"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="HBoxContainer7" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Row6" type="HBoxContainer" parent="MarginContainer/MarginContainer_Grid/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="ColorRect4" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
+[node name="ColumnA" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row6"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
+[node name="ColumnB" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row6"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
+[node name="ColumnC" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row6"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
+[node name="ColumnD" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row6"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect5" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
+[node name="ColumnE" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row6"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect6" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
+[node name="ColumnF" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row6"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect7" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
+[node name="ColumnG" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row6"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect8" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
+[node name="ColumnH" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row6"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="HBoxContainer8" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Row7" type="HBoxContainer" parent="MarginContainer/MarginContainer_Grid/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="ColorRect4" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+[node name="ColumnA" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row7"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+[node name="ColumnB" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row7"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+[node name="ColumnC" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row7"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+[node name="ColumnD" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row7"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect5" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+[node name="ColumnE" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row7"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect6" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+[node name="ColumnF" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row7"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect7" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+[node name="ColumnG" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row7"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="ColorRect8" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+[node name="ColumnH" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row7"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
+[node name="Row8" type="HBoxContainer" parent="MarginContainer/MarginContainer_Grid/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="ColumnA" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row8"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.0392157, 0.0470588, 0.0313726, 1)
+
+[node name="ColumnB" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row8"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.0392157, 0.0470588, 0.0313726, 1)
+
+[node name="ColumnC" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row8"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.0392157, 0.0470588, 0.0313726, 1)
+
+[node name="ColumnD" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row8"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.0392157, 0.0470588, 0.0313726, 1)
+
+[node name="ColumnE" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row8"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.0392157, 0.0470588, 0.0313726, 1)
+
+[node name="ColumnF" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row8"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.0392157, 0.0470588, 0.0313726, 1)
+
+[node name="ColumnG" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row8"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.0392157, 0.0470588, 0.0313726, 1)
+
+[node name="ColumnH" type="ColorRect" parent="MarginContainer/MarginContainer_Grid/VBoxContainer/Row8"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.0392157, 0.0470588, 0.0313726, 1)
+
+[node name="MapIcons" type="Control" parent="MarginContainer/MarginContainer_Grid"]
+layout_mode = 2
+
+[node name="DroneIcon" type="Label" parent="MarginContainer/MarginContainer_Grid/MapIcons"]
+layout_mode = 1
+offset_top = -28.0
+offset_right = 86.0
+offset_bottom = 106.0
 theme = ExtResource("1_ux1rw")
-theme_override_font_sizes/normal_font_size = 80
-text = "   Map
-   Here
-      :)"
+theme_override_colors/font_color = Color(0.894118, 0.792157, 0.627451, 1)
+theme_override_font_sizes/font_size = 100
+text = "◉"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Labels" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label_Letters" type="Label" parent="MarginContainer/Labels"]
+layout_mode = 0
+offset_left = 420.0
+offset_top = 12.0
+offset_right = 1234.0
+offset_bottom = 132.0
+theme = ExtResource("1_ux1rw")
+theme_override_colors/font_color = Color(0.623529, 0.517647, 0.392157, 1)
+theme_override_font_sizes/font_size = 80
+text = "A   B   C   D   E   F   G   H"
+
+[node name="Label_Numbers" type="Label" parent="MarginContainer/Labels"]
+layout_mode = 0
+offset_left = 343.0
+offset_top = 105.0
+offset_right = 1157.0
+offset_bottom = 902.0
+theme = ExtResource("1_ux1rw")
+theme_override_colors/font_color = Color(0.623529, 0.517647, 0.392157, 1)
+theme_override_constants/line_spacing = 26
+theme_override_font_sizes/font_size = 80
+text = "1
+2
+3
+4
+5
+6
+7
+8"
+
+[node name="Compass" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 188.0
+offset_top = 137.0
+offset_right = 228.0
+offset_bottom = 177.0
+
+[node name="CompassBG" type="Sprite2D" parent="Compass"]
+self_modulate = Color(0.97487, 0.894997, 0.798066, 1)
+position = Vector2(0, 22)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_scagj")
+
+[node name="CompassPointer" type="Sprite2D" parent="Compass"]
+modulate = Color(0.985481, 0.934657, 0.876984, 1)
+position = Vector2(0, 22)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_orryn")
+
+[node name="Status" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SamplesCollectedLabel" type="RichTextLabel" parent="Status"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = 328.0
+offset_right = 46.0
+offset_bottom = 328.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ux1rw")
+theme_override_constants/line_separation = -30
+theme_override_font_sizes/normal_font_size = 110
+text = "▭
+▭
+▭"
+fit_content = true
 
 [node name="Filter" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_gse5x")

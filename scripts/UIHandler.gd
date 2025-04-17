@@ -8,8 +8,8 @@ class_name UIHandler
 @onready var barPos : Control = $bar_Pos
 @onready var FadeToBlack : ColorRect = $FadeToBlack
 
-@onready var rb_container := $Ingame_UI/TaskBar/Panel3/MarginContainer/HBoxContainer/RB_VBoxContainer
-@onready var lb_container := $Ingame_UI/TaskBar/Panel3/MarginContainer/HBoxContainer/LB_VBoxContainer
+#@onready var rb_container := $Ingame_UI/TaskBar/Panel3/MarginContainer/HBoxContainer/RB_VBoxContainer
+#@onready var lb_container := $Ingame_UI/TaskBar/Panel3/MarginContainer/HBoxContainer/LB_VBoxContainer
 #@onready var blurbContainer := $Ingame_UI/TaskBar/MarginContainer/Panel2/MarginContainer/RichTextLabel
 @onready var blurbTimer := $BlurbTimer
 @onready var settingsMenu := $settings_menu
@@ -46,6 +46,7 @@ func _ready():
 	signal_manager.pause_game.connect(respond_to_pause)
 	signal_manager.unpause_game.connect(respond_to_unpause)
 	signal_manager.toggle_bar.connect(_on_btn_toggle_bar_pressed)
+	signal_manager.connect("focus_screen", focus_screen)
 	pauseMenu.get_node("Resume").pressed.connect(_resume_pressed)
 	pauseMenu.get_node("Settings").pressed.connect(_settings_pressed)
 	pauseMenu.get_node("Exit").pressed.connect(_exit)
@@ -56,15 +57,32 @@ func _process(_delta: float) -> void:
 	CursorIcon.position = get_global_mouse_position()
 
 # 
-func show_coursor_sprite(type:int):
-	if type == 0:
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		CursorIcon.visible = false
-	else: if type == 1:
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-		CursorIcon.visible = true
-		CursorIcon.texture = load("res://resources/Textures/Sprites/PointerArrow1_b1.png")
+func set_cursor_type(type:int):
+	signal_manager.emit_signal("screen_cursor_changed", type)
+	#if type == 0: # default cursor
+		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		#CursorIcon.visible = false
+	#else: if type == 1: # camera change sprite
+		#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		#CursorIcon.visible = true
+		#CursorIcon.texture = load("res://resources/Textures/Sprites/CompPointerArrow3_b1.png")
+	#else: if type == 2: # room change sprite
+		#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		#CursorIcon.visible = true
+		#CursorIcon.texture = load("res://resources/Textures/Sprites/CompPointerArrow2_b1.png")
+	#else: if type == 3: # inspect sprite
+		#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		#CursorIcon.visible = true
+		#CursorIcon.texture = load("res://resources/Textures/Sprites/CompPointerArrow4_b1.png")
 	
+
+func focus_screen(focused:bool):
+	if focused:
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		CursorIcon.visible = false
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		#CursorIcon.visible = true
 
 func respond_to_pause():
 	Global.gameControllerRef.paused = true
@@ -175,48 +193,48 @@ func fade_from_black():
 	tween.tween_property(FadeToBlack, "color", fadeTransColor, 1.0).from(fadeBlackColor).set_trans(Tween.TRANS_SINE)
 
 # set status of left button
-func set_left_btn(isActive:bool, camNum:int, displayText:String):
-	if isActive:
-		# activate button
-		lb_container.get_node("Btn_Left").disabled = false
-		lb_container.get_node("Btn_Left").mouse_filter = MOUSE_FILTER_STOP
-		# change text
-		lb_container.get_node("TextLabel").text = displayText
-		
-		# set camera number to use when pressed
-		lb_cam = camNum
-	else:
-		# deactivate button
-		lb_container.get_node("Btn_Left").disabled = true
-		lb_container.get_node("Btn_Left").mouse_filter = MOUSE_FILTER_IGNORE
-		# remove text
-		lb_container.get_node("TextLabel").text = ""
+#func set_left_btn(isActive:bool, camNum:int, displayText:String):
+	#if isActive:
+		## activate button
+		#lb_container.get_node("Btn_Left").disabled = false
+		#lb_container.get_node("Btn_Left").mouse_filter = MOUSE_FILTER_STOP
+		## change text
+		#lb_container.get_node("TextLabel").text = displayText
+		#
+		## set camera number to use when pressed
+		#lb_cam = camNum
+	#else:
+		## deactivate button
+		#lb_container.get_node("Btn_Left").disabled = true
+		#lb_container.get_node("Btn_Left").mouse_filter = MOUSE_FILTER_IGNORE
+		## remove text
+		#lb_container.get_node("TextLabel").text = ""
+#
+## set status of right button
+#func set_right_btn(isActive:bool, camNum:int, displayText:String):
+	#if isActive:
+		## activate button
+		#rb_container.get_node("Btn_Right").disabled = false
+		#rb_container.get_node("Btn_Right").mouse_filter = MOUSE_FILTER_STOP
+		## change text
+		#rb_container.get_node("TextLabel").text = displayText
+		#
+		## set camera number to use when pressed
+		#rb_cam = camNum
+	#else:
+		## deactivate button
+		#rb_container.get_node("Btn_Right").disabled = true
+		#rb_container.get_node("Btn_Right").mouse_filter = MOUSE_FILTER_IGNORE
+		## remove text
+		#rb_container.get_node("TextLabel").text = ""
 
-# set status of right button
-func set_right_btn(isActive:bool, camNum:int, displayText:String):
-	if isActive:
-		# activate button
-		rb_container.get_node("Btn_Right").disabled = false
-		rb_container.get_node("Btn_Right").mouse_filter = MOUSE_FILTER_STOP
-		# change text
-		rb_container.get_node("TextLabel").text = displayText
-		
-		# set camera number to use when pressed
-		rb_cam = camNum
-	else:
-		# deactivate button
-		rb_container.get_node("Btn_Right").disabled = true
-		rb_container.get_node("Btn_Right").mouse_filter = MOUSE_FILTER_IGNORE
-		# remove text
-		rb_container.get_node("TextLabel").text = ""
-
-func show_end_button(showBtn:bool):
-	if showBtn:
-		$Ingame_UI/MarginContainer/btn_EndGame.mouse_filter = MOUSE_FILTER_STOP
-		$Ingame_UI/MarginContainer/btn_EndGame.visible = true
-	else:
-		$Ingame_UI/MarginContainer/btn_EndGame.mouse_filter = MOUSE_FILTER_IGNORE
-		$Ingame_UI/MarginContainer/btn_EndGame.visible = false
+#func show_end_button(showBtn:bool):
+	#if showBtn:
+		#$Ingame_UI/MarginContainer/btn_EndGame.mouse_filter = MOUSE_FILTER_STOP
+		#$Ingame_UI/MarginContainer/btn_EndGame.visible = true
+	#else:
+		#$Ingame_UI/MarginContainer/btn_EndGame.mouse_filter = MOUSE_FILTER_IGNORE
+		#$Ingame_UI/MarginContainer/btn_EndGame.visible = false
 
 
 # when button is hovered over

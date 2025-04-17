@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bmkvlchp5iy01"]
+[gd_scene load_steps=21 format=3 uid="uid://bmkvlchp5iy01"]
 
 [ext_resource type="Script" uid="uid://bp2uw0yooxat7" path="res://systems/SoundManagement/soundManager3D.gd" id="1_bq6yj"]
 [ext_resource type="PackedScene" uid="uid://b8t4ygipwjedm" path="res://systems/SoundManagement/SoundQueue3D.tscn" id="1_ya6ty"]
@@ -6,12 +6,20 @@
 [ext_resource type="AudioStream" uid="uid://dhq8dovhqgfrl" path="res://resources/Sounds/RotaryPhoneTick0.wav" id="4_iei81"]
 [ext_resource type="AudioStream" uid="uid://c4lekkylf3tnv" path="res://resources/Sounds/PhoneV_1.wav" id="4_roa0k"]
 [ext_resource type="AudioStream" uid="uid://bw8007pubgjow" path="res://resources/Sounds/ComputerFonk1_a1.wav" id="5_2a7s3"]
+[ext_resource type="AudioStream" uid="uid://dpjw1gdyret4d" path="res://resources/Sounds/ComputerDing1.wav" id="5_83yrx"]
 [ext_resource type="AudioStream" uid="uid://dfmirjqrvacvd" path="res://resources/Sounds/PhoneV_2.wav" id="5_roa0k"]
+[ext_resource type="AudioStream" uid="uid://bt78vdf3f0ra6" path="res://resources/Sounds/ComputerFink1.wav" id="5_ymkas"]
 [ext_resource type="AudioStream" uid="uid://crtjlw3it3k2u" path="res://resources/Sounds/Boink.wav" id="7_ufmfj"]
 [ext_resource type="AudioStream" uid="uid://cpfue8en4scuo" path="res://resources/Sounds/PhoneV_3.wav" id="8_sd7m2"]
 [ext_resource type="AudioStream" uid="uid://dxq1qmos6jlvh" path="res://resources/Sounds/PhoneV_4.wav" id="9_1ckgb"]
 [ext_resource type="AudioStream" uid="uid://dlk6oti6vglnp" path="res://resources/Sounds/PhoneV_5.wav" id="10_1ckgb"]
 [ext_resource type="AudioStream" uid="uid://ldm80jo27erl" path="res://resources/Sounds/PhoneV_6.wav" id="11_eihy1"]
+[ext_resource type="AudioStream" uid="uid://bhlf5lxom506y" path="res://resources/Sounds/KeyPress1.wav" id="14_f0yo4"]
+[ext_resource type="AudioStream" uid="uid://f6uwvwjnm4m" path="res://resources/Sounds/KeyPress2.wav" id="15_83yrx"]
+[ext_resource type="AudioStream" uid="uid://c35snwl2auob1" path="res://resources/Sounds/KeyPress3.wav" id="16_eeye3"]
+[ext_resource type="AudioStream" uid="uid://q6um2a5dcg2q" path="res://resources/Sounds/KeyHold1.wav" id="17_7fh6a"]
+[ext_resource type="AudioStream" uid="uid://c8sqyluj1megi" path="res://resources/Sounds/KeyHold2.wav" id="18_xlls0"]
+[ext_resource type="AudioStream" uid="uid://hs26f085ntkn" path="res://resources/Sounds/KeyHold3.wav" id="19_2vnt3"]
 
 [node name="SoundManager3D" type="Node3D"]
 script = ExtResource("1_bq6yj")
@@ -27,23 +35,48 @@ stream = ExtResource("7_ufmfj")
 stream = ExtResource("4_iei81")
 panning_strength = 0.25
 
-[node name="SQ_CFonk" parent="." instance=ExtResource("1_ya6ty")]
-count = 2
+[node name="SQ_CDing" parent="." instance=ExtResource("1_ya6ty")]
 minPitch = 0.8
-maxPitch = 1.2
+maxPitch = 0.9
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SQ_CFonk"]
-stream = ExtResource("5_2a7s3")
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SQ_CDing"]
+stream = ExtResource("5_83yrx")
 panning_strength = 0.25
 bus = &"ComputerSpeaker"
 
+[node name="SQ_CFink" parent="." instance=ExtResource("1_ya6ty")]
+count = 2
+volumeDBModifier = 0.9
+minPitch = 0.4
+maxPitch = 0.6
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SQ_CFink"]
+stream = ExtResource("5_ymkas")
+pitch_scale = 0.5
+panning_strength = 0.25
+bus = &"DroneAudio"
+
+[node name="SQ_CFonk" parent="." instance=ExtResource("1_ya6ty")]
+count = 2
+volumeDBModifier = 0.9
+minPitch = 0.5
+maxPitch = 0.6
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SQ_CFonk"]
+stream = ExtResource("5_2a7s3")
+pitch_scale = 0.5
+panning_strength = 0.25
+bus = &"DroneAudio"
+
 [node name="SP_Voice" parent="." instance=ExtResource("3_ov475")]
 overrideSoundQueueSettings = true
+volumeDBModifier = 1.25
 minPitch = 0.7
 maxPitch = 0.8
 
 [node name="SoundQueue3D" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
 count = 2
+volumeDBModifier = 1.25
 minPitch = 0.7
 maxPitch = 0.8
 
@@ -53,6 +86,7 @@ panning_strength = 0.4
 
 [node name="SoundQueue3D2" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
 count = 2
+volumeDBModifier = 1.25
 minPitch = 0.7
 maxPitch = 0.8
 
@@ -62,6 +96,7 @@ panning_strength = 0.4
 
 [node name="SoundQueue3D3" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
 count = 2
+volumeDBModifier = 1.25
 minPitch = 0.7
 maxPitch = 0.8
 
@@ -71,6 +106,7 @@ panning_strength = 0.4
 
 [node name="SoundQueue3D4" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
 count = 2
+volumeDBModifier = 1.25
 minPitch = 0.7
 maxPitch = 0.8
 
@@ -80,6 +116,7 @@ panning_strength = 0.4
 
 [node name="SoundQueue3D5" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
 count = 2
+volumeDBModifier = 1.25
 minPitch = 0.7
 maxPitch = 0.8
 
@@ -89,9 +126,88 @@ panning_strength = 0.4
 
 [node name="SoundQueue3D6" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
 count = 2
+volumeDBModifier = 1.25
 minPitch = 0.7
 maxPitch = 0.8
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SP_Voice/SoundQueue3D6"]
 stream = ExtResource("11_eihy1")
 panning_strength = 0.4
+
+[node name="SP_KeyPress" parent="." instance=ExtResource("3_ov475")]
+overrideSoundQueueSettings = true
+volumeDBModifier = 0.4
+minPitch = 0.7
+maxPitch = 0.8
+
+[node name="SoundQueue3D" parent="SP_KeyPress" instance=ExtResource("1_ya6ty")]
+count = 2
+volumeDBModifier = 0.4
+minPitch = 0.7
+maxPitch = 0.8
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SP_KeyPress/SoundQueue3D"]
+stream = ExtResource("14_f0yo4")
+panning_strength = 0.3
+bus = &"ControlRoom"
+
+[node name="SoundQueue3D2" parent="SP_KeyPress" instance=ExtResource("1_ya6ty")]
+count = 2
+volumeDBModifier = 0.4
+minPitch = 0.7
+maxPitch = 0.8
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SP_KeyPress/SoundQueue3D2"]
+stream = ExtResource("15_83yrx")
+panning_strength = 0.3
+bus = &"ControlRoom"
+
+[node name="SoundQueue3D3" parent="SP_KeyPress" instance=ExtResource("1_ya6ty")]
+count = 2
+volumeDBModifier = 0.4
+minPitch = 0.7
+maxPitch = 0.8
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SP_KeyPress/SoundQueue3D3"]
+stream = ExtResource("16_eeye3")
+panning_strength = 0.3
+bus = &"ControlRoom"
+
+[node name="SP_KeyHold" parent="." instance=ExtResource("3_ov475")]
+overrideSoundQueueSettings = true
+volumeDBModifier = 0.5
+minPitch = 0.7
+maxPitch = 0.8
+
+[node name="SoundQueue3D" parent="SP_KeyHold" instance=ExtResource("1_ya6ty")]
+count = 2
+volumeDBModifier = 0.5
+minPitch = 0.7
+maxPitch = 0.8
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SP_KeyHold/SoundQueue3D"]
+stream = ExtResource("17_7fh6a")
+panning_strength = 0.3
+bus = &"ControlRoom"
+
+[node name="SoundQueue3D2" parent="SP_KeyHold" instance=ExtResource("1_ya6ty")]
+count = 2
+volumeDBModifier = 0.5
+minPitch = 0.7
+maxPitch = 0.8
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SP_KeyHold/SoundQueue3D2"]
+stream = ExtResource("18_xlls0")
+panning_strength = 0.3
+bus = &"ControlRoom"
+
+[node name="SoundQueue3D3" parent="SP_KeyHold" instance=ExtResource("1_ya6ty")]
+count = 2
+volumeDBModifier = 0.5
+minPitch = 0.7
+maxPitch = 0.8
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SP_KeyHold/SoundQueue3D3"]
+stream = ExtResource("19_2vnt3")
+panning_strength = 0.3
+bus = &"ControlRoom"

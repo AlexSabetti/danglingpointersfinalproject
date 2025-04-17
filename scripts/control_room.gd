@@ -6,7 +6,7 @@ var is_playing_sound:bool = false
 @onready var turnSoundPlayer:AudioStreamPlayer3D = $TurnSoundEffect
 
 func _ready()->void:
-	pass
+	Global.controlRoomRef = self
 
 # this is a bit messy lol, but it works for now
 func _process(_delta: float) -> void:

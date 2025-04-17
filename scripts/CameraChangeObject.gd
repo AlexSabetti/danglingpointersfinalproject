@@ -39,6 +39,7 @@ func _ready():
 		if child is CollisionShape3D:
 			col_box = child as CollisionShape3D
 	
+	# purely visual stuff for in editor
 	if col_box != null:
 		if isRoomChanger:
 			col_box.debug_color = Color("ffcb06", 1.0)
@@ -55,6 +56,11 @@ func _get_configuration_warnings():
 
 
 func _on_trigger():
+	# if is roomchanger, trigger it's room
+	if isRoomChanger:
+		self
+		pass
+	
 	if is_active && trigger_on_interact.size() > 0:
 		if oneShot:
 			is_active = false

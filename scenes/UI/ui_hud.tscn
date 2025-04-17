@@ -106,7 +106,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_h6kub")
 theme_override_styles/hover = SubResource("StyleBoxTexture_etpqr")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_f6hmj")
 theme_override_styles/normal = SubResource("StyleBoxTexture_q18rt")
-text = "resume"
+text = "R E S U M E"
 
 [node name="Settings" type="Button" parent="PauseMenu"]
 layout_mode = 2
@@ -118,7 +118,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_h6kub")
 theme_override_styles/hover = SubResource("StyleBoxTexture_etpqr")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_f6hmj")
 theme_override_styles/normal = SubResource("StyleBoxTexture_q18rt")
-text = "settings"
+text = "S E T T I N G S"
 
 [node name="Exit" type="Button" parent="PauseMenu"]
 layout_mode = 2
@@ -128,7 +128,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_l73ec")
 theme_override_styles/hover = SubResource("StyleBoxTexture_ruat2")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_q410u")
 theme_override_styles/normal = SubResource("StyleBoxTexture_od6b3")
-text = "exit"
+text = "E X I T"
 
 [node name="settings_menu" parent="." instance=ExtResource("5_lmxud")]
 layout_mode = 1
@@ -222,4 +222,5 @@ one_shot = true
 
 [node name="CursorSprite2D" type="Sprite2D" parent="."]
 visible = false
+modulate = Color(0.862745, 0.854902, 0.839216, 0.835294)
 texture = ExtResource("17_1rx2y")

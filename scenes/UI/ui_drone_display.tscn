@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6veimdajceyb"]
+[gd_scene load_steps=10 format=3 uid="uid://c6veimdajceyb"]
 
 [ext_resource type="Script" uid="uid://bgdyd26ycqcwh" path="res://scripts/ui_drone_display.gd" id="1_01chn"]
 [ext_resource type="Shader" uid="uid://jhmbi4fs662c" path="res://resources/Shaders/VS_CRTFilter.tres" id="2_tcw1t"]
+[ext_resource type="Material" uid="uid://dkabee843hdpt" path="res://resources/Shaders/SM_UnderWater.tres" id="2_uor4o"]
+[ext_resource type="Texture2D" uid="uid://yyyt2l08idnr" path="res://resources/Textures/Sprites/CompassOverlay1_a1.png" id="3_dgjav"]
 [ext_resource type="Theme" uid="uid://b7dmjh57doq5k" path="res://resources/Themes/theme_ScreenText.tres" id="3_tcw1t"]
+[ext_resource type="Texture2D" uid="uid://bscddtqbve2oj" path="res://resources/Textures/Sprites/CamOverlay1_a1.png" id="4_3lj18"]
+[ext_resource type="Texture2D" uid="uid://bqj8n3jxtx40o" path="res://resources/Textures/Sprites/CompPointerArrow1_b1.png" id="5_jplk7"]
+[ext_resource type="Texture2D" uid="uid://bcdtul6ykwl24" path="res://resources/Textures/Sprites/SpeachBubbleWhiteSprite1_a1.png" id="7_3qw63"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gse5x"]
 shader = ExtResource("2_tcw1t")
@@ -12,6 +17,14 @@ shader_parameter/BackColor = Color(0.044862, 0.020364, 0.007147, 1)
 
 [node name="ui_droneDisplay" type="CanvasLayer"]
 script = ExtResource("1_01chn")
+
+[node name="UnderwaterFilter" type="ColorRect" parent="."]
+material = ExtResource("2_uor4o")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="DroneScreenOverlay" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -24,35 +37,97 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
+[node name="CamOverlay" type="Sprite2D" parent="DroneScreenOverlay"]
+self_modulate = Color(1, 1, 1, 0.27451)
+position = Vector2(640, 480)
+texture = ExtResource("4_3lj18")
+
 [node name="Compass" type="Control" parent="DroneScreenOverlay"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="CompassPointer" type="Label" parent="DroneScreenOverlay/Compass"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -74.0
-offset_top = -67.0
-offset_right = -16.0
-offset_bottom = -11.0
-grow_horizontal = 0
-grow_vertical = 0
-pivot_offset = Vector2(28.47, 27.28)
-theme = ExtResource("3_tcw1t")
-theme_override_font_sizes/font_size = 60
-text = "↑"
-horizontal_alignment = 1
+[node name="CompassSprite" type="Sprite2D" parent="DroneScreenOverlay/Compass"]
+modulate = Color(1, 1, 1, 0.27451)
+position = Vector2(0, -820)
+texture = ExtResource("3_dgjav")
 
-[node name="CRTFilter" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_gse5x")
+[node name="SampleCollectionOverlay" type="MarginContainer" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 800
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SampleCollectionOverlay"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SampleCollectionOverlay/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_tcw1t")
+text = " Collecting Sample..."
+
+[node name="BG-Color" type="ColorRect" parent="SampleCollectionOverlay/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.045755, 0.0494231, 0.0386864, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="SampleCollectionOverlay/VBoxContainer/BG-Color"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ProgressBar" type="ColorRect" parent="SampleCollectionOverlay/VBoxContainer/BG-Color/MarginContainer"]
+custom_minimum_size = Vector2(864, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+color = Color(0.729412, 0.654902, 0.498039, 1)
+
+[node name="CursorSprite2D" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.718242, 0.695634, 0.573654, 1)
+texture = ExtResource("5_jplk7")
+offset = Vector2(10, 20)
+
+[node name="MessageNotif" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MessageNotifSprite" type="Sprite2D" parent="MessageNotif"]
+modulate = Color(1, 1, 1, 0.588235)
+position = Vector2(69, 66)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("7_3qw63")
+flip_h = true
+
+[node name="Label" type="Label" parent="MessageNotif"]
+modulate = Color(1, 1, 1, 0.588235)
+layout_mode = 0
+offset_left = 98.0
+offset_top = 56.0
+offset_right = 317.0
+offset_bottom = 79.0
+theme = ExtResource("3_tcw1t")
+theme_override_colors/font_color = Color(0.858824, 0.8, 0.670588, 1)
+text = "Receiving Message..."
 
 [node name="BlankScreen" type="ColorRect" parent="."]
 visible = false
@@ -62,12 +137,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
-
-[node name="Timer1" type="Timer" parent="."]
-one_shot = true
-
-[node name="Timer2" type="Timer" parent="."]
-one_shot = true
 
 [node name="LoadingText" type="Label" parent="."]
 visible = false
@@ -87,5 +156,25 @@ theme_override_font_sizes/font_size = 80
 text = "..."
 horizontal_alignment = 1
 
+[node name="CRTFilter" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_gse5x")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Timer1" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
+one_shot = true
+
+[node name="SampleCollectionTimer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
 [connection signal="timeout" from="Timer1" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+[connection signal="timeout" from="SampleCollectionTimer" to="." method="_on_sample_collection_timer_timeout"]

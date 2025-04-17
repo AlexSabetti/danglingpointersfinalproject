@@ -2,8 +2,8 @@ class_name MapManager
 extends Node3D
 
 @export_category("Map Properties")
-@export var grid_count: int = 16 # MUST BE A ROOTABLE VALUE
-@export var cell_size = 16 # Change this if we change the room sizes
+@export var grid_count: int = 8 # MUST BE A ROOTABLE VALUE
+@export var cell_size: int = 20 # Change this if we change the room sizes
 @export var active_cell_count: int = 0 # How many cells we've already placed rooms in
 @export var required_areas: int = 4 # Story-Specific mission areas, the expansion function must place this many
 
@@ -51,6 +51,8 @@ var root_count: int = -1
 var head: MapNode = null
 
 func _ready():
+	root_count = sqrt(grid_count)
+	Create_Map()
 	root_count = sqrt(grid_count)
 	Create_Map()
 

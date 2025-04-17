@@ -1,12 +1,13 @@
-[gd_scene load_steps=33 format=3 uid="uid://bppmj5dmnvlko"]
+[gd_scene load_steps=39 format=3 uid="uid://bppmj5dmnvlko"]
 
 [ext_resource type="PackedScene" uid="uid://b25jkvemaipnk" path="res://scenes/UI/CanvasLayer_PostProcessing.tscn" id="1_65ejx"]
 [ext_resource type="PackedScene" uid="uid://v2urofrh3pq5" path="res://scenes/Entities/GameController.tscn" id="2_2ykvt"]
 [ext_resource type="Material" uid="uid://bg2bjdrabdhn5" path="res://resources/Shaders/SM_Posterization.tres" id="2_i1dou"]
 [ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://scenes/Entities/CamPosNode.tscn" id="3_71sqw"]
-[ext_resource type="Environment" uid="uid://crvgdsl4qcv1t" path="res://resources/Environments/env_underwater1.tres" id="3_i3nvf"]
 [ext_resource type="Script" uid="uid://dybrp2bdnyair" path="res://scripts/world_environment.gd" id="3_t8fsm"]
+[ext_resource type="Environment" uid="uid://c8wr6jqwlnict" path="res://resources/Environments/env_underwater1_1.tres" id="3_xklfb"]
 [ext_resource type="PackedScene" uid="uid://bsgqiciuvs6ok" path="res://scenes/Levels/ControlRoom.tscn" id="4_e5ioo"]
+[ext_resource type="Shader" uid="uid://jhmbi4fs662c" path="res://resources/Shaders/VS_CRTFilter.tres" id="7_eki53"]
 [ext_resource type="PackedScene" uid="uid://dl5x0m77shd62" path="res://scenes/UI/ui_message_display.tscn" id="8_sou27"]
 [ext_resource type="PackedScene" uid="uid://b3728ytvs6bn0" path="res://scenes/UI/ui_map_display.tscn" id="9_v4ldq"]
 [ext_resource type="PackedScene" uid="uid://cgvgni8obca17" path="res://scenes/Levels/Rooms/Room1_a1.tscn" id="11_hx85v"]
@@ -16,10 +17,14 @@
 [ext_resource type="PackedScene" uid="uid://dybogvrii8h3g" path="res://scenes/Logic/dialog_changer.tscn" id="17_oj8la"]
 [ext_resource type="PackedScene" uid="uid://cf16x4d6gkv8e" path="res://scenes/Levels/Rooms/Room2_a1.tscn" id="18_t40tb"]
 [ext_resource type="PackedScene" uid="uid://dxgfd5vloh5y2" path="res://scenes/Levels/Rooms/Room3_a1.tscn" id="19_i3nvf"]
+[ext_resource type="PackedScene" uid="uid://c20xyr28c8w0n" path="res://scenes/Levels/Rooms/Room8_a1.tscn" id="20_dtj52"]
 [ext_resource type="PackedScene" uid="uid://oke55a7wgf5n" path="res://scenes/Levels/Rooms/Room4_a1.tscn" id="20_sakc8"]
 [ext_resource type="PackedScene" uid="uid://cjhqgtvl0c4r4" path="res://scenes/Levels/Rooms/Room5_a1.tscn" id="21_dtj52"]
 [ext_resource type="PackedScene" uid="uid://c558naetylum2" path="res://scenes/Levels/Rooms/Room7_a1.tscn" id="21_eki53"]
+[ext_resource type="PackedScene" uid="uid://d4cyqu5i5wyu" path="res://scenes/Levels/Rooms/Room9_a1.tscn" id="21_f0jn2"]
 [ext_resource type="PackedScene" uid="uid://bqnjyqolsuecm" path="res://scenes/Levels/Rooms/Room6_a1.tscn" id="22_eki53"]
+[ext_resource type="PackedScene" uid="uid://253weudhtvis" path="res://scenes/Levels/Rooms/Room10_a1.tscn" id="23_f0jn2"]
+[ext_resource type="PackedScene" uid="uid://cwsmufvibi5uc" path="res://scenes/Levels/Rooms/Room11_a1.tscn" id="24_xklfb"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_sakc8"]
 viewport_path = NodePath("Entities/SubViewport_DroneCam")
@@ -69,6 +74,12 @@ emission_texture = SubResource("ViewportTexture_i3nvf")
 [sub_resource type="ViewportTexture" id="ViewportTexture_v4ldq"]
 viewport_path = NodePath("Entities/SubViewport_MsgScreen")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f0jn2"]
+shader = ExtResource("7_eki53")
+shader_parameter/ScanLine_Intensity = 0.025
+shader_parameter/Curvature = 5.0
+shader_parameter/BackColor = Color(0.044862, 0.020364, 0.007147, 1)
+
 [node name="Dev_Level" type="Node3D"]
 
 [node name="CanvasLayerPostProcessing2" parent="." instance=ExtResource("1_65ejx")]
@@ -77,13 +88,15 @@ viewport_path = NodePath("Entities/SubViewport_MsgScreen")
 material = ExtResource("2_i1dou")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("3_i3nvf")
+environment = ExtResource("3_xklfb")
 script = ExtResource("3_t8fsm")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(0.559555, -0.414397, -0.717756, 0.828793, 0.279778, 0.484588, 2.58096e-08, -0.866025, 0.500001, 1.90681, 6.2019, -2.95414)
+transform = Transform3D(0.559555, -0.414397, -0.717756, 0.828793, 0.279778, 0.484589, 2.23135e-08, -0.866025, 0.500001, 1.90681, 6.2019, -2.95414)
+visible = false
 light_color = Color(0.810689, 0.774534, 0.546898, 1)
-light_energy = 0.175
+light_energy = 0.2
+light_volumetric_fog_energy = 1.5
 light_bake_mode = 1
 light_cull_mask = 4294967293
 shadow_enabled = true
@@ -93,11 +106,10 @@ directional_shadow_split_1 = 0.279
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(0.559555, -0.414397, -0.717756, 0.828793, 0.279778, 0.484588, 2.58096e-08, -0.866025, 0.500001, 1.90681, 6.2019, -2.95414)
-visible = false
-light_color = Color(0.630941, 0.778981, 0.453285, 1)
-light_energy = 0.15
+light_color = Color(0.713506, 0.743926, 0.544914, 1)
+light_energy = 0.4
 light_bake_mode = 1
-light_cull_mask = 4294967293
+light_cull_mask = 4294967292
 shadow_enabled = true
 shadow_blur = 10.0
 directional_shadow_mode = 1
@@ -115,43 +127,49 @@ double_sided = false
 texture = SubResource("ViewportTexture_xqkv0")
 
 [node name="UpperSmallScreen" type="Sprite3D" parent="Control_Room/ViewPortScreens"]
-transform = Transform3D(0.00551308, 0, -0.0118228, 0, 0.0130451, 0, 0.0118228, 0, 0.00551308, -0.152615, 2.3477, 0.95004)
+transform = Transform3D(0.00551308, 0, -0.0118228, 0, 0.0130451, 0, 0.0118228, 0, 0.00551308, -0.179727, 2.3477, 0.962683)
 material_override = SubResource("StandardMaterial3D_6t6iq")
 double_sided = false
 texture = SubResource("ViewportTexture_sou27")
 
 [node name="LowerSmallScreen" type="Sprite3D" parent="Control_Room/ViewPortScreens"]
-transform = Transform3D(0.00551308, 0, -0.0118228, 0, 0.0130451, 0, 0.0118228, 0, 0.00551308, -0.152458, 2.16265, 0.945473)
+transform = Transform3D(0.00551308, 0, -0.0118228, 0, 0.0130451, 0, 0.0118228, 0, 0.00551308, -0.180402, 2.16265, 0.958504)
 material_override = SubResource("StandardMaterial3D_sakc8")
 double_sided = false
 texture = SubResource("ViewportTexture_v4ldq")
 
 [node name="PlayerCamera3D" type="Camera3D" parent="Control_Room"]
-transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, -0.808825, 2.31077, 1.29759)
+transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, -0.808659, 2.31077, 1.28714)
 current = true
 fov = 50.1
 
-[node name="GameController" parent="." node_paths=PackedStringArray("player_cam", "drone", "VirtualScreenViewport") instance=ExtResource("2_2ykvt")]
+[node name="GameController" parent="." node_paths=PackedStringArray("player_cam", "drone", "VirtualScreenViewport", "MessageScreenUI", "DroneScreenUI", "MapScreenUI") instance=ExtResource("2_2ykvt")]
 player_cam = NodePath("../Control_Room/PlayerCamera3D")
 drone = NodePath("../Entities/SubViewport_DroneCam/Drone")
 turnSpeed = 0.15
 VirtualScreenViewport = NodePath("../Entities/SubViewport_DroneCam")
+MessageScreenUI = NodePath("../Entities/SubViewport_MsgScreen/ui_msgDisplay")
+DroneScreenUI = NodePath("../Entities/SubViewport_DroneCam/ui_droneDisplay")
+MapScreenUI = NodePath("../Entities/SubViewport_Map/ui_mapDisplay")
 
 [node name="Entities" type="Node3D" parent="."]
 
 [node name="SubViewport_DroneCam" type="SubViewport" parent="Entities"]
 size = Vector2i(1280, 960)
 
-[node name="CanvasLayerPostProcessing" parent="Entities/SubViewport_DroneCam" instance=ExtResource("1_65ejx")]
-
 [node name="ui_droneDisplay" parent="Entities/SubViewport_DroneCam" instance=ExtResource("12_t40tb")]
 
+[node name="CanvasLayerPostProcessing2" parent="Entities/SubViewport_DroneCam" instance=ExtResource("1_65ejx")]
+
+[node name="ColorRect" parent="Entities/SubViewport_DroneCam/CanvasLayerPostProcessing2" index="0"]
+material = SubResource("ShaderMaterial_f0jn2")
+
 [node name="Drone" parent="Entities/SubViewport_DroneCam" node_paths=PackedStringArray("active_cam_node") instance=ExtResource("13_xklfb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.03195, 2.38695, 22.0276)
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -16.0575, 1.59657, -16.0918)
 active_cam_node = NodePath("../CameraNode1")
 
 [node name="CameraNode1" parent="Entities/SubViewport_DroneCam" instance=ExtResource("3_71sqw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47629, 2.20184, 21.9412)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52371, 1.61494, 19.9412)
 
 [node name="TestCamera3D" type="Camera3D" parent="Entities/SubViewport_DroneCam/CameraNode1"]
 
@@ -173,13 +191,13 @@ amount = 256
 
 [node name="Rooms" type="Node3D" parent="."]
 
-[node name="TestMapNode" parent="Rooms" instance=ExtResource("11_hx85v")]
+[node name="Room1_a1" parent="Rooms" instance=ExtResource("11_hx85v")]
 
 [node name="Room2_a1" parent="Rooms" instance=ExtResource("18_t40tb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
 
 [node name="Room3_a2" parent="Rooms" instance=ExtResource("19_i3nvf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
 
 [node name="Room4_a1" parent="Rooms" instance=ExtResource("20_sakc8")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20, 0, -20)
@@ -188,20 +206,45 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20, 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
 
 [node name="Room6_a2" parent="Rooms" instance=ExtResource("22_eki53")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, -20)
+east_blocked = true
+west_blocked = true
 
 [node name="Room6_a3" parent="Rooms" instance=ExtResource("22_eki53")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -80)
+west_blocked = true
 
 [node name="Room7_a1" parent="Rooms" instance=ExtResource("21_eki53")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+
+[node name="Room8_a1" parent="Rooms" instance=ExtResource("20_dtj52")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -20)
+
+[node name="Room9_a1" parent="Rooms" instance=ExtResource("21_f0jn2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+
+[node name="Room9_a2" parent="Rooms" instance=ExtResource("21_f0jn2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -80)
+south_blocked = true
+east_blocked = true
+west_blocked = true
+
+[node name="Room10_a1" parent="Rooms" instance=ExtResource("23_f0jn2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -40)
+south_blocked = true
+west_blocked = true
+
+[node name="Room11_a1" parent="Rooms" instance=ExtResource("24_xklfb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+north_blocked = true
 
 [node name="Logic" type="Node3D" parent="."]
 
 [node name="DialogChanger" parent="Logic" instance=ExtResource("17_oj8la")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.85961, -4.75221, 13.7569)
-newDialog = "Testing! Testing! 1 2 3... Is this working?"
-delay_before_trigger = 1.0
+newDialog = Array[String](["Alright, the cam should be in position now.", "Try using your arrow keys to look around real quick."])
+delay_before_trigger = 3.0
+trigger_on_start = true
 
 [editable path="CanvasLayerPostProcessing2"]
-[editable path="Entities/SubViewport_DroneCam/CanvasLayerPostProcessing"]
+[editable path="Entities/SubViewport_DroneCam/CanvasLayerPostProcessing2"]

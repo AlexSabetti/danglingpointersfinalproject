@@ -59,13 +59,13 @@ func show_settings_menu() -> void:
 func _on_volume_slider_value_changed(value: float) -> void:
 	Global.global_volume = value
 	AudioServer.set_bus_volume_db(volume_bus_idx, linear_to_db(value))
-	volume_number.text = str(value * 100) + "%"
+	volume_number.text = str(int(value * 100)) + "%"
 	
 
 func _on_brightness_slider_value_changed(value: float) -> void:
 	Global.global_brightness = value
-	Global.global_world_env.environment.adjustment_brightness = value
-	brightness_number.text = str(value * 100) + "%"
+	Global.global_world_env.environment.tonemap_exposure = value
+	brightness_number.text = str(int(value * 100)) + "%"
 
 func _on_cam_wobble_check_box_toggled(toggled_on: bool) -> void:
 	Global.global_camera_wobble = toggled_on

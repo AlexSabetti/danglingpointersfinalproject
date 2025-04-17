@@ -10,10 +10,14 @@ func _ready() -> void:
 	SoundQueuesByName = {
 		"SQ_Boink" : $SQ_Boink,
 		"SQ_Tick" : $SQ_Tick,
+		"SQ_CDing" : $SQ_CDing,
+		"SQ_CFink" : $SQ_CFink,
 		"SQ_CFonk" : $SQ_CFonk,
 	}
 	SoundPoolsByName = {
-		"SP_Voice" : $SP_Voice
+		"SP_Voice" : $SP_Voice,
+		"SP_KeyPress" : $SP_KeyPress,
+		"SP_KeyHold" : $SP_KeyHold,
 	}
 	
 

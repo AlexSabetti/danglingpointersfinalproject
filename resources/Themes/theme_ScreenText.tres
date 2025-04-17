@@ -1,6 +1,18 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b7dmjh57doq5k"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://b7dmjh57doq5k"]
 
 [ext_resource type="FontFile" uid="uid://dxga040301lgv" path="res://resources/Fonts/Quenda-Medium.otf" id="1_xblbe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xblbe"]
+bg_color = Color(0.862745, 0.780392, 0.607843, 0.576471)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jx83s"]
+bg_color = Color(0.862745, 0.780392, 0.607843, 0.576471)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yn4d5"]
+bg_color = Color(0.862745, 0.780392, 0.607843, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a5u48"]
+bg_color = Color(0.862745, 0.780392, 0.607843, 1)
 
 [resource]
 Button/colors/font_color = Color(0.745098, 0.670588, 0.509804, 1)
@@ -20,5 +32,10 @@ RichTextLabel/constants/line_separation = 4
 RichTextLabel/constants/shadow_offset_x = 4
 RichTextLabel/constants/shadow_offset_y = 4
 RichTextLabel/constants/shadow_outline_size = 1
-RichTextLabel/font_sizes/normal_font_size = 18
+RichTextLabel/font_sizes/bold_font_size = 100
+RichTextLabel/font_sizes/normal_font_size = 80
 RichTextLabel/fonts/normal_font = ExtResource("1_xblbe")
+ScrollContainer/styles/focus = SubResource("StyleBoxFlat_xblbe")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_jx83s")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_yn4d5")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_a5u48")
