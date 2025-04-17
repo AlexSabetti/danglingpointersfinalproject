@@ -1,8 +1,8 @@
 [gd_scene load_steps=18 format=3 uid="uid://dxgfd5vloh5y2"]
 
 [ext_resource type="PackedScene" uid="uid://crwrhmxlk0mc6" path="res://resources/Models/under_water_room_3_a_1.tscn" id="1_6x3y3"]
-[ext_resource type="Script" uid="uid://br3bhxpyvy3lu" path="res://scripts/Room.gd" id="1_nu0df"]
-[ext_resource type="Script" uid="uid://bs8y8lrwcb8ml" path="res://scripts/CameraChangeObject.gd" id="2_e8vfg"]
+[ext_resource type="Script" path="res://scripts/Room.gd" id="1_nu0df"]
+[ext_resource type="Script" path="res://scripts/CameraChangeObject.gd" id="2_e8vfg"]
 [ext_resource type="PackedScene" uid="uid://bd7icn4pwfdoi" path="res://scenes/Entities/Foliage.tscn" id="2_nu0df"]
 [ext_resource type="Texture2D" uid="uid://cealpeqkes7xo" path="res://resources/Textures/Sprites/SeaWeeds1_a1.png" id="3_j8hn1"]
 [ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://scenes/Entities/CamPosNode.tscn" id="3_kxr2k"]
@@ -64,7 +64,6 @@ trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_N")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_N"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.25, 1.5, 0)
 shape = SubResource("BoxShape3D_2yek6")
-debug_color = Color(1, 0.796078, 0.0235294, 1)
 
 [node name="RoomChangeCollider_S" type="StaticBody3D" parent="RoomChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0, 0, 0)
@@ -75,7 +74,6 @@ trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_S")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_S"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.25, 1.5, 0)
 shape = SubResource("BoxShape3D_2yek6")
-debug_color = Color(1, 0.796078, 0.0235294, 1)
 
 [node name="RoomChangeCollider_W" type="StaticBody3D" parent="RoomChangers" node_paths=PackedStringArray("trigger_on_interact")]
 script = ExtResource("2_e8vfg")
@@ -85,7 +83,6 @@ trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_W")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_W"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.25, 1.5, 0)
 shape = SubResource("BoxShape3D_2yek6")
-debug_color = Color(1, 0.796078, 0.0235294, 1)
 
 [node name="CameraChangers" type="Node3D" parent="."]
 
@@ -97,7 +94,6 @@ trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_W")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/CameraChanger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.5, 0)
 shape = SubResource("BoxShape3D_e8vfg")
-debug_color = Color(1, 0.772549, 0.560784, 1)
 
 [node name="CameraChanger2" type="StaticBody3D" parent="CameraChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 4)
@@ -107,7 +103,6 @@ trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_S")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/CameraChanger2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 1.5, 0)
 shape = SubResource("BoxShape3D_e8vfg")
-debug_color = Color(1, 0.772549, 0.560784, 1)
 
 [node name="CameraChanger3" type="StaticBody3D" parent="CameraChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
@@ -117,7 +112,6 @@ trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_S")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/CameraChanger3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.5, 1.09278e-08)
 shape = SubResource("BoxShape3D_e8vfg")
-debug_color = Color(1, 0.772549, 0.560784, 1)
 
 [node name="CameraChanger4" type="StaticBody3D" parent="CameraChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
@@ -127,7 +121,6 @@ trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_N")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/CameraChanger4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 1.5, 0)
 shape = SubResource("BoxShape3D_e8vfg")
-debug_color = Color(1, 0.772549, 0.560784, 1)
 
 [node name="CameraNodes" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)

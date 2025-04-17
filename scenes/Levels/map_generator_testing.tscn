@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmt073qui3xap"]
+
+[ext_resource type="PackedScene" uid="uid://cqo7pftnpwu5f" path="res://scenes/Logic/MapManagement.tscn" id="1_w8gq5"]
+
+[node name="MapGeneratorTesting" type="Node3D"]
+
+[node name="Manager" parent="." instance=ExtResource("1_w8gq5")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.815542, 0.578698, 0, -0.578698, 0.815542, 0, 4.85327, 10.5343)

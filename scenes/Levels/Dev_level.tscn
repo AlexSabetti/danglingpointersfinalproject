@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://v2urofrh3pq5" path="res://scenes/Entities/GameController.tscn" id="2_2ykvt"]
 [ext_resource type="Material" uid="uid://bg2bjdrabdhn5" path="res://resources/Shaders/SM_Posterization.tres" id="2_i1dou"]
 [ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://scenes/Entities/CamPosNode.tscn" id="3_71sqw"]
-[ext_resource type="Script" uid="uid://dybrp2bdnyair" path="res://scripts/world_environment.gd" id="3_t8fsm"]
+[ext_resource type="Script" path="res://scripts/world_environment.gd" id="3_t8fsm"]
 [ext_resource type="Environment" uid="uid://c8wr6jqwlnict" path="res://resources/Environments/env_underwater1_1.tres" id="3_xklfb"]
 [ext_resource type="PackedScene" uid="uid://bsgqiciuvs6ok" path="res://scenes/Levels/ControlRoom.tscn" id="4_e5ioo"]
 [ext_resource type="Shader" uid="uid://jhmbi4fs662c" path="res://resources/Shaders/VS_CRTFilter.tres" id="7_eki53"]

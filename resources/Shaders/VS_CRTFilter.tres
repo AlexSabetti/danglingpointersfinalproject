@@ -138,7 +138,7 @@ code = "shader_type canvas_item;
 render_mode blend_mix;
 
 uniform float ScanLine_Intensity = 0.02500000037253;
-uniform float Curvature = 5.0;
+uniform float Curvature = 5;
 uniform sampler2D screen_tex_frg_3 : hint_screen_texture;
 uniform vec4 BackColor : source_color = vec4(0.044862, 0.020364, 0.007147, 1.000000);
 

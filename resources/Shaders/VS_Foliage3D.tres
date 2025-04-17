@@ -268,7 +268,7 @@ code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert_wrap, specular_toon, depth_prepass_alpha, shadows_disabled;
 
 uniform float sway_amount_x = 0.10000000149012;
-uniform float sway_speed = 1.0;
+uniform float sway_speed = 1;
 uniform float sway_amount_z = 0.10000000149012;
 uniform float WobbleRate = 3.79999995231628;
 uniform vec2 UVOffset1 = vec2(0.320000, 0.400000);
@@ -277,7 +277,7 @@ uniform vec2 UVOffset2 = vec2(0.320000, 0.400000);
 uniform float DistortionAmount = 0.00300000002608;
 uniform sampler2D Texture : source_color;
 uniform sampler2D EmissionTexture : source_color;
-uniform float EmissionAmount = 0.0;
+uniform float EmissionAmount = 0;
 
 
 

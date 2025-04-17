@@ -1,11 +1,11 @@
 [gd_scene load_steps=28 format=3 uid="uid://oke55a7wgf5n"]
 
-[ext_resource type="Script" uid="uid://br3bhxpyvy3lu" path="res://scripts/Room.gd" id="1_c8qsn"]
+[ext_resource type="Script" path="res://scripts/Room.gd" id="1_c8qsn"]
 [ext_resource type="PackedScene" uid="uid://cumlbba0awhy3" path="res://resources/Models/under_water_room_4_a_2.tscn" id="2_23lw4"]
 [ext_resource type="PackedScene" uid="uid://bd7icn4pwfdoi" path="res://scenes/Entities/Foliage.tscn" id="2_c8qsn"]
-[ext_resource type="Script" uid="uid://bs8y8lrwcb8ml" path="res://scripts/CameraChangeObject.gd" id="2_j63q2"]
+[ext_resource type="Script" path="res://scripts/CameraChangeObject.gd" id="2_j63q2"]
 [ext_resource type="Texture2D" uid="uid://cealpeqkes7xo" path="res://resources/Textures/Sprites/SeaWeeds1_a1.png" id="3_23lw4"]
-[ext_resource type="Script" uid="uid://c52c6aj8hv8ml" path="res://scripts/MapNode.gd" id="3_e7gaw"]
+[ext_resource type="Script" path="res://scripts/MapNode.gd" id="3_e7gaw"]
 [ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://scenes/Entities/CamPosNode.tscn" id="3_jrdm3"]
 [ext_resource type="Texture2D" uid="uid://cufcff04171uc" path="res://resources/Textures/Sprites/SeaWeeds1_b1.png" id="4_e7gaw"]
 [ext_resource type="Texture2D" uid="uid://drf0umkah0oxa" path="res://resources/Textures/Sprites/SeaWeeds1_c1.png" id="8_wgnab"]
@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cco1e2uts6xht" path="res://resources/Textures/Sprites/SeaWeeds2_GlowPoints_c1.png" id="10_sh656"]
 [ext_resource type="Texture2D" uid="uid://dhvn8d5topyjo" path="res://resources/Textures/NormalMaps/7864-normal.jpg" id="11_gcuyc"]
 [ext_resource type="Texture2D" uid="uid://chng0opds5tf2" path="res://resources/Textures/Sprites/Reeds2_b1.png" id="12_evpny"]
-[ext_resource type="Script" uid="uid://b8260neigo27n" path="res://scripts/ClickableObject.gd" id="13_gcuyc"]
+[ext_resource type="Script" path="res://scripts/ClickableObject.gd" id="13_gcuyc"]
 [ext_resource type="PackedScene" uid="uid://dybogvrii8h3g" path="res://scenes/Logic/dialog_changer.tscn" id="14_evpny"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n7ufa"]
@@ -80,7 +80,6 @@ trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_S"), NodePath("../
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_S"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.25, 1.5, 0)
 shape = SubResource("BoxShape3D_n7ufa")
-debug_color = Color(1, 0.796078, 0.0235294, 1)
 
 [node name="RoomChangeCollider_W" type="StaticBody3D" parent="RoomChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
@@ -91,7 +90,6 @@ trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_W"), NodePath("../
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_W"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.25, 1.5, 0)
 shape = SubResource("BoxShape3D_n7ufa")
-debug_color = Color(1, 0.796078, 0.0235294, 1)
 
 [node name="CameraChangers" type="Node3D" parent="."]
 
@@ -103,7 +101,6 @@ trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_W")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/CameraChanger2a"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.5, -0.25)
 shape = SubResource("BoxShape3D_5hkas")
-debug_color = Color(1, 0.772549, 0.560784, 1)
 
 [node name="CameraChanger2b" type="StaticBody3D" parent="CameraChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0, 0, 0)
@@ -113,7 +110,6 @@ trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_S")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/CameraChanger2b"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.5, 0.25)
 shape = SubResource("BoxShape3D_gcuyc")
-debug_color = Color(1, 0.772549, 0.560784, 1)
 
 [node name="CameraNodes" type="Node3D" parent="."]
 
@@ -267,7 +263,6 @@ trigger_on_interact = [NodePath("../DialogChanger_noticeShip")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0.5)
 shape = SubResource("BoxShape3D_2ufit")
-debug_color = Color(0, 0.556863, 0.898039, 1)
 
 [node name="DialogChanger_noticeShip" parent="." instance=ExtResource("14_evpny")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.23906, 2.63405, 2.06855)

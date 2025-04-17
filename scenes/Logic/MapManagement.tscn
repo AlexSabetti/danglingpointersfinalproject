@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqo7pftnpwu5f"]
+
+[ext_resource type="Script" path="res://scripts/MapManager.gd" id="1_radl3"]
+[ext_resource type="PackedScene" uid="uid://cy0ooj71pt2v5" path="res://scenes/Entities/MapNode.tscn" id="2_6f6e8"]
+[ext_resource type="PackedScene" uid="uid://cgvgni8obca17" path="res://scenes/Levels/Rooms/Room1_a1.tscn" id="2_sl46l"]
+
+[node name="Manager" type="Node3D"]
+script = ExtResource("1_radl3")
+node_scene = ExtResource("2_6f6e8")
+starting_area = ExtResource("2_sl46l")

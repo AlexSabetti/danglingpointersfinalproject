@@ -10,10 +10,10 @@ extends Node3D
 
 # booleans
 @export var active: bool = false
-@export var north_open: bool = true
-@export var south_open: bool = true
-@export var east_open: bool = true
-@export var west_open: bool = true
+@export var north_open: bool = false
+@export var south_open: bool = false
+@export var east_open: bool = false
+@export var west_open: bool = false
 
 var rotate_by = 0.0
 
