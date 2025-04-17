@@ -286,7 +286,7 @@ func connect_to( position_from: int, position_to: int):
 			get_child(cross_pos).north_open = true
 			crosses.append(cross_pos)
 		for i in range(1, rows_away):
-			var potential_path: MapNode = get_child(cross_pos - (i * root_count))
+			var potential_path: MapNode = get_child(cross_pos + (i * root_count))
 			potential_path.north_open = true
 			potential_path.south_open = true  
 			potential_path.active = true
@@ -316,7 +316,7 @@ func connect_to( position_from: int, position_to: int):
 			get_child(cross_pos).south_open = true
 			crosses.append(cross_pos)
 		for i in range(1, rows_away):
-			var potential_path: MapNode = get_child(cross_pos + (i * root_count))
+			var potential_path: MapNode = get_child(cross_pos - (i * root_count))
 			potential_path.north_open = true
 			potential_path.south_open = true
 			potential_path.active = true
