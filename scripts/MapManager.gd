@@ -182,14 +182,14 @@ func assign_scene(node: MapNode, stage: int):
 			key_area_type_b_created = true
 			if node.south_open:
 				if node.west_open:
-					node.rotate_by = -90
+					node.rotate_by = 90
 			elif node.north_open:
 				if node.west_open:
 					node.rotate_by = 180
 				else:
-					node.rotate_by = 90
+					node.rotate_by = -90
 			elif node.west_open:
-				node.rotate_by = -90
+				node.rotate_by = 90
 		else:
 			node.scene_path = room3_a1
 			key_area_type_a_created = true
@@ -197,12 +197,12 @@ func assign_scene(node: MapNode, stage: int):
 				node.rotate_by = 180
 			elif openings == 2:
 				if node.north_open and node.south_open:
-					node.rotate_by = 90
+					node.rotate_by = -90
 			elif openings == 3:
 				if !node.south_open:
 					node.rotate_by = 180
 				elif !node.east_open:
-					node.rotate_by = -90
+					node.rotate_by = 90
 				elif !node.west_open:
 					node.rotate_by = 90
 		return
@@ -230,9 +230,9 @@ func assign_scene(node: MapNode, stage: int):
 		if node.north_open:
 			node.rotate_by = 180
 		elif node.east_open:
-			node.rotate_by = 90
-		elif node.west_open:
 			node.rotate_by = -90
+		elif node.west_open:
+			node.rotate_by = 90
 	else:
 		node.scene_path = room5_a1 
 
