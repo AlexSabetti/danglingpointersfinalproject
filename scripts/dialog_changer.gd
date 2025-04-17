@@ -27,7 +27,8 @@ var signal_manager: SignalBus = SigBus
 func _ready():
 	# if not in editor
 	if !Engine.is_editor_hint():
-		Delay.wait_time = delay_before_trigger
+		if delay_before_trigger > 0:
+			Delay.wait_time = delay_before_trigger
 		$Sprite3D.visible = false
 		
 		if trigger_on_start:

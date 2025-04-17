@@ -3,7 +3,7 @@ extends Node
 
 # For when the player clicks a valid object
 signal object_clicked(obj: ClickableObject)
-signal camera_changed(cam_id: int)
+signal camera_changed(cam_node: CameraNode)
 
 # for when the current occupide room changes. emits the new room 
 signal map_node_change(room:MapNode)

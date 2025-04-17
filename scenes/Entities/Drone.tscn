@@ -41,6 +41,7 @@ transform = Transform3D(0.999522, 0.0257137, -0.0171873, -0.0223427, 0.984554, 0
 light_color = Color(0.829938, 0.820217, 0.585807, 1)
 light_energy = 0.0
 light_volumetric_fog_energy = 0.5
+light_cull_mask = 4294967293
 spot_range = 48.0
 spot_angle = 20.0
 
@@ -49,6 +50,7 @@ transform = Transform3D(0.999522, -0.0257137, 0.0171873, 0.0223427, 0.984554, 0.
 light_color = Color(0.831373, 0.819608, 0.584314, 1)
 light_energy = 0.0
 light_volumetric_fog_energy = 0.5
+light_cull_mask = 4294967293
 spot_range = 48.0
 spot_angle = 20.0
 
@@ -61,3 +63,9 @@ emission_box_extents = Vector3(6, 0.5, 6)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.599594, 0)
 mesh = SubResource("CylinderMesh_c0tn5")
+
+[node name="CamChangeDelay" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="CamChangeDelay" to="." method="_on_cam_change_delay_timeout"]

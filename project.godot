@@ -24,7 +24,7 @@ SoundManager3D="*res://systems/SoundManagement/SoundManager3D.tscn"
 [display]
 
 window/size/viewport_width=1280
-window/size/viewport_height=960
+window/size/viewport_height=900
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 mouse_cursor/custom_image="uid://dktq2be554m4r"

@@ -154,9 +154,9 @@ func isPunctuation(ch:String) -> bool:
 
 func scroll_up():
 	#print("scroll up")
-	scrollContainer.scroll_vertical -= 10
+	scrollContainer.scroll_vertical -= 100
 func scroll_down():
 	#print("scroll down")
-	scrollContainer.scroll_vertical += 10
+	scrollContainer.scroll_vertical += 100
 func scroll_to_bottom():
-	scrollContainer.scroll_vertical += 1000
+	scrollContainer.scroll_vertical += 5000

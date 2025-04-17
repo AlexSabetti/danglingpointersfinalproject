@@ -13,6 +13,9 @@ func _ready() -> void:
 		"SQ_CDing" : $SQ_CDing,
 		"SQ_CFink" : $SQ_CFink,
 		"SQ_CFonk" : $SQ_CFonk,
+		"SQ_MousePress" : $SQ_MousePress,
+		"SQ_MouseRelease" : $SQ_MouseRelease,
+		"SQ_Scroll" : $SQ_Scroll,
 	}
 	SoundPoolsByName = {
 		"SP_Voice" : $SP_Voice,
