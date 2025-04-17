@@ -24,7 +24,6 @@ render_priority = 0
 shader = ExtResource("8_xc660")
 shader_parameter/sway_amount_x = 0.1
 shader_parameter/sway_speed = 0.75
-shader_parameter/sway_amount_z = 0.1
 shader_parameter/WobbleRate = 3.8
 shader_parameter/UVOffset1 = Vector2(0.32, 0.4)
 shader_parameter/NormalMap = ExtResource("9_b2otv")

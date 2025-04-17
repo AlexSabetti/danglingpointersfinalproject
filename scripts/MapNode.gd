@@ -3,10 +3,10 @@ extends Node3D
 
 @export var scene_path: PackedScene
 # Pointers to all surrounding nodes
-@export var north: MapNode
-@export var south: MapNode
-@export var east: MapNode
-@export var west: MapNode
+@export var north: MapNode = null
+@export var south: MapNode = null
+@export var east: MapNode = null
+@export var west: MapNode = null
 
 # booleans
 @export var active: bool = false
@@ -15,6 +15,7 @@ extends Node3D
 @export var east_open: bool = false
 @export var west_open: bool = false
 
+var place_pos: int = 0
 var rotate_by = 0.0
 
 func create_scene():

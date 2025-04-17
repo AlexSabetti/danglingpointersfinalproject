@@ -66,12 +66,12 @@ func Create_Map():
 			walker.place_pos = i * root_count + j
 			var placement_above = i * root_count + j - root_count
 			if placement_above >= 0:
-				get_child(placement_above).south_node = walker
-				walker.north_node = get_child(placement_above)
-			walker.south_node = null
+				get_child(placement_above).south = walker
+				walker.north = get_child(placement_above)
+			
 			if j > 0:
-				get_child(i * root_count + j - 1).east_node = walker
-				walker.west_node = get_child(i * root_count + j - 1)
+				get_child(i * root_count + j - 1).east = walker
+				walker.west = get_child(i * root_count + j - 1)
 			available_nodes.append(walker)
 			available_nodes_count += 1
 	head = get_child(0)
@@ -79,7 +79,7 @@ func Create_Map():
 	
 func start_map():
 	var rng = RandomNumberGenerator.new()
-	var starting_tile = rng.rand_range(0, grid_count)
+	var starting_tile = rng.randi_range(0, grid_count)
 	starting_node = get_child(starting_tile)
 	# remove from available nodes
 	available_nodes.remove_at(starting_tile)
@@ -113,10 +113,10 @@ func expand_map():
 	var second_key_area = -1
 
 	
-	first_key_area = rng.rand_range(0, available_nodes_count)
+	first_key_area = rng.randi_range(0, available_nodes_count)
 	available_nodes.remove_at(first_key_area)
 	available_nodes_count -= 1
-	second_key_area = rng.rand_range(0, grid_count)
+	second_key_area = rng.randi_range(0, grid_count)
 	available_nodes.remove_at(second_key_area)
 	available_nodes_count -= 1
 
@@ -132,16 +132,16 @@ func expand_map():
 
 	# Points of interest
 	for i in range(0, num_pois):
-		var coin_flip = rng.rand_range(0, 2)
+		var coin_flip = rng.randi_range(0, 2)
 		if coin_flip:
 			# Take over a path
-			var path_index = rng.rand_range(0, paths.size)
+			var path_index = rng.randi_range(0, paths.size())
 			var path = paths[path_index]
 			points_of_interest.append(path)
 			paths.remove_at(path_index)
 		else:
 			# take over a random area
-			var area_index = rng.rand_range(0, available_nodes_count)
+			var area_index = rng.randi_range(0, available_nodes_count)
 			var area = available_nodes[area_index]
 			available_nodes.remove_at(area_index)
 			available_nodes_count -= 1

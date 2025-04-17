@@ -11,7 +11,7 @@
 [ext_resource type="Shader" uid="uid://d2mabvbt22cdl" path="res://resources/Shaders/VS_Foliage3D.tres" id="8_ofg0q"]
 [ext_resource type="Texture2D" uid="uid://dhvn8d5topyjo" path="res://resources/Textures/NormalMaps/7864-normal.jpg" id="9_3mtow"]
 [ext_resource type="Texture2D" uid="uid://chng0opds5tf2" path="res://resources/Textures/Sprites/Reeds2_b1.png" id="10_470l4"]
-[ext_resource type="Script" uid="uid://b8260neigo27n" path="res://scripts/ClickableObject.gd" id="12_470l4"]
+[ext_resource type="Script" path="res://scripts/ClickableObject.gd" id="12_470l4"]
 [ext_resource type="PackedScene" uid="uid://dybogvrii8h3g" path="res://scenes/Logic/dialog_changer.tscn" id="13_6e3fo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2yek6"]
@@ -25,7 +25,6 @@ render_priority = 0
 shader = ExtResource("8_ofg0q")
 shader_parameter/sway_amount_x = 0.1
 shader_parameter/sway_speed = 0.75
-shader_parameter/sway_amount_z = 0.1
 shader_parameter/WobbleRate = 3.8
 shader_parameter/UVOffset1 = Vector2(0.32, 0.4)
 shader_parameter/NormalMap = ExtResource("9_3mtow")
@@ -244,7 +243,6 @@ trigger_on_interact = [NodePath("../DialogChanger")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Object of interest"]
 transform = Transform3D(0.483815, -0.126187, 0.866025, 0.252373, 0.96763, 0, -0.837992, 0.218562, 0.5, -1.48022, 0.142454, 3.47244)
 shape = SubResource("BoxShape3D_6e3fo")
-debug_color = Color(0, 0.556863, 0.898039, 1)
 
 [node name="DialogChanger" parent="." instance=ExtResource("13_6e3fo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.57099, 1.65014, 4.12027)
