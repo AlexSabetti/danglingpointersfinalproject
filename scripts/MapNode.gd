@@ -1,5 +1,5 @@
 class_name MapNode
-extends Node
+extends Node3D
 
 @export var scene_path: PackedScene
 # Pointers to all surrounding nodes
@@ -14,3 +14,14 @@ extends Node
 @export var south_open: bool = true
 @export var east_open: bool = true
 @export var west_open: bool = true
+
+var rotate_by = 0.0
+
+func create_scene():
+	# Create the scene and add it to the node
+	var scene_instance = scene_path.instantiate()
+	add_child(scene_instance)
+	
+	# Set the position of the scene instance
+	scene_instance.position = global_transform.origin
+	scene_instance.rotation_degrees = Vector3(0, rotate_by, 0)

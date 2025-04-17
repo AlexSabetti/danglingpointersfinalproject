@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cgplrlfiry372"
-path.s3tc="res://.godot/imported/EB_GreenFabricTexture_a1.png-20743d06951bc050f736666795537288.s3tc.ctex"
+path.s3tc="res://.godot/imported/EB_GreenFabricTexture_a1.png-91c5249c3eb269035a40c8b768c06db4.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Resources/Textures/EB_GreenFabricTexture_a1.png"
-dest_files=["res://.godot/imported/EB_GreenFabricTexture_a1.png-20743d06951bc050f736666795537288.s3tc.ctex"]
+source_file="res://resources/Textures/EB_GreenFabricTexture_a1.png"
+dest_files=["res://.godot/imported/EB_GreenFabricTexture_a1.png-91c5249c3eb269035a40c8b768c06db4.s3tc.ctex"]
 
 [params]
 
