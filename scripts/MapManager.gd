@@ -95,13 +95,13 @@ func start_map():
 
 	# Don't know the specifics for how we're going to put up blockers yet, but we'll start with the bools
 
-	if(starting_node.north_node == null):
+	if(starting_node.north == null):
 		starting_node.north_open = false
-	if(starting_node.south_node == null):
+	if(starting_node.south == null):
 		starting_node.south_open = false
-	if(starting_node.east_node == null):
+	if(starting_node.east == null):
 		starting_node.east_open = false
-	if(starting_node.west_node == null): 
+	if(starting_node.west == null): 
 		starting_node.west_open = false
 
 func expand_map():
