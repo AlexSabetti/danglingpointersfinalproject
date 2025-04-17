@@ -16,6 +16,7 @@ class_name UIHandler
 @onready var FadeTimer : Timer = $FadeTimer
 @onready var CursorIcon: = $CursorSprite2D
 
+
 var fadeBlackColor : Color = Color(0.08,0.02,0.04,1.0)
 var fadeTransColor : Color = Color(0.08,0.02,0.04,0.0)
 
@@ -59,30 +60,18 @@ func _process(_delta: float) -> void:
 # 
 func set_cursor_type(type:int):
 	signal_manager.emit_signal("screen_cursor_changed", type)
-	#if type == 0: # default cursor
-		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		#CursorIcon.visible = false
-	#else: if type == 1: # camera change sprite
-		#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-		#CursorIcon.visible = true
-		#CursorIcon.texture = load("res://resources/Textures/Sprites/CompPointerArrow3_b1.png")
-	#else: if type == 2: # room change sprite
-		#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-		#CursorIcon.visible = true
-		#CursorIcon.texture = load("res://resources/Textures/Sprites/CompPointerArrow2_b1.png")
-	#else: if type == 3: # inspect sprite
-		#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-		#CursorIcon.visible = true
-		#CursorIcon.texture = load("res://resources/Textures/Sprites/CompPointerArrow4_b1.png")
 	
 
 func focus_screen(focused:bool):
+	#var tween = create_tween()
 	if focused:
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		CursorIcon.visible = false
+		
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		#CursorIcon.visible = true
+		
 
 func respond_to_pause():
 	Global.gameControllerRef.paused = true
@@ -114,8 +103,8 @@ func _settings_pressed():
 func _exit():
 	get_tree().quit()
 
-func _update_requests(_requests: Array):
-	pass
+#func _update_requests(_requests: Array):
+	#pass
 	#var tween = create_tween()
 	
 	# Not the optimal way to do this

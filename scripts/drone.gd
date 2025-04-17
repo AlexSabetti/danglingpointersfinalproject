@@ -14,10 +14,12 @@ extends DynamicEntity
 var signal_manager: SignalBus = SigBus
 
 @onready var DroneCamera:Camera3D = $Camera3D
-@onready var DroneLight1 := $Camera3D/SpotLight3D1
-@onready var DroneLight2 := $Camera3D/SpotLight3D2
+@onready var DroneLight1:SpotLight3D = $Camera3D/SpotLight3D1
+@onready var DroneLight2:SpotLight3D = $Camera3D/SpotLight3D2
+@onready var CamChangeDelay:Timer = $CamChangeDelay
 
 func _ready()->void:
+	signal_manager.connect("camera_changed", set_cam_node)
 	signal_manager.connect("map_node_change", set_map_node)
 	
 	# hide editor icon
@@ -33,6 +35,11 @@ func set_map_node(map_node:MapNode):
 	
 func get_map_node() -> MapNode:
 	return active_map_node
+
+# updates the current camera node for this drone
+func set_cam_node(camNode:CameraNode):
+	active_cam_node = camNode
+	CamChangeDelay.start()
 
 
 # moves camera to it's active_cam_node
@@ -54,3 +61,7 @@ func toggle_light():
 		is_light_on = true
 	SoundManager3D.PlaySoundQueue3D("SQ_CFonk", Global.controlRoomRef.global_position)
 	SoundManager3D.PlaySoundPool3D("SP_KeyPress", Global.controlRoomRef.global_position)
+
+# updates the cam position after short delay
+func _on_cam_change_delay_timeout() -> void:
+	update_cam_position()

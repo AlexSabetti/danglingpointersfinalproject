@@ -36,7 +36,7 @@ var signal_manager: SignalBus = SigBus
 
 func _ready():
 	set_process_input(true)
-	signal_manager.connect("camera_changed", _activate_in_scene)
+	#signal_manager.connect("camera_changed", _activate_in_scene)
 	#signal_manager.connect("inc_progress", lower_progress_requirement)
 	
 	# checks for collision shape
@@ -55,11 +55,11 @@ func _get_configuration_warnings():
 		return ["Expected CollisionShape3D child"]
 	return 
 
-func _activate_in_scene(id_to_activate: int):
-	if id_to_activate == obj_id:
-		is_interactable = true
-	else:
-		is_interactable = false
+#func _activate_in_scene(id_to_activate: int):
+	#if id_to_activate == obj_id:
+		#is_interactable = true
+	#else:
+		#is_interactable = false
 
 func _on_trigger():
 	if is_active && trigger_on_interact.size() > 0:

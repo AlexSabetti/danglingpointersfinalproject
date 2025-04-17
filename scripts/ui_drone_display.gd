@@ -2,6 +2,9 @@ class_name UI_DroneDisplay
 extends CanvasLayer
 
 @export var is_on:bool = true
+var cursor_offset:Vector2 = Vector2.ZERO
+var cursor_Sprite_offset:Vector2 = Vector2.ZERO
+var cursor_pressed:bool = false
 
 var fade_time:float = 0.05
 
@@ -10,7 +13,8 @@ var fade_time:float = 0.05
 @onready var sampleCollectionTimer:Timer = $SampleCollectionTimer
 @onready var BlankScreen:ColorRect = $BlankScreen
 @onready var LoadingText:Label = $LoadingText
-@onready var CursorSprite:Sprite2D = $CursorSprite2D
+@onready var Cursor:Node2D = $Cursor
+@onready var CursorSprite:Sprite2D = $Cursor/CursorSprite2D
 @onready var CompassPointer:Sprite2D = $DroneScreenOverlay/Compass/CompassSprite
 @onready var SampleCollectionOverlay := $SampleCollectionOverlay
 @onready var SampleProgressBar := $"SampleCollectionOverlay/VBoxContainer/BG-Color/MarginContainer/ProgressBar"
@@ -37,43 +41,58 @@ func _process(delta: float) -> void:
 	# updates compass rotation
 	CompassPointer.rotation = -Global.gameControllerRef.drone.DroneCamera.global_rotation.y
 	
-	CursorSprite.position = Global.gameControllerRef.UI.get_global_mouse_position()
-	
+	# updates cursor position
+	Cursor.position = Global.gameControllerRef.UI.get_global_mouse_position()
+
+
+# changes cursor to show that use is pressing down
+func cursor_click(pressing:bool):
+	if pressing && !cursor_pressed:
+		#CursorSprite.modulate = Color(0.861, 0.847, 0.765)
+		CursorSprite.modulate = Color(0.718, 0.696, 0.574, 0.75)
+		cursor_pressed = true
+		cursor_offset = Vector2(0.0,5.0)
+	else: if cursor_pressed:
+		CursorSprite.modulate = Color(0.718, 0.696, 0.574, 1.0)
+		cursor_pressed = false
+		cursor_offset = Vector2(0.0,0.0)
+		
+	CursorSprite.offset = cursor_Sprite_offset +  cursor_offset
 
 func set_cursor_type(type:int):
 	
 	if type == 0: # default cursor
 		CursorSprite.texture = load("res://resources/Textures/Sprites/CompPointerArrow1_b1.png")
-		CursorSprite.offset = Vector2(10.0,20.0)
-		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		cursor_Sprite_offset = Vector2(10.0,19.0)
 	else: if type == 1: # camera change sprite
-		#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		CursorSprite.texture = load("res://resources/Textures/Sprites/CompPointerArrow3_b1.png")
-		CursorSprite.offset = Vector2.ZERO
+		cursor_Sprite_offset = Vector2.ZERO
 	else: if type == 2: # room change sprite
-		#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		CursorSprite.texture = load("res://resources/Textures/Sprites/CompPointerArrow2_b1.png")
-		CursorSprite.offset = Vector2.ZERO
+		cursor_Sprite_offset = Vector2.ZERO
 	else: if type == 3: # inspect sprite
-		#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		CursorSprite.texture = load("res://resources/Textures/Sprites/CompPointerArrow4_b1.png")
-		CursorSprite.offset = Vector2.ZERO
+		cursor_Sprite_offset = Vector2.ZERO
+	
+	# update offset, if needed
+	CursorSprite.offset = cursor_Sprite_offset + cursor_offset
 
+# shows or hides the message notification
 func showMessageNotif(show:bool):
 	if show:
 		MessageNotif.visible = true
 	else:
 		MessageNotif.visible = false
 
+# enables  or disables the computer mouse cursor
 func focus_screen(focused:bool):
 	if focused:
-		CursorSprite.visible = true
+		Cursor.visible = true
 	else:
-		CursorSprite.visible = false
+		Cursor.visible = false
 
-func cam_change_anim(id:int)->void:
+func cam_change_anim(_cam_node:CameraNode)->void:
 	fade_out()
-	pass
 
 # Fades out to black
 func fade_out()->void:
@@ -133,12 +152,12 @@ func _on_timer_timeout() -> void:
 		tween.chain().tween_property(LoadingText, "text", "..", 0.25)
 		tween.chain().tween_property(LoadingText, "text", "...", 0.25)
 
-# After second Delay
+# Fade back in after second Delay
 func _on_timer_2_timeout() -> void:
 	# fade back in from black after some time
 	fade_in()
 
-
+# Used in Tweening
 func change_drone_bus_volume(value: float):
 	var index = AudioServer.get_bus_index("DroneAudio")
 	AudioServer.set_bus_volume_db(index, value)

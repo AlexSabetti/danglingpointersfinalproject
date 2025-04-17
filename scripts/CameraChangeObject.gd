@@ -56,10 +56,6 @@ func _get_configuration_warnings():
 
 
 func _on_trigger():
-	# if is roomchanger, trigger it's room
-	if isRoomChanger:
-		self
-		pass
 	
 	if is_active && trigger_on_interact.size() > 0:
 		if oneShot:

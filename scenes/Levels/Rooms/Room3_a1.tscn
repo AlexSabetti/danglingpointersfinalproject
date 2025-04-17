@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dxgfd5vloh5y2"]
+[gd_scene load_steps=21 format=3 uid="uid://dxgfd5vloh5y2"]
 
 [ext_resource type="PackedScene" uid="uid://crwrhmxlk0mc6" path="res://resources/Models/under_water_room_3_a_1.tscn" id="1_6x3y3"]
 [ext_resource type="Script" path="res://scripts/Room.gd" id="1_nu0df"]
@@ -11,6 +11,8 @@
 [ext_resource type="Shader" uid="uid://d2mabvbt22cdl" path="res://resources/Shaders/VS_Foliage3D.tres" id="8_ofg0q"]
 [ext_resource type="Texture2D" uid="uid://dhvn8d5topyjo" path="res://resources/Textures/NormalMaps/7864-normal.jpg" id="9_3mtow"]
 [ext_resource type="Texture2D" uid="uid://chng0opds5tf2" path="res://resources/Textures/Sprites/Reeds2_b1.png" id="10_470l4"]
+[ext_resource type="Script" uid="uid://b8260neigo27n" path="res://scripts/ClickableObject.gd" id="12_470l4"]
+[ext_resource type="PackedScene" uid="uid://dybogvrii8h3g" path="res://scenes/Logic/dialog_changer.tscn" id="13_6e3fo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2yek6"]
 size = Vector3(0.5, 3, 11)
@@ -45,6 +47,9 @@ buffer = PackedFloat32Array(-0.241415, -0.0956612, -0.254534, 0.25755, -0.027290
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ofg0q"]
 size = Vector3(2, 3, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6e3fo"]
+size = Vector3(3.23962, 1.35571, 1.28461)
 
 [node name="Room3_a1" type="Node3D"]
 script = ExtResource("1_nu0df")
@@ -229,5 +234,20 @@ shape = SubResource("BoxShape3D_ofg0q")
 [node name="CollisionShape3D15" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.5, 1.5, 10)
 shape = SubResource("BoxShape3D_ofg0q")
+
+[node name="Object of interest" type="StaticBody3D" parent="." node_paths=PackedStringArray("trigger_on_interact")]
+script = ExtResource("12_470l4")
+is_interactable = true
+oneShot = true
+trigger_on_interact = [NodePath("../DialogChanger")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Object of interest"]
+transform = Transform3D(0.483815, -0.126187, 0.866025, 0.252373, 0.96763, 0, -0.837992, 0.218562, 0.5, -1.48022, 0.142454, 3.47244)
+shape = SubResource("BoxShape3D_6e3fo")
+debug_color = Color(0, 0.556863, 0.898039, 1)
+
+[node name="DialogChanger" parent="." instance=ExtResource("13_6e3fo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.57099, 1.65014, 4.12027)
+newDialog = Array[String](["R.I.P. Buoy. Served us well"])
 
 [editable path="UnderWaterRoom3_a1"]

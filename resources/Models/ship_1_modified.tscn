@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://daisq5v2y88dx"]
+
+[ext_resource type="PackedScene" uid="uid://scuaek41wkmw" path="res://resources/Models/Ship1_modified.glb" id="1_uid3m"]
+[ext_resource type="Material" uid="uid://cv3p54e1twhiv" path="res://resources/Materials/M_Red.tres" id="2_opo8s"]
+[ext_resource type="Material" uid="uid://b4yraphdi75c1" path="res://resources/Materials/M_DarkPurpleWood2.tres" id="3_xb0wn"]
+
+[node name="Ship1_modified" instance=ExtResource("1_uid3m")]
+
+[node name="ShipCabin" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_opo8s")
+
+[node name="ShipHull" parent="." index="1"]
+surface_material_override/0 = ExtResource("2_opo8s")
+
+[node name="ShipCabinRoof" parent="." index="2"]
+surface_material_override/0 = ExtResource("3_xb0wn")
+
+[node name="ShipCabinLower" parent="." index="3"]
+surface_material_override/0 = ExtResource("2_opo8s")
+
+[node name="ShipRailings1" parent="." index="4"]
+surface_material_override/0 = ExtResource("3_xb0wn")
+
+[node name="ShipCabin_001" parent="." index="5"]
+surface_material_override/0 = ExtResource("2_opo8s")

@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxjc0svffolo"]
+[gd_scene load_steps=11 format=4 uid="uid://dxjc0svffolo"]
 
 [ext_resource type="Script" uid="uid://dd025v80bk3y8" path="res://scripts/fish_school.gd" id="1_i024n"]
 [ext_resource type="ArrayMesh" uid="uid://8bsje04cdx5w" path="res://resources/Models/FishMesh_b.res" id="2_al3da"]
+[ext_resource type="Shader" uid="uid://bmy8doagti42r" path="res://resources/Shaders/PS_Fishies.gdshader" id="2_i024n"]
+[ext_resource type="Texture2D" uid="uid://b31ay1l24ivuo" path="res://resources/Textures/Sprites/Salmon1_a1.png" id="3_56qno"]
 
 [sub_resource type="Curve3D" id="Curve3D_wpjwj"]
 closed = true
@@ -10,6 +12,81 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
 point_count = 5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6p4dd"]
+shader = ExtResource("2_i024n")
+
+[sub_resource type="Shader" id="Shader_it4g3"]
+code = "shader_type spatial;
+render_mode specular_toon, cull_disabled, alpha_to_coverage, diffuse_toon;
+
+uniform sampler2D tex;
+
+uniform float time_scale = 2.0;
+uniform float side_to_side = 0.125;
+uniform float pivot = 1.0;
+uniform float wave = 0.25;
+uniform float twist = 0.125;
+
+void vertex() {
+	//time_scale is a uniform float
+	float time = TIME * time_scale;
+	
+	//side_to_side is a uniform float
+	VERTEX.x += cos(time) * side_to_side;
+	
+	//angle is scaled by 0.1 so that the fish only pivots and doesn't rotate all the way around
+	//pivot is a uniform float
+	float pivot_angle = cos(time) * 0.1 * pivot;
+	mat2 rotation_matrix = mat2(vec2(cos(pivot_angle), -sin(pivot_angle)), vec2(sin(pivot_angle), cos(pivot_angle)));
+	
+	VERTEX.xy = rotation_matrix * VERTEX.xy;
+	
+	float body = (VERTEX.z + 1.0) / 2.0; //for a fish centered at (0, 0) with a length of 2
+	
+	//wave is a uniform float
+	VERTEX.x += cos(time + body) * wave;
+	
+	//twist is a uniform float
+	float twist_angle = cos(time + body) * 0.3 * twist;
+	mat2 twist_matrix = mat2(vec2(cos(twist_angle), -sin(twist_angle)), vec2(sin(twist_angle), cos(twist_angle)));
+	
+	VERTEX.xy = twist_matrix * VERTEX.xy;
+}
+
+void fragment() {
+	ALBEDO = texture(tex, UV).rgb;
+	ALPHA = texture(tex, UV).a;
+	ROUGHNESS = 1.0;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1deoj"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_6p4dd")
+shader = SubResource("Shader_it4g3")
+shader_parameter/tex = ExtResource("3_56qno")
+shader_parameter/time_scale = 3.0
+shader_parameter/side_to_side = 0.125
+shader_parameter/pivot = 0.5
+shader_parameter/wave = 0.25
+shader_parameter/twist = 0.125
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_2knae"]
+resource_name = "FishMesh1_a1_Plane"
+_surfaces = [{
+"aabb": AABB(-4.28408e-08, -0.5, -0.5, 1e-05, 1, 1),
+"attribute_data": PackedByteArray("/9//f///////3///////f/+//3//v////5//f/+f////f/9//3///w=="),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAAAAIABAACAAUABgAEAAUABgAFAAcACAAGAAcACAAHAAkA"),
+"material": SubResource("ShaderMaterial_1deoj"),
+"primitive": 3,
+"uv_scale": Vector4(2, 2, 0, 0),
+"vertex_count": 10,
+"vertex_data": PackedByteArray("qgD///8//7/DAQAAAAD/vzECAAD/P/+/AAH//wAA/79YAP///3//v94BAAD/f/+/AAD///+//7+GAQAA/7//v20A//////+/MQEAAP///7//fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA")
+}]
+blend_shape_mode = 0
+shadow_mesh = ExtResource("2_al3da")
 
 [sub_resource type="Curve" id="Curve_wpjwj"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0837004, 0.52809), 0.431117, 0.431117, 0, 0, Vector2(0.757709, 0.449438), -0.525116, -0.525116, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -22,15 +99,15 @@ script = ExtResource("1_i024n")
 curve = SubResource("Curve3D_wpjwj")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.492461, -0.0259672, -0.869768, 0.0163172, 0.998933, -0.0390629, 0.870007, -0.0334338, -0.491593, 6.01709, -0.295691, -1.93975)
-progress = 6.80124
+transform = Transform3D(-0.163839, 0.0153121, -0.986208, 0.0174581, 0.999605, 0.0126199, 0.986175, -0.015152, -0.164068, 2.65427, -0.359916, -2.98287)
+progress = 3.26299
 
 [node name="FishParticles3D" type="CPUParticles3D" parent="Path3D/PathFollow3D"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 lifetime = 80.0
 local_coords = true
 draw_order = 2
-mesh = ExtResource("2_al3da")
+mesh = SubResource("ArrayMesh_2knae")
 emission_shape = 1
 emission_sphere_radius = 1.0
 direction = Vector3(-1, 0, 0)

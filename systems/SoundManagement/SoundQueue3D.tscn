@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b8t4ygipwjedm"]
 
-[ext_resource type="Script" uid="uid://byujo0qudaanj" path="res://Systems/SoundManagement/soundQueue3D.gd" id="1_sx0ul"]
+[ext_resource type="Script" uid="uid://byujo0qudaanj" path="res://systems/SoundManagement/soundQueue3D.gd" id="1_sx0ul"]
 
 [node name="SoundQueue3D" type="Node3D"]
 script = ExtResource("1_sx0ul")

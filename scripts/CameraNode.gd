@@ -15,8 +15,6 @@ var cam_default_rotation: Vector3 = Vector3.ZERO  # default rotation of the came
 
 var signal_manager: SignalBus = SigBus
 
-@onready var Delay:Timer = $Delay
-
 func _ready():
 	
 	## Looks for Camera3D child
@@ -26,8 +24,9 @@ func _ready():
 	
 	# if not in editor
 	if !Engine.is_editor_hint():
-		# hides the camera object in game
-		$FilmCamera1_a1.visible = false
+		# removes the camera object in game
+		for child in self.get_children():
+			child.queue_free()
 		
 		
 		cam_default_rotation = global_rotation
@@ -46,16 +45,4 @@ func _ready():
 # When triggered by an external object, sets this camera position node as the active node, after a short delay
 func _on_trigger():
 	if is_active:
-		signal_manager.emit_signal("camera_changed", 0)
-		Delay.start()
-
-# Sets this camera node as the viewport
-func set_current_node():
-	Global.gameControllerRef.drone.active_cam_node = self
-	Global.gameControllerRef.min_h_rotation = min_h_rotation
-	Global.gameControllerRef.max_h_rotation = max_h_rotation
-	Global.gameControllerRef.drone.update_cam_position()
-
-
-func _on_delay_timeout() -> void:
-	set_current_node()
+		signal_manager.emit_signal("camera_changed", self as CameraNode)

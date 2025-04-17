@@ -19,6 +19,16 @@ extends Node3D
 		emission_amount = e
 		if has_node("MeshInstance3D"):
 			$MeshInstance3D.get_surface_override_material(0).set_shader_parameter("EmissionAmount", emission_amount)
+@export var sway_amount:float = 0.1:
+	set(s):
+		sway_amount = s
+		if has_node("MeshInstance3D"):
+			$MeshInstance3D.get_surface_override_material(0).set_shader_parameter("sway_amount_x", sway_amount)
+@export var sway_speed:float = 0.3:
+	set(s):
+		sway_speed = s
+		if has_node("MeshInstance3D"):
+			$MeshInstance3D.get_surface_override_material(0).set_shader_parameter("sway_speed", sway_speed)
 @export var meshOffset := Vector3(0.0, 0.5, 0.0):
 	set(offset):
 		meshOffset = offset

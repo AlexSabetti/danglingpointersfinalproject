@@ -15,8 +15,8 @@ var paused: bool = false
 @export var player_cam: Camera3D # camera of the player's character
 @export var drone:Drone # drone to be used by the player
 var is_screen_focused:bool = false
-@export var camAccel: float = 0.5
-@export var turnSpeed := 0.25
+@export var camAccel: float = 0.6
+@export var turnSpeed := 0.16
 var twist_input: float = 0.0
 var min_h_rotation: float = -45.0
 var max_h_rotation: float = 45.0
@@ -68,15 +68,14 @@ func _process(delta: float):
 			collectSamples()
 		
 		# message scrolling button press sound
-		if Input.is_action_just_pressed("scroll_up"):
-			SoundManager3D.PlaySoundPool3D("SP_KeyHold", Global.controlRoomRef.global_position)
-		if Input.is_action_just_pressed("scroll_down"):
-			SoundManager3D.PlaySoundPool3D("SP_KeyHold", Global.controlRoomRef.global_position)
+		if Input.is_action_just_released("scroll_up") or Input.is_action_just_released("scroll_down"):
+			SoundManager3D.PlaySoundQueue3D("SQ_Scroll", Global.controlRoomRef.global_position)
+		
 			
 		# message scrolling
-		if Input.is_action_pressed("scroll_up"):
+		if Input.is_action_just_released("scroll_up"):
 			MessageScreenUI.scroll_up()
-		if Input.is_action_pressed("scroll_down"):
+		if Input.is_action_just_released("scroll_down"):
 			MessageScreenUI.scroll_down()
 		
 
@@ -84,32 +83,48 @@ func _input(event):
 	if event.is_action_pressed("ui_cancel") && !UI.settings_locked:
 		toggle_pause_menu()
 	
+	# Keep track of mouse position
 	if event is InputEventMouseMotion:
 		mouse = event.position
+	# Keep track of mouse interaction
 	if event is InputEventMouseButton:
 		var mouse_event: InputEventMouseButton = event
-		if !paused and !mouse_event.pressed and mouse_event.button_index == MOUSE_BUTTON_LEFT:
+		if !paused and !mouse_event.pressed and mouse_event.button_index == MOUSE_BUTTON_LEFT:	# mouse release
 			interact()
-			# moved mouse detection to process to include detecting hovering over things
-			#get_mouse_pos(mouse, get_viewport())
-			#if VirtualScreenViewport != null && is_screen_focused:
-				#get_mouse_pos(mouse, VirtualScreenViewport)
+			DroneScreenUI.cursor_click(false)
+			#if is_screen_focused:
+				#SoundManager3D.PlaySoundQueue3D("SQ_MouseRelease", Global.controlRoomRef.global_position)
+		else: if mouse_event.pressed and mouse_event.button_index == MOUSE_BUTTON_LEFT:	# mouse press
+			DroneScreenUI.cursor_click(true)
+			#d
+	
+	# When the lean forward button is pressed, lerp the camera to focus on the computer screen, and focuses the computers audio as wellw
+	if event.is_action_pressed("lean_forward") && !is_screen_focused:
+		focusScreen()
+	# When the lean back button is pressed, lerp the camera to zooom out from the computer screen
+	else: if event.is_action_pressed("lean_back") && is_screen_focused:
+		unfocusScreen()
 
+# controls accelaration and decelaration of drone camera rotationdddddddddda
 func camera_movement(delta: float):
 	if Input.is_action_just_pressed("rotate_left") or Input.is_action_just_pressed("rotate_right"):
 		SoundManager3D.PlaySoundPool3D("SP_KeyHold", Global.controlRoomRef.global_position)
-		
+	
+	var turnDirection:int = 0
 	# accelerate camera turn
-	if Input.is_action_pressed("rotate_left") && !Input.is_action_pressed("rotate_right") && twist_input >= 0:
-		twist_input += camAccel * delta
-	else: if Input.is_action_pressed("rotate_right") && !Input.is_action_pressed("rotate_left")  && twist_input <= 0:
-		twist_input -= camAccel * delta
-	# deccelerate camera turn
-	else:
+	if Input.is_action_pressed("rotate_left"):
+		turnDirection += 1
+	if Input.is_action_pressed("rotate_right"):
+		turnDirection -= 1
+	
+	twist_input += float(turnDirection) * camAccel * delta
+	
+	# deccelerate camera turn if no button is pressed
+	if turnDirection == 0:
 		if (twist_input > 0):
-			twist_input -= camAccel * delta * 1.5
+			twist_input -= camAccel * delta
 		else: if (twist_input < 0):
-			twist_input += camAccel * delta * 1.5
+			twist_input += camAccel * delta
 		if abs(twist_input) < 0.01:
 			twist_input = 0
 		
@@ -124,13 +139,6 @@ func camera_movement(delta: float):
 	#else: if rad_to_deg(drone.DroneCamera.rotation.y) >  max_h_rotation:
 		#drone.DroneCamera.rotation.y = deg_to_rad(max_h_rotation)
 		#twist_input = 0
-	
-	# When the lean forward button is pressed, lerp the camera to focus on the computer screen, and focuses the computers audio as wellw
-	if Input.is_action_pressed("lean_forward") && !is_screen_focused:
-		focusScreen()
-	# When the lean back button is pressed, lerp the camera to zooom out from the computer screen
-	else: if Input.is_action_pressed("lean_back") && is_screen_focused:
-		unfocusScreen()
 
 func focusScreen():
 	is_screen_focused = true
@@ -147,7 +155,8 @@ func unfocusScreen():
 	signal_manager.emit_signal("focus_screen", false)
 	SoundManager3D.PlaySoundPool3D("SP_KeyHold", Global.controlRoomRef.global_position)
 	var tween = create_tween()
-	tween.tween_property(player_cam, "position", Vector3(-0.809, 2.311, 1.287), 1.0).set_trans(Tween.TRANS_CUBIC)
+	#tween.tween_property(player_cam, "position", Vector3(-0.809, 2.311, 1.287), 1.0).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(player_cam, "position", Vector3(-0.769, 2.311, 1.28), 1.0).set_trans(Tween.TRANS_CUBIC)
 	tween.parallel().tween_property(player_cam, "rotation", Vector3(0.0, deg_to_rad(-80.0), 0.0), 1.0).set_trans(Tween.TRANS_CUBIC)
 	tween.parallel().tween_method(change_room_bus_volume,-15, 0, 1.0).set_trans(Tween.TRANS_CUBIC)
 	tween.parallel().tween_method(change_speaker_bus_volume,0, -15, 1.0).set_trans(Tween.TRANS_CUBIC)
@@ -167,28 +176,30 @@ func get_mouse_pos(mouse_loc: Vector2, viewport:Viewport):
 	if result.size() > 0 && result.get("collider") != null:
 		var obj = result.get("collider")
 		# if the object is a DynamicEntity, emit the signal
-		if obj is DynamicEntity:
+		if obj is DynamicEntity && obj.is_active == true:
 			# only set value if not already set
-			if cur_target_object != obj && obj.is_active == true:
+			if cur_target_object != obj:
 				cur_target_object = obj
 				print("hovered over: " + str(obj))
 				# change cursor icon type
 				if cur_target_object is CameraChangeObject && !(cur_target_object as CameraChangeObject).isRoomChanger:
-					UI.set_cursor_type(1)
+					UI.set_cursor_type(1) # position change icon
 				else: if cur_target_object is CameraChangeObject  && (cur_target_object as CameraChangeObject).isRoomChanger:
-					UI.set_cursor_type(2)
+					UI.set_cursor_type(2) # room change icon
 				else: if cur_target_object is ClickableObject:
-					UI.set_cursor_type(3)
+					UI.set_cursor_type(3) # inspect icon
+				else:
+					UI.set_cursor_type(0) # default
 				
 		# if the object is NOT a DynamicEntity, log current target object as NULL
 		else: if cur_target_object != null:
 			cur_target_object = null
-			print("no longer hovered over anything of value")
+			#print("no longer hovered over anything of value")
 			UI.set_cursor_type(0)
 	# if no colliders are caught by the ray cast, log the current target object as NULL
 	else: if cur_target_object != null:
 		cur_target_object = null
-		print("nothin hovered over")
+		#print("nothin hovered over")
 		UI.set_cursor_type(0)
 
 	
@@ -196,7 +207,7 @@ func get_mouse_pos(mouse_loc: Vector2, viewport:Viewport):
 func interact() -> void:
 	if cur_target_object != null && screenInteractionEnabled:
 		if cur_target_object is ClickableObject:
-			print(cur_target_object)
+			#print(cur_target_object)
 			var click_obj: ClickableObject = cur_target_object
 			if click_obj.is_interactable:
 				signal_manager.emit_signal("object_clicked", cur_target_object)
@@ -204,7 +215,7 @@ func interact() -> void:
 				SoundManager3D.PlaySoundQueue3D("SQ_CDing", Global.controlRoomRef.global_position)
 				#mark_off(click_obj)
 		if cur_target_object is CameraChangeObject && is_screen_focused == true && !is_collecting_samples && DroneScreenUI.is_on:
-			print(cur_target_object)
+			#print(cur_target_object)
 			var click_obj: CameraChangeObject = cur_target_object
 			if click_obj.is_interactable:
 				signal_manager.emit_signal("object_clicked", cur_target_object)

@@ -33,7 +33,6 @@ render_priority = 0
 shader = ExtResource("10_nf34x")
 shader_parameter/sway_amount_x = 0.1
 shader_parameter/sway_speed = 0.75
-shader_parameter/sway_amount_z = 0.1
 shader_parameter/WobbleRate = 3.8
 shader_parameter/UVOffset1 = Vector2(0.32, 0.4)
 shader_parameter/NormalMap = ExtResource("11_1j1qt")
@@ -64,8 +63,10 @@ size = Vector3(5, 3, 5)
 
 [node name="Room9_a1" type="Node3D"]
 script = ExtResource("1_c7t41")
+room_ambience = "FoumpWeak"
 north_open = true
 south_open = true
+east_open = true
 west_open = true
 
 [node name="RoomChangers" type="Node3D" parent="."]

@@ -96,11 +96,13 @@ layout_mode = 2
 size_flags_horizontal = 0
 color = Color(0.729412, 0.654902, 0.498039, 1)
 
-[node name="CursorSprite2D" type="Sprite2D" parent="."]
+[node name="Cursor" type="Node2D" parent="."]
 visible = false
-modulate = Color(0.718242, 0.695634, 0.573654, 1)
+
+[node name="CursorSprite2D" type="Sprite2D" parent="Cursor"]
+modulate = Color(0.718, 0.696, 0.574, 1)
 texture = ExtResource("5_jplk7")
-offset = Vector2(10, 20)
+offset = Vector2(10, 19)
 
 [node name="MessageNotif" type="Control" parent="."]
 visible = false

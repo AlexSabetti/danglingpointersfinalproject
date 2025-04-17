@@ -66,6 +66,7 @@ size = Vector3(3, 2, 6)
 
 [node name="Room4_a1" type="Node3D"]
 script = ExtResource("1_c8qsn")
+room_ambience = "MetalCreak"
 south_open = true
 west_open = true
 
