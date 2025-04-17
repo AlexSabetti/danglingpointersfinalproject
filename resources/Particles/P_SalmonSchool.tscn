@@ -99,7 +99,7 @@ script = ExtResource("1_i024n")
 curve = SubResource("Curve3D_wpjwj")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.163839, 0.0153121, -0.986208, 0.0174581, 0.999605, 0.0126199, 0.986175, -0.015152, -0.164068, 2.65427, -0.359916, -2.98287)
+transform = Transform3D(-0.163838, 0.015312, -0.986208, 0.0174581, 0.999605, 0.0126199, 0.986175, -0.015152, -0.164067, 2.65427, -0.359916, -2.98287)
 progress = 3.26299
 
 [node name="FishParticles3D" type="CPUParticles3D" parent="Path3D/PathFollow3D"]

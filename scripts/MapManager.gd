@@ -2,14 +2,14 @@ class_name MapManager
 extends Node3D
 
 @export_category("Map Properties")
-@export var grid_count: int = 16 # MUST BE A ROOTABLE VALUE
+@export var grid_count: int = 9 # MUST BE A ROOTABLE VALUE
 @export var cell_size: int = 20 # Change this if we change the room sizes
 @export var active_cell_count: int = 0 # How many cells we've already placed rooms in
 
 @export var node_scene: PackedScene # MUST BE FILLED IN
 @export var starting_area: PackedScene = null # MUST BE FILLED IN
 @export var original_node_loc: Vector3 = Vector3(0, 0, 0)
-@export var num_pois: int = 4
+@export var num_pois: int = 3
 
 # Starting area, all 4 directions open
 var room1_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room1_a1.tscn")
@@ -79,7 +79,7 @@ func Create_Map():
 	
 func start_map():
 	var rng = RandomNumberGenerator.new()
-	var starting_tile = rng.randi_range(0, grid_count)
+	var starting_tile = rng.randi_range(0, grid_count - 1)
 	starting_node = get_child(starting_tile)
 	# remove from available nodes
 	available_nodes.remove_at(starting_tile)
@@ -113,10 +113,10 @@ func expand_map():
 	var second_key_area = -1
 
 	
-	first_key_area = rng.randi_range(0, available_nodes_count)
+	first_key_area = rng.randi_range(0, available_nodes_count - 1)
 	available_nodes.remove_at(first_key_area)
 	available_nodes_count -= 1
-	second_key_area = rng.randi_range(0, grid_count)
+	second_key_area = rng.randi_range(0, grid_count - 1)
 	available_nodes.remove_at(second_key_area)
 	available_nodes_count -= 1
 
@@ -128,20 +128,21 @@ func expand_map():
 	# Second key area
 	var second_key_area_node = get_child(second_key_area)
 	var connection = find_closest_tile(second_key_area)
-	connect_to(second_key_area, connection.place_pos)
+	connect_to(second_key_area, connection)
 
 	# Points of interest
 	for i in range(0, num_pois):
 		var coin_flip = rng.randi_range(0, 2)
-		if coin_flip:
+		if coin_flip && paths.size() != 0:
+			print("Paths: " + str(paths))
 			# Take over a path
-			var path_index = rng.randi_range(0, paths.size())
+			var path_index = rng.randi_range(0, paths.size() - 1)
 			var path = paths[path_index]
 			points_of_interest.append(path)
 			paths.remove_at(path_index)
 		else:
 			# take over a random area
-			var area_index = rng.randi_range(0, available_nodes_count)
+			var area_index = rng.randi_range(0, available_nodes_count - 1)
 			var area = available_nodes[area_index]
 			available_nodes.remove_at(area_index)
 			available_nodes_count -= 1
@@ -270,7 +271,7 @@ func connect_to( position_from: int, position_to: int):
 		var rows_away: int = abs(dist) / root_count
 		var cols_away: int = abs(dist) % root_count
 		cross_pos = position_from - cols_away
-		if cross_pos !=position_from:
+		if cross_pos != position_from:
 			get_child(cross_pos).east_open = true
 			get_child(position_from).west_open = true
 			for i in range(1, cols_away):
@@ -279,6 +280,8 @@ func connect_to( position_from: int, position_to: int):
 				potential_path.east_open = true
 				potential_path.active = true
 				paths.append(potential_path)
+				available_nodes.remove_at(potential_path.place_pos)
+				available_nodes_count -= 1
 		if(cross_pos != position_to):
 			get_child(cross_pos).north_open = true
 			crosses.append(cross_pos)
@@ -288,8 +291,10 @@ func connect_to( position_from: int, position_to: int):
 			potential_path.south_open = true  
 			potential_path.active = true
 			paths.append(potential_path)
+			available_nodes.remove_at(potential_path.place_pos)
+			available_nodes_count -= 1
 		starting_node.south_open = true
-		cross_pos.active = true
+		get_child(cross_pos).active = true
 			
 	else:
 		# Above or to the left
@@ -305,6 +310,8 @@ func connect_to( position_from: int, position_to: int):
 				potential_path.east_open = true
 				potential_path.active = true
 				paths.append(potential_path)
+				available_nodes.remove_at(potential_path.place_pos)
+				available_nodes_count -= 1
 		if(cross_pos != position_to):
 			get_child(cross_pos).south_open = true
 			crosses.append(cross_pos)
@@ -314,5 +321,7 @@ func connect_to( position_from: int, position_to: int):
 			potential_path.south_open = true
 			potential_path.active = true
 			paths.append(potential_path)
+			available_nodes.remove_at(potential_path.place_pos)
+			available_nodes_count -= 1
 		get_child(position_to).north_open = true
-		cross_pos.active = true
+		get_child(cross_pos).active = true
