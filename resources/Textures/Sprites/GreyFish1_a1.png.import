@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://og61w53u2j6"
 path.s3tc="res://.godot/imported/GreyFish1_a1.png-985bffa077afaea83f22e53a0ed49dbe.s3tc.ctex"
+path.etc2="res://.godot/imported/GreyFish1_a1.png-985bffa077afaea83f22e53a0ed49dbe.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://resources/Textures/Sprites/GreyFish1_a1.png"
-dest_files=["res://.godot/imported/GreyFish1_a1.png-985bffa077afaea83f22e53a0ed49dbe.s3tc.ctex"]
+dest_files=["res://.godot/imported/GreyFish1_a1.png-985bffa077afaea83f22e53a0ed49dbe.s3tc.ctex", "res://.godot/imported/GreyFish1_a1.png-985bffa077afaea83f22e53a0ed49dbe.etc2.ctex"]
 
 [params]
 

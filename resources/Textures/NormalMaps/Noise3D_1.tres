@@ -1,0 +1,19 @@
+[gd_resource type="NoiseTexture3D" load_steps=3 format=3 uid="uid://dfioht8s8igs"]
+
+[sub_resource type="Gradient" id="Gradient_f4av3"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_th8kj"]
+noise_type = 2
+seed = 12
+frequency = 0.0258
+fractal_type = 2
+cellular_distance_function = 3
+domain_warp_enabled = true
+
+[resource]
+width = 128
+height = 128
+depth = 128
+seamless = true
+color_ramp = SubResource("Gradient_f4av3")
+noise = SubResource("FastNoiseLite_th8kj")

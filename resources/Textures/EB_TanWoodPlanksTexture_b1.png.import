@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c71x5av77g8hc"
 path.s3tc="res://.godot/imported/EB_TanWoodPlanksTexture_b1.png-e0e50708b500e70ded65bd5f14fdad45.s3tc.ctex"
+path.etc2="res://.godot/imported/EB_TanWoodPlanksTexture_b1.png-e0e50708b500e70ded65bd5f14fdad45.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://resources/Textures/EB_TanWoodPlanksTexture_b1.png"
-dest_files=["res://.godot/imported/EB_TanWoodPlanksTexture_b1.png-e0e50708b500e70ded65bd5f14fdad45.s3tc.ctex"]
+dest_files=["res://.godot/imported/EB_TanWoodPlanksTexture_b1.png-e0e50708b500e70ded65bd5f14fdad45.s3tc.ctex", "res://.godot/imported/EB_TanWoodPlanksTexture_b1.png-e0e50708b500e70ded65bd5f14fdad45.etc2.ctex"]
 
 [params]
 

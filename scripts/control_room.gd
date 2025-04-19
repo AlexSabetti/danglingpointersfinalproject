@@ -43,22 +43,22 @@ func update_room_ambience(mapNode: MapNode):
 	
 	if curRoom != null && curRoom.room_ambience != "" :
 		if curRoom.room_ambience.contains("FoumpWeak"):
-			foumpAmbiSoundPLayer.volume_db = -10.0
+			foumpAmbiSoundPLayer.volume_db = -5.0
 			print("playing: FoumpWeak")
 		else: if curRoom.room_ambience.contains("FoumpStrong"):
-			foumpAmbiSoundPLayer.volume_db = 0.0
+			foumpAmbiSoundPLayer.volume_db = 10.0
 			print("playing: FoumpStrong")
 		else:
 			foumpAmbiSoundPLayer.volume_db = -80.0
 		
 		if curRoom.room_ambience.contains("MetalCreak"):
-			deepCreakingAmbiSoundPLayer.volume_db = -20.0
+			deepCreakingAmbiSoundPLayer.volume_db = 0.0
 			print("playing: MetalCreak")
 		else:
 			deepCreakingAmbiSoundPLayer.volume_db = -80.0
 		
 		if curRoom.room_ambience.contains("Cluster"):
-			clusterAmbiSoundPLayer.volume_db = -0.0
+			clusterAmbiSoundPLayer.volume_db = 5.0
 			print("playing: Cluster")
 		else:
 			clusterAmbiSoundPLayer.volume_db = -80.0

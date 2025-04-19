@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://ci4p5ggyge7cw"]
+
+[ext_resource type="Shader" uid="uid://bvv8nr10umlcg" path="res://resources/Shaders/VS_Dissolve3D.tres" id="1_bu6yj"]
+[ext_resource type="NoiseTexture3D" uid="uid://dfioht8s8igs" path="res://resources/Textures/NormalMaps/Noise3D_1.tres" id="2_bu6yj"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_bu6yj")
+shader_parameter/Dissolve_Height = 0.25
+shader_parameter/Noise_scale = 1.0
+shader_parameter/Speed_1 = Vector3(0.013, 0.03, 0.1)
+shader_parameter/WorldPosScaler = 0.2
+shader_parameter/Frequency = 1.0
+shader_parameter/Noise3D = ExtResource("2_bu6yj")
+shader_parameter/Speed_2 = Vector3(-0.005, 0.01, 0.02)
+shader_parameter/Edge_Thickness = 0.05
+shader_parameter/CutOff = 0.5

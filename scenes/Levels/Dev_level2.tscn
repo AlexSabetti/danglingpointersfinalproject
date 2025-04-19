@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://oke55a7wgf5n" path="res://scenes/Levels/Rooms/Room4_a1.tscn" id="17_htuc0"]
 [ext_resource type="PackedScene" uid="uid://cjhqgtvl0c4r4" path="res://scenes/Levels/Rooms/Room5_a1.tscn" id="18_axywr"]
 [ext_resource type="PackedScene" uid="uid://bqnjyqolsuecm" path="res://scenes/Levels/Rooms/Room6_a1.tscn" id="19_bly6u"]
-[ext_resource type="PackedScene" uid="uid://c558naetylum2" path="res://scenes/Levels/Rooms/Room7_a1.tscn" id="20_c5yqf"]
+[ext_resource type="PackedScene" uid="uid://c558naetylum2" path="res://scenes/Levels/Rooms/room7_a1.tscn" id="20_c5yqf"]
 [ext_resource type="PackedScene" uid="uid://c20xyr28c8w0n" path="res://scenes/Levels/Rooms/Room8_a1.tscn" id="21_7vo0u"]
 [ext_resource type="PackedScene" uid="uid://d4cyqu5i5wyu" path="res://scenes/Levels/Rooms/Room9_a1.tscn" id="22_ml7aq"]
 [ext_resource type="PackedScene" uid="uid://253weudhtvis" path="res://scenes/Levels/Rooms/Room10_a1.tscn" id="23_25uhl"]
