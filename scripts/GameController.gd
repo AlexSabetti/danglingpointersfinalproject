@@ -10,7 +10,6 @@ const MAX_DIST = 800
 var signal_manager: SignalBus = SigBus
 var paused: bool = false
 
-
 @export_category("CameraControls")
 @export var player_cam: Camera3D # camera of the player's character
 @export var drone:Drone # drone to be used by the player
@@ -78,6 +77,7 @@ func _process(delta: float):
 		if Input.is_action_just_released("scroll_down"):
 			MessageScreenUI.scroll_down()
 		
+	
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel") && !UI.settings_locked:
@@ -128,9 +128,11 @@ func camera_movement(delta: float):
 		if abs(twist_input) < 0.01:
 			twist_input = 0
 		
+		
 	twist_input = clamp(twist_input, -turnSpeed, turnSpeed)
 	
-	drone.DroneCamera.rotate_y(deg_to_rad(twist_input))
+	
+	drone.DroneCamera.rotate_y(deg_to_rad(200 * twist_input * delta))
 	
 	# limits degrees of rotation for drone camera
 	#if rad_to_deg(drone.DroneCamera.rotation.y) <  min_h_rotation:

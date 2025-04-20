@@ -56,6 +56,7 @@ func _ready():
 
 func _process(_delta: float) -> void:
 	CursorIcon.position = get_global_mouse_position()
+	#$FPS_COUNTER.text = str(Engine.get_frames_per_second())
 
 # 
 func set_cursor_type(type:int):

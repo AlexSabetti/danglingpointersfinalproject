@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b31ay1l24ivuo"
 path.s3tc="res://.godot/imported/Salmon1_a1.png-587f33b98428b5d6cd70748e2356f995.s3tc.ctex"
+path.etc2="res://.godot/imported/Salmon1_a1.png-587f33b98428b5d6cd70748e2356f995.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://resources/Textures/Sprites/Salmon1_a1.png"
-dest_files=["res://.godot/imported/Salmon1_a1.png-587f33b98428b5d6cd70748e2356f995.s3tc.ctex"]
+dest_files=["res://.godot/imported/Salmon1_a1.png-587f33b98428b5d6cd70748e2356f995.s3tc.ctex", "res://.godot/imported/Salmon1_a1.png-587f33b98428b5d6cd70748e2356f995.etc2.ctex"]
 
 [params]
 

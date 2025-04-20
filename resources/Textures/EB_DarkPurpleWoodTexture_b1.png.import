@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2k25m3roskok"
 path.s3tc="res://.godot/imported/EB_DarkPurpleWoodTexture_b1.png-c1e2bf09ba30178d657ba9b84d39643b.s3tc.ctex"
+path.etc2="res://.godot/imported/EB_DarkPurpleWoodTexture_b1.png-c1e2bf09ba30178d657ba9b84d39643b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://resources/Textures/EB_DarkPurpleWoodTexture_b1.png"
-dest_files=["res://.godot/imported/EB_DarkPurpleWoodTexture_b1.png-c1e2bf09ba30178d657ba9b84d39643b.s3tc.ctex"]
+dest_files=["res://.godot/imported/EB_DarkPurpleWoodTexture_b1.png-c1e2bf09ba30178d657ba9b84d39643b.s3tc.ctex", "res://.godot/imported/EB_DarkPurpleWoodTexture_b1.png-c1e2bf09ba30178d657ba9b84d39643b.etc2.ctex"]
 
 [params]
 

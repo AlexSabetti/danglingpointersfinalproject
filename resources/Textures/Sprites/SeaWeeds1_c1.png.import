@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://drf0umkah0oxa"
 path.s3tc="res://.godot/imported/SeaWeeds1_c1.png-db66314ab2d2bb27b59f20de79015779.s3tc.ctex"
+path.etc2="res://.godot/imported/SeaWeeds1_c1.png-db66314ab2d2bb27b59f20de79015779.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://resources/Textures/Sprites/SeaWeeds1_c1.png"
-dest_files=["res://.godot/imported/SeaWeeds1_c1.png-db66314ab2d2bb27b59f20de79015779.s3tc.ctex"]
+dest_files=["res://.godot/imported/SeaWeeds1_c1.png-db66314ab2d2bb27b59f20de79015779.s3tc.ctex", "res://.godot/imported/SeaWeeds1_c1.png-db66314ab2d2bb27b59f20de79015779.etc2.ctex"]
 
 [params]
 

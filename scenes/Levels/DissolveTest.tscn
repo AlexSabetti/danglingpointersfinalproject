@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://di7boym4hl0bt"]
+
+[ext_resource type="Material" uid="uid://ci4p5ggyge7cw" path="res://resources/Shaders/SM_Dissolve3D.tres" id="1_op2he"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4d0g1"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_4d0g1")
+surface_material_override/0 = ExtResource("1_op2he")

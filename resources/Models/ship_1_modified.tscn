@@ -1,16 +1,63 @@
-[gd_scene load_steps=4 format=3 uid="uid://daisq5v2y88dx"]
+[gd_scene load_steps=11 format=3 uid="uid://daisq5v2y88dx"]
 
 [ext_resource type="PackedScene" uid="uid://scuaek41wkmw" path="res://resources/Models/Ship1_modified.glb" id="1_uid3m"]
 [ext_resource type="Material" uid="uid://cv3p54e1twhiv" path="res://resources/Materials/M_Red.tres" id="2_opo8s"]
+[ext_resource type="Shader" uid="uid://bvv8nr10umlcg" path="res://resources/Shaders/VS_Dissolve3D.tres" id="3_he0f3"]
 [ext_resource type="Material" uid="uid://b4yraphdi75c1" path="res://resources/Materials/M_DarkPurpleWood2.tres" id="3_xb0wn"]
+[ext_resource type="NoiseTexture3D" uid="uid://dfioht8s8igs" path="res://resources/Textures/NormalMaps/Noise3D_1.tres" id="4_ee6lp"]
+[ext_resource type="Texture2D" uid="uid://m6uc37am74p6" path="res://resources/Textures/EB_RedWoodTexture_b1.png" id="5_e8ie4"]
+[ext_resource type="Texture2D" uid="uid://d2k25m3roskok" path="res://resources/Textures/EB_DarkPurpleWoodTexture_b1.png" id="7_ee6lp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hngwa"]
+render_priority = 0
+shader = ExtResource("3_he0f3")
+shader_parameter/Texture = ExtResource("5_e8ie4")
+shader_parameter/Dissolve_Height = 4.0
+shader_parameter/Noise_scale = 4.0
+shader_parameter/Speed_1 = Vector3(0.013, -0.04, 0.01)
+shader_parameter/WorldPosScaler = 0.1
+shader_parameter/Frequency = 1.0
+shader_parameter/Noise3D = ExtResource("4_ee6lp")
+shader_parameter/Speed_2 = Vector3(-0.005, -0.02, 0.02)
+shader_parameter/Edge_Thickness = 0.05
+shader_parameter/CutOff = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tnp30"]
+render_priority = 0
+shader = ExtResource("3_he0f3")
+shader_parameter/Texture = ExtResource("7_ee6lp")
+shader_parameter/Dissolve_Height = 4.0
+shader_parameter/Noise_scale = 4.0
+shader_parameter/Speed_1 = Vector3(0.013, -0.04, 0.01)
+shader_parameter/WorldPosScaler = 0.1
+shader_parameter/Frequency = 1.0
+shader_parameter/Noise3D = ExtResource("4_ee6lp")
+shader_parameter/Speed_2 = Vector3(-0.005, -0.02, 0.02)
+shader_parameter/Edge_Thickness = 0.05
+shader_parameter/CutOff = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3vihl"]
+render_priority = 0
+shader = ExtResource("3_he0f3")
+shader_parameter/Texture = ExtResource("5_e8ie4")
+shader_parameter/Dissolve_Height = 4.0
+shader_parameter/Noise_scale = 4.0
+shader_parameter/Speed_1 = Vector3(0.013, -0.04, 0.01)
+shader_parameter/WorldPosScaler = 0.1
+shader_parameter/Frequency = 1.0
+shader_parameter/Noise3D = ExtResource("4_ee6lp")
+shader_parameter/Speed_2 = Vector3(-0.005, -0.02, 0.02)
+shader_parameter/Edge_Thickness = 0.05
+shader_parameter/CutOff = 0.5
 
 [node name="Ship1_modified" instance=ExtResource("1_uid3m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="ShipCabin" parent="." index="0"]
 surface_material_override/0 = ExtResource("2_opo8s")
 
 [node name="ShipHull" parent="." index="1"]
-surface_material_override/0 = ExtResource("2_opo8s")
+surface_material_override/0 = SubResource("ShaderMaterial_hngwa")
 
 [node name="ShipCabinRoof" parent="." index="2"]
 surface_material_override/0 = ExtResource("3_xb0wn")
@@ -19,7 +66,7 @@ surface_material_override/0 = ExtResource("3_xb0wn")
 surface_material_override/0 = ExtResource("2_opo8s")
 
 [node name="ShipRailings1" parent="." index="4"]
-surface_material_override/0 = ExtResource("3_xb0wn")
+surface_material_override/0 = SubResource("ShaderMaterial_tnp30")
 
 [node name="ShipCabin_001" parent="." index="5"]
-surface_material_override/0 = ExtResource("2_opo8s")
+surface_material_override/0 = SubResource("ShaderMaterial_3vihl")

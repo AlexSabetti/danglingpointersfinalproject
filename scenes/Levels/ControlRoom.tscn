@@ -198,7 +198,7 @@ bus = &"Muffled"
 [node name="UnderWaterAmbience" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.369144, 2.34495, 1.27951)
 stream = ExtResource("6_e5gbh")
-volume_db = 2.0
+volume_db = 3.0
 autoplay = true
 panning_strength = 0.5
 bus = &"DroneAudio"
@@ -206,7 +206,6 @@ bus = &"DroneAudio"
 [node name="FoumpAmbiLoop" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.369144, 2.46536, 1.27951)
 stream = ExtResource("7_rt0ox")
-volume_db = -2.0
 pitch_scale = 0.5
 autoplay = true
 panning_strength = 0.25
@@ -215,6 +214,7 @@ bus = &"DroneAudio"
 [node name="ClusterAmbiLoop" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.369144, 2.46536, 1.27951)
 stream = ExtResource("8_1o7ev")
+volume_db = 2.0
 autoplay = true
 panning_strength = 0.25
 bus = &"DroneAudio"
@@ -222,8 +222,8 @@ bus = &"DroneAudio"
 [node name="DeepCreakingAmbiLoop" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.369144, 2.46536, 1.27951)
 stream = ExtResource("8_rt0ox")
-volume_db = 2.0
-pitch_scale = 0.9
+volume_db = 15.0
+pitch_scale = 0.8
 autoplay = true
 panning_strength = 0.3
 bus = &"DroneAudio"

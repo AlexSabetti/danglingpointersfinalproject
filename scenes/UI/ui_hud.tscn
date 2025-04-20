@@ -224,3 +224,9 @@ one_shot = true
 visible = false
 modulate = Color(0.862745, 0.854902, 0.839216, 0.835294)
 texture = ExtResource("17_1rx2y")
+
+[node name="FPS_COUNTER" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
