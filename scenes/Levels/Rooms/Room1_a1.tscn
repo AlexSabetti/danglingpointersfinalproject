@@ -1,8 +1,8 @@
 [gd_scene load_steps=24 format=3 uid="uid://cgvgni8obca17"]
 
 [ext_resource type="PackedScene" uid="uid://h26dlkf7ctm8" path="res://resources/Models/under_water_room_1_a_1.tscn" id="1_jnume"]
-[ext_resource type="Script" uid="uid://br3bhxpyvy3lu" path="res://scripts/Room.gd" id="1_o0shy"]
-[ext_resource type="Script" uid="uid://bs8y8lrwcb8ml" path="res://scripts/CameraChangeObject.gd" id="2_j8fw3"]
+[ext_resource type="Script" path="res://scripts/Room.gd" id="1_o0shy"]
+[ext_resource type="Script" path="res://scripts/CameraChangeObject.gd" id="2_j8fw3"]
 [ext_resource type="PackedScene" uid="uid://bd7icn4pwfdoi" path="res://scenes/Entities/Foliage.tscn" id="2_jnume"]
 [ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://scenes/Entities/CamPosNode.tscn" id="3_j8fw3"]
 [ext_resource type="Texture2D" uid="uid://cealpeqkes7xo" path="res://resources/Textures/Sprites/SeaWeeds1_a1.png" id="3_mq1ee"]
@@ -79,7 +79,6 @@ trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_N")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_N"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.25, 1.5, 0)
 shape = SubResource("BoxShape3D_v31mo")
-debug_color = Color(1, 0.796078, 0.0235294, 1)
 
 [node name="RoomChangeCollider_E" type="StaticBody3D" parent="RoomChangers" node_paths=PackedStringArray("trigger_on_interact")]
 script = ExtResource("2_j8fw3")
@@ -89,7 +88,6 @@ trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_E")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_E"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.25, 1.5, 0)
 shape = SubResource("BoxShape3D_v31mo")
-debug_color = Color(1, 0.796078, 0.0235294, 1)
 
 [node name="RoomChangeCollider_S" type="StaticBody3D" parent="RoomChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -100,7 +98,6 @@ trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_S")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_S"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.25, 1.5, 0)
 shape = SubResource("BoxShape3D_v31mo")
-debug_color = Color(1, 0.796078, 0.0235294, 1)
 
 [node name="RoomChangeCollider_W" type="StaticBody3D" parent="RoomChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
@@ -111,7 +108,6 @@ trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_W")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_W"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.25, 1.5, 0)
 shape = SubResource("BoxShape3D_v31mo")
-debug_color = Color(1, 0.796078, 0.0235294, 1)
 
 [node name="CameraChangers" type="Node3D" parent="."]
 
@@ -123,7 +119,6 @@ trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_W")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/StaticBody3D3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.369, 1.5, 0.291)
 shape = SubResource("BoxShape3D_j8fw3")
-debug_color = Color(1, 0.772549, 0.560784, 1)
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="CameraChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -6.12483, 0, 5.01997)
@@ -133,7 +128,6 @@ trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_S")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/StaticBody3D4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.369, 1.5, 0.291)
 shape = SubResource("BoxShape3D_whm0a")
-debug_color = Color(1, 0.772549, 0.560784, 1)
 
 [node name="StaticBody3D5" type="StaticBody3D" parent="CameraChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -1.5, 0, -0.5)
@@ -143,7 +137,6 @@ trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_N")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/StaticBody3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.5, -0.25)
 shape = SubResource("BoxShape3D_wr532")
-debug_color = Color(1, 0.772549, 0.560784, 1)
 
 [node name="StaticBody3D6" type="StaticBody3D" parent="CameraChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -1.5, 0, -0.5)
@@ -153,7 +146,6 @@ trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_W")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/StaticBody3D6"]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 5, 1.5, 0.249999)
 shape = SubResource("BoxShape3D_wr532")
-debug_color = Color(1, 0.772549, 0.560784, 1)
 
 [node name="StaticBody3D7" type="StaticBody3D" parent="CameraChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 2.5, 0, 0.5)
@@ -163,7 +155,6 @@ trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_E")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/StaticBody3D7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.5, -0.25)
 shape = SubResource("BoxShape3D_wr532")
-debug_color = Color(1, 0.772549, 0.560784, 1)
 
 [node name="StaticBody3D8" type="StaticBody3D" parent="CameraChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 2.5, 0, 0.5)
@@ -173,7 +164,6 @@ trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_N")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/StaticBody3D8"]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 5, 1.5, 0.249999)
 shape = SubResource("BoxShape3D_wr532")
-debug_color = Color(1, 0.772549, 0.560784, 1)
 
 [node name="CameraNodes" type="Node3D" parent="."]
 

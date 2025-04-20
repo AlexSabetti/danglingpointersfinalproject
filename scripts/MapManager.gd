@@ -2,14 +2,14 @@ class_name MapManager
 extends Node3D
 
 @export_category("Map Properties")
-@export var grid_count: int = 9 # MUST BE A ROOTABLE VALUE
+# @export var grid_count: int = 9 # MUST BE A ROOTABLE VALUE
 @export var cell_size: int = 20 # Change this if we change the room sizes
-@export var active_cell_count: int = 0 # How many cells we've already placed rooms in
+# @export var active_cell_count: int = 0 # How many cells we've already placed rooms in
 
 @export var node_scene: PackedScene # MUST BE FILLED IN
 @export var starting_area: PackedScene = null # MUST BE FILLED IN
 @export var original_node_loc: Vector3 = Vector3(0, 0, 0)
-@export var num_pois: int = 3
+# @export var num_pois: int = 3
 
 @export var cardinal_iterations: int = 10
 
@@ -32,34 +32,69 @@ var room5_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room5_a1.tscn")
 var room6_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room6_a1.tscn")
 
 # Dead end, one opening, pointing positive z
-var room7_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room7_a1.tscn") 
+var room7_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room7_a1.tscn")
 
-var starting_node: MapNode = null
-var starting_node_place : int = -1
+#line, two openings
+var room8_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room8_a1.tscn")
 
-var key_areas: Array = []
-var points_of_interest: Array = []
-var paths: Array = []
-var crosses: Array = []
-var available_nodes: Array = []
-var available_nodes_count: int = 0
+# Cross, four openings
+var room9_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room9_a1.tscn")
 
-var key_area_type_a_created: bool = false
-var key_area_type_b_created: bool = false
+# T-shape, three openings
+var room10_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room10_a1.tscn")
 
-var root_count: int = -1
-var head: MapNode = null
+#line, two openings
+var room11_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room11_a1.tscn")
+
+
+# var starting_node: MapNode = null
+# var starting_node_place : int = -1
+
+var lines: Array[PackedScene] = []
+var corners: Array[PackedScene] = []
+var t_shaped: Array[PackedScene] = []
+var crosses: Array[PackedScene] = []
+var dead_ends: Array[PackedScene] = []
+
+# var key_areas: Array = []
+# var points_of_interest: Array = []
+# var paths: Array = []
+# var crosses: Array = []
+# var available_nodes: Array = []
+# var available_nodes_count: int = 0
+
+# var key_area_type_a_created: bool = false
+# var key_area_type_b_created: bool = false
+
+# var root_count: int = -1
+# var head: MapNode = null
 
 func _ready():
-	root_count = sqrt(grid_count)
-	Create_Map()
-	start_map()
-	expand_map()
+	# new setup:
+	lines.append(room2_a1)
+	lines.append(room8_a1)
+	lines.append(room11_a1)
+
+	corners.append(room5_a1)
+	corners.append(room4_a1)
+	
+	t_shaped.append(room6_a1)
+	t_shaped.append(room10_a1)
+	t_shaped.append(room3_a1)
+
+	crosses.append(room9_a1)
+	setup()
+
+	# old setup:
+	# root_count = sqrt(grid_count)
+	# Create_Map()
+	# start_map()
+	# expand_map()
 	
 func setup():
-	starter_node = node_scene.instantiate()
-	starter_node.global_position = original_node_loc
+	var starter_node: MapNode = node_scene.instantiate()
 	add_child(starter_node)
+	starter_node.global_position = original_node_loc
 	starter_node.active = true
 	var node_current: MapNode = starter_node
 
@@ -68,427 +103,493 @@ func setup():
 	spread(2, node_current, cardinal_iterations)
 	spread(3, node_current, cardinal_iterations)
 	
-func spread(prev_dir: int, node: MapNode, iterations: int):
-	if node == null or iterations < 1:
-		# endcase for recursion
-		return
-	iterations -= 1
-	# 0 = north, 1 = south, 2 = east, 3 = west
-	var rng = RandomNumberGenerator.new()
-	var space_state = get_world_3d().direct_space_state
-	if prev_dir == 0:
-		# now 0 = south, 1 = east, 2 = west
-		var dir = rng.randi_range(0, 2)
-		if dir == 0:
-			node.south_open = true
-			var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), vector3(0, 0, -cell_size))
-			query.set_exclude([node])
-			var result = space_state.intersect_ray(query)
-			if result.size() == 0:
-				node.south = node_scene.instantiate()
-				node.south.global_position = node.global_position + Vector3(0, 0, -cell_size)
-				add_child(node.south)
-				node.south.north = node
-			else:
-				result.collider.north_open = true
-				node.south = result.collider
-				node.south.north = node
-
-			spread(1, node.south, itertations)
-
-		elif dir == 1:
-			node.east_open = true
-			var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), vector3(cell_size, 0, 0))
-			query.set_exclude([node])
-			var result = space_state.intersect_ray(query)
-			if result.size() == 0:
-				node.east = node_scene.instantiate()
-				node.east.global_position = node.global_position + Vector3(cell_size, 0, 0)
-				add_child(node.east)
-				node.east.west = node
-			else:
-				result.collider.west_open = true
-				node.east = result.collider
-				node.east.west = node
-
-			spread(2, node.east, iterations)
-
-		else:
-			node.west_open = true
-			var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), vector3(-cell_size, 0, 0))
-			query.set_exclude([node])
-			var result = space_state.intersect_ray(query)
-			if result.size() == 0:
-				node.west = node_scene.instantiate()
-				node.west.global_position = node.global_position + Vector3(-cell_size, 0, 0)
-				add_child(node.west)
-				node.west.east = node
-			else:
-				result.collider.east_open = true
-				node.west = result.collider
-				node.west.east = node
-
-			spread(3, node.west, iterations)
-
-	elif prev_dir == 1:
-		# now 0 = north, 1 = east, 2 = west
-		var dir = rng.randi_range(0, 2)
-		if dir == 0:
-			node.north_open = true
-			var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), vector3(0, 0, cell_size))
-			query.set_exclude([node])
-			var result = space_state.intersect_ray(query)
-			if result.size() == 0:
-				node.north = node_scene.instantiate()
-				node.north.global_position = node.global_position + Vector3(0, 0, cell_size)
-				add_child(node.north)
-				node.north.south = node
-			else:
-				result.collider.south_open = true
-				node.north = result.collider
-				node.north.south = node
-
-			spread(0, node.north, iterations)
-
-		elif dir == 1:
-			node.east_open = true
-			var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), vector3(cell_size, 0, 0))
-			query.set_exclude([node])
-			var result = space_state.intersect_ray(query)
-			if result.size() == 0:
-				node.east = node_scene.instantiate()
-				node.east.global_position = node.global_position + Vector3(cell_size, 0, 0)
-				add_child(node.east)
-				node.east.west = node
-			else:
-				result.collider.west_open = true
-				node.east = result.collider
-				node.east.west = node
-
-			spread(2, node.east, iterations) # east is 2 normally
-
-		else:
-			node.west_open = true
-			var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), vector3(-cell_size, 0, 0))
-			query.set_exclude([node])
-			var result = space_state.intersect_ray(query)
-			if result.size() == 0:
-				node.west = node_scene.instantiate()
-				node.west.global_position = node.global_position + Vector3(-cell_size, 0, 0)
-				add_child(node.west)
-				node.west.east = node
-			else:
-				result.collider.east_open = true
-				node.west = result.collider
-				node.west.east = node
-
-			spread(3, node.west, iterations) # west is 3 normally
-
-	elif prev_dir == 2:
-		# now 0 = north, 1 = south, 2 = west
-		var dir = rng.randi_range(0, 2)
-		if dir == 0:
-			node.north_open = true
-			var query = PhysicsRayQueryParameters3D.create(Vector3(0,0,0), vector3(0, 0, cell_size))
-			query.set_exclude([node])
-			var result = space_state.intersect_ray(query)
-			if result.size() == 0:
-				node.north = node_scene.instantiate()
-				node.north.global_position = node.global_position + Vector3(0, 0, cell_size)
-				add_child(node.north)
-				node.north.south = node
-			else:
-				result.collider.south_open = true
-				node.north = result.collider
-				node.north.south = node
-			
-			spread(0, node.north, iterations)
-
-		if dir == 1:
-			node.south_open = true
-			var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), vector3(0, 0, -cell_size))
-			query.set_exclude([node])
-			var result = space_state.intersect_ray(query)
-			if result.size() == 0:
-				node.south = node_scene.instantiate()
-				node.south.global_position = node.global_position + Vector3(0, 0, -cell_size)
-				add_child(node.south)
-				node.south.north = node
-			else:
-				result.collider.north_open = true
-				node.south = result.collider
-				node.south.north = node
-			
-			spread(1, node.south, iterations)
-
-		else:
-			node.west_open = true
-			var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), vector3(-cell_size, 0, 0))
-			query.set_exclude([node])
-			var result = space_state.intersect_ray(query)
-			if result.size() == 0:
-				node.west = node_scene.instantiate()
-				node.west.global_position = node.global_position + Vector3(-cell_size, 0, 0)
-				add_child(node.west)
-				node.west.east = node
-			else:
-				result.collider.east_open = true
-				node.west = result.collider
-				node.west.east = node
-			
-			spread(3, node.west, iterations)
-
-	elif prev_dir == 3:
-		# now 0 = north, 1 = south, 2 = east
-		var dir = rng.randi_range(0, 2)
-		if dir == 0:
-			node.north_open = true
-			var query = PhysicsRayQueryParameters3D.create(Vector3(0,0,0), vector3(0,0, cell_size))
-			query.set_exclude([node])
-			var result = space_state.intersect_ray(query)
-			if result.size() == 0:
-				node.north = node_scene.instantiate()
-				node.north.global_position = node.global_position + Vector3(0, 0, cell_size)
-				add_child(node.north)
-				node.north.south = node
-			else:
-				result.collider.south_open = true
-				node.north = result.collider
-				node.north.south = node
-			
-			spread(0, node.north, iterations)
-
-		elif dir == 1:
-			node.south_open = true
-			var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), vector3(0, 0, -cell_size))
-			query.set_exclude([node])
-			var result = space_state.intersect_ray(query)
-			if result.size() == 0:
-				node.south = node_scene.instantiate()
-				node.south.global_position = node.global_position + Vector3(0, 0, -cell_size)
-				add_child(node.south)
-				node.south.north = node
-			else:
-				result.collider.north_open = true
-				node.south = result.collider
-				node.south.north = node
-			
-			spread(1, node.south, iterations)
-
-		else:
-			node.east_open = true
-			var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), vector3(cell_size, 0, 0))
-			query.set_exclude([node])
-			var result = space_state.intersect_ray(query)
-			if result.size() == 0:
-				node.east = node_scene.instantiate()
-				node.east.global_position = node.global_position + Vector3(cell_size, 0, 0)
-				add_child(node.east)
-				node.east.west = node
-			else:
-				result.collider.west_open = true
-				node.east = result.collider
-				node.east.west = node
-			
-			spread(2, node.east, iterations)
-			
-
-
-func Create_Map():
-	var node_cur_pos: Vector3 = original_node_loc
-	for i in range(0, root_count):
-		for j in range(0, root_count):
-			node_cur_pos = Vector3(i * cell_size, 0, j * cell_size) # Tweak this
-			var walker = node_scene.instantiate()
-			add_child(walker)
-			walker.global_position = node_cur_pos
-			walker.place_pos = i * root_count + j
-			var placement_above = i * root_count + j - root_count
-			if placement_above >= 0:
-				get_child(placement_above).south = walker
-				walker.north = get_child(placement_above)
-			
-			if j > 0:
-				get_child(i * root_count + j - 1).east = walker
-				walker.west = get_child(i * root_count + j - 1)
-			available_nodes.append(walker)
-			available_nodes_count += 1
-	head = get_child(0)
-		
-	
-func start_map():
-	var rng = RandomNumberGenerator.new()
-	var starting_tile = rng.randi_range(0, grid_count - 1)
-	starting_node = get_child(starting_tile)
-	# remove from available nodes
-	available_nodes.remove_at(starting_tile)
-	available_nodes_count -= 1
-	starting_node.active = true
-	starting_node_place = starting_tile
-
-	# We will instantiate the starting scene here, along with its exits
-
-	var starting_scene = starting_area.instantiate()
-	starting_node.add_child(starting_scene)
-	starting_scene.global_position = starting_node.global_position
-
-	# Don't know the specifics for how we're going to put up blockers yet, but we'll start with the bools
-
-	if(starting_node.north == null):
-		starting_node.north_open = false
-	if(starting_node.south == null):
-		starting_node.south_open = false
-	if(starting_node.east == null):
-		starting_node.east_open = false
-	if(starting_node.west == null): 
-		starting_node.west_open = false
-
-func expand_map():
-	var rng = RandomNumberGenerator.new()
-	# There are many ways to go about doing this, but for now what I'll do is select two-three random nodes
-	# I'll label the selected ones as "key areas" and then I'll try to expand from the starting node to connect there
-	# Then I'll select a few more random nodes and label them "points of interest" and try to connect them to a key area, an already established path, or the starting area, whichever is closer
-	var first_key_area = -1
-	var second_key_area = -1
-
-	
-	first_key_area = rng.randi_range(0, available_nodes_count - 1)
-	available_nodes.remove_at(first_key_area)
-	available_nodes_count -= 1
-	second_key_area = rng.randi_range(0, grid_count - 1)
-	available_nodes.remove_at(second_key_area)
-	available_nodes_count -= 1
-
-	key_areas.append(get_child(first_key_area))
-	key_areas.append(get_child(second_key_area))
-
-	connect_to(first_key_area, starting_node_place)
-
-	# Second key area
-	var second_key_area_node = get_child(second_key_area)
-	var connection = find_closest_tile(second_key_area)
-	connect_to(second_key_area, connection)
-
-	# Points of interest
-	for i in range(0, num_pois):
-		var coin_flip = rng.randi_range(0, 2)
-		if coin_flip && paths.size() != 0:
-			print("Paths: " + str(paths))
-			# Take over a path
-			var path_index = rng.randi_range(0, paths.size() - 1)
-			var path = paths[path_index]
-			points_of_interest.append(path)
-			paths.remove_at(path_index)
-		else:
-			# take over a random area
-			var area_index = rng.randi_range(0, available_nodes_count - 1)
-			var area = available_nodes[area_index]
-			available_nodes.remove_at(area_index)
-			available_nodes_count -= 1
-			points_of_interest.append(area)
-			var closest_tile = find_closest_tile(area.place_pos)
-			connect_to(area.place_pos, closest_tile)
-	location_creation()
-
-
-func location_creation():
-	# Go through the paths first
-	for i in range(0, paths.size()):
-		var path = paths[i]
-		assign_scene(path, 0)
-		path.create_scene()
-
-	for i in range(0, crosses.size()):
-		var cross = get_child(crosses[i])
-		assign_scene(cross, 1)
-		cross.create_scene()
-
-	for i in range(0, points_of_interest.size()):
-		var poi = points_of_interest[i]
-		assign_scene(poi, 2)
-		poi.create_scene()
-		
-	for i in range(0, key_areas.size()):
-		var key_area = key_areas[i]
-		assign_scene(key_area, 3)
-		key_area.create_scene()
-	
-func assign_scene(node: MapNode, stage: int):
-	var openings = find_number_of_openings(node)
-	if stage == 4:
-		# key area
-		if key_area_type_a_created:
-			node.scene_path = room4_a1
-			key_area_type_b_created = true
-			if node.south_open:
-				if node.west_open:
-					node.rotate_by = 90
-			elif node.north_open:
-				if node.west_open:
-					node.rotate_by = 180
-				else:
-					node.rotate_by = -90
+	for i in range(0, get_child_count()):
+		var node: MapNode = get_child(i)
+		var num_openings = find_number_of_openings(node)
+		var rng = RandomNumberGenerator.new()
+		if num_openings == 1:
+			# dead end
+			node.scene_path = room7_a1
+			if node.north_open:
+				node.rotate_by = 180
+			elif node.east_open:
+				node.rotate_by = -90
 			elif node.west_open:
 				node.rotate_by = 90
-		else:
-			node.scene_path = room3_a1
-			key_area_type_a_created = true
-			if openings == 1 and node.north_open:
-				node.rotate_by = 180
-			elif openings == 2:
-				if node.north_open and node.south_open:
-					node.rotate_by = -90
-			elif openings == 3:
-				if !node.south_open:
-					node.rotate_by = 180
-				elif !node.east_open:
-					node.rotate_by = 90
-				elif !node.west_open:
-					node.rotate_by = 90
-		return
-	
-	if openings == 4:
-		# Have to use this room here, should rarely if ever happen
-		node.scene_path = room1_a1
-	elif openings == 3:
-		if stage == 0:
-			node.scene_path = room6_a1
-		else:
-			node.scene_path = room3_a1
-	elif openings == 2:
-		if stage == 0:
-			# Line section, only called when paths are being created
-			node.scene_path = room2_a1
-		elif stage == 1:
-			# corner section, only called when crosses are being created
-			node.scene_path = room5_a1
-		else:
-			# corner section, only called when Key Areas are being created
-			node.scene_path = room4_a1
-	elif openings == 1:
-		node.scene_path = room7_a1
-		if node.north_open:
-			node.rotate_by = 180
-		elif node.east_open:
-			node.rotate_by = -90
-		elif node.west_open:
-			node.rotate_by = 90
-	else:
-		node.scene_path = room5_a1 
 
-func find_closest_tile(position_from: int) -> int:
-	var node = get_child(position_from)
-	var connection_dist = root_count * root_count + 1
-	for i in range(0, key_areas.size()):
-		if abs(position_from - key_areas[i].place_pos) < connection_dist:
-			connection_dist = abs(position_from - key_areas[i].place_pos)
-	for i in range(0, points_of_interest.size()):
-		if abs(position_from - points_of_interest[i].place_pos) < connection_dist:
-			connection_dist = abs(position_from - points_of_interest[i].place_pos)
-	for i in range(0, paths.size()):
-		if abs(position_from - paths[i].place_pos) < connection_dist:
-			connection_dist = abs(position_from - paths[i].place_pos)
-	return connection_dist
+			node.scene_path = room7_a1
+		elif num_openings == 2:
+			if node.north_open and node.south_open or node.east_open and node.west_open:
+				#line, we'll have this choose from the line list
+				node.scene_path = room2_a1
+				if node.north_open:
+					node.rotate_by = 90
+				
+				var rand = rng.randi_range(0, lines.size() - 1)
+				node.scene_path = lines[rand]
+			else:
+				#corner, we'll have this choose from the corner list
+				if node.north_open and node.east_open:
+					node.rotate_by = -90
+				elif node.north_open and node.west_open:
+					node.rotate_by = 180
+				elif node.south_open and node.west_open:
+					node.rotate_by = 90
+				
+				var rand = rng.randi_range(0, corners.size() - 1)
+				if rand == 1:
+					node.scene_path = room4_a1
+					corners.remove_at(rand)
+				else:
+					node.scene_path = corners[rand]
+					
+		elif num_openings ==3:
+			# T-shape, we'll have this choose from the T-shape list
+			if node.north_open and node.east_open and node.south_open:
+				node.rotate_by = -90
+			elif node.north_open and node.east_open and node.west_open:
+				node.rotate_by = 180
+			elif node.north_open and node.west_open and node.south_open:
+				node.rotate_by = 90
+
+			var rand = rng.randi_range(0, t_shaped.size() - 1)
+			if rand == 3:
+				node.scene_path = room3_a1
+				t_shaped.remove_at(rand)
+			else:
+				node.scene_path = t_shaped[rand]
+
+		elif num_openings == 4:
+			node.scene_path = room9_a1
+			# Cross, we'll have this choose from the cross list
+			# There is no need to check openings here, since all 4 are open
+		
+func spread(prev_dir: int, node: MapNode, iterations: int) -> void:
+	if node != null and iterations > 0:
+		iterations -= 1
+		# 0 = north, 1 = south, 2 = east, 3 = west
+		var rng = RandomNumberGenerator.new()
+		var space_state = get_world_3d().direct_space_state
+		if prev_dir == 0:
+			# now 0 = south, 1 = east, 2 = west
+			var dir = rng.randi_range(0, 2)
+			if dir == 0:
+				node.south_open = true
+				var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(0, 0, -cell_size))
+				query.set_exclude([node])
+				var result = space_state.intersect_ray(query)
+				if result.size() == 0:
+					node.south = node_scene.instantiate()
+					add_child(node.south)
+					node.south.global_position = Vector3(node.global_position.x, node.global_position.y, node.global_position.z - cell_size)
+					node.south.north = node
+				else:
+					result.collider.north_open = true
+					node.south = result.collider
+					node.south.north = node
+
+				spread(1, node.south, iterations)
+
+			elif dir == 1:
+				node.east_open = true
+				var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(cell_size, 0, 0))
+				query.set_exclude([node])
+				var result = space_state.intersect_ray(query)
+				if result.size() == 0:
+					node.east = node_scene.instantiate()
+					add_child(node.east)
+					node.east.global_position = Vector3(node.global_position.x + cell_size, node.global_position.y, node.global_position.z)
+					node.east.west = node
+				else:
+					result.collider.west_open = true
+					node.east = result.collider
+					node.east.west = node
+
+				spread(2, node.east, iterations)
+
+			else:
+				node.west_open = true
+				var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(-cell_size, 0, 0))
+				query.set_exclude([node])
+				var result = space_state.intersect_ray(query)
+				if result.size() == 0:
+					node.west = node_scene.instantiate()
+					add_child(node.west)
+					node.west.global_position = Vector3(node.global_position.x - cell_size, node.global_position.y, node.global_position.z)
+			
+					node.west.east = node
+				else:
+					result.collider.east_open = true
+					node.west = result.collider
+					node.west.east = node
+
+				spread(3, node.west, iterations)
+
+		elif prev_dir == 1:
+			# now 0 = north, 1 = east, 2 = west
+			var dir = rng.randi_range(0, 2)
+			if dir == 0:
+				node.north_open = true
+				var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(0, 0, cell_size))
+				query.set_exclude([node])
+				var result = space_state.intersect_ray(query)
+				if result.size() == 0:
+					node.north = node_scene.instantiate()
+					add_child(node.north)
+					node.north.global_position = Vector3(node.global_position.x, node.global_position.y, node.global_position.z + cell_size)
+					
+					node.north.south = node
+				else:
+					result.collider.south_open = true
+					node.north = result.collider
+					node.north.south = node
+
+				spread(0, node.north, iterations)
+
+			elif dir == 1:
+				node.east_open = true
+				var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(cell_size, 0, 0))
+				query.set_exclude([node])
+				var result = space_state.intersect_ray(query)
+				if result.size() == 0:
+					node.east = node_scene.instantiate()
+					add_child(node.east)
+					node.east.global_position = Vector3(node.global_position.x + cell_size, node.global_position.y, node.global_position.z)
+					node.east.west = node
+				else:
+					result.collider.west_open = true
+					node.east = result.collider
+					node.east.west = node
+
+				spread(2, node.east, iterations) # east is 2 normally
+
+			else:
+				node.west_open = true
+				var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(-cell_size, 0, 0))
+				query.set_exclude([node])
+				var result = space_state.intersect_ray(query)
+				if result.size() == 0:
+					node.west = node_scene.instantiate()
+					add_child(node.west)
+					node.west.global_position = Vector3(node.global_position.x - cell_size, node.global_position.y, node.global_position.z)
+					node.west.east = node
+				else:
+					result.collider.east_open = true
+					node.west = result.collider
+					node.west.east = node
+
+				spread(3, node.west, iterations) # west is 3 normally
+
+		elif prev_dir == 2:
+			# now 0 = north, 1 = south, 2 = west
+			var dir = rng.randi_range(0, 2)
+			if dir == 0:
+				node.north_open = true
+				var query = PhysicsRayQueryParameters3D.create(Vector3(0,0,0), Vector3(0, 0, cell_size))
+				query.set_exclude([node])
+				var result = space_state.intersect_ray(query)
+				if result.size() == 0:
+					node.north = node_scene.instantiate()
+					add_child(node.north)
+					node.north.global_position = Vector3(node.global_position.x, node.global_position.y, node.global_position.z + cell_size)
+					node.north.south = node
+				else:
+					result.collider.south_open = true
+					node.north = result.collider
+					node.north.south = node
+				
+				spread(0, node.north, iterations)
+
+			if dir == 1:
+				node.south_open = true
+				var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(0, 0, -cell_size))
+				query.set_exclude([node])
+				var result = space_state.intersect_ray(query)
+				if result.size() == 0:
+					node.south = node_scene.instantiate()
+					add_child(node.south)
+					node.south.global_position = Vector3(node.global_position.x, node.global_position.y, node.global_position.z - cell_size)
+					node.south.north = node
+				else:
+					result.collider.north_open = true
+					node.south = result.collider
+					node.south.north = node
+				
+				spread(1, node.south, iterations)
+
+			else:
+				node.west_open = true
+				var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(-cell_size, 0, 0))
+				query.set_exclude([node])
+				var result = space_state.intersect_ray(query)
+				if result.size() == 0:
+					node.west = node_scene.instantiate()
+					add_child(node.west)
+					node.west.global_position = Vector3(node.global_position.x - cell_size, node.global_position.y, node.global_position.z)
+					node.west.east = node
+				else:
+					result.collider.east_open = true
+					node.west = result.collider
+					node.west.east = node
+				
+				spread(3, node.west, iterations)
+
+		elif prev_dir == 3:
+			# now 0 = north, 1 = south, 2 = east
+			var dir = rng.randi_range(0, 2)
+			if dir == 0:
+				node.north_open = true
+				var query = PhysicsRayQueryParameters3D.create(Vector3(0,0,0), Vector3(0,0, cell_size))
+				query.set_exclude([node])
+				var result = space_state.intersect_ray(query)
+				if result.size() == 0:
+					node.north = node_scene.instantiate()
+					add_child(node.north)
+					node.north.global_position = Vector3(node.global_position.x, node.global_position.y, node.global_position.z + cell_size)
+					node.north.south = node
+				else:
+					result.collider.south_open = true
+					node.north = result.collider
+					node.north.south = node
+				
+				spread(0, node.north, iterations)
+
+			elif dir == 1:
+				node.south_open = true
+				var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(0, 0, -cell_size))
+				query.set_exclude([node])
+				var result = space_state.intersect_ray(query)
+				if result.size() == 0:
+					node.south = node_scene.instantiate()
+					add_child(node.south)
+					node.south.global_position = Vector3(node.global_position.x, node.global_position.y, node.global_position.z - cell_size)
+					node.south.north = node
+				else:
+					result.collider.north_open = true
+					node.south = result.collider
+					node.south.north = node
+				
+				spread(1, node.south, iterations)
+
+			else:
+				node.east_open = true
+				var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(cell_size, 0, 0))
+				query.set_exclude([node])
+				var result = space_state.intersect_ray(query)
+				if result.size() == 0:
+					node.east = node_scene.instantiate()
+					add_child(node.east)
+					node.east.global_position = Vector3(node.global_position.x + cell_size, node.global_position.y, node.global_position.z)
+					node.east.west = node
+				else:
+					result.collider.west_open = true
+					node.east = result.collider
+					node.east.west = node
+				
+				spread(2, node.east, iterations)
+			
+func activate_nodes():
+	for i in range(0, get_child_count()):
+		var node = get_child(i)
+		node.active = true
+		node.create_scene()
+		node.turn_off_col()
+
+# func Create_Map():
+# 	var node_cur_pos: Vector3 = original_node_loc
+# 	for i in range(0, root_count):
+# 		for j in range(0, root_count):
+# 			node_cur_pos = Vector3(i * cell_size, 0, j * cell_size) # Tweak this
+# 			var walker = node_scene.instantiate()
+# 			add_child(walker)
+# 			walker.global_position = node_cur_pos
+# 			walker.place_pos = i * root_count + j
+# 			var placement_above = i * root_count + j - root_count
+# 			if placement_above >= 0:
+# 				get_child(placement_above).south = walker
+# 				walker.north = get_child(placement_above)
+			
+# 			if j > 0:
+# 				get_child(i * root_count + j - 1).east = walker
+# 				walker.west = get_child(i * root_count + j - 1)
+# 			available_nodes.append(walker)
+# 			available_nodes_count += 1
+# 	head = get_child(0)
+		
+	
+# func start_map():
+# 	var rng = RandomNumberGenerator.new()
+# 	var starting_tile = rng.randi_range(0, grid_count - 1)
+# 	starting_node = get_child(starting_tile)
+# 	# remove from available nodes
+# 	available_nodes.remove_at(starting_tile)
+# 	available_nodes_count -= 1
+# 	starting_node.active = true
+# 	starting_node_place = starting_tile
+
+# 	# We will instantiate the starting scene here, along with its exits
+
+# 	var starting_scene = starting_area.instantiate()
+# 	starting_node.add_child(starting_scene)
+# 	starting_scene.global_position = starting_node.global_position
+
+# 	# Don't know the specifics for how we're going to put up blockers yet, but we'll start with the bools
+
+# 	if(starting_node.north == null):
+# 		starting_node.north_open = false
+# 	if(starting_node.south == null):
+# 		starting_node.south_open = false
+# 	if(starting_node.east == null):
+# 		starting_node.east_open = false
+# 	if(starting_node.west == null): 
+# 		starting_node.west_open = false
+
+# func expand_map():
+# 	var rng = RandomNumberGenerator.new()
+# 	# There are many ways to go about doing this, but for now what I'll do is select two-three random nodes
+# 	# I'll label the selected ones as "key areas" and then I'll try to expand from the starting node to connect there
+# 	# Then I'll select a few more random nodes and label them "points of interest" and try to connect them to a key area, an already established path, or the starting area, whichever is closer
+# 	var first_key_area = -1
+# 	var second_key_area = -1
+
+	
+# 	first_key_area = rng.randi_range(0, available_nodes_count - 1)
+# 	available_nodes.remove_at(first_key_area)
+# 	available_nodes_count -= 1
+# 	second_key_area = rng.randi_range(0, grid_count - 1)
+# 	available_nodes.remove_at(second_key_area)
+# 	available_nodes_count -= 1
+
+# 	key_areas.append(get_child(first_key_area))
+# 	key_areas.append(get_child(second_key_area))
+
+# 	connect_to(first_key_area, starting_node_place)
+
+# 	# Second key area
+# 	var second_key_area_node = get_child(second_key_area)
+# 	var connection = find_closest_tile(second_key_area)
+# 	connect_to(second_key_area, connection)
+
+# 	# Points of interest
+# 	for i in range(0, num_pois):
+# 		var coin_flip = rng.randi_range(0, 2)
+# 		if coin_flip && paths.size() != 0:
+# 			print("Paths: " + str(paths))
+# 			# Take over a path
+# 			var path_index = rng.randi_range(0, paths.size() - 1)
+# 			var path = paths[path_index]
+# 			points_of_interest.append(path)
+# 			paths.remove_at(path_index)
+# 		else:
+# 			# take over a random area
+# 			var area_index = rng.randi_range(0, available_nodes_count - 1)
+# 			var area = available_nodes[area_index]
+# 			available_nodes.remove_at(area_index)
+# 			available_nodes_count -= 1
+# 			points_of_interest.append(area)
+# 			var closest_tile = find_closest_tile(area.place_pos)
+# 			connect_to(area.place_pos, closest_tile)
+# 	location_creation()
+
+
+# func location_creation():
+# 	# Go through the paths first
+# 	for i in range(0, paths.size()):
+# 		var path = paths[i]
+# 		assign_scene(path, 0)
+# 		path.create_scene()
+
+# 	for i in range(0, crosses.size()):
+# 		var cross = get_child(crosses[i])
+# 		assign_scene(cross, 1)
+# 		cross.create_scene()
+
+# 	for i in range(0, points_of_interest.size()):
+# 		var poi = points_of_interest[i]
+# 		assign_scene(poi, 2)
+# 		poi.create_scene()
+		
+# 	for i in range(0, key_areas.size()):
+# 		var key_area = key_areas[i]
+# 		assign_scene(key_area, 3)
+# 		key_area.create_scene()
+	
+# func assign_scene(node: MapNode, stage: int):
+# 	var openings = find_number_of_openings(node)
+# 	if stage == 4:
+# 		# key area
+# 		if key_area_type_a_created:
+# 			node.scene_path = room4_a1
+# 			key_area_type_b_created = true
+# 			if node.south_open:
+# 				if node.west_open:
+# 					node.rotate_by = 90
+# 			elif node.north_open:
+# 				if node.west_open:
+# 					node.rotate_by = 180
+# 				else:
+# 					node.rotate_by = -90
+# 			elif node.west_open:
+# 				node.rotate_by = 90
+# 		else:
+# 			node.scene_path = room3_a1
+# 			key_area_type_a_created = true
+# 			if openings == 1 and node.north_open:
+# 				node.rotate_by = 180
+# 			elif openings == 2:
+# 				if node.north_open and node.south_open:
+# 					node.rotate_by = -90
+# 			elif openings == 3:
+# 				if !node.south_open:
+# 					node.rotate_by = 180
+# 				elif !node.east_open:
+# 					node.rotate_by = 90
+# 				elif !node.west_open:
+# 					node.rotate_by = 90
+# 		return
+	
+# 	if openings == 4:
+# 		# Have to use this room here, should rarely if ever happen
+# 		node.scene_path = room1_a1
+# 	elif openings == 3:
+# 		if stage == 0:
+# 			node.scene_path = room6_a1
+# 		else:
+# 			node.scene_path = room3_a1
+# 	elif openings == 2:
+# 		if stage == 0:
+# 			# Line section, only called when paths are being created
+# 			node.scene_path = room2_a1
+# 		elif stage == 1:
+# 			# corner section, only called when crosses are being created
+# 			node.scene_path = room5_a1
+# 		else:
+# 			# corner section, only called when Key Areas are being created
+# 			node.scene_path = room4_a1
+# 	elif openings == 1:
+# 		node.scene_path = room7_a1
+# 		if node.north_open:
+# 			node.rotate_by = 180
+# 		elif node.east_open:
+# 			node.rotate_by = -90
+# 		elif node.west_open:
+# 			node.rotate_by = 90
+# 	else:
+# 		node.scene_path = room5_a1 
+
+# func find_closest_tile(position_from: int) -> int:
+# 	var node = get_child(position_from)
+# 	var connection_dist = root_count * root_count + 1
+# 	for i in range(0, key_areas.size()):
+# 		if abs(position_from - key_areas[i].place_pos) < connection_dist:
+# 			connection_dist = abs(position_from - key_areas[i].place_pos)
+# 	for i in range(0, points_of_interest.size()):
+# 		if abs(position_from - points_of_interest[i].place_pos) < connection_dist:
+# 			connection_dist = abs(position_from - points_of_interest[i].place_pos)
+# 	for i in range(0, paths.size()):
+# 		if abs(position_from - paths[i].place_pos) < connection_dist:
+# 			connection_dist = abs(position_from - paths[i].place_pos)
+# 	return connection_dist
 
 func find_number_of_openings(node: MapNode) -> int:
 	var openings = 0
@@ -502,65 +603,65 @@ func find_number_of_openings(node: MapNode) -> int:
 		openings += 1
 	return openings
 
-func connect_to( position_from: int, position_to: int):
-	var dist = position_to - position_from
-	var cross_pos = -1
-	if dist < 0:
-		# Below or to the right
-		var rows_away: int = abs(dist) / root_count
-		var cols_away: int = abs(dist) % root_count
-		cross_pos = position_from - cols_away
-		if cross_pos != position_from:
-			get_child(cross_pos).east_open = true
-			get_child(position_from).west_open = true
-			for i in range(1, cols_away):
-				var potential_path: MapNode = get_child(cross_pos + i)
-				potential_path.west_open = true
-				potential_path.east_open = true
-				potential_path.active = true
-				paths.append(potential_path)
-				available_nodes.remove_at(potential_path.place_pos)
-				available_nodes_count -= 1
-		if(cross_pos != position_to):
-			get_child(cross_pos).north_open = true
-			crosses.append(cross_pos)
-		for i in range(1, rows_away):
-			var potential_path: MapNode = get_child(cross_pos + (i * root_count))
-			potential_path.north_open = true
-			potential_path.south_open = true  
-			potential_path.active = true
-			paths.append(potential_path)
-			available_nodes.remove_at(potential_path.place_pos)
-			available_nodes_count -= 1
-		starting_node.south_open = true
-		get_child(cross_pos).active = true
+# func connect_to( position_from: int, position_to: int):
+# 	var dist = position_to - position_from
+# 	var cross_pos = -1
+# 	if dist < 0:
+# 		# Below or to the right
+# 		var rows_away: int = abs(dist) / root_count
+# 		var cols_away: int = abs(dist) % root_count
+# 		cross_pos = position_from - cols_away
+# 		if cross_pos != position_from:
+# 			get_child(cross_pos).east_open = true
+# 			get_child(position_from).west_open = true
+# 			for i in range(1, cols_away):
+# 				var potential_path: MapNode = get_child(cross_pos + i)
+# 				potential_path.west_open = true
+# 				potential_path.east_open = true
+# 				potential_path.active = true
+# 				paths.append(potential_path)
+# 				available_nodes.remove_at(potential_path.place_pos)
+# 				available_nodes_count -= 1
+# 		if(cross_pos != position_to):
+# 			get_child(cross_pos).north_open = true
+# 			crosses.append(cross_pos)
+# 		for i in range(1, rows_away):
+# 			var potential_path: MapNode = get_child(cross_pos + (i * root_count))
+# 			potential_path.north_open = true
+# 			potential_path.south_open = true  
+# 			potential_path.active = true
+# 			paths.append(potential_path)
+# 			available_nodes.remove_at(potential_path.place_pos)
+# 			available_nodes_count -= 1
+# 		starting_node.south_open = true
+# 		get_child(cross_pos).active = true
 			
-	else:
-		# Above or to the left
-		var rows_away = abs(dist) / root_count
-		var cols_away = abs(dist) % root_count
-		cross_pos = position_from + cols_away
-		if cross_pos != position_from:
-			get_child(cross_pos).west_open = true
-			get_child(position_from).east_open = true
-			for i in range(1, cols_away):
-				var potential_path: MapNode = get_child(cross_pos - i)
-				potential_path.west_open = true
-				potential_path.east_open = true
-				potential_path.active = true
-				paths.append(potential_path)
-				available_nodes.remove_at(potential_path.place_pos)
-				available_nodes_count -= 1
-		if(cross_pos != position_to):
-			get_child(cross_pos).south_open = true
-			crosses.append(cross_pos)
-		for i in range(1, rows_away):
-			var potential_path: MapNode = get_child(cross_pos - (i * root_count))
-			potential_path.north_open = true
-			potential_path.south_open = true
-			potential_path.active = true
-			paths.append(potential_path)
-			available_nodes.remove_at(potential_path.place_pos)
-			available_nodes_count -= 1
-		get_child(position_to).north_open = true
-		get_child(cross_pos).active = true
+# 	else:
+# 		# Above or to the left
+# 		var rows_away = abs(dist) / root_count
+# 		var cols_away = abs(dist) % root_count
+# 		cross_pos = position_from + cols_away
+# 		if cross_pos != position_from:
+# 			get_child(cross_pos).west_open = true
+# 			get_child(position_from).east_open = true
+# 			for i in range(1, cols_away):
+# 				var potential_path: MapNode = get_child(cross_pos - i)
+# 				potential_path.west_open = true
+# 				potential_path.east_open = true
+# 				potential_path.active = true
+# 				paths.append(potential_path)
+# 				available_nodes.remove_at(potential_path.place_pos)
+# 				available_nodes_count -= 1
+# 		if(cross_pos != position_to):
+# 			get_child(cross_pos).south_open = true
+# 			crosses.append(cross_pos)
+# 		for i in range(1, rows_away):
+# 			var potential_path: MapNode = get_child(cross_pos - (i * root_count))
+# 			potential_path.north_open = true
+# 			potential_path.south_open = true
+# 			potential_path.active = true
+# 			paths.append(potential_path)
+# 			available_nodes.remove_at(potential_path.place_pos)
+# 			available_nodes_count -= 1
+# 		get_child(position_to).north_open = true
+# 		get_child(cross_pos).active = true

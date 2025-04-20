@@ -1,5 +1,5 @@
 class_name MapNode
-extends Node3D
+extends StaticBody3D
 
 @export var scene_path: PackedScene
 # Pointers to all surrounding nodes
@@ -15,6 +15,8 @@ extends Node3D
 @export var east_open: bool = false
 @export var west_open: bool = false
 
+@onready var collision_box: CollisionShape3D = $CollisionShape3D
+
 var place_pos: int = 0
 var rotate_by = 0.0
 
@@ -25,4 +27,11 @@ func create_scene():
 	
 	# Set the position of the scene instance
 	scene_instance.global_position = global_transform.origin
-	#scene_instance.rotation_degrees = Vector3(0, rotate_by, 0)
+	scene_instance.rotation_degrees = Vector3(0, rotate_by, 0)
+	turn_off_col()
+
+func turn_off_col():
+	if collision_box != null:
+		collision_box.disabled = true
+		
+		
