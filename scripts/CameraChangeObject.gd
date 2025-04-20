@@ -40,11 +40,11 @@ func _ready():
 			col_box = child as CollisionShape3D
 	
 	# purely visual stuff for in editor
-	if col_box != null:
-		if isRoomChanger:
-			col_box.debug_color = Color("ffcb06", 1.0)
-		else:
-			col_box.debug_color = Color("ffc58f", 1.0)
+	# if col_box != null:
+	# 	if isRoomChanger:
+	# 		col_box.debug_color = Color("ffcb06", 1.0)
+	# 	else:
+	# 		col_box.debug_color = Color("ffc58f", 1.0)
 	
 	update_configuration_warnings()
 

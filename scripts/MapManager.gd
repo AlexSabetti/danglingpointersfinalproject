@@ -46,7 +46,8 @@ var room10_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room10_a1.tscn"
 #line, two openings
 var room11_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room11_a1.tscn")
 
-
+signal continue_spread()
+signal map_created()
 # var starting_node: MapNode = null
 # var starting_node_place : int = -1
 
@@ -71,6 +72,7 @@ var dead_ends: Array[PackedScene] = []
 
 func _ready():
 	# new setup:
+	
 	lines.append(room2_a1)
 	lines.append(room8_a1)
 	lines.append(room11_a1)
@@ -84,6 +86,8 @@ func _ready():
 
 	crosses.append(room9_a1)
 	setup()
+	await map_created
+	activate_nodes()
 
 	# old setup:
 	# root_count = sqrt(grid_count)
@@ -99,10 +103,15 @@ func setup():
 	var node_current: MapNode = starter_node
 
 	spread(0, node_current, cardinal_iterations)
+	await continue_spread
 	spread(1, node_current, cardinal_iterations)
+	await continue_spread
 	spread(2, node_current, cardinal_iterations)
+	await continue_spread
 	spread(3, node_current, cardinal_iterations)
-	
+	await continue_spread
+
+	print(get_child_count())
 	for i in range(0, get_child_count()):
 		var node: MapNode = get_child(i)
 		var num_openings = find_number_of_openings(node)
@@ -142,6 +151,7 @@ func setup():
 					corners.remove_at(rand)
 				else:
 					node.scene_path = corners[rand]
+	
 					
 		elif num_openings ==3:
 			# T-shape, we'll have this choose from the T-shape list
@@ -163,230 +173,278 @@ func setup():
 			node.scene_path = room9_a1
 			# Cross, we'll have this choose from the cross list
 			# There is no need to check openings here, since all 4 are open
+	map_created.emit()
 		
 func spread(prev_dir: int, node: MapNode, iterations: int) -> void:
 	if node != null and iterations > 0:
-		iterations -= 1
+		
 		# 0 = north, 1 = south, 2 = east, 3 = west
 		var rng = RandomNumberGenerator.new()
+		print("spreading from: " + str(node.global_position))
+		
 		var space_state = get_world_3d().direct_space_state
 		if prev_dir == 0:
 			# now 0 = south, 1 = east, 2 = west
 			var dir = rng.randi_range(0, 2)
 			if dir == 0:
 				node.south_open = true
-				var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(0, 0, -cell_size))
+				var query = PhysicsRayQueryParameters3D.create(node.global_position, node.global_position + Vector3(0, 0, -cell_size - 5))
 				query.set_exclude([node])
+				await get_tree().process_frame
 				var result = space_state.intersect_ray(query)
+				print(result)
 				if result.size() == 0:
 					node.south = node_scene.instantiate()
 					add_child(node.south)
 					node.south.global_position = Vector3(node.global_position.x, node.global_position.y, node.global_position.z - cell_size)
 					node.south.north = node
+					node.south.north_open = true
 				else:
 					result.collider.north_open = true
 					node.south = result.collider
 					node.south.north = node
 
-				spread(1, node.south, iterations)
+				spread(1, node.south, iterations - 1)
+				return
 
 			elif dir == 1:
 				node.east_open = true
-				var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(cell_size, 0, 0))
+				var query = PhysicsRayQueryParameters3D.create(node.global_position, node.global_position + Vector3(cell_size + 5, 0, 0))
 				query.set_exclude([node])
+				await get_tree().process_frame
 				var result = space_state.intersect_ray(query)
+				print(result)
 				if result.size() == 0:
 					node.east = node_scene.instantiate()
 					add_child(node.east)
 					node.east.global_position = Vector3(node.global_position.x + cell_size, node.global_position.y, node.global_position.z)
 					node.east.west = node
+					node.east.west_open = true
 				else:
 					result.collider.west_open = true
 					node.east = result.collider
 					node.east.west = node
 
-				spread(2, node.east, iterations)
+				spread(2, node.east, iterations - 1)
+				return
 
 			else:
 				node.west_open = true
-				var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(-cell_size, 0, 0))
+				var query = PhysicsRayQueryParameters3D.create(node.global_position, node.global_position + Vector3(-cell_size - 5, 0, 0))
 				query.set_exclude([node])
+				await get_tree().process_frame
 				var result = space_state.intersect_ray(query)
+				print(result)
 				if result.size() == 0:
 					node.west = node_scene.instantiate()
 					add_child(node.west)
 					node.west.global_position = Vector3(node.global_position.x - cell_size, node.global_position.y, node.global_position.z)
 			
 					node.west.east = node
+					node.west.east_open = true
 				else:
 					result.collider.east_open = true
 					node.west = result.collider
 					node.west.east = node
 
-				spread(3, node.west, iterations)
+				spread(3, node.west, iterations - 1)
+				return
 
 		elif prev_dir == 1:
 			# now 0 = north, 1 = east, 2 = west
 			var dir = rng.randi_range(0, 2)
 			if dir == 0:
 				node.north_open = true
-				var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(0, 0, cell_size))
+				var query = PhysicsRayQueryParameters3D.create(node.global_position, node.global_position + Vector3(0, 0, cell_size + 5))
 				query.set_exclude([node])
+				await get_tree().process_frame
 				var result = space_state.intersect_ray(query)
+				print(result)
 				if result.size() == 0:
 					node.north = node_scene.instantiate()
 					add_child(node.north)
 					node.north.global_position = Vector3(node.global_position.x, node.global_position.y, node.global_position.z + cell_size)
-					
 					node.north.south = node
+					node.north.south_open = true
 				else:
 					result.collider.south_open = true
 					node.north = result.collider
 					node.north.south = node
 
-				spread(0, node.north, iterations)
+				spread(0, node.north, iterations - 1)
+				return
 
 			elif dir == 1:
 				node.east_open = true
-				var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(cell_size, 0, 0))
+				var query = PhysicsRayQueryParameters3D.create(node.global_position, node.global_position + Vector3(cell_size + 5, 0, 0))
 				query.set_exclude([node])
+				await get_tree().process_frame
 				var result = space_state.intersect_ray(query)
+				print(result)
 				if result.size() == 0:
 					node.east = node_scene.instantiate()
 					add_child(node.east)
 					node.east.global_position = Vector3(node.global_position.x + cell_size, node.global_position.y, node.global_position.z)
 					node.east.west = node
+					node.east.west_open = true
 				else:
 					result.collider.west_open = true
 					node.east = result.collider
 					node.east.west = node
 
-				spread(2, node.east, iterations) # east is 2 normally
+				spread(2, node.east, iterations - 1) # east is 2 normally
+				return
 
 			else:
 				node.west_open = true
-				var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(-cell_size, 0, 0))
+				var query = PhysicsRayQueryParameters3D.create(node.global_position, node.global_position + Vector3(-cell_size - 5, 0, 0))
 				query.set_exclude([node])
+				await get_tree().process_frame
 				var result = space_state.intersect_ray(query)
+				print(result)
 				if result.size() == 0:
 					node.west = node_scene.instantiate()
 					add_child(node.west)
 					node.west.global_position = Vector3(node.global_position.x - cell_size, node.global_position.y, node.global_position.z)
 					node.west.east = node
+					node.west.east_open = true
 				else:
 					result.collider.east_open = true
 					node.west = result.collider
 					node.west.east = node
 
-				spread(3, node.west, iterations) # west is 3 normally
+				spread(3, node.west, iterations - 1) # west is 3 normally
+				return
 
 		elif prev_dir == 2:
 			# now 0 = north, 1 = south, 2 = west
 			var dir = rng.randi_range(0, 2)
 			if dir == 0:
 				node.north_open = true
-				var query = PhysicsRayQueryParameters3D.create(Vector3(0,0,0), Vector3(0, 0, cell_size))
+				var query = PhysicsRayQueryParameters3D.create(node.global_position, node.global_position + Vector3(0, 0, cell_size + 5))
 				query.set_exclude([node])
+				await get_tree().process_frame
 				var result = space_state.intersect_ray(query)
+				print(result)
 				if result.size() == 0:
 					node.north = node_scene.instantiate()
 					add_child(node.north)
 					node.north.global_position = Vector3(node.global_position.x, node.global_position.y, node.global_position.z + cell_size)
 					node.north.south = node
+					node.north.south_open = true
 				else:
 					result.collider.south_open = true
 					node.north = result.collider
 					node.north.south = node
+					
 				
-				spread(0, node.north, iterations)
+				spread(0, node.north, iterations - 1)
+				return
 
 			if dir == 1:
 				node.south_open = true
-				var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(0, 0, -cell_size))
+				var query = PhysicsRayQueryParameters3D.create(node.global_position, node.global_position + Vector3(0, 0, -cell_size - 5))
 				query.set_exclude([node])
+				await get_tree().process_frame
 				var result = space_state.intersect_ray(query)
 				if result.size() == 0:
 					node.south = node_scene.instantiate()
 					add_child(node.south)
 					node.south.global_position = Vector3(node.global_position.x, node.global_position.y, node.global_position.z - cell_size)
 					node.south.north = node
+					node.south.north_open = true
 				else:
 					result.collider.north_open = true
 					node.south = result.collider
 					node.south.north = node
 				
-				spread(1, node.south, iterations)
+				spread(1, node.south, iterations - 1)
+				return
 
 			else:
 				node.west_open = true
-				var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(-cell_size, 0, 0))
+				var query = PhysicsRayQueryParameters3D.create(node.global_position, node.global_position + Vector3(-cell_size - 5, 0, 0))
 				query.set_exclude([node])
+				await get_tree().process_frame
 				var result = space_state.intersect_ray(query)
 				if result.size() == 0:
 					node.west = node_scene.instantiate()
 					add_child(node.west)
 					node.west.global_position = Vector3(node.global_position.x - cell_size, node.global_position.y, node.global_position.z)
+					node.west.east_open = true
 					node.west.east = node
 				else:
 					result.collider.east_open = true
 					node.west = result.collider
 					node.west.east = node
 				
-				spread(3, node.west, iterations)
+				spread(3, node.west, iterations - 1)
+				return
 
 		elif prev_dir == 3:
 			# now 0 = north, 1 = south, 2 = east
 			var dir = rng.randi_range(0, 2)
 			if dir == 0:
 				node.north_open = true
-				var query = PhysicsRayQueryParameters3D.create(Vector3(0,0,0), Vector3(0,0, cell_size))
+				var query = PhysicsRayQueryParameters3D.create(node.global_position, node.global_position + Vector3(0,0, cell_size + 5))
 				query.set_exclude([node])
+				await get_tree().process_frame
 				var result = space_state.intersect_ray(query)
 				if result.size() == 0:
 					node.north = node_scene.instantiate()
 					add_child(node.north)
 					node.north.global_position = Vector3(node.global_position.x, node.global_position.y, node.global_position.z + cell_size)
 					node.north.south = node
+					node.north.south_open = true
 				else:
 					result.collider.south_open = true
 					node.north = result.collider
 					node.north.south = node
 				
-				spread(0, node.north, iterations)
+				spread(0, node.north, iterations - 1)
+				return
 
 			elif dir == 1:
 				node.south_open = true
-				var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(0, 0, -cell_size))
+				var query = PhysicsRayQueryParameters3D.create(node.global_position, node.global_position + Vector3(0, 0, -cell_size - 5))
 				query.set_exclude([node])
+				await get_tree().process_frame
 				var result = space_state.intersect_ray(query)
 				if result.size() == 0:
 					node.south = node_scene.instantiate()
 					add_child(node.south)
 					node.south.global_position = Vector3(node.global_position.x, node.global_position.y, node.global_position.z - cell_size)
 					node.south.north = node
+					node.south.north_open = true
 				else:
 					result.collider.north_open = true
 					node.south = result.collider
 					node.south.north = node
 				
-				spread(1, node.south, iterations)
-
+				spread(1, node.south, iterations - 1)
+				return
 			else:
 				node.east_open = true
-				var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(cell_size, 0, 0))
+				var query = PhysicsRayQueryParameters3D.create(node.global_position, node.global_position + Vector3(cell_size + 5, 0, 0))
 				query.set_exclude([node])
+				await get_tree().process_frame
 				var result = space_state.intersect_ray(query)
 				if result.size() == 0:
 					node.east = node_scene.instantiate()
 					add_child(node.east)
 					node.east.global_position = Vector3(node.global_position.x + cell_size, node.global_position.y, node.global_position.z)
 					node.east.west = node
+					node.east.west_open = true
 				else:
 					result.collider.west_open = true
 					node.east = result.collider
 					node.east.west = node
 				
-				spread(2, node.east, iterations)
+				spread(2, node.east, iterations - 1)
+				return
+	elif iterations == 0:
+		print("Finished spreading")
+		continue_spread.emit()
 			
 func activate_nodes():
 	for i in range(0, get_child_count()):

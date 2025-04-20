@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c01ln011bayow"]
+
+[ext_resource type="PackedScene" uid="uid://bfyxtf6kvnq7d" path="res://scenes/Logic/manager.tscn" id="1_jf6cd"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Manager" parent="." instance=ExtResource("1_jf6cd")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 26.5555, 0)
+current = true

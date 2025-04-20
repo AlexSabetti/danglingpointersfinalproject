@@ -22,6 +22,7 @@ var rotate_by = 0.0
 
 func create_scene():
 	# Create the scene and add it to the node
+	print("Creating ", scene_path, " at ", global_transform.origin)
 	var scene_instance = scene_path.instantiate()
 	add_child(scene_instance)
 	

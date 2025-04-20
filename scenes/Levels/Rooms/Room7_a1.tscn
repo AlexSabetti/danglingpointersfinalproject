@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://c558naetylum2"]
 
-[ext_resource type="Script" uid="uid://br3bhxpyvy3lu" path="res://scripts/Room.gd" id="1_8v58j"]
+[ext_resource type="Script" path="res://scripts/Room.gd" id="1_8v58j"]
 [ext_resource type="PackedScene" uid="uid://cox501uplfiur" path="res://resources/Models/under_water_room_7_a_1.tscn" id="2_8v58j"]
-[ext_resource type="Script" uid="uid://bs8y8lrwcb8ml" path="res://scripts/CameraChangeObject.gd" id="2_sv4q7"]
+[ext_resource type="Script" path="res://scripts/CameraChangeObject.gd" id="2_sv4q7"]
 [ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://scenes/Entities/CamPosNode.tscn" id="3_e3pbx"]
 [ext_resource type="PackedScene" uid="uid://bd7icn4pwfdoi" path="res://scenes/Entities/Foliage.tscn" id="3_sv4q7"]
 [ext_resource type="Texture2D" uid="uid://cealpeqkes7xo" path="res://resources/Textures/Sprites/SeaWeeds1_a1.png" id="4_e3pbx"]
@@ -31,7 +31,6 @@ trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_N")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_N"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.25, 1.5, 0)
 shape = SubResource("BoxShape3D_a18b4")
-debug_color = Color(1, 0.796078, 0.0235294, 1)
 
 [node name="CameraNodes" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
