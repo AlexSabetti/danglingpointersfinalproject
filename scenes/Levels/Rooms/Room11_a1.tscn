@@ -46,6 +46,7 @@ buffer = PackedFloat32Array(-0.320426, 0.0567488, -0.0631067, -1.05208, 0.072300
 size = Vector3(2, 3, 4)
 
 [node name="Room11_a1" type="Node3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_vq82w")
 east_open = true
 west_open = true

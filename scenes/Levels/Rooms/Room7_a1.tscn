@@ -43,7 +43,6 @@ max_h_rotation = 90.0
 [node name="TestCamera3D" type="Camera3D" parent="CameraNodes/CameraNode_N"]
 
 [node name="UnderWaterRoom7_a1" parent="." instance=ExtResource("2_8v58j")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Foliage" parent="UnderWaterRoom7_a1" instance=ExtResource("3_sv4q7")]
 transform = Transform3D(-1.39763, 0, -1.24117e-07, 0, 1.61444, 0, 1.22185e-07, 0, -1.41973, -0.508211, 1.39017, -5.73393)

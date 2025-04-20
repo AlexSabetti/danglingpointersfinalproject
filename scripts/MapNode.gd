@@ -27,8 +27,8 @@ func create_scene():
 	add_child(scene_instance)
 	
 	# Set the position of the scene instance
-	scene_instance.global_position = global_transform.origin
-	scene_instance.rotation_degrees = Vector3(0, rotate_by, 0)
+	scene_instance.global_position = global_position
+	scene_instance.rotation_degrees = scene_instance.rotation_degrees + Vector3(0, rotate_by, 0)
 	turn_off_col()
 
 func turn_off_col():

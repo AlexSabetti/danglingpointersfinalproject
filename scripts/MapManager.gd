@@ -119,31 +119,31 @@ func setup():
 		if num_openings == 1:
 			# dead end
 			node.scene_path = room7_a1
-			if node.north_open:
+			if node.south_open:
 				node.rotate_by = 180
 			elif node.east_open:
-				node.rotate_by = -90
-			elif node.west_open:
 				node.rotate_by = 90
+			elif node.west_open:
+				node.rotate_by = -90
 
 			node.scene_path = room7_a1
 		elif num_openings == 2:
 			if node.north_open and node.south_open or node.east_open and node.west_open:
 				#line, we'll have this choose from the line list
 				node.scene_path = room2_a1
-				if node.north_open:
+				if node.east_open:
 					node.rotate_by = 90
 				
 				var rand = rng.randi_range(0, lines.size() - 1)
 				node.scene_path = lines[rand]
 			else:
 				#corner, we'll have this choose from the corner list
-				if node.north_open and node.east_open:
+				if node.south_open and node.west_open:
 					node.rotate_by = -90
-				elif node.north_open and node.west_open:
-					node.rotate_by = 180
-				elif node.south_open and node.west_open:
+				elif node.north_open and node.east_open:
 					node.rotate_by = 90
+				elif node.south_open and node.east_open:
+					node.rotate_by = 180
 				
 				var rand = rng.randi_range(0, corners.size() - 1)
 				if rand == 1:
@@ -156,11 +156,11 @@ func setup():
 		elif num_openings ==3:
 			# T-shape, we'll have this choose from the T-shape list
 			if node.north_open and node.east_open and node.south_open:
-				node.rotate_by = -90
-			elif node.north_open and node.east_open and node.west_open:
 				node.rotate_by = 180
-			elif node.north_open and node.west_open and node.south_open:
+			elif node.north_open and node.east_open and node.west_open:
 				node.rotate_by = 90
+			elif node.south_open and node.west_open and node.east_open:
+				node.rotate_by = -90
 
 			var rand = rng.randi_range(0, t_shaped.size() - 1)
 			if rand == 3:

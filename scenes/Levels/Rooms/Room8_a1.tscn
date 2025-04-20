@@ -50,6 +50,7 @@ size = Vector3(2, 4, 4)
 size = Vector3(2, 3, 4)
 
 [node name="Room8_a1" type="Node3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_ydf7r")
 east_open = true
 west_open = true
