@@ -113,6 +113,7 @@ op_type = 2
 operator = 2
 
 [sub_resource type="VisualShaderNodeColorFunc" id="VisualShaderNodeColorFunc_adaio"]
+function = 5
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_adaio"]
 default_input_values = [0, 0.0, 1, 0.01]
@@ -210,10 +211,10 @@ varying vec3 var_WorldPos;
 
 uniform sampler2D Texture;
 uniform float Dissolve_Height = 0.25;
-uniform float Noise_scale = 1;
+uniform float Noise_scale = 1.0;
 uniform vec3 Speed_1 = vec3(0.013000, -0.040000, 0.010000);
 uniform float WorldPosScaler = 0.10000000149012;
-uniform float Frequency = 1;
+uniform float Frequency = 1.0;
 uniform sampler3D Noise3D;
 uniform vec3 Speed_2 = vec3(-0.005000, -0.020000, 0.020000);
 uniform float Edge_Thickness = 0.05000000074506;
@@ -271,9 +272,7 @@ void fragment() {
 // ColorFunc:69
 	{
 		vec3 c = n_out62p0;
-		float max1 = max(c.r, c.g);
-		float max2 = max(max1, c.b);
-		n_out69p0 = vec3(max2, max2, max2);
+		n_out69p0 = mix(pow((c.rgb + vec3(0.055)) * (1.0 / (1.0 + 0.055)), vec3(2.4)), c.rgb * (1.0 / 12.92), lessThan(c.rgb, vec3(0.04045)));
 	}
 
 
@@ -464,6 +463,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(132.026, -642.375)
 modes/cull = 2
 modes/diffuse = 3
 modes/specular = 1
@@ -533,7 +533,7 @@ nodes/fragment/61/position = Vector2(500, -700)
 nodes/fragment/62/node = SubResource("VisualShaderNodeSwitch_beatm")
 nodes/fragment/62/position = Vector2(840, -280)
 nodes/fragment/63/node = SubResource("VisualShaderNodeColorConstant_23w3n")
-nodes/fragment/63/position = Vector2(580, -340)
+nodes/fragment/63/position = Vector2(540, -320)
 nodes/fragment/64/node = SubResource("VisualShaderNodeInput_beatm")
 nodes/fragment/64/position = Vector2(920, 840)
 nodes/fragment/65/node = SubResource("VisualShaderNodeSwitch_23w3n")
@@ -545,7 +545,7 @@ nodes/fragment/67/position = Vector2(320, -580)
 nodes/fragment/68/node = SubResource("VisualShaderNodeVectorOp_adaio")
 nodes/fragment/68/position = Vector2(580, -540)
 nodes/fragment/69/node = SubResource("VisualShaderNodeColorFunc_adaio")
-nodes/fragment/69/position = Vector2(1060, -260)
+nodes/fragment/69/position = Vector2(1060, -240)
 nodes/fragment/70/node = SubResource("VisualShaderNodeFloatOp_adaio")
 nodes/fragment/70/position = Vector2(-1820, 700)
 nodes/fragment/71/node = SubResource("VisualShaderNodeVectorOp_mm7mr")
@@ -586,4 +586,4 @@ nodes/fragment/90/node = SubResource("VisualShaderNodeVectorOp_fk5r0")
 nodes/fragment/90/position = Vector2(-1880, 1040)
 nodes/fragment/92/node = SubResource("VisualShaderNodeFloatOp_sjl1g")
 nodes/fragment/92/position = Vector2(-2220, 1140)
-nodes/fragment/connections = PackedInt32Array(32, 0, 33, 1, 27, 0, 33, 0, 27, 0, 26, 1, 12, 0, 26, 0, 37, 0, 32, 1, 13, 0, 12, 0, 30, 0, 29, 2, 48, 0, 0, 19, 49, 0, 50, 0, 52, 0, 51, 0, 51, 0, 53, 0, 54, 0, 55, 0, 54, 0, 56, 0, 56, 0, 57, 0, 55, 0, 57, 1, 57, 0, 58, 0, 58, 0, 51, 1, 50, 1, 58, 1, 61, 0, 62, 0, 64, 0, 65, 0, 66, 0, 67, 2, 65, 0, 0, 4, 63, 0, 62, 2, 67, 0, 68, 0, 68, 0, 62, 1, 38, 0, 68, 1, 62, 0, 69, 0, 3, 0, 70, 0, 70, 0, 13, 1, 70, 0, 37, 1, 71, 0, 12, 1, 60, 0, 71, 0, 75, 0, 74, 2, 76, 0, 13, 0, 77, 0, 37, 0, 26, 0, 74, 0, 33, 0, 78, 0, 75, 0, 78, 2, 74, 0, 29, 0, 78, 0, 29, 1, 53, 0, 79, 0, 52, 0, 81, 0, 80, 0, 81, 1, 81, 0, 82, 0, 82, 0, 79, 1, 58, 0, 82, 1, 69, 0, 85, 0, 53, 0, 0, 1, 85, 0, 0, 0, 84, 0, 86, 0, 86, 0, 85, 1, 79, 0, 84, 1, 69, 0, 87, 0, 87, 0, 84, 0, 88, 0, 71, 1, 89, 0, 87, 1, 29, 0, 56, 1, 60, 0, 90, 0, 90, 0, 32, 0, 88, 0, 92, 0, 92, 0, 90, 1)
+nodes/fragment/connections = PackedInt32Array(32, 0, 33, 1, 27, 0, 33, 0, 27, 0, 26, 1, 12, 0, 26, 0, 37, 0, 32, 1, 13, 0, 12, 0, 30, 0, 29, 2, 48, 0, 0, 19, 49, 0, 50, 0, 52, 0, 51, 0, 51, 0, 53, 0, 54, 0, 55, 0, 54, 0, 56, 0, 56, 0, 57, 0, 55, 0, 57, 1, 57, 0, 58, 0, 58, 0, 51, 1, 50, 1, 58, 1, 61, 0, 62, 0, 64, 0, 65, 0, 66, 0, 67, 2, 65, 0, 0, 4, 63, 0, 62, 2, 68, 0, 62, 1, 38, 0, 68, 1, 62, 0, 69, 0, 3, 0, 70, 0, 70, 0, 13, 1, 70, 0, 37, 1, 71, 0, 12, 1, 60, 0, 71, 0, 75, 0, 74, 2, 76, 0, 13, 0, 77, 0, 37, 0, 26, 0, 74, 0, 33, 0, 78, 0, 75, 0, 78, 2, 74, 0, 29, 0, 78, 0, 29, 1, 53, 0, 79, 0, 52, 0, 81, 0, 80, 0, 81, 1, 81, 0, 82, 0, 82, 0, 79, 1, 58, 0, 82, 1, 53, 0, 0, 1, 85, 0, 0, 0, 84, 0, 86, 0, 86, 0, 85, 1, 79, 0, 84, 1, 87, 0, 84, 0, 88, 0, 71, 1, 89, 0, 87, 1, 29, 0, 56, 1, 60, 0, 90, 0, 90, 0, 32, 0, 88, 0, 92, 0, 92, 0, 90, 1, 67, 0, 68, 0, 69, 0, 85, 0, 69, 0, 87, 0)

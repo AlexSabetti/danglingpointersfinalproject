@@ -1,8 +1,8 @@
 [gd_scene load_steps=19 format=3 uid="uid://cf16x4d6gkv8e"]
 
-[ext_resource type="Script" path="res://scripts/Room.gd" id="1_fg57v"]
+[ext_resource type="Script" uid="uid://br3bhxpyvy3lu" path="res://scripts/Room.gd" id="1_fg57v"]
 [ext_resource type="PackedScene" uid="uid://duilebgkb2y3m" path="res://resources/Models/under_water_room_2_a_1.tscn" id="1_urqbu"]
-[ext_resource type="Script" path="res://scripts/CameraChangeObject.gd" id="2_8cjeu"]
+[ext_resource type="Script" uid="uid://bs8y8lrwcb8ml" path="res://scripts/CameraChangeObject.gd" id="2_8cjeu"]
 [ext_resource type="PackedScene" uid="uid://bd7icn4pwfdoi" path="res://scenes/Entities/Foliage.tscn" id="2_fg57v"]
 [ext_resource type="Texture2D" uid="uid://cealpeqkes7xo" path="res://resources/Textures/Sprites/SeaWeeds1_a1.png" id="3_o6sok"]
 [ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://scenes/Entities/CamPosNode.tscn" id="3_sc0an"]
@@ -136,7 +136,7 @@ meshOffset = Vector3(0, -0.18, 0)
 meshScale = Vector3(2, 2.5, 2)
 
 [node name="Foliage8" parent="UnderWaterRoom2_a1" instance=ExtResource("2_fg57v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.301724, 0.0745663, 7.7941)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.301724, 0.0745663, 8.11002)
 foliage_Texture = ExtResource("3_o6sok")
 meshOffset = Vector3(0, -0.29, 0)
 meshScale = Vector3(2, 4.68, 2)

@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://qvv3sp6vgxyj"]
+
+[ext_resource type="PackedScene" uid="uid://gjfglvjk2lxl" path="res://resources/Models/mooringBuoy1_a1.glb" id="1_144bg"]
+[ext_resource type="Material" uid="uid://ba2v3rxp1y1gv" path="res://resources/Shaders/SM_Sway3D.tres" id="2_6jtwb"]
+[ext_resource type="Shader" uid="uid://c3iem3xsybs4v" path="res://resources/Shaders/VS_Sway3D.tres" id="3_mvds5"]
+[ext_resource type="Texture2D" uid="uid://rdb8tmpomha3" path="res://resources/Textures/EB_RedWoodTexture_a1.png" id="4_1pfwm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wvxvy"]
+render_priority = 0
+shader = ExtResource("3_mvds5")
+shader_parameter/sway_amount_x = 0.2
+shader_parameter/sway_speed = 0.5
+shader_parameter/Texture = ExtResource("4_1pfwm")
+
+[node name="mooringBuoy1_a1" instance=ExtResource("1_144bg")]
+
+[node name="Bouy3" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_6jtwb")
+surface_material_override/1 = SubResource("ShaderMaterial_wvxvy")

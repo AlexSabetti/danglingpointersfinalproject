@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://cjhqgtvl0c4r4"]
 
-[ext_resource type="Script" path="res://scripts/Room.gd" id="1_vlu1i"]
-[ext_resource type="Script" path="res://scripts/CameraChangeObject.gd" id="2_traa5"]
+[ext_resource type="Script" uid="uid://br3bhxpyvy3lu" path="res://scripts/Room.gd" id="1_vlu1i"]
+[ext_resource type="Script" uid="uid://bs8y8lrwcb8ml" path="res://scripts/CameraChangeObject.gd" id="2_traa5"]
 [ext_resource type="PackedScene" uid="uid://bm52uvy24m11y" path="res://resources/Models/under_water_room_5_a_1.tscn" id="2_vlu1i"]
 [ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://scenes/Entities/CamPosNode.tscn" id="3_d1805"]
 [ext_resource type="PackedScene" uid="uid://bd7icn4pwfdoi" path="res://scenes/Entities/Foliage.tscn" id="3_xliol"]
@@ -54,39 +54,40 @@ size = Vector3(5, 3, 5)
 size = Vector3(2, 3, 4)
 
 [node name="Room5_a1" type="Node3D"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_vlu1i")
-north_open = true
-east_open = true
+south_open = true
+west_open = true
 
 [node name="RoomChangers" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="RoomChangeCollider_N" type="StaticBody3D" parent="RoomChangers" node_paths=PackedStringArray("trigger_on_interact")]
+[node name="RoomChangeCollider_S" type="StaticBody3D" parent="RoomChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0, 0, 0)
 script = ExtResource("2_traa5")
 isRoomChanger = true
-trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_N")]
+trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_S")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_N"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_S"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.25, 1.5, 0)
 shape = SubResource("BoxShape3D_hk5uv")
 
-[node name="RoomChangeCollider_E" type="StaticBody3D" parent="RoomChangers" node_paths=PackedStringArray("trigger_on_interact")]
+[node name="RoomChangeCollider_W" type="StaticBody3D" parent="RoomChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 0, 0, 0)
 script = ExtResource("2_traa5")
 isRoomChanger = true
-trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_E")]
+trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_W")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_E"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_W"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.25, 1.5, 0)
 shape = SubResource("BoxShape3D_hk5uv")
 
 [node name="CameraChangers" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="CameraChanger2a" type="StaticBody3D" parent="CameraChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0, 0, 0)
 script = ExtResource("2_traa5")
-trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_N")]
+trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_S")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/CameraChanger2a"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, -0.25)
@@ -95,31 +96,35 @@ shape = SubResource("BoxShape3D_traa5")
 [node name="CameraChanger2b" type="StaticBody3D" parent="CameraChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0, 0, 0)
 script = ExtResource("2_traa5")
-trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_E")]
+trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_W")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/CameraChanger2b"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 0.25)
 shape = SubResource("BoxShape3D_d1805")
 
 [node name="CameraNodes" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, 0, 0, 0)
 
-[node name="CameraNode_N" parent="CameraNodes" instance=ExtResource("3_d1805")]
+[node name="CameraNode_S" parent="CameraNodes" instance=ExtResource("3_d1805")]
 transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, -0.148381, 1.16639, 5.94119)
 min_h_rotation = -100.0
 max_h_rotation = 90.0
 
-[node name="TestCamera3D" type="Camera3D" parent="CameraNodes/CameraNode_N"]
+[node name="TestCamera3D" type="Camera3D" parent="CameraNodes/CameraNode_S"]
 
-[node name="CameraNode_E" parent="CameraNodes" instance=ExtResource("3_d1805")]
+[node name="CameraNode_W" parent="CameraNodes" instance=ExtResource("3_d1805")]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -6.82931, 1.31898, -0.730001)
 min_h_rotation = -100.0
 max_h_rotation = 90.0
 
-[node name="TestCamera3D" type="Camera3D" parent="CameraNodes/CameraNode_E"]
+[node name="TestCamera3D" type="Camera3D" parent="CameraNodes/CameraNode_W"]
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+multimesh = SubResource("MultiMesh_0ra0t")
 
 [node name="UnderWaterRoom5_a1" parent="." instance=ExtResource("2_vlu1i")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
 
 [node name="Foliage" parent="UnderWaterRoom5_a1" instance=ExtResource("3_xliol")]
 transform = Transform3D(-6.10923e-08, 0, 1.41973, 0, 1.61444, 0, -1.39763, 0, -6.20584e-08, 5.95928, 0.0484384, -5.74885)
@@ -212,10 +217,8 @@ foliage_Texture = ExtResource("6_y277l")
 meshOffset = Vector3(0, -0.13, 0)
 meshScale = Vector3(1, 2.02, 1)
 
-[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
-multimesh = SubResource("MultiMesh_0ra0t")
-
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, 2)

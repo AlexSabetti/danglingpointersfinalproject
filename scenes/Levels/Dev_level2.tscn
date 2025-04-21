@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://oke55a7wgf5n" path="res://scenes/Levels/Rooms/Room4_a1.tscn" id="17_htuc0"]
 [ext_resource type="PackedScene" uid="uid://cjhqgtvl0c4r4" path="res://scenes/Levels/Rooms/Room5_a1.tscn" id="18_axywr"]
 [ext_resource type="PackedScene" uid="uid://bqnjyqolsuecm" path="res://scenes/Levels/Rooms/Room6_a1.tscn" id="19_bly6u"]
-[ext_resource type="PackedScene" uid="uid://c558naetylum2" path="res://scenes/Levels/Rooms/room7_a1.tscn" id="20_c5yqf"]
+[ext_resource type="PackedScene" uid="uid://c558naetylum2" path="res://scenes/Levels/Rooms/Room7_a1.tscn" id="20_c5yqf"]
 [ext_resource type="PackedScene" uid="uid://c20xyr28c8w0n" path="res://scenes/Levels/Rooms/Room8_a1.tscn" id="21_7vo0u"]
 [ext_resource type="PackedScene" uid="uid://d4cyqu5i5wyu" path="res://scenes/Levels/Rooms/Room9_a1.tscn" id="22_ml7aq"]
 [ext_resource type="PackedScene" uid="uid://253weudhtvis" path="res://scenes/Levels/Rooms/Room10_a1.tscn" id="23_25uhl"]
@@ -97,7 +97,7 @@ script = ExtResource("4_wpkti")
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(0.559555, -0.414397, -0.717756, 0.828793, 0.279778, 0.484588, 2.58096e-08, -0.866025, 0.500001, 1.90681, 6.2019, -2.95414)
 light_color = Color(0.713506, 0.743926, 0.544914, 1)
-light_energy = 0.4
+light_energy = 0.2
 light_bake_mode = 1
 light_cull_mask = 4294967292
 shadow_enabled = true
@@ -205,6 +205,7 @@ east = NodePath("../MapNode3")
 west = NodePath("../MapNode1")
 
 [node name="Room11_a1" parent="MapNodes (test)/Row1/MapNode2" node_paths=PackedStringArray("mapNode") instance=ExtResource("24_y7vij")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 mapNode = NodePath("..")
 
 [node name="MapNode3" parent="MapNodes (test)/Row1" node_paths=PackedStringArray("south", "east", "west") instance=ExtResource("14_624t5")]
@@ -214,6 +215,7 @@ east = NodePath("../MapNode4")
 west = NodePath("../MapNode2")
 
 [node name="Room10_a1" parent="MapNodes (test)/Row1/MapNode3" node_paths=PackedStringArray("mapNode") instance=ExtResource("23_25uhl")]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 0, 0)
 mapNode = NodePath("..")
 
 [node name="MapNode4" parent="MapNodes (test)/Row1" node_paths=PackedStringArray("south", "west") instance=ExtResource("14_624t5")]
@@ -244,6 +246,7 @@ east = NodePath("../MapNode7")
 west = NodePath("../MapNode5")
 
 [node name="Room11_a1" parent="MapNodes (test)/Row2/MapNode6" node_paths=PackedStringArray("mapNode") instance=ExtResource("24_y7vij")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 mapNode = NodePath("..")
 
 [node name="MapNode7" parent="MapNodes (test)/Row2" node_paths=PackedStringArray("north", "south", "east", "west") instance=ExtResource("14_624t5")]
@@ -274,6 +277,7 @@ south = NodePath("../../Row4/MapNode13")
 east = NodePath("../MapNode10")
 
 [node name="Room5_a1" parent="MapNodes (test)/Row3/MapNode9" node_paths=PackedStringArray("mapNode") instance=ExtResource("18_axywr")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
 mapNode = NodePath("..")
 
 [node name="MapNode10" parent="MapNodes (test)/Row3" node_paths=PackedStringArray("north", "south", "east", "west") instance=ExtResource("14_624t5")]
@@ -284,6 +288,7 @@ east = NodePath("../MapNode9")
 west = NodePath("../MapNode11")
 
 [node name="Room8_a1" parent="MapNodes (test)/Row3/MapNode10" node_paths=PackedStringArray("mapNode") instance=ExtResource("21_7vo0u")]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0, 0, 0)
 mapNode = NodePath("..")
 
 [node name="MapNode11" parent="MapNodes (test)/Row3" node_paths=PackedStringArray("north", "south", "east", "west") instance=ExtResource("14_624t5")]
@@ -325,6 +330,7 @@ east = NodePath("../MapNode14")
 west = NodePath("../MapNode16")
 
 [node name="Room7_a1" parent="MapNodes (test)/Row4/MapNode15" node_paths=PackedStringArray("mapNode") instance=ExtResource("20_c5yqf")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mapNode = NodePath("..")
 
 [node name="MapNode16" parent="MapNodes (test)/Row4" node_paths=PackedStringArray("north", "west") instance=ExtResource("14_624t5")]
