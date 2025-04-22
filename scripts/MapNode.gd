@@ -1,5 +1,5 @@
 class_name MapNode
-extends Node3D
+extends StaticBody3D
 
 @export var scene_path: PackedScene
 # Pointers to all surrounding nodes
