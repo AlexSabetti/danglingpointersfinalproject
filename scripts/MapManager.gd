@@ -46,6 +46,7 @@ var room10_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room10_a1.tscn"
 #line, two openings
 var room11_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room11_a1.tscn")
 
+var signal_manager: SignalBus = SigBus
 signal continue_spread()
 signal map_created()
 # var starting_node: MapNode = null
@@ -84,10 +85,15 @@ func _ready():
 	t_shaped.append(room10_a1)
 	t_shaped.append(room3_a1)
 
+	crosses.append(room1_a1)
 	crosses.append(room9_a1)
+	
 	setup()
 	await map_created
 	activate_nodes()
+	var starting_cam: Camera3D = get_child(0).get_child(1).get_node("CameraNodes").get_child(0).get_child(1)
+	signal_manager.emit_signal("camera_changed", starting_cam)
+	
 
 	# old setup:
 	# root_count = sqrt(grid_count)
@@ -126,7 +132,6 @@ func setup():
 			elif node.west_open:
 				node.rotate_by = -90
 
-			node.scene_path = room7_a1
 		elif num_openings == 2:
 			if node.north_open and node.south_open or node.east_open and node.west_open:
 				#line, we'll have this choose from the line list
@@ -170,7 +175,12 @@ func setup():
 				node.scene_path = t_shaped[rand]
 
 		elif num_openings == 4:
-			node.scene_path = room9_a1
+			var rand = rng.randi_range(0, crosses.size() - 1)
+			if rand == 1:
+				node.scene_path = room9_a1
+				crosses.remove_at(rand)
+			else:
+				node.scene_path = crosses[rand]
 			# Cross, we'll have this choose from the cross list
 			# There is no need to check openings here, since all 4 are open
 	map_created.emit()
@@ -200,8 +210,8 @@ func spread(prev_dir: int, node: MapNode, iterations: int) -> void:
 					node.south.north = node
 					node.south.north_open = true
 				else:
-					result.collider.north_open = true
-					node.south = result.collider
+					result.collider.get_parent().north_open = true
+					node.south = result.collider.get_parent()
 					node.south.north = node
 
 				spread(1, node.south, iterations - 1)
@@ -221,8 +231,8 @@ func spread(prev_dir: int, node: MapNode, iterations: int) -> void:
 					node.east.west = node
 					node.east.west_open = true
 				else:
-					result.collider.west_open = true
-					node.east = result.collider
+					result.collider.get_parent().west_open = true
+					node.east = result.collider.get_parent()
 					node.east.west = node
 
 				spread(2, node.east, iterations - 1)
@@ -243,8 +253,8 @@ func spread(prev_dir: int, node: MapNode, iterations: int) -> void:
 					node.west.east = node
 					node.west.east_open = true
 				else:
-					result.collider.east_open = true
-					node.west = result.collider
+					result.collider.get_parent().east_open = true
+					node.west = result.collider.get_parent()
 					node.west.east = node
 
 				spread(3, node.west, iterations - 1)
@@ -267,8 +277,8 @@ func spread(prev_dir: int, node: MapNode, iterations: int) -> void:
 					node.north.south = node
 					node.north.south_open = true
 				else:
-					result.collider.south_open = true
-					node.north = result.collider
+					result.collider.get_parent().south_open = true
+					node.north = result.collider.get_parent()
 					node.north.south = node
 
 				spread(0, node.north, iterations - 1)
@@ -288,8 +298,8 @@ func spread(prev_dir: int, node: MapNode, iterations: int) -> void:
 					node.east.west = node
 					node.east.west_open = true
 				else:
-					result.collider.west_open = true
-					node.east = result.collider
+					result.collider.get_parent().west_open = true
+					node.east = result.collider.get_parent()
 					node.east.west = node
 
 				spread(2, node.east, iterations - 1) # east is 2 normally
@@ -309,8 +319,8 @@ func spread(prev_dir: int, node: MapNode, iterations: int) -> void:
 					node.west.east = node
 					node.west.east_open = true
 				else:
-					result.collider.east_open = true
-					node.west = result.collider
+					result.collider.get_parent().east_open = true
+					node.west = result.collider.get_parent()
 					node.west.east = node
 
 				spread(3, node.west, iterations - 1) # west is 3 normally
@@ -333,8 +343,8 @@ func spread(prev_dir: int, node: MapNode, iterations: int) -> void:
 					node.north.south = node
 					node.north.south_open = true
 				else:
-					result.collider.south_open = true
-					node.north = result.collider
+					result.collider.get_parent().south_open = true
+					node.north = result.collider.get_parent()
 					node.north.south = node
 					
 				
@@ -354,8 +364,8 @@ func spread(prev_dir: int, node: MapNode, iterations: int) -> void:
 					node.south.north = node
 					node.south.north_open = true
 				else:
-					result.collider.north_open = true
-					node.south = result.collider
+					result.collider.get_parent().north_open = true
+					node.south = result.collider.get_parent()
 					node.south.north = node
 				
 				spread(1, node.south, iterations - 1)
@@ -374,8 +384,8 @@ func spread(prev_dir: int, node: MapNode, iterations: int) -> void:
 					node.west.east_open = true
 					node.west.east = node
 				else:
-					result.collider.east_open = true
-					node.west = result.collider
+					result.collider.get_parent().east_open = true
+					node.west = result.collider.get_parent()
 					node.west.east = node
 				
 				spread(3, node.west, iterations - 1)
@@ -397,8 +407,8 @@ func spread(prev_dir: int, node: MapNode, iterations: int) -> void:
 					node.north.south = node
 					node.north.south_open = true
 				else:
-					result.collider.south_open = true
-					node.north = result.collider
+					result.collider.get_parent().south_open = true
+					node.north = result.collider.get_parent()
 					node.north.south = node
 				
 				spread(0, node.north, iterations - 1)
@@ -417,8 +427,8 @@ func spread(prev_dir: int, node: MapNode, iterations: int) -> void:
 					node.south.north = node
 					node.south.north_open = true
 				else:
-					result.collider.north_open = true
-					node.south = result.collider
+					result.collider.get_parent().north_open = true
+					node.south = result.collider.get_parent()
 					node.south.north = node
 				
 				spread(1, node.south, iterations - 1)
@@ -436,8 +446,8 @@ func spread(prev_dir: int, node: MapNode, iterations: int) -> void:
 					node.east.west = node
 					node.east.west_open = true
 				else:
-					result.collider.west_open = true
-					node.east = result.collider
+					result.collider.get_parent().west_open = true
+					node.east = result.collider.get_parent()
 					node.east.west = node
 				
 				spread(2, node.east, iterations - 1)
@@ -450,6 +460,7 @@ func activate_nodes():
 	for i in range(0, get_child_count()):
 		var node = get_child(i)
 		node.active = true
+		print("Activating node: " + str(node.name))
 		node.create_scene()
 		node.turn_off_col()
 

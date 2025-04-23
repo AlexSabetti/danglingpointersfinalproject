@@ -1,5 +1,5 @@
 class_name MapNode
-extends StaticBody3D
+extends Node3D
 
 @export var scene_path: PackedScene
 # Pointers to all surrounding nodes
@@ -15,14 +15,14 @@ extends StaticBody3D
 @export var east_open: bool = false
 @export var west_open: bool = false
 
-@onready var collision_box: CollisionShape3D = $CollisionShape3D
+@onready var collision_box: CollisionShape3D = $StaticBody3D/CollisionShape3D
 
 var place_pos: int = 0
 var rotate_by = 0.0
 
 func create_scene():
 	# Create the scene and add it to the node
-	print("Creating ", scene_path, " at ", global_transform.origin)
+	print("Creating ", scene_path.get_state(), " at ", global_transform.origin)
 	var scene_instance = scene_path.instantiate()
 	add_child(scene_instance)
 	

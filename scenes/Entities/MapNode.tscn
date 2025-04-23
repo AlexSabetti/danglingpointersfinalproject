@@ -7,11 +7,14 @@ size = Vector3(5, 5, 5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_5m3v8"]
 
-[node name="MapNode" type="StaticBody3D"]
+[node name="MapNode" type="Node3D"]
 script = ExtResource("1_vrqyw")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_qpc2q")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 mesh = SubResource("BoxMesh_5m3v8")
+skeleton = NodePath("../..")

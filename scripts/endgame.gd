@@ -17,7 +17,7 @@ func trigger_ending() -> void:
 			# Maybe play a sound here
 			# want everything to vanish
 			# kick the player out of the screen when it deletes the room they are in 
-			queue_free(child)
+			child.queue_free()
 	
 	
 
