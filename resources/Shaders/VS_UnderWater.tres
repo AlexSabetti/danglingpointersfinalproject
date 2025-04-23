@@ -135,7 +135,7 @@ code = "shader_type canvas_item;
 render_mode blend_mix;
 
 uniform vec2 Speed = vec2(0.025000, 0.010000);
-uniform float Frequency = 0;
+uniform float Frequency = 0.0;
 uniform sampler2D Noise : repeat_enable;
 uniform vec2 Speed2 = vec2(-0.015000, -0.005000);
 uniform float Strength = 0.75;

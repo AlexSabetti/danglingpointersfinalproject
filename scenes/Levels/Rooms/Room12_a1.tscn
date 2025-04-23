@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://b46iq2q3pqkis"]
 
-[ext_resource type="Script" path="res://scripts/Room.gd" id="1_r5s6t"]
-[ext_resource type="Script" path="res://scripts/CameraChangeObject.gd" id="2_8xvrd"]
+[ext_resource type="Script" uid="uid://br3bhxpyvy3lu" path="res://scripts/Room.gd" id="1_r5s6t"]
+[ext_resource type="Script" uid="uid://bs8y8lrwcb8ml" path="res://scripts/CameraChangeObject.gd" id="2_8xvrd"]
 [ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://scenes/Entities/CamPosNode.tscn" id="3_p533t"]
 [ext_resource type="PackedScene" uid="uid://dtmgvohi77pnn" path="res://resources/Models/under_water_room_12_a_1.tscn" id="4_r5s6t"]
 [ext_resource type="PackedScene" uid="uid://bd7icn4pwfdoi" path="res://scenes/Entities/Foliage.tscn" id="5_klpeb"]
@@ -19,7 +19,7 @@
 [ext_resource type="Shader" uid="uid://d2mabvbt22cdl" path="res://resources/Shaders/VS_Foliage3D.tres" id="17_6xlbu"]
 [ext_resource type="Texture2D" uid="uid://dhvn8d5topyjo" path="res://resources/Textures/NormalMaps/7864-normal.jpg" id="18_n0j63"]
 [ext_resource type="Texture2D" uid="uid://chng0opds5tf2" path="res://resources/Textures/Sprites/Reeds2_b1.png" id="19_xwanl"]
-[ext_resource type="Script" path="res://scripts/ClickableObject.gd" id="20_6xi1p"]
+[ext_resource type="Script" uid="uid://b8260neigo27n" path="res://scripts/ClickableObject.gd" id="20_6xi1p"]
 [ext_resource type="PackedScene" uid="uid://dybogvrii8h3g" path="res://scenes/Logic/dialog_changer.tscn" id="21_pxcud"]
 [ext_resource type="PackedScene" uid="uid://daisq5v2y88dx" path="res://resources/Models/ship_1_modified.tscn" id="22_8xvrd"]
 
@@ -179,7 +179,7 @@ shape = SubResource("BoxShape3D_wr532")
 [node name="CameraNodes" type="Node3D" parent="."]
 
 [node name="CameraNode_N" parent="CameraNodes" instance=ExtResource("3_p533t")]
-transform = Transform3D(-0.966182, 0.000157768, -0.257862, 0.000257099, 1, -0.000351522, 0.257862, -0.000405929, -0.966182, -0.1801, 1.33928, -6.624)
+transform = Transform3D(-0.966182, 0.000157768, -0.257862, 0.000257099, 1, -0.000351522, 0.257862, -0.000405929, -0.966182, 1.41513, 1.33888, -6.99725)
 min_h_rotation = -90.0
 max_h_rotation = 60.0
 
@@ -291,7 +291,7 @@ meshOffset = Vector3(0, 0.04, 0)
 meshScale = Vector3(1.75, 2.075, 1.75)
 
 [node name="Foliage26" parent="UnderWaterRoom12_a1" instance=ExtResource("5_klpeb")]
-transform = Transform3D(-0.361735, 0, -1.37135, 0, 1.61444, 0, 1.35001, 0, -0.367451, 1.26567, -1.78426, 0.31335)
+transform = Transform3D(-0.361735, 0, -1.37135, 0, 1.61444, 0, 1.35001, 0, -0.367451, 7.16621, 0.277393, 3.59076)
 foliage_Texture = ExtResource("11_704f7")
 meshOffset = Vector3(0, 0.04, 0)
 meshScale = Vector3(1.82, 2.5, 1.945)
@@ -345,7 +345,7 @@ meshOffset = Vector3(0, -0.225, 0)
 meshScale = Vector3(0.625, 1.105, 0.64)
 
 [node name="Foliage14" parent="UnderWaterRoom12_a1" instance=ExtResource("5_klpeb")]
-transform = Transform3D(1.39763, 0, 5.96046e-08, 0, 1.61444, 0, 5.96046e-07, 0, 1.41973, -6.01446, -1.33581, 4.50321)
+transform = Transform3D(1.39763, 0, 5.96046e-08, 0, 1.61444, 0, 5.96046e-07, 0, 1.41973, -6.01446, 0.849295, 4.50321)
 foliage_Texture = ExtResource("9_nocil")
 meshOffset = Vector3(0, -0.41, 0)
 meshScale = Vector3(1.785, 3.405, 2.11)
@@ -418,7 +418,7 @@ meshOffset = Vector3(0, 0.105, 0)
 meshScale = Vector3(1.95, 0.46, 1.405)
 
 [node name="Foliage7" parent="UnderWaterRoom12_a1" instance=ExtResource("5_klpeb")]
-transform = Transform3D(0.331185, 0, 1.98381, 0, 1.50104, 0, -1.72811, 0, 0.380189, -8.23264, -0.194602, -5.84718)
+transform = Transform3D(0.331185, 0, 1.98381, 0, 1.50104, 0, -1.72811, 0, 0.380189, -8.23264, 0.5282, -5.84718)
 foliage_Texture = ExtResource("9_nocil")
 meshOffset = Vector3(0, -0.03, 0)
 meshScale = Vector3(1, 2.02, 1)

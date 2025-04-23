@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://crwrhmxlk0mc6"]
+[gd_scene load_steps=12 format=3 uid="uid://crwrhmxlk0mc6"]
 
 [ext_resource type="PackedScene" uid="uid://bo11m28gv0gen" path="res://resources/Models/UnderWaterRoom3_a1.glb" id="1_mspiw"]
 [ext_resource type="Material" uid="uid://dfy4yflrrduf0" path="res://resources/Materials/M_Pink.tres" id="2_yi32i"]
 [ext_resource type="Material" uid="uid://bbllsegw0ygtt" path="res://resources/Materials/M_Purple.tres" id="3_62abf"]
-[ext_resource type="Shader" uid="uid://bvv8nr10umlcg" path="res://resources/Shaders/VS_Dissolve3D.tres" id="4_p81si"]
-[ext_resource type="NoiseTexture3D" uid="uid://dfioht8s8igs" path="res://resources/Textures/NormalMaps/Noise3D_1.tres" id="5_dc2vk"]
-[ext_resource type="Material" uid="uid://betvqo1i0kdnt" path="res://resources/Materials/M_Green.tres" id="5_tg7hq"]
+[ext_resource type="Shader" uid="uid://wqery0l7vcdc" path="res://resources/Shaders/VS_Dissolve3D.tres" id="4_p81si"]
+[ext_resource type="NoiseTexture3D" uid="uid://b8qedu4clasel" path="res://resources/Textures/NormalMaps/Noise3D_1.tres" id="5_dc2vk"]
 [ext_resource type="Texture2D" uid="uid://cwe2fg1gxmrpd" path="res://resources/Textures/EB_DarkPurpleSeaWallTexture_b1.png" id="6_5ouut"]
 [ext_resource type="Texture2D" uid="uid://m6uc37am74p6" path="res://resources/Textures/EB_RedWoodTexture_b1.png" id="7_dc2vk"]
 
@@ -64,4 +63,4 @@ shape = SubResource("ConcavePolygonShape3D_uojv6")
 [node name="Bouy2" parent="." index="2"]
 surface_material_override/0 = SubResource("ShaderMaterial_hpwdq")
 surface_material_override/1 = SubResource("ShaderMaterial_5ouut")
-surface_material_override/2 = ExtResource("5_tg7hq")
+surface_material_override/2 = SubResource("ShaderMaterial_hpwdq")

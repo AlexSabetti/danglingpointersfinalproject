@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://ci4p5ggyge7cw"]
 
-[ext_resource type="Shader" uid="uid://bvv8nr10umlcg" path="res://resources/Shaders/VS_Dissolve3D.tres" id="1_bu6yj"]
-[ext_resource type="NoiseTexture3D" uid="uid://dfioht8s8igs" path="res://resources/Textures/NormalMaps/Noise3D_1.tres" id="2_bu6yj"]
+[ext_resource type="Shader" uid="uid://wqery0l7vcdc" path="res://resources/Shaders/VS_Dissolve3D.tres" id="1_bu6yj"]
+[ext_resource type="NoiseTexture3D" uid="uid://b8qedu4clasel" path="res://resources/Textures/NormalMaps/Noise3D_1.tres" id="2_bu6yj"]
 
 [resource]
 render_priority = 0
