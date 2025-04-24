@@ -19,6 +19,8 @@ extends DynamicEntity
 
 @export var isRoomChanger:bool = false
 
+@export var isDecending:bool = false
+
 # array of objects to send a trigger signal to on interact
 @export var trigger_on_interact: Array[DynamicEntity] = []:
 	set(arr):

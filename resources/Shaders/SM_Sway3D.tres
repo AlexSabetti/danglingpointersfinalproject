@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://ba2v3rxp1y1gv"]
 
-[ext_resource type="Shader" uid="uid://c3iem3xsybs4v" path="res://resources/Shaders/VS_Sway3D.tres" id="1_agtk0"]
+[ext_resource type="Shader" uid="uid://bsarfo6h1qmjy" path="res://resources/Shaders/VS_Sway3D.tres" id="1_agtk0"]
 [ext_resource type="Texture2D" uid="uid://cwe2fg1gxmrpd" path="res://resources/Textures/EB_DarkPurpleSeaWallTexture_b1.png" id="2_agtk0"]
 
 [resource]
