@@ -112,7 +112,7 @@ func _ready():
 	var starting_cam: CameraNode = get_child(0).get_child(1).get_node("CameraNodes").get_child(0) as CameraNode
 	signal_manager.emit_signal("camera_changed", starting_cam)
 	signal_manager.emit_signal("map_gen_finished") # signals that the map is fully generated
-	
+	signal_manager.emit_signal("set_samples", sample_count, sample_locs)
 
 	# old setup:
 	# root_count = sqrt(grid_count)
@@ -224,6 +224,7 @@ func setup():
 				node.scene_path = crosses[rand]
 			# Cross, we'll have this choose from the cross list
 			# There is no need to check openings here, since all 4 are open
+	
 	map_created.emit()
 		
 func spread(prev_dir: int, node: MapNode, iterations: int) -> void:

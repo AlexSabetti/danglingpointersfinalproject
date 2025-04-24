@@ -22,6 +22,8 @@ var max_h_rotation: float = 45.0
 # current object being hovered over by the player
 var cur_target_object
 
+
+var total_samples: int
 @export_category("computer screen")
 @export var VirtualScreenViewport: SubViewport
 @export var MessageScreenUI: UI_MsgDisplay
@@ -42,6 +44,7 @@ func _ready():
 	
 	signal_manager.connect("collect_sample_end", finish_collecting_sample)
 	signal_manager.connect("dialog_notif", dialog_notif)
+	signal_manager.connect("set_samples", set_sample)
 	
 	#signal_manager.emit_signal("camera_changed", 1)
 	#UI._update_requests(["- find " + progress_order[0], "- find " + progress_order[1], "- find " + progress_order[2]])
@@ -265,6 +268,8 @@ func finish_collecting_sample() -> void:
 
 	is_collecting_samples = false
 	samples_collected += 1
+	if samples_collected >= total_samples:
+		signal_manager.emit_signal("unlock_final")
 	MapScreenUI.updateSamplesStatus()
 	
 
@@ -343,4 +348,7 @@ func win_game() -> void:
 	print("you win!")
 	
 	Global.gameWon = true
+
+func set_sample(sample_count: int, sample_pos: Array[Vector2]):
+	total_samples = sample_count
 	

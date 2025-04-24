@@ -37,4 +37,8 @@ signal toggle_bar()
 signal inc_progress()
 
 signal icon_loc_change(vec: Vector2)
+
+signal set_samples(sample_count: int, sample_coords: Array[Vector2])
 # signal check_if_sample_room(pos: Vector3)
+
+signal unlock_final()
