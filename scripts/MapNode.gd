@@ -19,6 +19,9 @@ extends Node3D
 
 var place_pos: int = 0
 var rotate_by = 0.0
+var special: bool = false
+var looted: bool = false
+var node_id: int = -1
 
 func create_scene():
 	# Create the scene and add it to the node

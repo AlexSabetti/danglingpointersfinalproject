@@ -105,7 +105,7 @@ func _input(event):
 	else: if event.is_action_pressed("lean_back") && is_screen_focused:
 		unfocusScreen()
 
-# controls accelaration and decelaration of drone camera rotationdddddddddda
+# controls accelaration and decelaration of drone camera rotation
 func camera_movement(delta: float):
 	if Input.is_action_just_pressed("rotate_left") or Input.is_action_just_pressed("rotate_right"):
 		SoundManager3D.PlaySoundPool3D("SP_KeyHold", Global.controlRoomRef.global_position)
@@ -228,15 +228,27 @@ func interact() -> void:
 # begins the sample collection process for the room you are in
 func collectSamples() -> void:
 	# check if in correct "goal" room
-	#if goal_room != null && goal_room == drone.active_map_node && !is_collecting_samples:
-	if !is_collecting_samples && DroneScreenUI.is_on:
-		is_collecting_samples = true
-		signal_manager.emit_signal("collect_sample_start")
-		SoundManager3D.PlaySoundQueue3D("SQ_CFink", Global.controlRoomRef.global_position)
-		SoundManager3D.PlaySoundPool3D("SP_KeyPress", Global.controlRoomRef.global_position)
+	# Send out a signal to see what room I'm in
+	# If I get a response, that means A: The room is a goal room, B: The room hasn't had a completed sample taken, and C: i forgor
+	if drone.active_map_node.node_id > 0 && !drone.active_map_node.looted:
+		if !is_collecting_samples && DroneScreenUI.is_on:
+			is_collecting_samples = true
+			signal_manager.emit_signal("collect_sample_start")
+			SoundManager3D.PlaySoundQueue3D("SQ_CFink", Global.controlRoomRef.global_position)
+			SoundManager3D.PlaySoundPool3D("SP_KeyPress", Global.controlRoomRef.global_position)
 
 # when the collect_samples_end signal is recieved
 func finish_collecting_sample() -> void:
+	drone.active_map_node.looted = true
+	# We'll use the node id here to play specific dialogue
+	if drone.active_map_node.node_id == 3:
+		signal_manager.emit_signal("dialog_event", ["There seems to be some markings on here", "But your sample contains a lot of graphical anomalies", "when I view it.", "...", "Proceed."])
+	elif drone.active_map_node.node_id == 2:
+		signal_manager.emit_signal("dialog_event", ["Hmm... That confirms it.", "that's the boat the coast guard mentioned.", "Or is it? It hasn't been that long since it was found.", "Way too much rust.", "...", "Proceed."])
+	elif drone.active_map_node.node_id == 4:
+		signal_manager.emit_signal("dialog_event", ["According to our matchup with the samples.", "A boat with this registration", "does not exist.", "...", "Proceed."])	
+	
+
 	is_collecting_samples = false
 	samples_collected += 1
 	MapScreenUI.updateSamplesStatus()

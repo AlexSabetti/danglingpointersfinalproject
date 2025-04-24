@@ -11,7 +11,8 @@ extends Node3D
 @export var original_node_loc: Vector3 = Vector3(0, 0, 0)
 # @export var num_pois: int = 3
 
-@export var cardinal_iterations: int = 10
+@export var cardinal_iterations: int = 15
+var sample_count: int = 0;
 
 # Starting area, all 4 directions open
 var room1_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room1_a1.tscn")
@@ -45,6 +46,10 @@ var room10_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room10_a1.tscn"
 
 #line, two openings
 var room11_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room11_a1.tscn")
+
+var room12_a1: PackedScene = preload("res://scenes/Levels/Rooms/room12_a1.tscn")
+
+var room13_a1: PackedScene = preload("res://scenes/Levels/Rooms/room13_a1.tscn")
 
 var signal_manager: SignalBus = SigBus
 signal continue_spread()
@@ -87,6 +92,10 @@ func _ready():
 
 	crosses.append(room1_a1)
 	crosses.append(room9_a1)
+	crosses.append(room13_a1)
+	crosses.append(room12_a1)
+	
+	
 	
 	setup()
 	await map_created
@@ -151,9 +160,11 @@ func setup():
 					node.rotate_by = 180
 				
 				var rand = rng.randi_range(0, corners.size() - 1)
-				if rand == 1:
+				if corners[corners.size() - 1] == room4_a1:
 					node.scene_path = room4_a1
-					corners.remove_at(rand)
+					node.node_id = 2
+					sample_count += 1
+					corners.remove_at(corners.size() - 1)
 				else:
 					node.scene_path = corners[rand]
 	
@@ -170,15 +181,23 @@ func setup():
 			var rand = rng.randi_range(0, t_shaped.size() - 1)
 			if rand == 3:
 				node.scene_path = room3_a1
+				node.node_id = 3
+				sample_count += 1
 				t_shaped.remove_at(rand)
 			else:
 				node.scene_path = t_shaped[rand]
 
 		elif num_openings == 4:
 			var rand = rng.randi_range(0, crosses.size() - 1)
-			if rand == 1:
+
+			if crosses[crosses.size() - 1] == room9_a1:
 				node.scene_path = room9_a1
-				crosses.remove_at(rand)
+				node.node_id = 4
+				crosses.remove_at(crosses.size() - 1)
+			elif corners[corners.size() - 1] == room13_a1:
+				node.scene_path = room4_a1
+				node.node_id = 5
+				corners.remove_at(corners.size() - 1)
 			else:
 				node.scene_path = crosses[rand]
 			# Cross, we'll have this choose from the cross list

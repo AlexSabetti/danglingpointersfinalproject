@@ -33,3 +33,5 @@ signal unpause_game()
 signal toggle_bar()  
 
 signal inc_progress()
+
+# signal check_if_sample_room(pos: Vector3)
