@@ -18,6 +18,10 @@ var samplepos2:String = "S2"
 var samplepos3:String = "S3"
 var signal_manager: SignalBus = SigBus
 
+var rng = RandomNumberGenerator.new()
+@onready var GlitchTimer:Timer = $GlitchTimer
+var is_endgame:bool = false
+
 func _ready() -> void:
 	var rowPos := 0
 	var colPos := 0
@@ -34,18 +38,22 @@ func _ready() -> void:
 	
 	#setDroneIconPos(Vector2(1,2))
 	signal_manager.connect("icon_loc_change", setDroneIconPos)
+	signal_manager.connect("end_game", setRandomMapPos)
 	#print(str(gridMap))
 
 func _process(delta: float) -> void:
 	# update the compass rotation 
-	if Global.gameControllerRef.drone:
-		CompassPointer.rotation = -Global.gameControllerRef.drone.DroneCamera.global_rotation.y
+	if !is_endgame:
+		if Global.gameControllerRef.drone:
+			CompassPointer.rotation = -Global.gameControllerRef.drone.DroneCamera.global_rotation.y
+	else:
+		CompassPointer.rotation += deg_to_rad(1000) * delta
 
 # moves the map icon for the drone's position to the correct spot. Coordinates start from upper left corner
 func setDroneIconPos(coords: Vector2) -> void:
 	#print(str(gridMap[coords.y][coords.x]) + " " + str(gridMap[coords.y][coords.x].get_parent()) )
 	#var dronePosition = Vector2((gridMap[coords.y][coords.x] as ColorRect).global_position.x, (gridMap[coords.y][coords.x] as ColorRect).get_parent().global_position.y)
-	print(coords)
+	#print(coords)
 	DroneIcon.position = Vector2(((coords.x + 4) * 100), ((coords.y + 4) * 100) - 28)
 	#print(dronePosition)
 
@@ -61,3 +69,9 @@ func updateSamplesStatus() -> void:
 		sampleStatusLabel2.text = "▬"
 	else: if Global.gameControllerRef.samples_collected >= 3:
 		sampleStatusLabel3.text = "▬"
+
+# sets a random position on the map
+func setRandomMapPos():
+	is_endgame = true
+	setDroneIconPos(Vector2(rng.randi_range(0-4,7-4),rng.randi_range(0-4,7-4)))
+	GlitchTimer.start()

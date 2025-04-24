@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://b46iq2q3pqkis"]
 
-[ext_resource type="Script" path="res://scripts/Room.gd" id="1_r5s6t"]
-[ext_resource type="Script" path="res://scripts/CameraChangeObject.gd" id="2_8xvrd"]
+[ext_resource type="Script" uid="uid://br3bhxpyvy3lu" path="res://scripts/Room.gd" id="1_r5s6t"]
+[ext_resource type="Script" uid="uid://bs8y8lrwcb8ml" path="res://scripts/CameraChangeObject.gd" id="2_8xvrd"]
 [ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://scenes/Entities/CamPosNode.tscn" id="3_p533t"]
 [ext_resource type="PackedScene" uid="uid://dtmgvohi77pnn" path="res://resources/Models/under_water_room_12_a_1.tscn" id="4_r5s6t"]
 [ext_resource type="PackedScene" uid="uid://bd7icn4pwfdoi" path="res://scenes/Entities/Foliage.tscn" id="5_klpeb"]
@@ -19,7 +19,7 @@
 [ext_resource type="Shader" uid="uid://d2mabvbt22cdl" path="res://resources/Shaders/VS_Foliage3D.tres" id="17_6xlbu"]
 [ext_resource type="Texture2D" uid="uid://dhvn8d5topyjo" path="res://resources/Textures/NormalMaps/7864-normal.jpg" id="18_n0j63"]
 [ext_resource type="Texture2D" uid="uid://chng0opds5tf2" path="res://resources/Textures/Sprites/Reeds2_b1.png" id="19_xwanl"]
-[ext_resource type="Script" path="res://scripts/ClickableObject.gd" id="20_6xi1p"]
+[ext_resource type="Script" uid="uid://b8260neigo27n" path="res://scripts/ClickableObject.gd" id="20_6xi1p"]
 [ext_resource type="PackedScene" uid="uid://dybogvrii8h3g" path="res://scenes/Logic/dialog_changer.tscn" id="21_pxcud"]
 [ext_resource type="PackedScene" uid="uid://daisq5v2y88dx" path="res://resources/Models/ship_1_modified.tscn" id="22_8xvrd"]
 

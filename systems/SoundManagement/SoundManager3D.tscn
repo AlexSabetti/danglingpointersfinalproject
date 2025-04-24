@@ -102,7 +102,7 @@ maxPitch = 0.8
 
 [node name="SoundQueue3D" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
 count = 2
-minPitch = 0.7
+minPitch = 0.6
 maxPitch = 0.8
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SP_Voice/SoundQueue3D"]
@@ -112,7 +112,7 @@ panning_strength = 0.4
 
 [node name="SoundQueue3D2" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
 count = 2
-minPitch = 0.7
+minPitch = 0.6
 maxPitch = 0.8
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SP_Voice/SoundQueue3D2"]
@@ -122,7 +122,7 @@ panning_strength = 0.4
 
 [node name="SoundQueue3D3" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
 count = 2
-minPitch = 0.7
+minPitch = 0.6
 maxPitch = 0.8
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SP_Voice/SoundQueue3D3"]
@@ -132,7 +132,7 @@ panning_strength = 0.4
 
 [node name="SoundQueue3D4" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
 count = 2
-minPitch = 0.7
+minPitch = 0.6
 maxPitch = 0.8
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SP_Voice/SoundQueue3D4"]
@@ -142,7 +142,7 @@ panning_strength = 0.4
 
 [node name="SoundQueue3D5" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
 count = 2
-minPitch = 0.7
+minPitch = 0.6
 maxPitch = 0.8
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SP_Voice/SoundQueue3D5"]
@@ -152,7 +152,7 @@ panning_strength = 0.4
 
 [node name="SoundQueue3D6" parent="SP_Voice" instance=ExtResource("1_ya6ty")]
 count = 2
-minPitch = 0.7
+minPitch = 0.6
 maxPitch = 0.8
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SP_Voice/SoundQueue3D6"]

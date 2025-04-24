@@ -6,7 +6,7 @@ extends DynamicEntity
 
 @export var signal_to_await:String = ""
 
-# time before triggering given entities
+# time before sending signal
 @export var delay_before_trigger: float = 0.0
 
 # whether or not this relay should be able to be triggered multiple times

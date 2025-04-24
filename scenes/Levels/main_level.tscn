@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b25jkvemaipnk" path="res://scenes/UI/CanvasLayer_PostProcessing.tscn" id="1_2sjx4"]
 [ext_resource type="Material" uid="uid://bg2bjdrabdhn5" path="res://resources/Shaders/SM_Posterization.tres" id="2_e1vb8"]
 [ext_resource type="Environment" uid="uid://c8wr6jqwlnict" path="res://resources/Environments/env_underwater1_1.tres" id="3_dh4w5"]
-[ext_resource type="Script" path="res://scripts/world_environment.gd" id="4_loddw"]
+[ext_resource type="Script" uid="uid://dybrp2bdnyair" path="res://scripts/world_environment.gd" id="4_loddw"]
 [ext_resource type="PackedScene" uid="uid://bsgqiciuvs6ok" path="res://scenes/Levels/ControlRoom.tscn" id="5_vcuqm"]
 [ext_resource type="PackedScene" uid="uid://dybogvrii8h3g" path="res://scenes/Logic/dialog_changer.tscn" id="6_d44k0"]
 [ext_resource type="PackedScene" uid="uid://v2urofrh3pq5" path="res://scenes/Entities/GameController.tscn" id="7_ivn7c"]
@@ -172,7 +172,7 @@ trigger_on_start = true
 
 [node name="DialogChanger1_debrief" parent="Logic" instance=ExtResource("6_d44k0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.45938, -4.81173, 14.3816)
-newDialog = Array[String](["Just as a reminder, your job is to examine the sea floor and collect 3 samples at the given locations left of your map. ", "If you find anything else of interest, let me know.", "There's been a couple of people who've gone missing around these waters, and I'd be lying if I said I wasn't curious..."])
+newDialog = Array[String](["Just as a reminder, your job is to examine the sea floor and collect samples at key locations. ", "If you find anything else of interest, let me know.", "There's been a couple of people who've gone missing around these waters, and I'm a but curious..."])
 delay_before_trigger = 2.0
 oneShot = true
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=39 format=3 uid="uid://vg2e6sfqcilt"]
 
-[ext_resource type="Script" path="res://scripts/Room.gd" id="1_qtgky"]
-[ext_resource type="Script" path="res://scripts/CameraChangeObject.gd" id="2_rqunv"]
+[ext_resource type="Script" uid="uid://br3bhxpyvy3lu" path="res://scripts/Room.gd" id="1_qtgky"]
+[ext_resource type="Script" uid="uid://bs8y8lrwcb8ml" path="res://scripts/CameraChangeObject.gd" id="2_rqunv"]
 [ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://scenes/Entities/CamPosNode.tscn" id="3_g501n"]
 [ext_resource type="PackedScene" uid="uid://bd7icn4pwfdoi" path="res://scenes/Entities/Foliage.tscn" id="5_s5uts"]
 [ext_resource type="Texture2D" uid="uid://cealpeqkes7xo" path="res://resources/Textures/Sprites/SeaWeeds1_a1.png" id="6_qp3w2"]
@@ -17,7 +17,7 @@
 [ext_resource type="Shader" uid="uid://d2mabvbt22cdl" path="res://resources/Shaders/VS_Foliage3D.tres" id="16_63o54"]
 [ext_resource type="Texture2D" uid="uid://dhvn8d5topyjo" path="res://resources/Textures/NormalMaps/7864-normal.jpg" id="17_fyi1d"]
 [ext_resource type="Texture2D" uid="uid://chng0opds5tf2" path="res://resources/Textures/Sprites/Reeds2_b1.png" id="18_omtsb"]
-[ext_resource type="Script" path="res://scripts/ClickableObject.gd" id="20_i7npb"]
+[ext_resource type="Script" uid="uid://b8260neigo27n" path="res://scripts/ClickableObject.gd" id="20_i7npb"]
 [ext_resource type="PackedScene" uid="uid://dybogvrii8h3g" path="res://scenes/Logic/dialog_changer.tscn" id="21_lrbht"]
 [ext_resource type="PackedScene" uid="uid://bp1atxghx5f0s" path="res://resources/Models/ds_drone_1_a_1.tscn" id="21_qtgky"]
 [ext_resource type="PackedScene" uid="uid://cp62xahvw7dgn" path="res://resources/Models/under_water_room_13_a_1.tscn" id="21_vq3jy"]
@@ -224,7 +224,7 @@ shape = SubResource("BoxShape3D_xwmys")
 transform = Transform3D(1, 0, 0, 0, 0.9964, -0.0847735, 0, 0.0847735, 0.9964, 0, -20, -1)
 script = ExtResource("2_rqunv")
 isDecending = true
-trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_Cave2")]
+trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_Cave2"), NodePath("../../UnderWaterRoom13_a1/DialogChanger1")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/StaticBody3D14"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
@@ -234,16 +234,17 @@ shape = SubResource("BoxShape3D_s5uts")
 transform = Transform3D(1, 0, 0, 0, 0.98439, 0.176002, 0, -0.176002, 0.984389, 0, -39.0854, -0.589909)
 script = ExtResource("2_rqunv")
 isDecending = true
-trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_Cave3")]
+trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_Cave3"), NodePath("../../UnderWaterRoom13_a1/DialogChanger3")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/StaticBody3D15"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.659481, 3.33786e-06)
 shape = SubResource("BoxShape3D_qp3w2")
 
-[node name="StaticBody3D16" type="StaticBody3D" parent="CameraChangers"]
+[node name="StaticBody3D16" type="StaticBody3D" parent="CameraChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(0.998552, -0.0537718, 0.0010766, 0.0537825, 0.998353, -0.0199886, 0, 0.0200176, 0.999799, 0, -68.7676, -0.589909)
 script = ExtResource("2_rqunv")
 isDecending = true
+trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_Cave4")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/StaticBody3D16"]
 transform = Transform3D(1, 0, 1.68802e-08, 3.19948e-07, 1, -6.51926e-08, -2.78452e-08, -5.53206e-07, 1, 4.5, -0.659462, -2)
@@ -282,7 +283,7 @@ max_h_rotation = 60.0
 [node name="TestCamera3D" type="Camera3D" parent="CameraNodes/CameraNode_W"]
 
 [node name="CameraNode_Cave1" parent="CameraNodes" instance=ExtResource("3_g501n")]
-transform = Transform3D(1, -0.000351264, -0.000990778, 0.000351512, 1, 0.000257103, 0.000990808, -0.000257454, 1, 0.168603, -16.3633, -0.692077)
+transform = Transform3D(1, -0.000351264, -0.000990778, 0.000351512, 1, 0.000257103, 0.000990808, -0.000257454, 1, 0.168603, -14.6916, 2.04095)
 min_h_rotation = -90.0
 max_h_rotation = 60.0
 
@@ -301,6 +302,14 @@ min_h_rotation = -90.0
 max_h_rotation = 60.0
 
 [node name="TestCamera3D" type="Camera3D" parent="CameraNodes/CameraNode_Cave3"]
+
+[node name="CameraNode_Cave4" parent="CameraNodes" instance=ExtResource("3_g501n")]
+transform = Transform3D(1, 0.000257454, -0.000990688, -0.000257113, 1, 0.000351516, 0.000990899, -0.000351264, 1, 2.88206, -82.9439, -1.83316)
+min_h_rotation = -90.0
+max_h_rotation = 60.0
+
+[node name="TestCamera3D" type="Camera3D" parent="CameraNodes/CameraNode_Cave4"]
+transform = Transform3D(0.999999, 7.07149e-09, -1.20723e-07, -1.11982e-11, 1, 3.0268e-09, 1.16415e-10, 0, 1, -0.00578594, 0.00205231, -5.83987)
 
 [node name="UnderWaterRoom13_a1" parent="." instance=ExtResource("21_vq3jy")]
 
@@ -676,20 +685,28 @@ shape = SubResource("BoxShape3D_rqunv")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.5, 0, 2.5)
 shape = SubResource("BoxShape3D_g501n")
 
-[node name="DialogChanger" parent="UnderWaterRoom13_a1" instance=ExtResource("21_lrbht")]
+[node name="DialogChanger0" parent="UnderWaterRoom13_a1" instance=ExtResource("21_lrbht")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.52795, -4.87929)
-newDialog = Array[String](["That hole is kinda freakin me out..", "You can check it out if you really want to though..."])
+newDialog = Array[String](["That is one freaky hole...", "Best to leave exploring that thing for last..."])
+
+[node name="DialogChanger1" parent="UnderWaterRoom13_a1" instance=ExtResource("21_lrbht")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00713468, -36.9914, -13.4438)
+newDialog = Array[String](["This cave is MASSIVE!", "I can't believe nobody's found this yet."])
 
 [node name="DialogChanger2" parent="UnderWaterRoom13_a1" instance=ExtResource("21_lrbht")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00713468, -36.9914, -13.4438)
-newDialog = Array[String](["That looks like one of OUR drone... This doesn't add up...", "We've never sent anyone here...."])
+newDialog = Array[String](["That looks like one of OUR drones... But it can't be...", "This is out first time sending any drones here...", "Keep going. I need answers..."])
+
+[node name="DialogChanger3" parent="UnderWaterRoom13_a1" instance=ExtResource("21_lrbht")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00713468, -56.3912, -13.4438)
+newDialog = Array[String](["Man... staring at these screens is giving me a nasty headache...", "How deep does this hole go?"])
 
 [node name="Object of interest" type="StaticBody3D" parent="UnderWaterRoom13_a1" node_paths=PackedStringArray("trigger_on_interact")]
 script = ExtResource("20_i7npb")
 is_interactable = true
 oneShot = true
 destroy_on_interact = true
-trigger_on_interact = [NodePath("../DialogChanger")]
+trigger_on_interact = [NodePath("../DialogChanger0")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="UnderWaterRoom13_a1/Object of interest"]
 shape = SubResource("BoxShape3D_xbva0")

@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://brkyle6r06e41"]
+
+[ext_resource type="Script" uid="uid://cgltf230q0spl" path="res://scripts/signal_sender.gd" id="1_ehyhq"]
+[ext_resource type="Texture2D" uid="uid://687sfwk5qnxd" path="res://resources/Textures/Sprites/TeleporterIcon.png" id="2_toy3l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v0by4"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+albedo_texture = ExtResource("2_toy3l")
+texture_filter = 0
+billboard_mode = 1
+
+[node name="SignalSender" type="Node3D"]
+script = ExtResource("1_ehyhq")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+material_override = SubResource("StandardMaterial3D_v0by4")
+gi_mode = 0
+pixel_size = 0.001
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("2_toy3l")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

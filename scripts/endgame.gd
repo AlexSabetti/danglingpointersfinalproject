@@ -6,7 +6,7 @@ extends Node3D
 var signal_manager: SignalBus = SigBus
 
 func _ready() -> void:
-	signal_manager.connect("endgame", trigger_ending)
+	signal_manager.connect("end_game", trigger_ending)
 
 func trigger_ending() -> void:
 	# set the endgame state to true
@@ -34,4 +34,3 @@ func trigger_ending() -> void:
 			child.queue_free()
 	
 	
-

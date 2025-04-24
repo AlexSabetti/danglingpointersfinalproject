@@ -286,7 +286,7 @@ uniform vec2 UVOffset2 = vec2(0.320000, 0.400000);
 uniform float DistortionAmount = 0.00300000002608;
 uniform sampler2D Texture : source_color;
 uniform sampler2D EmissionTexture : source_color;
-uniform float EmissionAmount = 0;
+uniform float EmissionAmount = 0.0;
 
 
 

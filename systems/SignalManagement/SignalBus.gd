@@ -43,6 +43,6 @@ signal set_samples(sample_count: int, sample_coords: Array[Vector2])
 
 signal unlock_final()
 
-signal endgame()
+signal end_game()
 
 signal change_name(name: String)

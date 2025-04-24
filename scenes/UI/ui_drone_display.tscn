@@ -49,7 +49,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="CompassSprite" type="Sprite2D" parent="DroneScreenOverlay/Compass"]
-modulate = Color(1, 1, 1, 0.156863)
+modulate = Color(1, 1, 1, 0.25)
 position = Vector2(0, -820)
 texture = ExtResource("3_dgjav")
 
