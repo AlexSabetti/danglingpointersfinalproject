@@ -16,5 +16,6 @@ script = ExtResource("1_vrqyw")
 shape = SubResource("BoxShape3D_qpc2q")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+visible = false
 mesh = SubResource("BoxMesh_5m3v8")
 skeleton = NodePath("../..")

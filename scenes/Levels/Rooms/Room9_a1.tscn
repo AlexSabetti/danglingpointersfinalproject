@@ -75,7 +75,6 @@ west_open = true
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0, 0, 0)
 script = ExtResource("2_s6tfm")
 isRoomChanger = true
-isDecending = null
 trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_N")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_N"]
@@ -85,7 +84,6 @@ shape = SubResource("BoxShape3D_v31mo")
 [node name="RoomChangeCollider_E" type="StaticBody3D" parent="RoomChangers" node_paths=PackedStringArray("trigger_on_interact")]
 script = ExtResource("2_s6tfm")
 isRoomChanger = true
-isDecending = null
 trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_E")]
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_E"]
@@ -96,7 +94,6 @@ shape = SubResource("BoxShape3D_v31mo")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("2_s6tfm")
 isRoomChanger = true
-isDecending = null
 trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_S")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_S"]
@@ -107,7 +104,6 @@ shape = SubResource("BoxShape3D_v31mo")
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("2_s6tfm")
 isRoomChanger = true
-isDecending = null
 trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_W")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomChangers/RoomChangeCollider_W"]
@@ -119,7 +115,6 @@ shape = SubResource("BoxShape3D_v31mo")
 [node name="StaticBody3D5" type="StaticBody3D" parent="CameraChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(-0.707107, 0, 0.707106, 0, 1, 0, -0.707106, 0, -0.707107, 0, 0, 0)
 script = ExtResource("2_s6tfm")
-isDecending = null
 trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_N")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/StaticBody3D5"]
@@ -129,7 +124,6 @@ shape = SubResource("BoxShape3D_wr532")
 [node name="StaticBody3D6" type="StaticBody3D" parent="CameraChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(-0.707107, 0, 0.707106, 0, 1, 0, -0.707106, 0, -0.707107, 0, 0, 0)
 script = ExtResource("2_s6tfm")
-isDecending = null
 trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_W")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/StaticBody3D6"]
@@ -139,7 +133,6 @@ shape = SubResource("BoxShape3D_wr532")
 [node name="StaticBody3D7" type="StaticBody3D" parent="CameraChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(0.707106, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707106, 0, 0, 0)
 script = ExtResource("2_s6tfm")
-isDecending = null
 trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_E")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/StaticBody3D7"]
@@ -149,7 +142,6 @@ shape = SubResource("BoxShape3D_wr532")
 [node name="StaticBody3D8" type="StaticBody3D" parent="CameraChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(0.707106, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707106, 0, 0, 0)
 script = ExtResource("2_s6tfm")
-isDecending = null
 trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_N")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/StaticBody3D8"]
@@ -159,7 +151,6 @@ shape = SubResource("BoxShape3D_wr532")
 [node name="StaticBody3D9" type="StaticBody3D" parent="CameraChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(0.707107, 0, -0.707106, 0, 1, 0, 0.707106, 0, 0.707107, 0, 0, 0)
 script = ExtResource("2_s6tfm")
-isDecending = null
 trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_S")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/StaticBody3D9"]
@@ -169,7 +160,6 @@ shape = SubResource("BoxShape3D_wr532")
 [node name="StaticBody3D10" type="StaticBody3D" parent="CameraChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(0.707107, 0, -0.707106, 0, 1, 0, 0.707106, 0, 0.707107, 0, 0, 0)
 script = ExtResource("2_s6tfm")
-isDecending = null
 trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_E")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/StaticBody3D10"]
@@ -179,7 +169,6 @@ shape = SubResource("BoxShape3D_wr532")
 [node name="StaticBody3D11" type="StaticBody3D" parent="CameraChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(-0.707107, 0, -0.707106, 0, 1, 0, 0.707106, 0, -0.707107, 0, 0, 0)
 script = ExtResource("2_s6tfm")
-isDecending = null
 trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_W")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/StaticBody3D11"]
@@ -189,7 +178,6 @@ shape = SubResource("BoxShape3D_wr532")
 [node name="StaticBody3D12" type="StaticBody3D" parent="CameraChangers" node_paths=PackedStringArray("trigger_on_interact")]
 transform = Transform3D(-0.707107, 0, -0.707106, 0, 1, 0, 0.707106, 0, -0.707107, 0, 0, 0)
 script = ExtResource("2_s6tfm")
-isDecending = null
 trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_S")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/StaticBody3D12"]
