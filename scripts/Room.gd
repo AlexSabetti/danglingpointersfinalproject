@@ -47,7 +47,7 @@ var west_blocker:Node3D = null
 const RoomDoorBlocker = preload("res://resources/Models/rock_wall_1_a_1.tscn")
 
 var signal_manager: SignalBus = SigBus
-
+var cam_change_special: CameraChangeObject
 @onready var RoomChangers: Node3D = $RoomChangers
 
 func _ready() -> void:
@@ -63,7 +63,9 @@ func _ready() -> void:
 	else:
 		print("Can't find 'RoomChangers' as child of room")
 	signal_manager.connect("unlock_final", unlock_final)
-	
+	if mapNode.node_id == 5:
+		cam_change_special = get_node("CameraChangers/StaticBody3D13")
+		cam_change_special.is_active = false
 	_update_blocked_paths()
 	
 
@@ -150,3 +152,4 @@ func _update_blocked_paths():
 
 func unlock_final():
 	if mapNode.node_id == 5:
+		cam_change_special.is_active = true

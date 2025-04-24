@@ -266,7 +266,7 @@ shape = SubResource("BoxShape3D_2ufit")
 
 [node name="DialogChanger_noticeShip" parent="." instance=ExtResource("14_evpny")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.23906, 2.63405, 2.06855)
-newDialog = Array[String](["Damn... That's a whole ship wreck! Looks pretty recent too.", "I'll log it's position. Keep going for now."])
+newDialog = Array[String](["Damn... That's a whole ship wreck! Looks pretty recent too.", "I'll log it's position. Keep going for now.", "Make sure to take a sample."])
 delay_before_trigger = 1.0
 
 [node name="DialogChanger_noticeSomething" parent="." instance=ExtResource("14_evpny")]

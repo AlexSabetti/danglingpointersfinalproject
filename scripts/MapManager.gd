@@ -170,12 +170,13 @@ func setup():
 					node.rotate_by = 180
 				
 				var rand = rng.randi_range(0, corners.size() - 1)
-				if corners[corners.size() - 1] == room4_a1:
+				if corners.has(room4_a1):
 					node.scene_path = room4_a1
 					node.node_id = 2
 					sample_count += 1
+					node.special = true
 					sample_locs.append(Vector2(node.global_position.x, node.global_position.z))
-					corners.remove_at(corners.size() - 1)
+					corners.remove_at(corners.find(room4_a1))
 				else:
 					node.scene_path = corners[rand]
 	
@@ -190,12 +191,13 @@ func setup():
 				node.rotate_by = -90
 
 			var rand = rng.randi_range(0, t_shaped.size() - 1)
-			if rand == 3:
+			if t_shaped.has(room3_a1):
 				node.scene_path = room3_a1
 				node.node_id = 3
 				sample_count += 1
+				node.special = true
 				sample_locs.append(Vector2(node.global_position.x, node.global_position.z))
-				t_shaped.remove_at(rand)
+				t_shaped.remove_at(t_shaped.find(room3_a1))
 			else:
 				node.scene_path = t_shaped[rand]
 
@@ -206,16 +208,17 @@ func setup():
 				node.scene_path = room9_a1
 				node.node_id = 4
 				sample_count += 1
+				node.special = true
 				sample_locs.append(Vector2(node.global_position.x, node.global_position.z))
 				crosses.remove_at(crosses.find(room9_a1))
 			elif crosses.has(room13_a1):
 				node.scene_path = room13_a1
 				node.node_id = 5
-				sample_count += 1
 				sample_locs.append(Vector2(node.global_position.x, node.global_position.z))
 				crosses.remove_at(crosses.find(room13_a1))
 			elif crosses.has(room12_a1):
 				node.scene_path = room12_a1
+				node.special = true
 				node.node_id = 6
 				sample_count += 1
 				sample_locs.append(Vector2(node.global_position.x, node.global_position.z))

@@ -246,6 +246,6 @@ shape = SubResource("BoxShape3D_6e3fo")
 
 [node name="DialogChanger" parent="." instance=ExtResource("13_6e3fo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.57099, 1.65014, 4.12027)
-newDialog = Array[String](["R.I.P. Buoy. Served us well"])
+newDialog = Array[String](["R.I.P. Buoy. Served us well", "Make sure to take a sample."])
 
 [editable path="UnderWaterRoom3_a1"]

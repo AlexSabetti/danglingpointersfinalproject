@@ -27,10 +27,11 @@ func create_scene():
 	# Create the scene and add it to the node
 	print("Creating ", scene_path.get_state(), " at ", global_transform.origin)
 	var scene_instance = scene_path.instantiate()
+	scene_instance.mapNode = self
 	add_child(scene_instance)
 	
 	# Set the position of the scene instance
-	scene_instance.mapNode = self
+	
 	scene_instance.global_position = global_position
 	scene_instance.rotation_degrees = scene_instance.rotation_degrees + Vector3(0, rotate_by, 0)
 	turn_off_col()

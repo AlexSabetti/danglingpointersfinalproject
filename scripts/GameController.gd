@@ -241,7 +241,7 @@ func collectSamples() -> void:
 	# check if in correct "goal" room
 	# Send out a signal to see what room I'm in
 	# If I get a response, that means A: The room is a goal room, B: The room hasn't had a completed sample taken, and C: i forgor
-	if drone.active_map_node.node_id > 0 && !drone.active_map_node.looted:
+	if drone.active_map_node.node_id > 0 && !drone.active_map_node.looted && drone.active_map_node.special:
 		if !is_collecting_samples && DroneScreenUI.is_on:
 			is_collecting_samples = true
 			signal_manager.emit_signal("collect_sample_start")
@@ -270,6 +270,8 @@ func finish_collecting_sample() -> void:
 	samples_collected += 1
 	if samples_collected >= total_samples:
 		signal_manager.emit_signal("unlock_final")
+		var str_array: Array[String] = ["Perfect!", "It looks like we've got all we need.", "...", "wait, hold on, your sensors are saying there's a tunnel that leads a bit deeper.", "Go see if you can find it, should be a giant hole."]
+		signal_manager.emit_signal("dialog_event", str_array)
 	MapScreenUI.updateSamplesStatus()
 	
 

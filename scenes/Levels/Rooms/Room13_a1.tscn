@@ -1,7 +1,7 @@
 [gd_scene load_steps=39 format=3 uid="uid://vg2e6sfqcilt"]
 
-[ext_resource type="Script" uid="uid://br3bhxpyvy3lu" path="res://scripts/Room.gd" id="1_qtgky"]
-[ext_resource type="Script" uid="uid://bs8y8lrwcb8ml" path="res://scripts/CameraChangeObject.gd" id="2_rqunv"]
+[ext_resource type="Script" path="res://scripts/Room.gd" id="1_qtgky"]
+[ext_resource type="Script" path="res://scripts/CameraChangeObject.gd" id="2_rqunv"]
 [ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://scenes/Entities/CamPosNode.tscn" id="3_g501n"]
 [ext_resource type="PackedScene" uid="uid://bd7icn4pwfdoi" path="res://scenes/Entities/Foliage.tscn" id="5_s5uts"]
 [ext_resource type="Texture2D" uid="uid://cealpeqkes7xo" path="res://resources/Textures/Sprites/SeaWeeds1_a1.png" id="6_qp3w2"]
@@ -17,7 +17,7 @@
 [ext_resource type="Shader" uid="uid://d2mabvbt22cdl" path="res://resources/Shaders/VS_Foliage3D.tres" id="16_63o54"]
 [ext_resource type="Texture2D" uid="uid://dhvn8d5topyjo" path="res://resources/Textures/NormalMaps/7864-normal.jpg" id="17_fyi1d"]
 [ext_resource type="Texture2D" uid="uid://chng0opds5tf2" path="res://resources/Textures/Sprites/Reeds2_b1.png" id="18_omtsb"]
-[ext_resource type="Script" uid="uid://b8260neigo27n" path="res://scripts/ClickableObject.gd" id="20_i7npb"]
+[ext_resource type="Script" path="res://scripts/ClickableObject.gd" id="20_i7npb"]
 [ext_resource type="PackedScene" uid="uid://dybogvrii8h3g" path="res://scenes/Logic/dialog_changer.tscn" id="21_lrbht"]
 [ext_resource type="PackedScene" uid="uid://bp1atxghx5f0s" path="res://resources/Models/ds_drone_1_a_1.tscn" id="21_qtgky"]
 [ext_resource type="PackedScene" uid="uid://cp62xahvw7dgn" path="res://resources/Models/under_water_room_13_a_1.tscn" id="21_vq3jy"]
@@ -704,7 +704,6 @@ trigger_on_interact = [NodePath("../DialogChanger2")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="UnderWaterRoom13_a1/Object of interest2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -1, 1)
 shape = SubResource("BoxShape3D_rdewd")
-debug_color = Color(0, 0.556863, 0.898039, 1)
 
 [node name="DS_Drone1_a1" parent="." instance=ExtResource("21_qtgky")]
 transform = Transform3D(-0.5, 0.848685, -0.172435, 0.433013, 0.0725587, -0.898463, -0.75, -0.523898, -0.403771, 0, -38.7193, -11.0591)
