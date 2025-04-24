@@ -17,6 +17,7 @@ shader_parameter/BackColor = Color(0.044862, 0.020364, 0.007147, 1)
 
 [node name="ui_droneDisplay" type="CanvasLayer"]
 script = ExtResource("1_01chn")
+is_on = false
 
 [node name="UnderwaterFilter" type="ColorRect" parent="."]
 material = ExtResource("2_uor4o")

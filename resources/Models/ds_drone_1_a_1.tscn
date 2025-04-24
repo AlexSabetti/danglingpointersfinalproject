@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://bp1atxghx5f0s"]
+
+[ext_resource type="PackedScene" uid="uid://cupugofh2lbos" path="res://resources/Models/DS_Drone1_a1.glb" id="1_iw0ve"]
+[ext_resource type="Material" uid="uid://cv3p54e1twhiv" path="res://resources/Materials/M_Red.tres" id="2_vbrsd"]
+[ext_resource type="Material" uid="uid://b4yraphdi75c1" path="res://resources/Materials/M_DarkPurpleWood2.tres" id="3_acah6"]
+[ext_resource type="Material" uid="uid://d1y3bx2agv0pq" path="res://resources/Materials/M_Grey.tres" id="4_u4po8"]
+
+[node name="DS_Drone1_a1" instance=ExtResource("1_iw0ve")]
+
+[node name="Drone_003" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_vbrsd")
+surface_material_override/1 = ExtResource("3_acah6")
+surface_material_override/2 = ExtResource("4_u4po8")

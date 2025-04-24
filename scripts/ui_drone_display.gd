@@ -27,6 +27,10 @@ func _ready() -> void:
 	signal_manager.connect("screen_cursor_changed", set_cursor_type)
 	signal_manager.connect("focus_screen", focus_screen)
 	signal_manager.connect("collect_sample_start", startSampleCollection)
+	# fade in screen when map is generated
+	signal_manager.connect("map_gen_finished", fade_in)
+	
+	set_cursor_type(0)
 	
 	SampleCollectionOverlay.visible = false
 	
@@ -62,7 +66,7 @@ func cursor_click(pressing:bool):
 func set_cursor_type(type:int):
 	
 	if type == 0: # default cursor
-		CursorSprite.texture = load("res://resources/Textures/Sprites/CompPointerArrow1_b1.png")
+		CursorSprite.texture = load("res://resources/Textures/Sprites/CompPointerArrow1_c1.png")
 		cursor_Sprite_offset = Vector2(10.0,19.0)
 	else: if type == 1: # camera change sprite
 		CursorSprite.texture = load("res://resources/Textures/Sprites/CompPointerArrow3_b1.png")

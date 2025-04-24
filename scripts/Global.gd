@@ -10,6 +10,6 @@ var gameWon:bool = false
 var global_world_env : WorldEnvironment
 
 # game settings
-var global_volume: float = 1.0
-var global_brightness: float = 1.0
+var global_volume: float = 0.25
+var global_brightness: float = 0.66
 var global_camera_wobble: bool = true

@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://cw83dccua6vux"]
+[gd_scene load_steps=22 format=3 uid="uid://cw83dccua6vux"]
 
 [ext_resource type="Script" uid="uid://fsm17x6l1oka" path="res://scripts/UIHandler.gd" id="1_wox0k"]
+[ext_resource type="Theme" uid="uid://b7dmjh57doq5k" path="res://resources/Themes/theme_ScreenText.tres" id="2_jvpr3"]
 [ext_resource type="Texture2D" uid="uid://vmax1o61lrws" path="res://resources/Textures/Sprites/Square1_a1.png" id="2_l2gvk"]
 [ext_resource type="Theme" uid="uid://d3u8v3disi16o" path="res://resources/Themes/theme_genText.tres" id="2_xewkt"]
 [ext_resource type="Texture2D" uid="uid://c555oijau62ut" path="res://resources/Textures/Sprites/Square1_b1.png" id="3_54dg7"]
@@ -79,6 +80,18 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 metadata/_edit_lock_ = true
+
+[node name="LoadingText" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_jvpr3")
+text = "Loading...."
 
 [node name="PauseMenu" type="VBoxContainer" parent="."]
 visible = false

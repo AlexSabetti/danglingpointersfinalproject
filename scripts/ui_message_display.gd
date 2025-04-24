@@ -77,7 +77,7 @@ func queueDialog(textArray:Array[String]) -> void:
 				for t in dialogueQueue:
 					TextBox.set_text(TextBox.text + "\n[color=#9f8464]" + characterName + ":[/color] " + t + "\n")
 					dialogueQueue.pop_front()
-			TextBox.set_text(TextBox.text + "[color=#3a3123]  ------------------------------[/color]")
+			TextBox.set_text(TextBox.text + "[color=#3a3123]    ------------------------------[/color]")
 			scroll_to_bottom()
 	
 	# add new dialog to the queued text array
@@ -129,7 +129,7 @@ func finishDialog() -> void:
 			TextBox.set_text(TextBox.text + "\n")
 			startDialog()
 		else:
-			TextBox.set_text(TextBox.text + "\n[color=#3a3123]  ------------------------------[/color]")
+			TextBox.set_text(TextBox.text + "\n[color=#3a3123]    ------------------------------[/color]")
 	else:
 		pass
 	

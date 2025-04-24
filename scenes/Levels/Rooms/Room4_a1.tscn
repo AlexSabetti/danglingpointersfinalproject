@@ -274,5 +274,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23906, 2.63405, 2.06855)
 newDialog = Array[String](["Hold up... I think I see something... could you get a closer look?"])
 delay_before_trigger = 2.5
 oneShot = true
+is_active = false
 
 [editable path="UnderWaterRoom4_a2"]

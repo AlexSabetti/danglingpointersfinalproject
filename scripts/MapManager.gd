@@ -102,6 +102,7 @@ func _ready():
 	activate_nodes()
 	var starting_cam: Camera3D = get_child(0).get_child(1).get_node("CameraNodes").get_child(0).get_child(1)
 	signal_manager.emit_signal("camera_changed", starting_cam)
+	signal_manager.emit_signal("map_gen_finished") # signals that the map is fully generated
 	
 
 	# old setup:

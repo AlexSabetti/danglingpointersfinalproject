@@ -16,12 +16,10 @@ var volume_bus_idx: int
 func _ready() -> void:
 	volume_bus_idx = AudioServer.get_bus_index(volume_bus_name)
 	
-	AudioServer.set_bus_volume_db(volume_bus_idx, linear_to_db(Global.global_volume))
 	volume_slider.value = Global.global_volume
-	volume_number.text = str(volume_slider.value * 100) + "%"
-	#Global.global_world_env.environment.adjustment_brightness = Global.global_brightness
+	_on_volume_slider_value_changed(Global.global_volume)
 	brightness_slider.value = Global.global_brightness
-	brightness_number.text = str(brightness_slider.value * 100) + "%"
+	_on_brightness_slider_value_changed(Global.global_brightness)
 	
 	if is_hidden:
 		settings_UI.set_position(Vector2(barPos.position.x, barPos.position.y + 32))
@@ -58,14 +56,16 @@ func show_settings_menu() -> void:
 
 func _on_volume_slider_value_changed(value: float) -> void:
 	Global.global_volume = value
-	AudioServer.set_bus_volume_db(volume_bus_idx, linear_to_db(value))
+	AudioServer.get_bus_effect(volume_bus_idx, 0).volume_db =  linear_to_db(value * 10)
+	#AudioServer.set_bus_volume_db(volume_bus_idx, linear_to_db(value))
 	volume_number.text = str(int(value * 100)) + "%"
 	
 
 func _on_brightness_slider_value_changed(value: float) -> void:
 	Global.global_brightness = value
-	Global.global_world_env.environment.tonemap_exposure = value
+	Global.global_world_env.environment.tonemap_exposure = value * 1.5
 	brightness_number.text = str(int(value * 100)) + "%"
 
-func _on_cam_wobble_check_box_toggled(toggled_on: bool) -> void:
-	Global.global_camera_wobble = toggled_on
+
+#func _on_cam_wobble_check_box_toggled(toggled_on: bool) -> void:
+	#Global.global_camera_wobble = toggled_on
