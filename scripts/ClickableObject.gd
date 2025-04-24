@@ -24,6 +24,9 @@ extends DynamicEntity
 # whether or not this node should be able to be triggered multiple times
 @export var oneShot: bool = false
 
+
+@export var destroy_on_interact:bool = false
+
 # array of objects to send a trigger signal to on interact
 @export var trigger_on_interact: Array[DynamicEntity] = []:
 	set(arr):
@@ -63,7 +66,7 @@ func _get_configuration_warnings():
 
 func _on_trigger():
 	if is_active && trigger_on_interact.size() > 0:
-		if oneShot:
+		if oneShot or destroy_on_interact:
 			is_active = false
 		
 		trigger_objects()
@@ -73,6 +76,9 @@ func trigger_objects():
 	for obj in trigger_on_interact:
 		if obj is DynamicEntity and (obj as DynamicEntity).is_active:
 			(obj as DynamicEntity)._on_trigger()
+	
+	if destroy_on_interact:
+		self.queue_free()
 
 #func lower_progress_requirement():
 	#if progress_requirement > 0:

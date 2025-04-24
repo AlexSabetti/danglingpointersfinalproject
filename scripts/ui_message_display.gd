@@ -15,7 +15,7 @@ var letterIdx := 0
 	set(speed):
 		textSpeed = speed
 # how many letters must pass for the talk sound to play
-@export var talkSoundFrequency := 3:
+@export var talkSoundFrequency := 4:
 	set(freq):
 		talkSoundFrequency = freq
 var talkFreqCount := 0

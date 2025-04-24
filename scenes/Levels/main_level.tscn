@@ -81,6 +81,7 @@ material = ExtResource("2_e1vb8")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("3_dh4w5")
 script = ExtResource("4_loddw")
+fog_on = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(0.559555, -0.414397, -0.717756, 0.828793, 0.279778, 0.484588, 2.58096e-08, -0.866025, 0.500001, 0, 6.202, 0)

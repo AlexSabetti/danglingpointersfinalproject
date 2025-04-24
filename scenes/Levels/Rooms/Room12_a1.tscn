@@ -510,6 +510,7 @@ shape = SubResource("BoxShape3D_s6tfm")
 script = ExtResource("20_6xi1p")
 is_interactable = true
 oneShot = true
+destroy_on_interact = null
 trigger_on_interact = [NodePath("../DialogChanger")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Object of interest"]
