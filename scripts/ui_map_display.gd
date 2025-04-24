@@ -32,7 +32,7 @@ func _ready() -> void:
 		# increment rowPos
 		rowPos += 1
 	
-	setDroneIconPos(Vector2(1,2))
+	#setDroneIconPos(Vector2(1,2))
 	signal_manager.connect("icon_loc_change", setDroneIconPos)
 	#print(str(gridMap))
 
@@ -46,7 +46,7 @@ func setDroneIconPos(coords: Vector2) -> void:
 	#print(str(gridMap[coords.y][coords.x]) + " " + str(gridMap[coords.y][coords.x].get_parent()) )
 	#var dronePosition = Vector2((gridMap[coords.y][coords.x] as ColorRect).global_position.x, (gridMap[coords.y][coords.x] as ColorRect).get_parent().global_position.y)
 	print(coords)
-	DroneIcon.global_position = Vector2((coords.y * 100), (coords.x * 100) - 28)
+	DroneIcon.position = Vector2(((coords.x + 4) * 100), ((coords.y + 4) * 100) - 28)
 	#print(dronePosition)
 
 func updateSamplesStatus() -> void:

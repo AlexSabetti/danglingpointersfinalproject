@@ -319,6 +319,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(804.177, -42.2807)
 mode = 1
 flags/light_only = false
 preview_params/Noise = "Resource(\"res://resources/Textures/NormalMaps/CellNoise1.tres\")"

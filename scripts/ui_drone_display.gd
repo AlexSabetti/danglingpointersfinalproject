@@ -77,6 +77,9 @@ func set_cursor_type(type:int):
 	else: if type == 3: # inspect sprite
 		CursorSprite.texture = load("res://resources/Textures/Sprites/CompPointerArrow4_b1.png")
 		cursor_Sprite_offset = Vector2.ZERO
+	else: if type == 4: # decend sprite
+		CursorSprite.texture = load("res://resources/Textures/Sprites/CompPointerArrow5_b1.png")
+		cursor_Sprite_offset = Vector2.ZERO
 	
 	# update offset, if needed
 	CursorSprite.offset = cursor_Sprite_offset + cursor_offset
