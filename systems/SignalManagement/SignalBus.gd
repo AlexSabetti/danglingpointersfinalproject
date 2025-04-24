@@ -36,4 +36,5 @@ signal toggle_bar()
 
 signal inc_progress()
 
+signal icon_loc_change(vec: Vector2)
 # signal check_if_sample_room(pos: Vector3)

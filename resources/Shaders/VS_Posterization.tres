@@ -58,7 +58,7 @@ code = "shader_type canvas_item;
 render_mode blend_mix;
 
 uniform sampler2D screen_tex_frg_17 : hint_screen_texture;
-uniform float NumberOfColors = 24.0;
+uniform float NumberOfColors = 24;
 
 
 

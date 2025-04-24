@@ -16,6 +16,7 @@ var samplepos2:String = "S2"
 @onready var sampleStatusLabel3 := $Status/SampleCollectedLabel3
 @onready var sampleSPosLabel3 := $Status/SamplePosLabel3
 var samplepos3:String = "S3"
+var signal_manager: SignalBus = SigBus
 
 func _ready() -> void:
 	var rowPos := 0
@@ -32,6 +33,7 @@ func _ready() -> void:
 		rowPos += 1
 	
 	setDroneIconPos(Vector2(1,2))
+	signal_manager.connect("icon_loc_change", setDroneIconPos)
 	#print(str(gridMap))
 
 func _process(delta: float) -> void:
@@ -43,6 +45,7 @@ func _process(delta: float) -> void:
 func setDroneIconPos(coords: Vector2) -> void:
 	#print(str(gridMap[coords.y][coords.x]) + " " + str(gridMap[coords.y][coords.x].get_parent()) )
 	#var dronePosition = Vector2((gridMap[coords.y][coords.x] as ColorRect).global_position.x, (gridMap[coords.y][coords.x] as ColorRect).get_parent().global_position.y)
+	print(coords)
 	DroneIcon.global_position = Vector2((coords.y * 100), (coords.x * 100) - 28)
 	#print(dronePosition)
 

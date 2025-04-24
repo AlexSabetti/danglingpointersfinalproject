@@ -30,6 +30,7 @@ func create_scene():
 	add_child(scene_instance)
 	
 	# Set the position of the scene instance
+	scene_instance.mapNode = self
 	scene_instance.global_position = global_position
 	scene_instance.rotation_degrees = scene_instance.rotation_degrees + Vector3(0, rotate_by, 0)
 	turn_off_col()

@@ -70,6 +70,7 @@ func _ready() -> void:
 # room is triggered when first entering it
 func _on_trigger():
 	# updates the drone to know where it is
+	print(mapNode)
 	if mapNode != null:
 		Global.gameControllerRef.drone.set_map_node(mapNode)
 	else:
@@ -82,6 +83,7 @@ func _on_room_enter() -> void:
 	# signal the room change
 	if mapNode != null:
 		signal_manager.emit_signal("map_node_change", mapNode)
+		signal_manager.emit_signal("icon_loc_change", Vector2(mapNode.global_position.x / 20, mapNode.global_position.z / 20))
 	
 	for obj in trigger_on_enter:
 		obj._on_trigger()

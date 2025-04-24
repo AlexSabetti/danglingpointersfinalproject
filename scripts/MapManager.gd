@@ -51,6 +51,9 @@ var room12_a1: PackedScene = preload("res://scenes/Levels/Rooms/room12_a1.tscn")
 
 var room13_a1: PackedScene = preload("res://scenes/Levels/Rooms/room13_a1.tscn")
 
+var room15_a1: PackedScene = preload("res://scenes/Levels/Rooms/room15_a1.tscn")
+
+var room16_a1: PackedScene = preload("res://scenes/Levels/Rooms/room16_a1.tscn")
 var signal_manager: SignalBus = SigBus
 signal continue_spread()
 signal map_created()
@@ -62,6 +65,8 @@ var corners: Array[PackedScene] = []
 var t_shaped: Array[PackedScene] = []
 var crosses: Array[PackedScene] = []
 var dead_ends: Array[PackedScene] = []
+
+var sample_locs: Array[Vector2] = []
 
 # var key_areas: Array = []
 # var points_of_interest: Array = []
@@ -84,6 +89,7 @@ func _ready():
 	lines.append(room11_a1)
 
 	corners.append(room5_a1)
+	corners.append(room15_a1)
 	corners.append(room4_a1)
 	
 	t_shaped.append(room6_a1)
@@ -94,6 +100,9 @@ func _ready():
 	crosses.append(room9_a1)
 	crosses.append(room13_a1)
 	crosses.append(room12_a1)
+
+	dead_ends.append(room7_a1)
+	dead_ends.append(room16_a1)
 	
 	
 	
@@ -165,6 +174,7 @@ func setup():
 					node.scene_path = room4_a1
 					node.node_id = 2
 					sample_count += 1
+					sample_locs.append(Vector2(node.global_position.x, node.global_position.z))
 					corners.remove_at(corners.size() - 1)
 				else:
 					node.scene_path = corners[rand]
@@ -184,6 +194,7 @@ func setup():
 				node.scene_path = room3_a1
 				node.node_id = 3
 				sample_count += 1
+				sample_locs.append(Vector2(node.global_position.x, node.global_position.z))
 				t_shaped.remove_at(rand)
 			else:
 				node.scene_path = t_shaped[rand]
@@ -191,14 +202,24 @@ func setup():
 		elif num_openings == 4:
 			var rand = rng.randi_range(0, crosses.size() - 1)
 
-			if crosses[crosses.size() - 1] == room9_a1:
+			if crosses.has(room9_a1):
 				node.scene_path = room9_a1
 				node.node_id = 4
-				crosses.remove_at(crosses.size() - 1)
-			elif corners[corners.size() - 1] == room13_a1:
-				node.scene_path = room4_a1
+				sample_count += 1
+				sample_locs.append(Vector2(node.global_position.x, node.global_position.z))
+				crosses.remove_at(crosses.find(room9_a1))
+			elif crosses.has(room13_a1):
+				node.scene_path = room13_a1
 				node.node_id = 5
-				corners.remove_at(corners.size() - 1)
+				sample_count += 1
+				sample_locs.append(Vector2(node.global_position.x, node.global_position.z))
+				crosses.remove_at(crosses.find(room13_a1))
+			elif crosses.has(room12_a1):
+				node.scene_path = room12_a1
+				node.node_id = 6
+				sample_count += 1
+				sample_locs.append(Vector2(node.global_position.x, node.global_position.z))
+				crosses.remove_at(crosses.find(room12_a1))
 			else:
 				node.scene_path = crosses[rand]
 			# Cross, we'll have this choose from the cross list

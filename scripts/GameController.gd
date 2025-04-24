@@ -247,12 +247,18 @@ func finish_collecting_sample() -> void:
 	drone.active_map_node.looted = true
 	# We'll use the node id here to play specific dialogue
 	if drone.active_map_node.node_id == 3:
-		signal_manager.emit_signal("dialog_event", ["There seems to be some markings on here", "But your sample contains a lot of graphical anomalies", "when I view it.", "...", "Proceed."])
+		var str_array: Array[String] = ["There seems to be some markings on here", "But your sample contains a lot of graphical anomalies", "when I view it.", "...", "Proceed."]
+		signal_manager.emit_signal("dialog_event", str_array)
 	elif drone.active_map_node.node_id == 2:
-		signal_manager.emit_signal("dialog_event", ["Hmm... That confirms it.", "that's the boat the coast guard mentioned.", "Or is it? It hasn't been that long since it was found.", "Way too much rust.", "...", "Proceed."])
+		var str_array: Array[String] = ["Hmm... That confirms it.", "that's the boat the coast guard mentioned.", "Or is it? It hasn't been that long since it was found.", "Way too much rust.", "...", "Proceed."]
+		signal_manager.emit_signal("dialog_event", str_array)
+	elif drone.active_map_node.node_id == 6:
+		var str_array: Array[String] = ["According to our matchup with the samples.", "A boat with this registration", "does not exist.", "...", "Proceed."]
+		signal_manager.emit_signal("dialog_event", str_array)	
 	elif drone.active_map_node.node_id == 4:
-		signal_manager.emit_signal("dialog_event", ["According to our matchup with the samples.", "A boat with this registration", "does not exist.", "...", "Proceed."])	
-	
+		var str_array: Array[String] = ["You may have just found a new form of seaweed!", "at least that's what Trevor says.", "...", "Proceed."]
+		signal_manager.emit_signal("dialog_event", str_array)
+
 
 	is_collecting_samples = false
 	samples_collected += 1
