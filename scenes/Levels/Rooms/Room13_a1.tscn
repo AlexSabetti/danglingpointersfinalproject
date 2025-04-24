@@ -289,7 +289,7 @@ max_h_rotation = 60.0
 [node name="TestCamera3D" type="Camera3D" parent="CameraNodes/CameraNode_Cave1"]
 
 [node name="CameraNode_Cave2" parent="CameraNodes" instance=ExtResource("3_g501n")]
-transform = Transform3D(1, 0.000257454, -0.000990688, -0.000257113, 1, 0.000351516, 0.000990899, -0.000351264, 1, 0.0783391, -35.1406, -3.05398)
+transform = Transform3D(1, 0.000257454, -0.000990688, -0.000257113, 1, 0.000351516, 0.000990899, -0.000351264, 1, 0.0783391, -36.7063, -6.25188)
 min_h_rotation = -90.0
 max_h_rotation = 60.0
 

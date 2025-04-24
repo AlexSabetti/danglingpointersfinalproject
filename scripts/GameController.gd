@@ -193,11 +193,11 @@ func get_mouse_pos(mouse_loc: Vector2, viewport:Viewport):
 				print("hovered over: " + str(obj))
 				# change cursor icon type
 				if cur_target_object is CameraChangeObject && !(cur_target_object as CameraChangeObject).isRoomChanger:
-					UI.set_cursor_type(1) # position change icon
-				else: if cur_target_object is CameraChangeObject  && (cur_target_object as CameraChangeObject).isRoomChanger:
-					if (cur_target_object as CameraChangeObject).isDecending:
-						UI.set_cursor_type(4) # room decend icon
+					if (cur_target_object as CameraChangeObject).isDecending == true:
+						UI.set_cursor_type(4) # position decend icon
 					else:
+						UI.set_cursor_type(1) # position change icon
+				else: if cur_target_object is CameraChangeObject  && (cur_target_object as CameraChangeObject).isRoomChanger:
 						UI.set_cursor_type(2) # room change icon
 				else: if cur_target_object is ClickableObject:
 					UI.set_cursor_type(3) # inspect icon
