@@ -37,6 +37,7 @@ var signal_manager: SignalBus = SigBus
 @onready var LetterTimer := $LetterTimer
 
 func _ready() -> void:
+	signal_manager.connect("change_name", name_change)
 	signal_manager.connect("dialog_event", queueDialog)
 	LetterTimer.wait_time = textSpeed
 
@@ -160,3 +161,6 @@ func scroll_down():
 	scrollContainer.scroll_vertical += 100
 func scroll_to_bottom():
 	scrollContainer.scroll_vertical += 5000
+
+func name_change(new_name: String):
+	characterName = new_name

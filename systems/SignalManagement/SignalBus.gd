@@ -42,3 +42,7 @@ signal set_samples(sample_count: int, sample_coords: Array[Vector2])
 # signal check_if_sample_room(pos: Vector3)
 
 signal unlock_final()
+
+signal endgame()
+
+signal change_name(name: String)
