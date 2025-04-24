@@ -62,7 +62,7 @@ func _ready() -> void:
 				camChanger.trigger_on_interact.append(self)
 	else:
 		print("Can't find 'RoomChangers' as child of room")
-	
+	signal_manager.connect("unlock_final", unlock_final)
 	
 	_update_blocked_paths()
 	
@@ -147,3 +147,6 @@ func _update_blocked_paths():
 			west_blocker.rotation_degrees = Vector3(0.0,90.0,0.0)
 		else: if !west_blocked && west_blocker != null:	# remove blocker from scene
 			west_blocker.queue_free()
+
+func unlock_final():
+	if mapNode.node_id == 5:
