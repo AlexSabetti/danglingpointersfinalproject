@@ -170,6 +170,7 @@ active_cam_node = NodePath("../CameraNode1")
 
 [node name="CameraNode1" parent="Entities/SubViewport_DroneCam" instance=ExtResource("3_71sqw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52371, 1.61494, 19.9412)
+is_current_cam = null
 
 [node name="TestCamera3D" type="Camera3D" parent="Entities/SubViewport_DroneCam/CameraNode1"]
 

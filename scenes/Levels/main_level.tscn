@@ -1,0 +1,174 @@
+[gd_scene load_steps=28 format=3 uid="uid://dkuedh3537lbs"]
+
+[ext_resource type="PackedScene" uid="uid://b25jkvemaipnk" path="res://scenes/UI/CanvasLayer_PostProcessing.tscn" id="1_2sjx4"]
+[ext_resource type="Material" uid="uid://bg2bjdrabdhn5" path="res://resources/Shaders/SM_Posterization.tres" id="2_e1vb8"]
+[ext_resource type="Environment" uid="uid://c8wr6jqwlnict" path="res://resources/Environments/env_underwater1_1.tres" id="3_dh4w5"]
+[ext_resource type="Script" uid="uid://dybrp2bdnyair" path="res://scripts/world_environment.gd" id="4_loddw"]
+[ext_resource type="PackedScene" uid="uid://bsgqiciuvs6ok" path="res://scenes/Levels/ControlRoom.tscn" id="5_vcuqm"]
+[ext_resource type="PackedScene" uid="uid://dybogvrii8h3g" path="res://scenes/Logic/dialog_changer.tscn" id="6_d44k0"]
+[ext_resource type="PackedScene" uid="uid://v2urofrh3pq5" path="res://scenes/Entities/GameController.tscn" id="7_ivn7c"]
+[ext_resource type="PackedScene" uid="uid://c6veimdajceyb" path="res://scenes/UI/ui_drone_display.tscn" id="8_flaqn"]
+[ext_resource type="Shader" uid="uid://jhmbi4fs662c" path="res://resources/Shaders/VS_CRTFilter.tres" id="9_lj75o"]
+[ext_resource type="PackedScene" uid="uid://dkee2nim7qyu7" path="res://scenes/Entities/Drone.tscn" id="10_qihtn"]
+[ext_resource type="PackedScene" uid="uid://dl5x0m77shd62" path="res://scenes/UI/ui_message_display.tscn" id="12_xf154"]
+[ext_resource type="PackedScene" uid="uid://b3728ytvs6bn0" path="res://scenes/UI/ui_map_display.tscn" id="13_vjwqh"]
+[ext_resource type="PackedScene" uid="uid://tfx4rwdf6oow" path="res://resources/Particles/P_Bubbles.tscn" id="14_e0kkx"]
+[ext_resource type="PackedScene" uid="uid://bfyxtf6kvnq7d" path="res://scenes/Logic/manager.tscn" id="15_e1vb8"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_sakc8"]
+viewport_path = NodePath("Entities/SubViewport_DroneCam")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dtj52"]
+viewport_path = NodePath("Entities/SubViewport_DroneCam")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ma5r5"]
+resource_local_to_scene = true
+disable_fog = true
+albedo_texture = SubResource("ViewportTexture_sakc8")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_dtj52")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7n4fg"]
+viewport_path = NodePath("Entities/SubViewport_DroneCam")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_oj8la"]
+viewport_path = NodePath("Entities/SubViewport_Map")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6t6iq"]
+viewport_path = NodePath("Entities/SubViewport_Map")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ghet"]
+resource_local_to_scene = true
+disable_fog = true
+albedo_texture = SubResource("ViewportTexture_oj8la")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_6t6iq")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_kfx20"]
+viewport_path = NodePath("Entities/SubViewport_Map")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_t40tb"]
+viewport_path = NodePath("Entities/SubViewport_MsgScreen")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_i3nvf"]
+viewport_path = NodePath("Entities/SubViewport_MsgScreen")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_coj36"]
+resource_local_to_scene = true
+disable_fog = true
+albedo_texture = SubResource("ViewportTexture_t40tb")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_i3nvf")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xymwj"]
+viewport_path = NodePath("Entities/SubViewport_MsgScreen")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_luxnc"]
+shader = ExtResource("9_lj75o")
+shader_parameter/ScanLine_Intensity = 0.025
+shader_parameter/Curvature = 5.0
+shader_parameter/BackColor = Color(0.044862, 0.020364, 0.007147, 1)
+
+[node name="MainLevel" type="Node3D"]
+
+[node name="CanvasLayerPostProcessing2" parent="." instance=ExtResource("1_2sjx4")]
+
+[node name="ColorRect" parent="CanvasLayerPostProcessing2" index="0"]
+material = ExtResource("2_e1vb8")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_dh4w5")
+script = ExtResource("4_loddw")
+fog_on = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.559555, -0.414397, -0.717756, 0.828793, 0.279778, 0.484588, 2.58096e-08, -0.866025, 0.500001, 0, 6.202, 0)
+light_color = Color(0.713506, 0.743926, 0.544914, 1)
+light_energy = 0.2
+light_bake_mode = 1
+light_cull_mask = 4294967292
+shadow_enabled = true
+shadow_blur = 10.0
+directional_shadow_mode = 1
+directional_shadow_split_1 = 0.279
+
+[node name="Control_Room" parent="." instance=ExtResource("5_vcuqm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -7, 14.5)
+
+[node name="ViewPortScreens" type="Node3D" parent="Control_Room"]
+
+[node name="MainScreen" type="Sprite3D" parent="Control_Room/ViewPortScreens"]
+transform = Transform3D(4.86768e-09, 0, -0.025, 0, 0.025, 0, 0.025, 0, 4.86768e-09, -0.0932884, 2.40874, 1.23992)
+material_override = SubResource("StandardMaterial3D_ma5r5")
+double_sided = false
+texture = SubResource("ViewportTexture_7n4fg")
+
+[node name="UpperSmallScreen" type="Sprite3D" parent="Control_Room/ViewPortScreens"]
+transform = Transform3D(0.00551308, 0, -0.0118228, 0, 0.0130451, 0, 0.0118228, 0, 0.00551308, -0.179727, 2.3477, 0.962683)
+material_override = SubResource("StandardMaterial3D_3ghet")
+double_sided = false
+texture = SubResource("ViewportTexture_kfx20")
+
+[node name="LowerSmallScreen" type="Sprite3D" parent="Control_Room/ViewPortScreens"]
+transform = Transform3D(0.00551308, 0, -0.0118228, 0, 0.0130451, 0, 0.0118228, 0, 0.00551308, -0.180402, 2.16265, 0.958504)
+material_override = SubResource("StandardMaterial3D_coj36")
+double_sided = false
+texture = SubResource("ViewportTexture_xymwj")
+
+[node name="PlayerCamera3D" type="Camera3D" parent="Control_Room"]
+transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, -0.808659, 2.31077, 1.28714)
+current = true
+fov = 50.1
+far = 60.0
+
+[node name="DialogChanger" parent="Control_Room" instance=ExtResource("6_d44k0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.161235, 2.18827, -0.118445)
+newDialog = Array[String](["Alright, the cam should be in position now.", "Try using your arrow keys or WASD to locate the opening to the north..."])
+delay_before_trigger = 3.0
+trigger_on_start = true
+
+[node name="GameController" parent="." node_paths=PackedStringArray("player_cam", "drone", "VirtualScreenViewport", "MessageScreenUI", "DroneScreenUI", "MapScreenUI") instance=ExtResource("7_ivn7c")]
+player_cam = NodePath("../Control_Room/PlayerCamera3D")
+drone = NodePath("../Entities/SubViewport_DroneCam/Drone")
+VirtualScreenViewport = NodePath("../Entities/SubViewport_DroneCam")
+MessageScreenUI = NodePath("../Entities/SubViewport_MsgScreen/ui_msgDisplay")
+DroneScreenUI = NodePath("../Entities/SubViewport_DroneCam/ui_droneDisplay")
+MapScreenUI = NodePath("../Entities/SubViewport_Map/ui_mapDisplay")
+
+[node name="Entities" type="Node" parent="."]
+
+[node name="SubViewport_DroneCam" type="SubViewport" parent="Entities"]
+size = Vector2i(1280, 960)
+
+[node name="ui_droneDisplay" parent="Entities/SubViewport_DroneCam" instance=ExtResource("8_flaqn")]
+
+[node name="CanvasLayerPostProcessing2" parent="Entities/SubViewport_DroneCam" instance=ExtResource("1_2sjx4")]
+
+[node name="ColorRect" parent="Entities/SubViewport_DroneCam/CanvasLayerPostProcessing2" index="0"]
+material = SubResource("ShaderMaterial_luxnc")
+
+[node name="Drone" parent="Entities/SubViewport_DroneCam" instance=ExtResource("10_qihtn")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 2.68095, 1.59657, 25.4862)
+
+[node name="SubViewport_MsgScreen" type="SubViewport" parent="Entities"]
+size = Vector2i(1280, 960)
+
+[node name="ui_msgDisplay" parent="Entities/SubViewport_MsgScreen" instance=ExtResource("12_xf154")]
+SoundSourcePos = Vector3(-0.154231, 2.16265, 0.94521)
+
+[node name="SubViewport_Map" type="SubViewport" parent="Entities"]
+size = Vector2i(1280, 960)
+
+[node name="ui_mapDisplay" parent="Entities/SubViewport_Map" instance=ExtResource("13_vjwqh")]
+
+[node name="CPUParticles3D" parent="Entities" instance=ExtResource("14_e0kkx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.918675, -0.689662, 0.345228)
+visible = false
+amount = 256
+
+[node name="NodeManagement" type="Node" parent="."]
+
+[node name="Manager" parent="NodeManagement" instance=ExtResource("15_e1vb8")]
+
+[editable path="CanvasLayerPostProcessing2"]
+[editable path="Entities/SubViewport_DroneCam/CanvasLayerPostProcessing2"]

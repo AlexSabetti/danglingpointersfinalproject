@@ -30,50 +30,50 @@
 [ext_resource type="PackedScene" uid="uid://dybogvrii8h3g" path="res://scenes/Logic/dialog_changer.tscn" id="25_qc2m8"]
 [ext_resource type="PackedScene" uid="uid://vg2e6sfqcilt" path="res://scenes/Levels/Rooms/Room13_a1.tscn" id="28_wpkti"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_sakc8"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_6mjc3"]
 viewport_path = NodePath("Entities/SubViewport_DroneCam")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_dtj52"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_fqbdl"]
 viewport_path = NodePath("Entities/SubViewport_DroneCam")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eki53"]
 resource_local_to_scene = true
 disable_fog = true
-albedo_texture = SubResource("ViewportTexture_sakc8")
+albedo_texture = SubResource("ViewportTexture_6mjc3")
 emission_enabled = true
-emission_texture = SubResource("ViewportTexture_dtj52")
+emission_texture = SubResource("ViewportTexture_fqbdl")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_xqkv0"]
 viewport_path = NodePath("Entities/SubViewport_DroneCam")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_oj8la"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_rbhdm"]
 viewport_path = NodePath("Entities/SubViewport_Map")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_6t6iq"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_50hmc"]
 viewport_path = NodePath("Entities/SubViewport_Map")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6t6iq"]
 resource_local_to_scene = true
 disable_fog = true
-albedo_texture = SubResource("ViewportTexture_oj8la")
+albedo_texture = SubResource("ViewportTexture_rbhdm")
 emission_enabled = true
-emission_texture = SubResource("ViewportTexture_6t6iq")
+emission_texture = SubResource("ViewportTexture_50hmc")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_sou27"]
 viewport_path = NodePath("Entities/SubViewport_Map")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_t40tb"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ohqt4"]
 viewport_path = NodePath("Entities/SubViewport_MsgScreen")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_i3nvf"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_8dunf"]
 viewport_path = NodePath("Entities/SubViewport_MsgScreen")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sakc8"]
 resource_local_to_scene = true
 disable_fog = true
-albedo_texture = SubResource("ViewportTexture_t40tb")
+albedo_texture = SubResource("ViewportTexture_ohqt4")
 emission_enabled = true
-emission_texture = SubResource("ViewportTexture_i3nvf")
+emission_texture = SubResource("ViewportTexture_8dunf")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_v4ldq"]
 viewport_path = NodePath("Entities/SubViewport_MsgScreen")
