@@ -77,7 +77,7 @@ custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 theme = ExtResource("3_1lfpr")
-max_value = 1.5
+max_value = 1.0
 step = 0.01
 value = 1.0
 
@@ -104,7 +104,7 @@ layout_mode = 2
 size_flags_horizontal = 10
 theme = ExtResource("3_1lfpr")
 min_value = 0.25
-max_value = 1.5
+max_value = 1.0
 step = 0.01
 value = 1.0
 

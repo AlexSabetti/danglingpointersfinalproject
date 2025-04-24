@@ -26,6 +26,8 @@ signal dialog_notif()
 signal collect_sample_start()
 signal collect_sample_end()
 
+# signal to send when finished generating map
+signal map_gen_finished()
 
 signal pause_game()
 signal unpause_game()  

@@ -1,4 +1,7 @@
-[gd_resource type="AudioBusLayout" load_steps=7 format=3 uid="uid://c3p5a2q715sbw"]
+[gd_resource type="AudioBusLayout" load_steps=8 format=3 uid="uid://c3p5a2q715sbw"]
+
+[sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_j3pel"]
+resource_name = "Amplify"
 
 [sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_j3pel"]
 resource_name = "LowPassFilter"
@@ -31,6 +34,8 @@ resonance = 0.7
 db = 3
 
 [resource]
+bus/0/effect/0/effect = SubResource("AudioEffectAmplify_j3pel")
+bus/0/effect/0/enabled = true
 bus/1/name = &"ControlRoom"
 bus/1/solo = false
 bus/1/mute = false
@@ -77,5 +82,5 @@ bus/6/name = &"CreepyFoump"
 bus/6/solo = false
 bus/6/mute = false
 bus/6/bypass_fx = false
-bus/6/volume_db = -80.0
+bus/6/volume_db = -0.328256
 bus/6/send = &"DroneAudio"

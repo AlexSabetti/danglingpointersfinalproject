@@ -7,7 +7,15 @@ var gridMap: Array[Array] = []
 @onready var CompassPointer := $Compass/CompassPointer
 @onready var DroneIcon := $MarginContainer/MarginContainer_Grid/MapIcons/DroneIcon
 @onready var mapUI := $MarginContainer/MarginContainer_Grid/VBoxContainer
-@onready var sampleStatusLabel := $Status/SamplesCollectedLabel
+@onready var sampleStatusLabel1 := $Status/SampleCollectedLabel1
+@onready var sampleSPosLabel1 := $Status/SamplePosLabel1
+var samplepos1:String = "S1"
+@onready var sampleStatusLabel2 := $Status/SampleCollectedLabel2
+@onready var sampleSPosLabel2 := $Status/SamplePosLabel2
+var samplepos2:String = "S2"
+@onready var sampleStatusLabel3 := $Status/SampleCollectedLabel3
+@onready var sampleSPosLabel3 := $Status/SamplePosLabel3
+var samplepos3:String = "S3"
 
 func _ready() -> void:
 	var rowPos := 0
@@ -41,10 +49,12 @@ func setDroneIconPos(coords: Vector2) -> void:
 func updateSamplesStatus() -> void:
 	# this is kinda messy, but it works lol
 	if Global.gameControllerRef.samples_collected <= 0:
-		sampleStatusLabel.text = "▭\n▭\n▭"
+		sampleStatusLabel1.text = "▭" 
+		sampleStatusLabel2.text = "▭" 
+		sampleStatusLabel3.text = "▭" 
 	else: if Global.gameControllerRef.samples_collected == 1:
-		sampleStatusLabel.text = "▬\n▭\n▭"
+		sampleStatusLabel1.text = "▬"
 	else: if Global.gameControllerRef.samples_collected == 2:
-		sampleStatusLabel.text = "▬\n▬\n▭"
+		sampleStatusLabel2.text = "▬"
 	else: if Global.gameControllerRef.samples_collected >= 3:
-		sampleStatusLabel.text = "▬\n▬\n▬"
+		sampleStatusLabel3.text = "▬"

@@ -15,6 +15,7 @@ class_name UIHandler
 @onready var settingsMenu := $settings_menu
 @onready var FadeTimer : Timer = $FadeTimer
 @onready var CursorIcon: = $CursorSprite2D
+@onready var LoadingText:Label = $LoadingText
 
 
 var fadeBlackColor : Color = Color(0.08,0.02,0.04,1.0)
@@ -52,7 +53,12 @@ func _ready():
 	pauseMenu.get_node("Settings").pressed.connect(_settings_pressed)
 	pauseMenu.get_node("Exit").pressed.connect(_exit)
 	
-	fade_from_black()
+	# fade from black once map is loaded
+	signal_manager.connect("map_gen_finished", finish_loading_map)
+	FadeToBlack.color = fadeBlackColor
+	LoadingText.visible = true
+	
+	#fade_from_black()
 
 func _process(_delta: float) -> void:
 	CursorIcon.position = get_global_mouse_position()
@@ -97,11 +103,14 @@ func respond_to_unpause():
 # This is only to make sure everything reacts to an unpause at the same time
 func _resume_pressed():
 	signal_manager.emit_signal("unpause_game")
+	SoundManager3D.PlaySoundQueue3D("SQ_Tick", Global.controlRoomRef.global_position)
 
 func _settings_pressed():
 	settingsMenu.toggle_settings_menu()
+	SoundManager3D.PlaySoundQueue3D("SQ_Tick", Global.controlRoomRef.global_position)
 
 func _exit():
+	SoundManager3D.PlaySoundQueue3D("SQ_Tick", Global.controlRoomRef.global_position)
 	get_tree().quit()
 
 #func _update_requests(_requests: Array):
@@ -181,6 +190,10 @@ func fade_to_black():
 func fade_from_black():
 	var tween = create_tween()
 	tween.tween_property(FadeToBlack, "color", fadeTransColor, 1.0).from(fadeBlackColor).set_trans(Tween.TRANS_SINE)
+
+func finish_loading_map():
+	LoadingText.visible = false
+	fade_from_black()
 
 # set status of left button
 #func set_left_btn(isActive:bool, camNum:int, displayText:String):

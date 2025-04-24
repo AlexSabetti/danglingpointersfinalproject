@@ -48,11 +48,13 @@ func _ready():
 	
 
 func _process(delta: float):
-	# Check for camera movement inputs
-	camera_movement(delta)
 	
-	# check if user is hovering over an object
+	# only let player give gameplay inputs if not paused
 	if !paused:
+		# Check for camera movement inputs
+		camera_movement(delta)
+		
+		# check if user is hovering over an object
 		if is_screen_focused && VirtualScreenViewport != null:
 			get_mouse_pos(mouse, VirtualScreenViewport)
 		else:
@@ -83,27 +85,30 @@ func _input(event):
 	if event.is_action_pressed("ui_cancel") && !UI.settings_locked:
 		toggle_pause_menu()
 	
-	# Keep track of mouse position
-	if event is InputEventMouseMotion:
-		mouse = event.position
-	# Keep track of mouse interaction
-	if event is InputEventMouseButton:
-		var mouse_event: InputEventMouseButton = event
-		if !paused and !mouse_event.pressed and mouse_event.button_index == MOUSE_BUTTON_LEFT:	# mouse release
-			interact()
-			DroneScreenUI.cursor_click(false)
-			#if is_screen_focused:
-				#SoundManager3D.PlaySoundQueue3D("SQ_MouseRelease", Global.controlRoomRef.global_position)
-		else: if mouse_event.pressed and mouse_event.button_index == MOUSE_BUTTON_LEFT:	# mouse press
-			DroneScreenUI.cursor_click(true)
-			#d
+	# only let player give gameplay inputs if not paused
+	if !paused:
 	
-	# When the lean forward button is pressed, lerp the camera to focus on the computer screen, and focuses the computers audio as wellw
-	if event.is_action_pressed("lean_forward") && !is_screen_focused:
-		focusScreen()
-	# When the lean back button is pressed, lerp the camera to zooom out from the computer screen
-	else: if event.is_action_pressed("lean_back") && is_screen_focused:
-		unfocusScreen()
+		# Keep track of mouse position
+		if event is InputEventMouseMotion:
+			mouse = event.position
+		# Keep track of mouse interaction
+		if event is InputEventMouseButton:
+			var mouse_event: InputEventMouseButton = event
+			if !paused and !mouse_event.pressed and mouse_event.button_index == MOUSE_BUTTON_LEFT:	# mouse release
+				interact()
+				DroneScreenUI.cursor_click(false)
+				#if is_screen_focused:
+					#SoundManager3D.PlaySoundQueue3D("SQ_MouseRelease", Global.controlRoomRef.global_position)
+			else: if mouse_event.pressed and mouse_event.button_index == MOUSE_BUTTON_LEFT:	# mouse press
+				DroneScreenUI.cursor_click(true)
+				#d
+	
+		# When the lean forward button is pressed, lerp the camera to focus on the computer screen, and focuses the computers audio as wellw
+		if event.is_action_pressed("lean_forward") && !is_screen_focused:
+			focusScreen()
+		# When the lean back button is pressed, lerp the camera to zooom out from the computer screen
+		else: if event.is_action_pressed("lean_back") && is_screen_focused:
+			unfocusScreen()
 
 # controls accelaration and decelaration of drone camera rotationdddddddddda
 func camera_movement(delta: float):

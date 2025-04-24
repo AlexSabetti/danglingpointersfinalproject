@@ -31,9 +31,13 @@ script = ExtResource("1_bq6yj")
 stream = ExtResource("7_ufmfj")
 
 [node name="SQ_Tick" parent="." instance=ExtResource("1_ya6ty")]
+count = 2
+minPitch = 0.9
+maxPitch = 1.1
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SQ_Tick"]
 stream = ExtResource("4_iei81")
+volume_db = 0.5
 panning_strength = 0.25
 
 [node name="SQ_CDing" parent="." instance=ExtResource("1_ya6ty")]

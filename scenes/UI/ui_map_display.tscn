@@ -36,10 +36,10 @@ theme_override_constants/margin_bottom = 32
 
 [node name="MarginContainer_Grid" type="MarginContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 401
+theme_override_constants/margin_left = 420
 theme_override_constants/margin_top = 96
 theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_bottom = 0
 
 [node name="GridBackGround" type="ColorRect" parent="MarginContainer/MarginContainer_Grid"]
 layout_mode = 2
@@ -504,13 +504,13 @@ text = "A   B   C   D   E   F   G   H"
 
 [node name="Label_Numbers" type="Label" parent="MarginContainer/Labels"]
 layout_mode = 0
-offset_left = 343.0
+offset_left = 358.0
 offset_top = 105.0
-offset_right = 1157.0
+offset_right = 1172.0
 offset_bottom = 902.0
 theme = ExtResource("1_ux1rw")
 theme_override_colors/font_color = Color(0.623529, 0.517647, 0.392157, 1)
-theme_override_constants/line_spacing = 26
+theme_override_constants/line_spacing = 21
 theme_override_font_sizes/font_size = 80
 text = "1
 2
@@ -553,26 +553,145 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="SamplesCollectedLabel" type="RichTextLabel" parent="Status"]
+[node name="DepthLabel" type="Label" parent="Status"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 34.5
+offset_top = 338.5
+offset_right = -917.19
+offset_bottom = -500.98
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ux1rw")
+theme_override_font_sizes/font_size = 50
+text = "Depth: 0m"
+
+[node name="SamplesLabel" type="Label" parent="Status"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 52.5
+offset_top = 363.5
+offset_right = -966.5
+offset_bottom = -477.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ux1rw")
+theme_override_font_sizes/font_size = 64
+text = "Samples"
+
+[node name="SampleCollectedLabel1" type="RichTextLabel" parent="Status"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 46.0
-offset_top = 328.0
-offset_right = 46.0
-offset_bottom = 328.0
+offset_top = 389.0
+offset_right = -1114.0
+offset_bottom = -364.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ux1rw")
 theme_override_constants/line_separation = -30
 theme_override_font_sizes/normal_font_size = 110
-text = "▭
-▭
-▭"
+text = "▭"
+fit_content = true
+
+[node name="SamplePosLabel1" type="RichTextLabel" parent="Status"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 170.0
+offset_top = 402.0
+offset_right = -981.0
+offset_bottom = -424.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ux1rw")
+theme_override_constants/line_separation = -30
+theme_override_font_sizes/normal_font_size = 80
+text = "S1"
+fit_content = true
+
+[node name="SampleCollectedLabel2" type="RichTextLabel" parent="Status"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = 491.0
+offset_right = -1114.0
+offset_bottom = -262.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ux1rw")
+theme_override_constants/line_separation = -30
+theme_override_font_sizes/normal_font_size = 110
+text = "▭"
+fit_content = true
+
+[node name="SamplePosLabel2" type="RichTextLabel" parent="Status"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 170.0
+offset_top = 505.0
+offset_right = -981.0
+offset_bottom = -321.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ux1rw")
+theme_override_constants/line_separation = -30
+theme_override_font_sizes/normal_font_size = 80
+text = "S2"
+fit_content = true
+
+[node name="SampleCollectedLabel3" type="RichTextLabel" parent="Status"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = 592.0
+offset_right = -1114.0
+offset_bottom = -161.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ux1rw")
+theme_override_constants/line_separation = -30
+theme_override_font_sizes/normal_font_size = 110
+text = "▭"
+fit_content = true
+
+[node name="SamplePosLabel3" type="RichTextLabel" parent="Status"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 170.0
+offset_top = 605.0
+offset_right = -981.0
+offset_bottom = -221.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ux1rw")
+theme_override_constants/line_separation = -30
+theme_override_font_sizes/normal_font_size = 80
+text = "S3"
 fit_content = true
 
 [node name="Filter" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_gse5x")
 anchors_preset = 15
 anchor_right = 1.0
@@ -580,3 +699,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0375775, 0.0464977, 0.0321647, 1)
+metadata/_edit_lock_ = true

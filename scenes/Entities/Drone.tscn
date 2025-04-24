@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkee2nim7qyu7"]
+[gd_scene load_steps=7 format=3 uid="uid://dkee2nim7qyu7"]
 
 [ext_resource type="Script" uid="uid://d3tkd5eutouwg" path="res://scripts/drone.gd" id="1_ch8l7"]
 [ext_resource type="Texture2D" uid="uid://ccp2qkvh2aj00" path="res://resources/Textures/Sprites/HookBall1_a2.png" id="2_g7tdt"]
 [ext_resource type="PackedScene" uid="uid://tfx4rwdf6oow" path="res://resources/Particles/P_Bubbles.tscn" id="3_c0tn5"]
+[ext_resource type="PackedScene" uid="uid://bp1atxghx5f0s" path="res://resources/Models/ds_drone_1_a_1.tscn" id="4_fbllp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c0tn5"]
 transparency = 2
@@ -22,9 +23,11 @@ height = 1.0
 
 [node name="Drone" type="Node3D"]
 script = ExtResource("1_ch8l7")
+is_light_on = true
 drone_light_energy = 1.0
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+visible = false
 material_override = SubResource("StandardMaterial3D_c0tn5")
 gi_mode = 0
 pixel_size = 0.001
@@ -62,10 +65,14 @@ emission_box_extents = Vector3(6, 0.5, 6)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.599594, 0)
+visible = false
 mesh = SubResource("CylinderMesh_c0tn5")
 
 [node name="CamChangeDelay" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
+
+[node name="DS_Drone1_a1" parent="." instance=ExtResource("4_fbllp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, 0.4, -0.014)
 
 [connection signal="timeout" from="CamChangeDelay" to="." method="_on_cam_change_delay_timeout"]

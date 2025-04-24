@@ -21,6 +21,8 @@ var signal_manager: SignalBus = SigBus
 func _ready()->void:
 	signal_manager.connect("camera_changed", set_cam_node)
 	signal_manager.connect("map_node_change", set_map_node)
+	# updatee cam position once map is done generating
+	signal_manager.connect("map_gen_finished", update_cam_position)
 	
 	# hide editor icon
 	$Sprite3D.visible = false
@@ -29,6 +31,11 @@ func _ready()->void:
 	if active_cam_node != null:
 		self.global_position = active_cam_node.global_position
 		self.global_rotation = active_cam_node.cam_default_rotation
+	
+	if is_light_on:
+		DroneLight1.light_energy = drone_light_energy
+		DroneLight2.light_energy = drone_light_energy
+		
 
 func set_map_node(map_node:MapNode):
 	active_map_node = map_node
@@ -61,6 +68,7 @@ func toggle_light():
 		is_light_on = true
 	SoundManager3D.PlaySoundQueue3D("SQ_CFonk", Global.controlRoomRef.global_position)
 	SoundManager3D.PlaySoundPool3D("SP_KeyPress", Global.controlRoomRef.global_position)
+
 
 # updates the cam position after short delay
 func _on_cam_change_delay_timeout() -> void:
