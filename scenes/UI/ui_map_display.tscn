@@ -36,9 +36,9 @@ theme_override_constants/margin_bottom = 32
 
 [node name="MarginContainer_Grid" type="MarginContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 420
-theme_override_constants/margin_top = 96
-theme_override_constants/margin_right = 16
+theme_override_constants/margin_left = 414
+theme_override_constants/margin_top = 74
+theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
 [node name="GridBackGround" type="ColorRect" parent="MarginContainer/MarginContainer_Grid"]
@@ -507,18 +507,18 @@ offset_right = 1234.0
 offset_bottom = 132.0
 theme = ExtResource("1_ux1rw")
 theme_override_colors/font_color = Color(0.486275, 0.443137, 0.364706, 1)
-theme_override_font_sizes/font_size = 80
-text = "A   B   C   D   E   F   G   H"
+theme_override_font_sizes/font_size = 73
+text = "A   B   C   D   E   F   G   H   I"
 
 [node name="Label_Numbers" type="Label" parent="MarginContainer/Labels"]
 layout_mode = 0
 offset_left = 358.0
-offset_top = 105.0
+offset_top = 79.0
 offset_right = 1172.0
-offset_bottom = 902.0
+offset_bottom = 913.0
 theme = ExtResource("1_ux1rw")
 theme_override_colors/font_color = Color(0.486275, 0.443137, 0.364706, 1)
-theme_override_constants/line_spacing = 21
+theme_override_constants/line_spacing = 19
 theme_override_font_sizes/font_size = 80
 text = "1
 2
@@ -527,7 +527,8 @@ text = "1
 5
 6
 7
-8"
+8
+9"
 
 [node name="Compass" type="Control" parent="."]
 layout_mode = 3

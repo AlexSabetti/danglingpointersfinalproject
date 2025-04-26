@@ -18,7 +18,7 @@ var samplepos2:String = "S2"
 var samplepos3:String = "S3"
 var signal_manager: SignalBus = SigBus
 var gridSquare := preload("res://scenes/UI/ui_grid_square.tscn")
-var mapScale:int = 8
+var mapScale:int = 9
 var mapSquares: Array[Array] = []
 @onready var MapGrid:GridContainer = $MarginContainer/MarginContainer_Grid/MapGrid
 

@@ -117,7 +117,7 @@ double_sided = false
 texture = SubResource("ViewportTexture_xymwj")
 
 [node name="PlayerCamera3D" type="Camera3D" parent="Control_Room"]
-transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, -0.808659, 2.31077, 1.28714)
+transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, -0.713766, 2.31077, 1.22012)
 current = true
 fov = 50.1
 far = 60.0

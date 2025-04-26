@@ -22,6 +22,15 @@ var max_h_rotation: float = 45.0
 # current object being hovered over by the player
 var cur_target_object
 
+# player camera
+#var playerCamPos_Unfocused:Vector3 = Vector3(-0.809, 2.311, 1.287)
+var playerCamPos_Unfocused:Vector3 = Vector3(-0.714, 2.311, 1.222)
+var playerCamRot_Unfocused:Vector3 = Vector3(0.0, deg_to_rad(-80.0), 0.0)
+var playerCamRot_Unfocused_real:Vector3 = playerCamRot_Unfocused #player camera unfocused rotation, with the added offsets from mouse position
+var playerCamPos_Focused:Vector3 = Vector3(-0.360, 2.41, 1.241)
+var playerCamRot_Focused:Vector3 = Vector3(0.0, deg_to_rad(-90.0), 0.0)
+
+
 
 var total_samples: int
 @export_category("computer screen")
@@ -62,6 +71,8 @@ func _process(delta: float):
 			get_mouse_pos(mouse, VirtualScreenViewport)
 		else:
 			get_mouse_pos(mouse, get_viewport())
+			
+		movePlayerCamWithMouse(mouse, delta)
 		
 		# drone flashlight controls
 		if Input.is_action_just_pressed("toggle_light") && drone != null:
@@ -83,6 +94,7 @@ func _process(delta: float):
 			MessageScreenUI.scroll_down()
 		
 	
+
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel") && !UI.settings_locked:
@@ -155,8 +167,8 @@ func focusScreen():
 	signal_manager.emit_signal("focus_screen", true)
 	SoundManager3D.PlaySoundPool3D("SP_KeyHold", Global.controlRoomRef.global_position)
 	var tween = create_tween()
-	tween.tween_property(player_cam, "position", Vector3(-0.360, 2.41, 1.241), 1.0).set_trans(Tween.TRANS_CUBIC)
-	tween.parallel().tween_property(player_cam, "rotation", Vector3(0.0, deg_to_rad(-90.0), 0.0), 1.0).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(player_cam, "position", playerCamPos_Focused, 1.0).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property(player_cam, "rotation", playerCamRot_Focused, 1.0).set_trans(Tween.TRANS_CUBIC)
 	tween.parallel().tween_method(change_room_bus_volume,0, -15, 1.0).set_trans(Tween.TRANS_CUBIC)
 	tween.parallel().tween_method(change_speaker_bus_volume,-15, 0, 1.0).set_trans(Tween.TRANS_CUBIC)
 
@@ -166,8 +178,8 @@ func unfocusScreen():
 	SoundManager3D.PlaySoundPool3D("SP_KeyHold", Global.controlRoomRef.global_position)
 	var tween = create_tween()
 	#tween.tween_property(player_cam, "position", Vector3(-0.809, 2.311, 1.287), 1.0).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(player_cam, "position", Vector3(-0.769, 2.311, 1.28), 1.0).set_trans(Tween.TRANS_CUBIC)
-	tween.parallel().tween_property(player_cam, "rotation", Vector3(0.0, deg_to_rad(-80.0), 0.0), 1.0).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(player_cam, "position", playerCamPos_Unfocused, 1.0).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property(player_cam, "rotation", playerCamRot_Unfocused_real, 1.0).set_trans(Tween.TRANS_CUBIC)
 	tween.parallel().tween_method(change_room_bus_volume,-15, 0, 1.0).set_trans(Tween.TRANS_CUBIC)
 	tween.parallel().tween_method(change_speaker_bus_volume,0, -15, 1.0).set_trans(Tween.TRANS_CUBIC)
 	DroneScreenUI.showMessageNotif(false)
@@ -215,7 +227,7 @@ func get_mouse_pos(mouse_loc: Vector2, viewport:Viewport):
 		#print("nothin hovered over")
 		UI.set_cursor_type(0)
 
-	
+
 # Attempts to interact with the currently hovered over object
 func interact() -> void:
 	if cur_target_object != null && screenInteractionEnabled:
@@ -241,7 +253,7 @@ func collectSamples() -> void:
 	# check if in correct "goal" room
 	# Send out a signal to see what room I'm in
 	# If I get a response, that means A: The room is a goal room, B: The room hasn't had a completed sample taken, and C: i forgor
-	if drone.active_map_node.node_id > 0 && !drone.active_map_node.looted && drone.active_map_node.special:
+	if drone.active_map_node != null && drone.active_map_node.node_id > 0 && !drone.active_map_node.looted && drone.active_map_node.special:
 		if !is_collecting_samples && DroneScreenUI.is_on:
 			is_collecting_samples = true
 			signal_manager.emit_signal("collect_sample_start")
@@ -275,6 +287,14 @@ func finish_collecting_sample() -> void:
 	MapScreenUI.updateSamplesStatus()
 	
 
+# makes the player camera slightly follow their mouse 
+func movePlayerCamWithMouse(mousePos:Vector2, delta:float):
+	var windowSize:Vector2i = DisplayServer.window_get_size()
+	# get the normalized direction to move the camera in
+	var moveDirection:Vector2 = Vector2((mousePos.x - (windowSize.x / 2)) / (windowSize.x / 2) + 0.5, (mousePos.y - (windowSize.y / 2)) / (windowSize.y / 2))
+	playerCamRot_Unfocused_real = Vector3(0.0, deg_to_rad(rad_to_deg(playerCamRot_Unfocused.y) - (moveDirection.x * 2.0)), 0.0)
+	if !is_screen_focused:
+		player_cam.rotation = lerp(player_cam.rotation, playerCamRot_Unfocused_real, delta * 2)
 # shows a notification on screen if you recieve a message while focused on the computer screen
 func dialog_notif():
 	if is_screen_focused:
