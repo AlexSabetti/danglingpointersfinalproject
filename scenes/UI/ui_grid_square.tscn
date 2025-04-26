@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://do8p2a2i026oy"]
+
+[ext_resource type="Script" uid="uid://da7r80wxpog4i" path="res://scripts/ui_map_square.gd" id="1_xdwab"]
+[ext_resource type="Texture2D" uid="uid://bkp6nhm8htl5g" path="res://resources/Textures/Sprites/CompCircle1_a1.png" id="2_fo7j7"]
+
+[node name="UIGridSquare" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_xdwab")
+
+[node name="BGSquare" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.0392157, 0.0470588, 0.0313726, 1)
+
+[node name="PlayerIcon" type="Control" parent="BGSquare"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="BGSquare/PlayerIcon"]
+texture = ExtResource("2_fo7j7")

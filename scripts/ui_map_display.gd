@@ -17,6 +17,13 @@ var samplepos2:String = "S2"
 @onready var sampleSPosLabel3 := $Status/SamplePosLabel3
 var samplepos3:String = "S3"
 var signal_manager: SignalBus = SigBus
+var gridSquare := preload("res://scenes/UI/ui_grid_square.tscn")
+var mapScale:int = 8
+var mapSquares: Array[Array] = []
+@onready var MapGrid:GridContainer = $MarginContainer/MarginContainer_Grid/MapGrid
+
+var mapPosOffset:int = 4
+var currGridSquare:UI_GridSquare
 
 var rng = RandomNumberGenerator.new()
 @onready var GlitchTimer:Timer = $GlitchTimer
@@ -37,9 +44,11 @@ func _ready() -> void:
 		rowPos += 1
 	
 	#setDroneIconPos(Vector2(1,2))
-	signal_manager.connect("icon_loc_change", setDroneIconPos)
+	signal_manager.connect("icon_loc_change", updateMapPos)
 	signal_manager.connect("end_game", setRandomMapPos)
 	#print(str(gridMap))
+	
+	prepare_map()
 
 func _process(delta: float) -> void:
 	# update the compass rotation 
@@ -49,12 +58,66 @@ func _process(delta: float) -> void:
 	else:
 		CompassPointer.rotation += deg_to_rad(1000) * delta
 
+# sets up the map by populating the MapGrid with grid squares
+func prepare_map():
+	MapGrid.columns = mapScale
+	for x in range(0, mapScale):
+		mapSquares.append([])
+		for y in range(0, mapScale):
+			var MS:UI_GridSquare= gridSquare.instantiate()
+			MapGrid.add_child(MS)
+			mapSquares[x].append(MS)
+			
+
+
+func updateMapPos(c: Vector2):
+	var coords:Vector2 = Vector2(c.x + mapPosOffset, c.y + mapPosOffset)
+	
+	# set previous square as having no player (if there was a previous square)
+	if currGridSquare != null:
+		# set previous grid square to no longer have the player icon
+		currGridSquare.set_has_player(false)
+	
+	# check if new position is on the map
+	# if not, put an arrow pointing in the gerneral direction of the drone.
+	if (coords.y < 0):	# if off the grid to the 
+		currGridSquare = mapSquares[0][coords.x] as UI_GridSquare
+		currGridSquare.set_has_player(true)
+		currGridSquare.set_drone_icon(1)
+		
+	else: if (coords.y > mapSquares.size() - 1):	# if off the grid to the 
+		currGridSquare = mapSquares[mapSquares.size() - 1][coords.x] as UI_GridSquare
+		currGridSquare.set_has_player(true)
+		currGridSquare.set_drone_icon(2)
+		
+	else: if (coords.x < 0):	# if off the grid to the 
+		currGridSquare = mapSquares[coords.y][0] as UI_GridSquare
+		currGridSquare.set_has_player(true)
+		currGridSquare.set_drone_icon(3)
+		
+	else: if (coords.x > mapSquares.size() - 1):	# if off the grid to the 
+		currGridSquare = mapSquares[coords.y][mapSquares.size() - 1] as UI_GridSquare
+		currGridSquare.set_has_player(true)
+		currGridSquare.set_drone_icon(4)
+		
+	else: # if on the grid
+		
+		# set current grid square to have the player icon
+		currGridSquare = mapSquares[coords.y][coords.x] as UI_GridSquare
+		if !currGridSquare.has_been_visited:
+			currGridSquare._on_explored()
+		currGridSquare.set_has_player(true)
+		currGridSquare.set_drone_icon(0)
+		
+	
+	#setDroneIconPos(coords)
+
 # moves the map icon for the drone's position to the correct spot. Coordinates start from upper left corner
 func setDroneIconPos(coords: Vector2) -> void:
 	#print(str(gridMap[coords.y][coords.x]) + " " + str(gridMap[coords.y][coords.x].get_parent()) )
 	#var dronePosition = Vector2((gridMap[coords.y][coords.x] as ColorRect).global_position.x, (gridMap[coords.y][coords.x] as ColorRect).get_parent().global_position.y)
 	#print(coords)
-	DroneIcon.position = Vector2(((coords.x + 4) * 100), ((coords.y + 4) * 100) - 28)
+	DroneIcon.position = Vector2(((coords.x) * 100), ((coords.y) * 100) - 28)
 	#print(dronePosition)
 
 func updateSamplesStatus() -> void:

@@ -43,9 +43,16 @@ theme_override_constants/margin_bottom = 0
 
 [node name="GridBackGround" type="ColorRect" parent="MarginContainer/MarginContainer_Grid"]
 layout_mode = 2
-color = Color(0.624702, 0.516195, 0.392268, 1)
+color = Color(0.486275, 0.443137, 0.364706, 1)
+
+[node name="MapGrid" type="GridContainer" parent="MarginContainer/MarginContainer_Grid"]
+layout_mode = 2
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+columns = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer_Grid"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 8
 
@@ -474,6 +481,7 @@ size_flags_vertical = 3
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
 [node name="MapIcons" type="Control" parent="MarginContainer/MarginContainer_Grid"]
+visible = false
 layout_mode = 2
 
 [node name="DroneIcon" type="Label" parent="MarginContainer/MarginContainer_Grid/MapIcons"]
@@ -498,7 +506,7 @@ offset_top = 12.0
 offset_right = 1234.0
 offset_bottom = 132.0
 theme = ExtResource("1_ux1rw")
-theme_override_colors/font_color = Color(0.623529, 0.517647, 0.392157, 1)
+theme_override_colors/font_color = Color(0.486275, 0.443137, 0.364706, 1)
 theme_override_font_sizes/font_size = 80
 text = "A   B   C   D   E   F   G   H"
 
@@ -509,7 +517,7 @@ offset_top = 105.0
 offset_right = 1172.0
 offset_bottom = 902.0
 theme = ExtResource("1_ux1rw")
-theme_override_colors/font_color = Color(0.623529, 0.517647, 0.392157, 1)
+theme_override_colors/font_color = Color(0.486275, 0.443137, 0.364706, 1)
 theme_override_constants/line_spacing = 21
 theme_override_font_sizes/font_size = 80
 text = "1
@@ -691,7 +699,6 @@ text = "S3"
 fit_content = true
 
 [node name="Filter" type="ColorRect" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_gse5x")
 anchors_preset = 15
 anchor_right = 1.0

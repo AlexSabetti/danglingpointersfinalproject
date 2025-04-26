@@ -309,7 +309,7 @@ min_h_rotation = -90.0
 max_h_rotation = 60.0
 
 [node name="TestCamera3D" type="Camera3D" parent="CameraNodes/CameraNode_Cave4"]
-transform = Transform3D(0.999999, 7.07149e-09, -1.20723e-07, -1.11982e-11, 1, 3.0268e-09, 1.16415e-10, 0, 1, -0.00578594, 0.00205231, -5.83987)
+transform = Transform3D(0.999999, 7.07149e-09, -1.20723e-07, -1.11982e-11, 1, 3.0268e-09, 1.16415e-10, 0, 1, 0, 0, 0)
 
 [node name="UnderWaterRoom13_a1" parent="." instance=ExtResource("21_vq3jy")]
 
@@ -339,8 +339,8 @@ meshScale = Vector3(2, 3, 2)
 [node name="Foliage33" parent="UnderWaterRoom13_a1" instance=ExtResource("5_s5uts")]
 transform = Transform3D(0, 0, -1.41973, 0, 1.61444, 0, 1.39763, 0, -1.78814e-07, 9.38648, 0.12935, 3.60622)
 foliage_Texture = ExtResource("6_qp3w2")
-sway_amount = 0.2
-sway_speed = 0.5
+sway_amount = 0.15
+sway_speed = 0.4
 meshOffset = Vector3(0, -0.34, 0)
 meshScale = Vector3(2, 3, 2)
 

@@ -41,7 +41,7 @@ current = true
 
 [node name="SpotLight3D1" type="SpotLight3D" parent="Camera3D"]
 transform = Transform3D(0.999522, 0.0257137, -0.0171872, -0.0223427, 0.984554, 0.173648, 0.0213869, -0.173181, 0.984658, -0.25, 0.2, -1.41561e-07)
-light_color = Color(0.829938, 0.820217, 0.585807, 1)
+light_color = Color(0.754333, 0.792716, 0.586486, 1)
 light_energy = 0.0
 light_volumetric_fog_energy = 0.5
 light_cull_mask = 4294967293
@@ -50,7 +50,7 @@ spot_angle = 30.0
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="Camera3D"]
 transform = Transform3D(0.999522, -0.0257137, 0.0171872, 0.0223427, 0.984554, 0.173648, -0.0213869, -0.173181, 0.984658, 0.25, 0.2, -1.41561e-07)
-light_color = Color(0.831373, 0.819608, 0.584314, 1)
+light_color = Color(0.752941, 0.792157, 0.588235, 1)
 light_energy = 0.0
 light_volumetric_fog_energy = 0.5
 light_cull_mask = 4294967293
