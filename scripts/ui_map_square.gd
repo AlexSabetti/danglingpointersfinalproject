@@ -54,3 +54,4 @@ func set_drone_icon(type:int):
 		PlayerIconSprite.texture = drownArrowIcon_Left
 	else: if type == 4:
 		PlayerIconSprite.texture = drownArrowIcon_Right
+	

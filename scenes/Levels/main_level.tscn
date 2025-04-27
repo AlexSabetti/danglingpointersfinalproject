@@ -119,7 +119,7 @@ texture = SubResource("ViewportTexture_xymwj")
 [node name="PlayerCamera3D" type="Camera3D" parent="Control_Room"]
 transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, -0.713766, 2.31077, 1.22012)
 current = true
-fov = 50.1
+fov = 50.0
 far = 60.0
 
 [node name="GameController" parent="." node_paths=PackedStringArray("player_cam", "drone", "VirtualScreenViewport", "MessageScreenUI", "DroneScreenUI", "MapScreenUI") instance=ExtResource("7_ivn7c")]

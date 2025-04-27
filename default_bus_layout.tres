@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=8 format=3 uid="uid://c3p5a2q715sbw"]
+[gd_resource type="AudioBusLayout" load_steps=9 format=3 uid="uid://c3p5a2q715sbw"]
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_j3pel"]
 resource_name = "Amplify"
@@ -21,6 +21,9 @@ resource_name = "Distortion"
 mode = 1
 keep_hf_hz = 12770.0
 drive = 0.5
+
+[sub_resource type="AudioEffectStereoEnhance" id="AudioEffectStereoEnhance_j3pel"]
+resource_name = "StereoEnhance"
 
 [sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_j3pel"]
 resource_name = "HighPassFilter"
@@ -68,6 +71,8 @@ bus/4/volume_db = -21.8264
 bus/4/send = &"Master"
 bus/4/effect/0/effect = SubResource("AudioEffectDistortion_j3pel")
 bus/4/effect/0/enabled = true
+bus/4/effect/1/effect = SubResource("AudioEffectStereoEnhance_j3pel")
+bus/4/effect/1/enabled = true
 bus/5/name = &"DroneAudio"
 bus/5/solo = false
 bus/5/mute = false

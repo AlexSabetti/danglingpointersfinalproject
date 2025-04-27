@@ -1,8 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://dxgfd5vloh5y2"]
+[gd_scene load_steps=22 format=3 uid="uid://dxgfd5vloh5y2"]
 
 [ext_resource type="PackedScene" uid="uid://crwrhmxlk0mc6" path="res://resources/Models/under_water_room_3_a_1.tscn" id="1_6x3y3"]
-[ext_resource type="Script" path="res://scripts/Room.gd" id="1_nu0df"]
-[ext_resource type="Script" path="res://scripts/CameraChangeObject.gd" id="2_e8vfg"]
+[ext_resource type="Script" uid="uid://br3bhxpyvy3lu" path="res://scripts/Room.gd" id="1_nu0df"]
+[ext_resource type="Script" uid="uid://bs8y8lrwcb8ml" path="res://scripts/CameraChangeObject.gd" id="2_e8vfg"]
 [ext_resource type="PackedScene" uid="uid://bd7icn4pwfdoi" path="res://scenes/Entities/Foliage.tscn" id="2_nu0df"]
 [ext_resource type="Texture2D" uid="uid://cealpeqkes7xo" path="res://resources/Textures/Sprites/SeaWeeds1_a1.png" id="3_j8hn1"]
 [ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://scenes/Entities/CamPosNode.tscn" id="3_kxr2k"]
@@ -11,7 +11,7 @@
 [ext_resource type="Shader" uid="uid://d2mabvbt22cdl" path="res://resources/Shaders/VS_Foliage3D.tres" id="8_ofg0q"]
 [ext_resource type="Texture2D" uid="uid://dhvn8d5topyjo" path="res://resources/Textures/NormalMaps/7864-normal.jpg" id="9_3mtow"]
 [ext_resource type="Texture2D" uid="uid://chng0opds5tf2" path="res://resources/Textures/Sprites/Reeds2_b1.png" id="10_470l4"]
-[ext_resource type="Script" path="res://scripts/ClickableObject.gd" id="12_470l4"]
+[ext_resource type="Script" uid="uid://b8260neigo27n" path="res://scripts/ClickableObject.gd" id="12_470l4"]
 [ext_resource type="PackedScene" uid="uid://dybogvrii8h3g" path="res://scenes/Logic/dialog_changer.tscn" id="13_6e3fo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2yek6"]
@@ -47,11 +47,15 @@ buffer = PackedFloat32Array(-0.241415, -0.0956612, -0.254534, 0.25755, -0.027290
 [sub_resource type="BoxShape3D" id="BoxShape3D_ofg0q"]
 size = Vector3(2, 3, 4)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_5gob5"]
+size = Vector3(2, 3, 3.50342)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_6e3fo"]
 size = Vector3(3.23962, 1.35571, 1.28461)
 
 [node name="Room3_a1" type="Node3D"]
 script = ExtResource("1_nu0df")
+room_ambience = "MetalCreakWeak"
 north_open = true
 south_open = true
 west_open = true
@@ -130,7 +134,7 @@ shape = SubResource("BoxShape3D_e8vfg")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="CameraNode_N" parent="CameraNodes" instance=ExtResource("3_kxr2k")]
-transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, -0.47629, 1.16639, 6.94119)
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, -0.47629, 1.16639, 4.94119)
 min_h_rotation = -100.0
 max_h_rotation = 90.0
 
@@ -168,6 +172,7 @@ meshScale = Vector3(1.81, 2.755, 1.735)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56391, 0.555885, -0.633626)
 foliage_Texture = ExtResource("3_j8hn1")
 meshOffset = Vector3(0, -0.035, 0)
+meshScale = Vector3(1.165, 2.125, 1.43)
 
 [node name="Foliage8" parent="UnderWaterRoom3_a1" instance=ExtResource("2_nu0df")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.55895, 0.147131, 4.86416)
@@ -221,6 +226,14 @@ shape = SubResource("BoxShape3D_ofg0q")
 [node name="CollisionShape3D12" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.5, 1.5, -10)
 shape = SubResource("BoxShape3D_ofg0q")
+
+[node name="CollisionShape3D16" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.74829, 1.5, -1.08531e-08)
+shape = SubResource("BoxShape3D_5gob5")
+
+[node name="CollisionShape3D17" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.6356, 1.5, -1.08531e-08)
+shape = SubResource("BoxShape3D_5gob5")
 
 [node name="CollisionShape3D13" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.5, 1.5, -10)

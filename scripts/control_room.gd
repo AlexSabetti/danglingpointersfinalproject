@@ -52,8 +52,13 @@ func update_room_ambience(mapNode: MapNode):
 			foumpAmbiSoundPLayer.volume_db = -80.0
 		
 		if curRoom.room_ambience.contains("MetalCreak"):
+			deepCreakingAmbiSoundPLayer.pitch_scale = 0.8
 			deepCreakingAmbiSoundPLayer.volume_db = 0.0
 			print("playing: MetalCreak")
+		else: if curRoom.room_ambience.contains("MetalCreakWeak"):
+			deepCreakingAmbiSoundPLayer.pitch_scale = 1.0
+			deepCreakingAmbiSoundPLayer.volume_db = -20.0
+			print("playing: MetalCreakWeak")
 		else:
 			deepCreakingAmbiSoundPLayer.volume_db = -80.0
 		

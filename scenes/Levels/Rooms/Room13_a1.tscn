@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://vg2e6sfqcilt"]
+[gd_scene load_steps=44 format=3 uid="uid://vg2e6sfqcilt"]
 
 [ext_resource type="Script" uid="uid://br3bhxpyvy3lu" path="res://scripts/Room.gd" id="1_qtgky"]
 [ext_resource type="Script" uid="uid://bs8y8lrwcb8ml" path="res://scripts/CameraChangeObject.gd" id="2_rqunv"]
@@ -24,6 +24,8 @@
 [ext_resource type="PackedScene" uid="uid://cp62xahvw7dgn" path="res://resources/Models/under_water_room_13_a_1.tscn" id="21_vq3jy"]
 [ext_resource type="PackedScene" uid="uid://bexvskgq8qv87" path="res://scenes/Logic/EnvAdjuster.tscn" id="23_rqunv"]
 [ext_resource type="Environment" uid="uid://6htnmncmh77d" path="res://resources/Environments/env_underwater1_2.tres" id="24_g501n"]
+[ext_resource type="PackedScene" uid="uid://brkyle6r06e41" path="res://scenes/Logic/SignalSender.tscn" id="25_xbva0"]
+[ext_resource type="PackedScene" uid="uid://byfw0a0wyb7l8" path="res://scenes/Logic/Relay.tscn" id="26_s5uts"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1m8bk"]
 size = Vector3(0.5, 3, 11)
@@ -238,6 +240,7 @@ transform = Transform3D(1, 0, 0, 0, 0.98439, 0.176002, 0, -0.176002, 0.984389, 0
 script = ExtResource("2_rqunv")
 isDecending = true
 trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_Cave3"), NodePath("../../UnderWaterRoom13_a1/DialogChanger3")]
+is_active = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/StaticBody3D15"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.659481, 3.33786e-06)
@@ -247,7 +250,7 @@ shape = SubResource("BoxShape3D_qp3w2")
 transform = Transform3D(0.998552, -0.0537718, 0.0010766, 0.0537825, 0.998353, -0.0199886, 0, 0.0200176, 0.999799, 0, -68.7676, -0.589909)
 script = ExtResource("2_rqunv")
 isDecending = true
-trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_Cave4")]
+trigger_on_interact = [NodePath("../../CameraNodes/CameraNode_Cave4"), NodePath("../../SignalSender_endGame")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraChangers/StaticBody3D16"]
 transform = Transform3D(1, 0, 1.68802e-08, 3.19948e-07, 1, -6.51926e-08, -2.78452e-08, -5.53206e-07, 1, 4.5, -0.659462, -2)
@@ -369,7 +372,7 @@ meshOffset = Vector3(0, -0.42, 0)
 meshScale = Vector3(2, 1.5, 2)
 
 [node name="Foliage13" parent="UnderWaterRoom13_a1" instance=ExtResource("5_s5uts")]
-transform = Transform3D(-1.39763, 0, 0, 0, 1.61444, 0, 1.37091e-06, 0, -1.41973, 6.54639, -0.55241, -2.03519)
+transform = Transform3D(-1.39763, 0, 0, 0, 1.61444, 0, 1.37091e-06, 0, -1.41973, 6.84461, -0.517526, -2.23505)
 foliage_Texture = ExtResource("6_qp3w2")
 emission_Texture = ExtResource("8_rdewd")
 emission_amount = 0.25
@@ -407,16 +410,15 @@ meshOffset = Vector3(0, -0.445, 0)
 meshScale = Vector3(0.86, 1.845, 0.66)
 
 [node name="Foliage39" parent="UnderWaterRoom13_a1" instance=ExtResource("5_s5uts")]
-transform = Transform3D(-0.521516, 1.13138, 0.863191, -0.0836109, 1.02645, -1.09254, -1.29399, -0.522305, -0.277299, -16.3609, -43.2464, 4.12316)
+transform = Transform3D(-0.162163, 1.22902, 0.905752, -0.0836109, 1.02645, -1.09254, -1.38567, -0.205767, -0.0400774, -16.3609, -43.2464, 4.12316)
 foliage_Texture = ExtResource("12_m4grw")
 emission_Texture = ExtResource("13_dvtuk")
-emission_amount = 0.7
-sway_amount = 0.2
+emission_amount = 0.5
 meshOffset = Vector3(0, -0.445, 0)
 meshScale = Vector3(5, 5.8, 5)
 
 [node name="Foliage40" parent="UnderWaterRoom13_a1" instance=ExtResource("5_s5uts")]
-transform = Transform3D(-1.23591, -0.753804, -0.00644502, -0.392316, 0.870732, -1.12716, 0.521516, -1.13138, -0.863191, 9.37879, -39.42, 13.263)
+transform = Transform3D(-1.17576, -0.872171, -0.0299291, -0.119372, 0.276556, -1.39348, 0.746129, -1.33013, -0.270103, 9.37879, -39.42, 13.263)
 foliage_Texture = ExtResource("12_m4grw")
 emission_Texture = ExtResource("13_dvtuk")
 emission_amount = 0.7
@@ -425,7 +427,7 @@ meshOffset = Vector3(0, -0.445, 0)
 meshScale = Vector3(4, 5, 4)
 
 [node name="Foliage23" parent="UnderWaterRoom13_a1" instance=ExtResource("5_s5uts")]
-transform = Transform3D(-0.218549, -0.271099, -1.38185, 0.416751, 1.50375, -0.296157, 1.31603, -0.521218, -0.135695, 2.59036, -2.63323, 3.08194)
+transform = Transform3D(1.09287, -0.271099, 0.852275, -0.10284, 1.50375, 0.505976, -0.865127, -0.521218, 1.01649, 2.59036, -2.63323, 3.08194)
 foliage_Texture = ExtResource("12_m4grw")
 emission_Texture = ExtResource("13_dvtuk")
 emission_amount = 0.7
@@ -738,7 +740,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.04196, -37.7763, -12.9816)
 script = ExtResource("20_i7npb")
 is_interactable = true
 oneShot = true
-trigger_on_interact = [NodePath("../DialogChanger2")]
+trigger_on_interact = [NodePath("../DialogChanger2"), NodePath("../../Relay")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="UnderWaterRoom13_a1/Object of interest2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.633831, 1)
@@ -754,7 +756,17 @@ transform = Transform3D(-0.691609, 0.721267, 0.0380885, -0.340687, -0.372268, 0.
 transform = Transform3D(0.702619, -0.690357, -0.172436, -0.399478, -0.182158, -0.898463, 0.588849, 0.700161, -0.403771, 8.80125, -37.4816, -14.3263)
 
 [node name="EnvAdjuster" parent="." instance=ExtResource("23_rqunv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 newEnvironment = ExtResource("24_g501n")
+
+[node name="SignalSender_endGame" parent="." instance=ExtResource("25_xbva0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 0)
+signal_to_send = "end_game"
+oneShot = true
+
+[node name="Relay" parent="." node_paths=PackedStringArray("activate_on_interact") instance=ExtResource("26_s5uts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -37, -13)
+oneShot = true
+activate_on_interact = [NodePath("../CameraChangers/StaticBody3D15")]
 
 [editable path="UnderWaterRoom13_a1"]
