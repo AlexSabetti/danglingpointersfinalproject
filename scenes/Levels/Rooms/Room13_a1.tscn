@@ -719,7 +719,7 @@ newDialog = Array[String](["This cave is MASSIVE!", "I can't believe nobody's fo
 
 [node name="DialogChanger2" parent="UnderWaterRoom13_a1" instance=ExtResource("21_lrbht")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00713468, -36.9914, -13.4438)
-newDialog = Array[String](["That looks like one of OUR drones... But it can't be...", "This is out first time sending any drones here...", "Keep going. I need answers..."])
+newDialog = Array[String](["That looks like one of OUR drones... But it can't be...", "This is our first time sending any drones here...", "Keep going. I need answers..."])
 
 [node name="DialogChanger3" parent="UnderWaterRoom13_a1" instance=ExtResource("21_lrbht")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00713468, -56.3912, -13.4438)

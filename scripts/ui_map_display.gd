@@ -136,5 +136,5 @@ func updateSamplesStatus() -> void:
 # sets a random position on the map
 func setRandomMapPos():
 	is_endgame = true
-	updateMapPos(Vector2(rng.randi_range(0-4,7-4),rng.randi_range(0-4,7-4)))
+	updateMapPos(Vector2(rng.randi_range(0-4,8-4),rng.randi_range(0-4,8-4)))
 	GlitchTimer.start()

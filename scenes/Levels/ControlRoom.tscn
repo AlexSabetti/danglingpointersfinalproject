@@ -360,6 +360,4 @@ one_shot = true
 
 [node name="PlayerCamPivot" type="Node3D" parent="."]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="PlayerCamPivot"]
-
 [connection signal="timeout" from="EndGameTimer" to="." method="_on_end_game_timer_timeout"]
