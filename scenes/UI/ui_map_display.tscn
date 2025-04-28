@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3728ytvs6bn0"]
+[gd_scene load_steps=8 format=3 uid="uid://b3728ytvs6bn0"]
 
 [ext_resource type="Script" uid="uid://dl31a2hbiv4p3" path="res://scripts/ui_map_display.gd" id="1_orryn"]
 [ext_resource type="Theme" uid="uid://b7dmjh57doq5k" path="res://resources/Themes/theme_ScreenText.tres" id="1_ux1rw"]
-[ext_resource type="Texture2D" uid="uid://3cp8remnrdnp" path="res://resources/Textures/Sprites/Compass1_a1.png" id="2_scagj"]
+[ext_resource type="Texture2D" uid="uid://bkp6nhm8htl5g" path="res://resources/Textures/Sprites/CompCircle1_a1.png" id="2_4urrv"]
 [ext_resource type="Shader" uid="uid://jhmbi4fs662c" path="res://resources/Shaders/VS_CRTFilter.tres" id="2_w3i8y"]
+[ext_resource type="Texture2D" uid="uid://msp12cy342xa" path="res://resources/Textures/Sprites/Compass1_a2.png" id="3_4urrv"]
 [ext_resource type="Texture2D" uid="uid://de3fyto3npapl" path="res://resources/Textures/Sprites/Compass1_b1.png" id="3_orryn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gse5x"]
@@ -484,17 +485,8 @@ color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 visible = false
 layout_mode = 2
 
-[node name="DroneIcon" type="Label" parent="MarginContainer/MarginContainer_Grid/MapIcons"]
-layout_mode = 1
-offset_top = -28.0
-offset_right = 86.0
-offset_bottom = 106.0
-theme = ExtResource("1_ux1rw")
-theme_override_colors/font_color = Color(0.894118, 0.792157, 0.627451, 1)
-theme_override_font_sizes/font_size = 100
-text = "◉"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="DroneIcon" type="Sprite2D" parent="MarginContainer/MarginContainer_Grid/MapIcons"]
+texture = ExtResource("2_4urrv")
 
 [node name="Labels" type="Control" parent="MarginContainer"]
 layout_mode = 2
@@ -533,21 +525,21 @@ text = "1
 [node name="Compass" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 188.0
-offset_top = 137.0
-offset_right = 228.0
-offset_bottom = 177.0
+offset_left = 192.0
+offset_top = 166.0
+offset_right = 232.0
+offset_bottom = 206.0
 
 [node name="CompassBG" type="Sprite2D" parent="Compass"]
 self_modulate = Color(0.97487, 0.894997, 0.798066, 1)
 position = Vector2(0, 22)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_scagj")
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("3_4urrv")
 
 [node name="CompassPointer" type="Sprite2D" parent="Compass"]
 modulate = Color(0.985481, 0.934657, 0.876984, 1)
 position = Vector2(0, 22)
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.375, 0.375)
 texture = ExtResource("3_orryn")
 
 [node name="Status" type="Control" parent="."]

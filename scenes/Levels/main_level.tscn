@@ -96,6 +96,12 @@ directional_shadow_split_1 = 0.279
 [node name="Control_Room" parent="." instance=ExtResource("5_vcuqm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -7, 14.5)
 
+[node name="PlayerCamera3D" type="Camera3D" parent="Control_Room/PlayerCamPivot" index="0"]
+transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, -0.713766, 2.31077, 1.22012)
+current = true
+fov = 50.0
+far = 60.0
+
 [node name="ViewPortScreens" type="Node3D" parent="Control_Room"]
 
 [node name="MainScreen" type="Sprite3D" parent="Control_Room/ViewPortScreens"]
@@ -116,14 +122,8 @@ material_override = SubResource("StandardMaterial3D_coj36")
 double_sided = false
 texture = SubResource("ViewportTexture_xymwj")
 
-[node name="PlayerCamera3D" type="Camera3D" parent="Control_Room"]
-transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, -0.713766, 2.31077, 1.22012)
-current = true
-fov = 50.0
-far = 60.0
-
 [node name="GameController" parent="." node_paths=PackedStringArray("player_cam", "drone", "VirtualScreenViewport", "MessageScreenUI", "DroneScreenUI", "MapScreenUI") instance=ExtResource("7_ivn7c")]
-player_cam = NodePath("../Control_Room/PlayerCamera3D")
+player_cam = NodePath("../Control_Room/PlayerCamPivot/PlayerCamera3D")
 drone = NodePath("../Entities/SubViewport_DroneCam/Drone")
 VirtualScreenViewport = NodePath("../Entities/SubViewport_DroneCam")
 MessageScreenUI = NodePath("../Entities/SubViewport_MsgScreen/ui_msgDisplay")
@@ -172,7 +172,7 @@ trigger_on_start = true
 
 [node name="DialogChanger1_debrief" parent="Logic" instance=ExtResource("6_d44k0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.45938, -4.81173, 14.3816)
-newDialog = Array[String](["Just as a reminder, your job is to examine the sea floor and collect samples at key locations. ", "If you find anything else of interest, let me know.", "There's been a couple of people who've gone missing around these waters, and I'm a but curious..."])
+newDialog = Array[String](["Just as a reminder, your job is to examine the sea floor and collect samples at key locations. ", "If you find anything else of interest, let me know.", "There's been a couple of people who've gone missing around these waters, and I'm a bit curious..."])
 delay_before_trigger = 2.0
 oneShot = true
 
@@ -200,4 +200,5 @@ is_active = false
 [node name="Manager" parent="NodeManagement" instance=ExtResource("15_e1vb8")]
 
 [editable path="CanvasLayerPostProcessing2"]
+[editable path="Control_Room"]
 [editable path="Entities/SubViewport_DroneCam/CanvasLayerPostProcessing2"]
