@@ -170,7 +170,7 @@ func setup():
 					node.rotate_by = 180
 				
 				var rand = rng.randi_range(0, corners.size() - 1)
-				if corners.has(room4_a1):
+				if corners.has(room4_a1) and sample_count < 3:
 					node.scene_path = room4_a1
 					node.node_id = 2
 					sample_count += 1
@@ -191,7 +191,7 @@ func setup():
 				node.rotate_by = -90
 
 			var rand = rng.randi_range(0, t_shaped.size() - 1)
-			if t_shaped.has(room3_a1):
+			if t_shaped.has(room3_a1) and sample_count < 3:
 				node.scene_path = room3_a1
 				node.node_id = 3
 				sample_count += 1
@@ -204,7 +204,7 @@ func setup():
 		elif num_openings == 4:
 			var rand = rng.randi_range(0, crosses.size() - 1)
 
-			if crosses.has(room9_a1):
+			if crosses.has(room9_a1) and sample_count < 3:
 				node.scene_path = room9_a1
 				node.node_id = 4
 				sample_count += 1
@@ -216,7 +216,7 @@ func setup():
 				node.node_id = 5
 				sample_locs.append(Vector2(node.global_position.x, node.global_position.z))
 				crosses.remove_at(crosses.find(room13_a1))
-			elif crosses.has(room12_a1):
+			elif crosses.has(room12_a1) and sample_count < 3:
 				node.scene_path = room12_a1
 				node.special = true
 				node.node_id = 6

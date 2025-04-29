@@ -46,6 +46,7 @@ func _ready() -> void:
 	#setDroneIconPos(Vector2(1,2))
 	signal_manager.connect("icon_loc_change", updateMapPos)
 	signal_manager.connect("end_game", setRandomMapPos)
+	signal_manager.connect("set_samples", updateSamplesStatus)
 	#print(str(gridMap))
 	
 	prepare_map()
@@ -120,18 +121,24 @@ func setDroneIconPos(coords: Vector2) -> void:
 	DroneIcon.position = Vector2(((coords.x) * 100), ((coords.y) * 100) - 28)
 	#print(dronePosition)
 
-func updateSamplesStatus() -> void:
+func updateSamplesStatus(_sample_count, sample_locs) -> void:
 	# this is kinda messy, but it works lol
 	if Global.gameControllerRef.samples_collected <= 0:
 		sampleStatusLabel1.text = "▭" 
 		sampleStatusLabel2.text = "▭" 
-		sampleStatusLabel3.text = "▭" 
+		sampleStatusLabel3.text = "▭"
+		sampleSPosLabel1.text = sample_locs[0]
+		sampleSPosLabel2.text = sample_locs[1]
+		sampleSPosLabel3.text = sample_locs[2]
+		
+		samplepos3 = sample_locs[2]
 	else: if Global.gameControllerRef.samples_collected == 1:
 		sampleStatusLabel1.text = "▬"
 	else: if Global.gameControllerRef.samples_collected == 2:
 		sampleStatusLabel2.text = "▬"
 	else: if Global.gameControllerRef.samples_collected >= 3:
 		sampleStatusLabel3.text = "▬"
+	
 
 # sets a random position on the map
 func setRandomMapPos():

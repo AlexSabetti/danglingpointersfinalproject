@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b3728ytvs6bn0"]
 
-[ext_resource type="Script" uid="uid://dl31a2hbiv4p3" path="res://scripts/ui_map_display.gd" id="1_orryn"]
+[ext_resource type="Script" path="res://scripts/ui_map_display.gd" id="1_orryn"]
 [ext_resource type="Theme" uid="uid://b7dmjh57doq5k" path="res://resources/Themes/theme_ScreenText.tres" id="1_ux1rw"]
 [ext_resource type="Texture2D" uid="uid://3cp8remnrdnp" path="res://resources/Textures/Sprites/Compass1_a1.png" id="2_scagj"]
 [ext_resource type="Shader" uid="uid://jhmbi4fs662c" path="res://resources/Shaders/VS_CRTFilter.tres" id="2_w3i8y"]
@@ -611,7 +611,6 @@ text = "▭"
 fit_content = true
 
 [node name="SamplePosLabel1" type="RichTextLabel" parent="Status"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -646,7 +645,6 @@ text = "▭"
 fit_content = true
 
 [node name="SamplePosLabel2" type="RichTextLabel" parent="Status"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -681,7 +679,6 @@ text = "▭"
 fit_content = true
 
 [node name="SamplePosLabel3" type="RichTextLabel" parent="Status"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
