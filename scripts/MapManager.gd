@@ -66,7 +66,7 @@ var t_shaped: Array[PackedScene] = []
 var crosses: Array[PackedScene] = []
 var dead_ends: Array[PackedScene] = []
 
-var sample_locs: Array[Vector2] = []
+var sample_locs: Array[Vector2i] = []
 
 # var key_areas: Array = []
 # var points_of_interest: Array = []
@@ -108,12 +108,13 @@ func _ready():
 	
 	setup()
 	await map_created
+	
 	activate_nodes()
 	var starting_cam: CameraNode = get_child(0).get_child(1).get_node("CameraNodes").get_child(0) as CameraNode
 	signal_manager.emit_signal("camera_changed", starting_cam)
 	(get_child(0).get_child(1) as Room)._on_trigger() # triggers the room, setting it as the active room
 	signal_manager.emit_signal("map_gen_finished") # signals that the map is fully generated
-	signal_manager.emit_signal("set_samples", sample_count, sample_locs)
+	Global.gameControllerRef.set_sample(sample_count, sample_locs)
 
 	# old setup:
 	# root_count = sqrt(grid_count)
@@ -178,6 +179,10 @@ func setup():
 					node.special = true
 					sample_locs.append(Vector2(node.global_position.x, node.global_position.z))
 					corners.remove_at(corners.find(room4_a1))
+				elif corners.has(room4_a1):
+					corners.remove_at(corners.find(room4_a1))
+					rand = rng.randi_range(0, corners.size() - 1)
+					node.scene_path = corners[rand]
 				else:
 					node.scene_path = corners[rand]
 	
@@ -197,8 +202,12 @@ func setup():
 				node.node_id = 3
 				sample_count += 1
 				node.special = true
-				sample_locs.append(Vector2(node.global_position.x, node.global_position.z))
+				sample_locs.append(Vector2i(node.global_position.x / 20, node.global_position.z / 20))
 				t_shaped.remove_at(t_shaped.find(room3_a1))
+			elif corners.has(room3_a1):
+					corners.remove_at(corners.find(room3_a1))
+					rand = rng.randi_range(0, corners.size() - 1)
+					node.scene_path = corners[rand]
 			else:
 				node.scene_path = t_shaped[rand]
 
@@ -210,20 +219,28 @@ func setup():
 				node.node_id = 4
 				sample_count += 1
 				node.special = true
-				sample_locs.append(Vector2(node.global_position.x, node.global_position.z))
+				sample_locs.append(Vector2i(node.global_position.x / 20, node.global_position.z / 20))
 				crosses.remove_at(crosses.find(room9_a1))
 			elif crosses.has(room13_a1):
 				node.scene_path = room13_a1
 				node.node_id = 5
-				sample_locs.append(Vector2(node.global_position.x, node.global_position.z))
+				sample_locs.append(Vector2i(node.global_position.x / 20, node.global_position.z / 20))
 				crosses.remove_at(crosses.find(room13_a1))
 			elif crosses.has(room12_a1) and sample_count < 3:
 				node.scene_path = room12_a1
 				node.special = true
 				node.node_id = 6
 				sample_count += 1
-				sample_locs.append(Vector2(node.global_position.x, node.global_position.z))
+				sample_locs.append(Vector2i(node.global_position.x / 20, node.global_position.z / 20))
 				crosses.remove_at(crosses.find(room12_a1))
+			elif crosses.has(room9_a1):
+				crosses.remove_at(crosses.find(room9_a1))
+				rand = rng.randi_range(0, crosses.size() - 1)
+				node.scene_path = crosses[rand]
+			elif crosses.has(room12_a1):
+				crosses.remove_at(crosses.find(room12_a1))
+				rand = rng.randi_range(0, crosses.size() - 1)
+				node.scene_path = crosses[rand]
 			else:
 				node.scene_path = crosses[rand]
 			# Cross, we'll have this choose from the cross list

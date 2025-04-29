@@ -1,9 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://dkuedh3537lbs"]
+[gd_scene load_steps=31 format=3 uid="uid://dkuedh3537lbs"]
 
 [ext_resource type="PackedScene" uid="uid://b25jkvemaipnk" path="res://scenes/UI/CanvasLayer_PostProcessing.tscn" id="1_2sjx4"]
 [ext_resource type="Material" uid="uid://bg2bjdrabdhn5" path="res://resources/Shaders/SM_Posterization.tres" id="2_e1vb8"]
 [ext_resource type="Environment" uid="uid://c8wr6jqwlnict" path="res://resources/Environments/env_underwater1_1.tres" id="3_dh4w5"]
-[ext_resource type="Script" uid="uid://dybrp2bdnyair" path="res://scripts/world_environment.gd" id="4_loddw"]
+[ext_resource type="Script" path="res://scripts/world_environment.gd" id="4_loddw"]
 [ext_resource type="PackedScene" uid="uid://bsgqiciuvs6ok" path="res://scenes/Levels/ControlRoom.tscn" id="5_vcuqm"]
 [ext_resource type="PackedScene" uid="uid://dybogvrii8h3g" path="res://scenes/Logic/dialog_changer.tscn" id="6_d44k0"]
 [ext_resource type="PackedScene" uid="uid://v2urofrh3pq5" path="res://scenes/Entities/GameController.tscn" id="7_ivn7c"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://tfx4rwdf6oow" path="res://resources/Particles/P_Bubbles.tscn" id="14_e0kkx"]
 [ext_resource type="PackedScene" uid="uid://cvhcvxgncrikd" path="res://scenes/Logic/SignalReceiver.tscn" id="14_e1vb8"]
 [ext_resource type="PackedScene" uid="uid://bfyxtf6kvnq7d" path="res://scenes/Logic/manager.tscn" id="15_e1vb8"]
+[ext_resource type="Script" path="res://scripts/endgame.gd" id="17_0dcjj"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_sakc8"]
 viewport_path = NodePath("Entities/SubViewport_DroneCam")
@@ -95,6 +96,9 @@ directional_shadow_split_1 = 0.279
 
 [node name="Control_Room" parent="." instance=ExtResource("5_vcuqm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -7, 14.5)
+
+[node name="Painting" parent="Control_Room" index="16"]
+transform = Transform3D(-0.0291996, 0, -0.999574, 0, 1, 0, 0.999574, 0, -0.0291996, 0.234899, 2.96121, 0.664337)
 
 [node name="PlayerCamera3D" type="Camera3D" parent="Control_Room/PlayerCamPivot" index="0"]
 transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, -0.713766, 2.31077, 1.22012)
@@ -198,6 +202,9 @@ is_active = false
 [node name="NodeManagement" type="Node" parent="."]
 
 [node name="Manager" parent="NodeManagement" instance=ExtResource("15_e1vb8")]
+
+[node name="EndgameNode" type="Node3D" parent="NodeManagement"]
+script = ExtResource("17_0dcjj")
 
 [editable path="CanvasLayerPostProcessing2"]
 [editable path="Control_Room"]

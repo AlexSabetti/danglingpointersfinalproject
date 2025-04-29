@@ -1,7 +1,7 @@
 [gd_scene load_steps=30 format=3 uid="uid://d4cyqu5i5wyu"]
 
-[ext_resource type="Script" uid="uid://br3bhxpyvy3lu" path="res://scripts/Room.gd" id="1_c7t41"]
-[ext_resource type="Script" uid="uid://bs8y8lrwcb8ml" path="res://scripts/CameraChangeObject.gd" id="2_s6tfm"]
+[ext_resource type="Script" path="res://scripts/Room.gd" id="1_c7t41"]
+[ext_resource type="Script" path="res://scripts/CameraChangeObject.gd" id="2_s6tfm"]
 [ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://scenes/Entities/CamPosNode.tscn" id="3_alh53"]
 [ext_resource type="PackedScene" uid="uid://ddblc0bljl061" path="res://resources/Models/under_water_room_9_a_1.tscn" id="4_c7t41"]
 [ext_resource type="PackedScene" uid="uid://bd7icn4pwfdoi" path="res://scenes/Entities/Foliage.tscn" id="5_bnhkn"]
@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://dd1oecr7ks04" path="res://resources/Textures/Sprites/SeaWeeds3_GlowPoints_a1.png" id="11_eal6x"]
 [ext_resource type="Texture2D" uid="uid://chng0opds5tf2" path="res://resources/Textures/Sprites/Reeds2_b1.png" id="12_lu4xy"]
 [ext_resource type="Texture2D" uid="uid://cco1e2uts6xht" path="res://resources/Textures/Sprites/SeaWeeds2_GlowPoints_c1.png" id="13_yrh7o"]
-[ext_resource type="Script" uid="uid://b8260neigo27n" path="res://scripts/ClickableObject.gd" id="15_5an33"]
+[ext_resource type="Script" path="res://scripts/ClickableObject.gd" id="15_5an33"]
 [ext_resource type="PackedScene" uid="uid://dybogvrii8h3g" path="res://scenes/Logic/dialog_changer.tscn" id="17_2yxgk"]
 [ext_resource type="Texture2D" uid="uid://dtcm8gp4yov6c" path="res://resources/Textures/Sprites/SeaWeeds1_GlowPoints_d1.png" id="17_ipyro"]
 

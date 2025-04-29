@@ -42,6 +42,8 @@ var total_samples: int
 @export var MapScreenUI: UI_MapDisplay
 @export var screenInteractionEnabled:bool = true
 
+var pos_dict: Dictionary = {}
+var sample_locs: Array[Vector2i] = []
 # game progression
 var goal_room:MapNode # next goal room where the player needs to collect samples
 var samples_collected:int = 0 # number of samples collected
@@ -297,11 +299,12 @@ func finish_collecting_sample() -> void:
 
 	is_collecting_samples = false
 	samples_collected += 1
+	sample_locs.remove_at(sample_locs.find(Vector2i(drone.active_map_node.global_position.x / 20, drone.active_map_node.global_position.z / 20)))
 	if samples_collected >= total_samples:
 		signal_manager.emit_signal("unlock_final")
 		var str_array: Array[String] = ["Perfect!", "It looks like we've got all we need.", "...", "wait, hold on, your sensors are saying there's a tunnel that leads a bit deeper.", "Go see if you can find it, should be a giant hole."]
 		signal_manager.emit_signal("dialog_event", str_array)
-	MapScreenUI.updateSamplesStatus()
+	MapScreenUI.updateSamplesStatus(samples_collected, sample_locs)
 	
 
 # makes the player camera slightly follow their mouse 
@@ -392,6 +395,8 @@ func win_game() -> void:
 	
 	Global.gameWon = true
 
-func set_sample(sample_count: int, sample_pos: Array[Vector2]):
+func set_sample(sample_count: int, sample_pos: Array[Vector2i]):
 	total_samples = sample_count
+	sample_locs = sample_pos
+	MapScreenUI.updateSamplesStatus(samples_collected, sample_locs)
 	

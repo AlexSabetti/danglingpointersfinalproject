@@ -18,7 +18,7 @@ var samplepos2:String = "S2"
 var samplepos3:String = "S3"
 var signal_manager: SignalBus = SigBus
 var gridSquare := preload("res://scenes/UI/ui_grid_square.tscn")
-var mapScale:int = 9
+var mapScale:int = 8
 var mapSquares: Array[Array] = []
 @onready var MapGrid:GridContainer = $MarginContainer/MarginContainer_Grid/MapGrid
 
@@ -121,27 +121,21 @@ func setDroneIconPos(coords: Vector2) -> void:
 	DroneIcon.position = Vector2(((coords.x) * 100), ((coords.y) * 100) - 28)
 	#print(dronePosition)
 
-func updateSamplesStatus(_sample_count, sample_locs) -> void:
+func updateSamplesStatus(_sample_count, _sample_locs) -> void:
 	# this is kinda messy, but it works lol
 	if Global.gameControllerRef.samples_collected <= 0:
 		sampleStatusLabel1.text = "▭" 
 		sampleStatusLabel2.text = "▭" 
-		sampleStatusLabel3.text = "▭"
-		sampleSPosLabel1.text = sample_locs[0]
-		sampleSPosLabel2.text = sample_locs[1]
-		sampleSPosLabel3.text = sample_locs[2]
-		
-		samplepos3 = sample_locs[2]
+		sampleStatusLabel3.text = "▭" 
 	else: if Global.gameControllerRef.samples_collected == 1:
 		sampleStatusLabel1.text = "▬"
 	else: if Global.gameControllerRef.samples_collected == 2:
 		sampleStatusLabel2.text = "▬"
 	else: if Global.gameControllerRef.samples_collected >= 3:
 		sampleStatusLabel3.text = "▬"
-	
 
 # sets a random position on the map
 func setRandomMapPos():
 	is_endgame = true
-	updateMapPos(Vector2(rng.randi_range(0-4,8-4),rng.randi_range(0-4,8-4)))
+	setDroneIconPos(Vector2(rng.randi_range(0-4,7-4),rng.randi_range(0-4,7-4)))
 	GlitchTimer.start()
