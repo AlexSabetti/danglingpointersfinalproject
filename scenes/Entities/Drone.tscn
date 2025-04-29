@@ -69,7 +69,7 @@ visible = false
 mesh = SubResource("CylinderMesh_c0tn5")
 
 [node name="CamChangeDelay" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 2.0
 one_shot = true
 
 [node name="DS_Drone1_a1" parent="." instance=ExtResource("4_fbllp")]

@@ -9,9 +9,12 @@ var signal_manager: SignalBus = SigBus
 @onready var deepCreakingAmbiSoundPLayer:AudioStreamPlayer3D = $DeepCreakingAmbiLoop
 @onready var clusterAmbiSoundPLayer:AudioStreamPlayer3D = $ClusterAmbiLoop
 @onready var turnSoundPlayer:AudioStreamPlayer3D = $TurnSoundEffect
+@onready var oceanCryPlayer:AudioStreamPlayer3D = $OceanCryPlayer
+@onready var EndGameTimer:Timer = $EndGameTimer
 
 func _ready()->void:
 	signal_manager.connect("map_node_change", update_room_ambience)
+	signal_manager.connect("end_game", end_game_stuff)
 	
 	Global.controlRoomRef = self
 	
@@ -52,8 +55,13 @@ func update_room_ambience(mapNode: MapNode):
 			foumpAmbiSoundPLayer.volume_db = -80.0
 		
 		if curRoom.room_ambience.contains("MetalCreak"):
+			deepCreakingAmbiSoundPLayer.pitch_scale = 0.8
 			deepCreakingAmbiSoundPLayer.volume_db = 0.0
 			print("playing: MetalCreak")
+		else: if curRoom.room_ambience.contains("MetalCreakWeak"):
+			deepCreakingAmbiSoundPLayer.pitch_scale = 1.0
+			deepCreakingAmbiSoundPLayer.volume_db = -20.0
+			print("playing: MetalCreakWeak")
 		else:
 			deepCreakingAmbiSoundPLayer.volume_db = -80.0
 		
@@ -67,3 +75,16 @@ func update_room_ambience(mapNode: MapNode):
 		foumpAmbiSoundPLayer.volume_db = -80.0
 		deepCreakingAmbiSoundPLayer.volume_db = -80.0
 		clusterAmbiSoundPLayer.volume_db = -80.0
+
+# stuff to trigger on end game
+func end_game_stuff():
+	EndGameTimer.start()
+	
+	var tween = create_tween()
+	tween.tween_property($BoatCenter/OmniLight3D4, "light_energy", 0.0, 5.0)
+	tween.parallel().tween_property($BoatCenter/OmniLight3D5, "light_energy", 0.0, 5.0)
+	
+
+
+func _on_end_game_timer_timeout() -> void:
+	oceanCryPlayer.play()

@@ -5,8 +5,10 @@ extends CanvasLayer
 var cursor_offset:Vector2 = Vector2.ZERO
 var cursor_Sprite_offset:Vector2 = Vector2.ZERO
 var cursor_pressed:bool = false
+var signal_lost:bool = false
 
 var fade_time:float = 0.05
+
 
 @onready var delay1:Timer = $Timer1
 @onready var delay2:Timer = $Timer2
@@ -29,6 +31,7 @@ func _ready() -> void:
 	signal_manager.connect("collect_sample_start", startSampleCollection)
 	# fade in screen when map is generated
 	signal_manager.connect("map_gen_finished", fade_in)
+	signal_manager.connect("end_game", loose_signal)
 	
 	set_cursor_type(0)
 	
@@ -114,15 +117,16 @@ func fade_out()->void:
 
 # Fades in from black
 func fade_in()->void:
-	BlankScreen.size = Vector2(1280.0, 845.0)
-	BlankScreen.position = Vector2(0.0, 116.0)
-	BlankScreen.visible = true
-	LoadingText.visible = false
-	is_on = true
-	delay1.wait_time = fade_time
-	delay1.start()
-	var tween = create_tween()
-	tween.parallel().tween_method(change_drone_bus_volume, -40, 0, 0.25).set_trans(Tween.TRANS_BOUNCE)  # re-enable audio from drone
+	if !signal_lost:
+		BlankScreen.size = Vector2(1280.0, 845.0)
+		BlankScreen.position = Vector2(0.0, 116.0)
+		BlankScreen.visible = true
+		LoadingText.visible = false
+		is_on = true
+		delay1.wait_time = fade_time
+		delay1.start()
+		var tween = create_tween()
+		tween.parallel().tween_method(change_drone_bus_volume, -40, 0, 0.25).set_trans(Tween.TRANS_BOUNCE)  # re-enable audio from drone
 
 func startSampleCollection() -> void:
 	SampleCollectionOverlay.visible = true
@@ -138,7 +142,7 @@ func _on_timer_timeout() -> void:
 		LoadingText.visible = false
 	
 	# if screen was fading out to black
-	else:
+	else: if !signal_lost:
 		var tween = create_tween()
 		tween.parallel().tween_method(change_drone_bus_volume, 0, -40, 0.25).set_trans(Tween.TRANS_BACK) # mute audio from drone
 		BlankScreen.size = Vector2(1280.0, 960.0)
@@ -162,7 +166,8 @@ func _on_timer_timeout() -> void:
 # Fade back in after second Delay
 func _on_timer_2_timeout() -> void:
 	# fade back in from black after some time
-	fade_in()
+	if !signal_lost:
+		fade_in()
 
 # Used in Tweening
 func change_drone_bus_volume(value: float):
@@ -174,3 +179,12 @@ func _on_sample_collection_timer_timeout() -> void:
 	SampleCollectionOverlay.visible = false
 	SoundManager3D.PlaySoundQueue3D("SQ_CDing", Global.controlRoomRef.global_position)
 	signal_manager.emit_signal("collect_sample_end")
+
+func loose_signal() -> void:
+	signal_lost = true
+	BlankScreen.size = Vector2(1280.0, 960.0)
+	BlankScreen.position = Vector2(0.0, 0.0)
+	BlankScreen.visible = true
+	LoadingText.text = "SIGNAL LOST"
+	LoadingText.visible = true
+	

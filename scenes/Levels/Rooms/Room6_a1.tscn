@@ -1,8 +1,8 @@
 [gd_scene load_steps=22 format=3 uid="uid://bqnjyqolsuecm"]
 
-[ext_resource type="Script" path="res://scripts/Room.gd" id="1_3qa2d"]
+[ext_resource type="Script" uid="uid://br3bhxpyvy3lu" path="res://scripts/Room.gd" id="1_3qa2d"]
 [ext_resource type="PackedScene" uid="uid://bmatnuf1dkmeg" path="res://resources/Models/under_water_room_6_a_1.tscn" id="2_3qa2d"]
-[ext_resource type="Script" path="res://scripts/CameraChangeObject.gd" id="2_7rold"]
+[ext_resource type="Script" uid="uid://bs8y8lrwcb8ml" path="res://scripts/CameraChangeObject.gd" id="2_7rold"]
 [ext_resource type="PackedScene" uid="uid://bd7icn4pwfdoi" path="res://scenes/Entities/Foliage.tscn" id="3_7rold"]
 [ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://scenes/Entities/CamPosNode.tscn" id="3_42pva"]
 [ext_resource type="Texture2D" uid="uid://cealpeqkes7xo" path="res://resources/Textures/Sprites/SeaWeeds1_a1.png" id="4_42pva"]
@@ -11,7 +11,7 @@
 [ext_resource type="Shader" uid="uid://d2mabvbt22cdl" path="res://resources/Shaders/VS_Foliage3D.tres" id="9_xng10"]
 [ext_resource type="Texture2D" uid="uid://dhvn8d5topyjo" path="res://resources/Textures/NormalMaps/7864-normal.jpg" id="10_1h41i"]
 [ext_resource type="Texture2D" uid="uid://chng0opds5tf2" path="res://resources/Textures/Sprites/Reeds2_b1.png" id="11_ph8j8"]
-[ext_resource type="PackedScene" path="res://resources/Models/mooring_buoy_1_a_1.tscn" id="12_1h41i"]
+[ext_resource type="PackedScene" uid="uid://qvv3sp6vgxyj" path="res://resources/Models/mooring_buoy_1_a_1.tscn" id="12_1h41i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_64y6q"]
 size = Vector3(0.5, 3, 11)
@@ -268,7 +268,7 @@ meshOffset = Vector3(0, 0, 0)
 meshScale = Vector3(1.305, 2.77, 1.47)
 
 [node name="Foliage15" parent="UnderWaterRoom6_a1" instance=ExtResource("3_7rold")]
-transform = Transform3D(1.58351, 0, -0.880681, 0, 1.50104, 0, 0.767167, 0, 1.81781, 3.23732, -0.206984, 4.72424)
+transform = Transform3D(1.58351, 0, -0.880681, 0, 1.50104, 0, 0.767167, 0, 1.81781, 3.37993, -0.206984, 4.86333)
 foliage_Texture = ExtResource("8_42pva")
 meshOffset = Vector3(0, -0.095, 0)
 meshScale = Vector3(1.305, 2.77, 1.47)

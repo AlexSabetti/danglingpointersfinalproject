@@ -15,6 +15,7 @@ size_flags_vertical = 3
 script = ExtResource("1_xdwab")
 
 [node name="BGSquare" type="ColorRect" parent="."]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,6 +24,104 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+color = Color(0.0392157, 0.0470588, 0.0313726, 1)
+
+[node name="Walls" type="Control" parent="BGSquare"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Corner1" type="ColorRect" parent="BGSquare/Walls"]
+layout_mode = 1
+offset_top = -30.0
+offset_right = 20.0
+offset_bottom = 30.0
+rotation = 0.785397
+pivot_offset = Vector2(0, 30)
+color = Color(0.0392157, 0.0470588, 0.0313726, 1)
+
+[node name="Wall_Up" type="ColorRect" parent="BGSquare/Walls"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 15.0
+grow_horizontal = 2
+color = Color(0.0392157, 0.0470588, 0.0313726, 1)
+
+[node name="Corner2" type="ColorRect" parent="BGSquare/Walls"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -30.0
+offset_right = 30.0
+offset_bottom = 20.0
+grow_horizontal = 0
+rotation = 0.785398
+pivot_offset = Vector2(30, 0)
+color = Color(0.0392157, 0.0470588, 0.0313726, 1)
+
+[node name="Wall_Right" type="ColorRect" parent="BGSquare/Walls"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -15.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0.0392157, 0.0470588, 0.0313726, 1)
+
+[node name="Corner3" type="ColorRect" parent="BGSquare/Walls"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_right = 30.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 0
+rotation = 2.35619
+pivot_offset = Vector2(30, 0)
+color = Color(0.0392157, 0.0470588, 0.0313726, 1)
+
+[node name="Wall_Down" type="ColorRect" parent="BGSquare/Walls"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.0392157, 0.0470588, 0.0313726, 1)
+
+[node name="Corner4" type="ColorRect" parent="BGSquare/Walls"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+offset_right = 20.0
+offset_bottom = 30.0
+grow_vertical = 0
+rotation = -0.785398
+pivot_offset = Vector2(0, 30)
+color = Color(0.0392157, 0.0470588, 0.0313726, 1)
+
+[node name="Wall_Left" type="ColorRect" parent="BGSquare/Walls"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 15.0
+grow_vertical = 2
 color = Color(0.0392157, 0.0470588, 0.0313726, 1)
 
 [node name="PlayerIcon" type="Control" parent="BGSquare"]
@@ -38,3 +137,50 @@ grow_vertical = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="BGSquare/PlayerIcon"]
 texture = ExtResource("2_fo7j7")
+
+[node name="PlayerIcon_b" type="Control" parent="BGSquare"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Wall_Up" type="ColorRect" parent="BGSquare/PlayerIcon_b"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 5.0
+grow_horizontal = 2
+color = Color(0.905882, 0.847059, 0.717647, 1)
+
+[node name="Wall_Right" type="ColorRect" parent="BGSquare/PlayerIcon_b"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0.905882, 0.847059, 0.717647, 1)
+
+[node name="Wall_Down" type="ColorRect" parent="BGSquare/PlayerIcon_b"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.905882, 0.847059, 0.717647, 1)
+
+[node name="Wall_Left" type="ColorRect" parent="BGSquare/PlayerIcon_b"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 5.0
+grow_vertical = 2
+color = Color(0.905882, 0.847059, 0.717647, 1)

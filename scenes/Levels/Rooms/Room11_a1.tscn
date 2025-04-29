@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://cwsmufvibi5uc"]
 
-[ext_resource type="Script" path="res://scripts/Room.gd" id="1_vq82w"]
-[ext_resource type="Script" path="res://scripts/CameraChangeObject.gd" id="2_inim6"]
+[ext_resource type="Script" uid="uid://br3bhxpyvy3lu" path="res://scripts/Room.gd" id="1_vq82w"]
+[ext_resource type="Script" uid="uid://bs8y8lrwcb8ml" path="res://scripts/CameraChangeObject.gd" id="2_inim6"]
 [ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://scenes/Entities/CamPosNode.tscn" id="3_y34u4"]
 [ext_resource type="PackedScene" uid="uid://bf85883p8jka" path="res://resources/Models/under_water_room_11_a_1.tscn" id="4_vq82w"]
 [ext_resource type="PackedScene" uid="uid://bd7icn4pwfdoi" path="res://scenes/Entities/Foliage.tscn" id="5_hdlt2"]

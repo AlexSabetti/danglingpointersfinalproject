@@ -18,7 +18,7 @@ var samplepos2:String = "S2"
 var samplepos3:String = "S3"
 var signal_manager: SignalBus = SigBus
 var gridSquare := preload("res://scenes/UI/ui_grid_square.tscn")
-var mapScale:int = 8
+var mapScale:int = 9
 var mapSquares: Array[Array] = []
 @onready var MapGrid:GridContainer = $MarginContainer/MarginContainer_Grid/MapGrid
 
@@ -143,5 +143,5 @@ func updateSamplesStatus(_sample_count, sample_locs) -> void:
 # sets a random position on the map
 func setRandomMapPos():
 	is_endgame = true
-	setDroneIconPos(Vector2(rng.randi_range(0-4,7-4),rng.randi_range(0-4,7-4)))
+	updateMapPos(Vector2(rng.randi_range(0-4,8-4),rng.randi_range(0-4,8-4)))
 	GlitchTimer.start()
