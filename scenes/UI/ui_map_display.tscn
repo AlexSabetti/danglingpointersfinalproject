@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b3728ytvs6bn0"]
 
-[ext_resource type="Script" path="res://scripts/ui_map_display.gd" id="1_orryn"]
+[ext_resource type="Script" uid="uid://dl31a2hbiv4p3" path="res://scripts/ui_map_display.gd" id="1_orryn"]
 [ext_resource type="Theme" uid="uid://b7dmjh57doq5k" path="res://resources/Themes/theme_ScreenText.tres" id="1_ux1rw"]
 [ext_resource type="Texture2D" uid="uid://bkp6nhm8htl5g" path="res://resources/Textures/Sprites/CompCircle1_a1.png" id="2_4urrv"]
 [ext_resource type="Shader" uid="uid://jhmbi4fs662c" path="res://resources/Shaders/VS_CRTFilter.tres" id="2_w3i8y"]
@@ -609,9 +609,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 170.0
-offset_top = 402.0
+offset_top = 444.0
 offset_right = -981.0
-offset_bottom = -424.0
+offset_bottom = -382.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ux1rw")
@@ -643,9 +643,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 170.0
-offset_top = 505.0
+offset_top = 547.0
 offset_right = -981.0
-offset_bottom = -321.0
+offset_bottom = -279.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ux1rw")
@@ -677,9 +677,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 170.0
-offset_top = 605.0
+offset_top = 647.0
 offset_right = -981.0
-offset_bottom = -221.0
+offset_bottom = -179.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ux1rw")

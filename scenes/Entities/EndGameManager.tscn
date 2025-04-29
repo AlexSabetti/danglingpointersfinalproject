@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1pl670or3gtm"]
+
+[ext_resource type="Script" uid="uid://cinihkgqt8rpc" path="res://scripts/endgame.gd" id="1_7imkt"]
+
+[node name="EndGameManager" type="Node3D"]
+script = ExtResource("1_7imkt")

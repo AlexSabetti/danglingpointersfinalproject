@@ -9,13 +9,13 @@ var gridMap: Array[Array] = []
 @onready var mapUI := $MarginContainer/MarginContainer_Grid/VBoxContainer
 @onready var sampleStatusLabel1 := $Status/SampleCollectedLabel1
 @onready var sampleSPosLabel1 := $Status/SamplePosLabel1
-var samplepos1:String = "S1"
+var samplepos1:Vector2
 @onready var sampleStatusLabel2 := $Status/SampleCollectedLabel2
 @onready var sampleSPosLabel2 := $Status/SamplePosLabel2
-var samplepos2:String = "S2"
+var samplepos2:Vector2
 @onready var sampleStatusLabel3 := $Status/SampleCollectedLabel3
 @onready var sampleSPosLabel3 := $Status/SamplePosLabel3
-var samplepos3:String = "S3"
+var samplepos3:Vector2
 var signal_manager: SignalBus = SigBus
 var gridSquare := preload("res://scenes/UI/ui_grid_square.tscn")
 var mapScale:int = 8
@@ -122,6 +122,7 @@ func setDroneIconPos(coords: Vector2) -> void:
 	#print(dronePosition)
 
 func updateSamplesStatus(_sample_count, _sample_locs) -> void:
+	print("updating sampleStatus")
 	# this is kinda messy, but it works lol
 	if Global.gameControllerRef.samples_collected <= 0:
 		sampleStatusLabel1.text = "▭" 
