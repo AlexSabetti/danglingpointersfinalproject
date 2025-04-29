@@ -8,5 +8,6 @@ diffuse_mode = 3
 specular_mode = 1
 albedo_texture = ExtResource("1_c7b8a")
 normal_enabled = true
+normal_scale = 0.5
 normal_texture = ExtResource("2_g7x5w")
 uv1_scale = Vector3(2, 2, 2)

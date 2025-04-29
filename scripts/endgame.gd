@@ -24,13 +24,14 @@ func trigger_ending() -> void:
 	await get_tree().create_timer(3).timeout
 	str_array = ["... A game by-"]
 	signal_manager.emit_signal("dialog_change", str_array)
-	for i in range(manager.get_children_count()):
-		var child = manager.get_child(i)
-		await get_tree().create_timer(3).timeout
-		if child is MapNode:
-			# Maybe play a sound here
-			# want everything to vanish
-			# kick the player out of the screen when it deletes the room they are in 
-			child.queue_free()
+	if manager:
+		for i in range(manager.get_children_count()):
+			var child = manager.get_child(i)
+			await get_tree().create_timer(3).timeout
+			if child is MapNode:
+				# Maybe play a sound here
+				# want everything to vanish
+				# kick the player out of the screen when it deletes the room they are in 
+				child.queue_free()
 	
 	

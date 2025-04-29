@@ -68,6 +68,8 @@ var dead_ends: Array[PackedScene] = []
 
 var sample_locs: Array[Vector2] = []
 
+var endGameManager: PackedScene = preload("res://scenes/Entities/EndGameManager.tscn")
+
 # var key_areas: Array = []
 # var points_of_interest: Array = []
 # var paths: Array = []
@@ -109,6 +111,7 @@ func _ready():
 	setup()
 	await map_created
 	activate_nodes()
+	self.add_child(endGameManager.instantiate())
 	var starting_cam: CameraNode = get_child(0).get_child(1).get_node("CameraNodes").get_child(0) as CameraNode
 	signal_manager.emit_signal("camera_changed", starting_cam)
 	(get_child(0).get_child(1) as Room)._on_trigger() # triggers the room, setting it as the active room
@@ -171,7 +174,7 @@ func setup():
 					node.rotate_by = 180
 				
 				var rand = rng.randi_range(0, corners.size() - 1)
-				if corners.has(room4_a1) and sample_count < 3:
+				if corners.has(room4_a1):
 					node.scene_path = room4_a1
 					node.node_id = 2
 					sample_count += 1
@@ -192,7 +195,7 @@ func setup():
 				node.rotate_by = -90
 
 			var rand = rng.randi_range(0, t_shaped.size() - 1)
-			if t_shaped.has(room3_a1) and sample_count < 3:
+			if t_shaped.has(room3_a1):
 				node.scene_path = room3_a1
 				node.node_id = 3
 				sample_count += 1
@@ -205,7 +208,7 @@ func setup():
 		elif num_openings == 4:
 			var rand = rng.randi_range(0, crosses.size() - 1)
 
-			if crosses.has(room9_a1) and sample_count < 3:
+			if crosses.has(room9_a1):
 				node.scene_path = room9_a1
 				node.node_id = 4
 				sample_count += 1
@@ -215,9 +218,9 @@ func setup():
 			elif crosses.has(room13_a1):
 				node.scene_path = room13_a1
 				node.node_id = 5
-				sample_locs.append(Vector2(node.global_position.x, node.global_position.z))
+				#sample_locs.append(Vector2(node.global_position.x, node.global_position.z))
 				crosses.remove_at(crosses.find(room13_a1))
-			elif crosses.has(room12_a1) and sample_count < 3:
+			elif crosses.has(room12_a1):
 				node.scene_path = room12_a1
 				node.special = true
 				node.node_id = 6

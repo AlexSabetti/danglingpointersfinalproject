@@ -47,6 +47,7 @@ var goal_room:MapNode # next goal room where the player needs to collect samples
 var samples_collected:int = 0 # number of samples collected
 var is_collecting_samples:bool = false
 var poi_encounters:int = 0 # number of points of interest encountered
+var is_endgame:bool = false
 
 @onready var UI = $CanvasLayer_hud/ui_hud
 
@@ -272,10 +273,13 @@ func collectSamples() -> void:
 	# If I get a response, that means A: The room is a goal room, B: The room hasn't had a completed sample taken, and C: i forgor
 	if drone.active_map_node != null && drone.active_map_node.node_id > 0 && !drone.active_map_node.looted && drone.active_map_node.special:
 		if !is_collecting_samples && DroneScreenUI.is_on:
+			print("starting to collect sample")
 			is_collecting_samples = true
 			signal_manager.emit_signal("collect_sample_start")
 			SoundManager3D.PlaySoundQueue3D("SQ_CFink", Global.controlRoomRef.global_position)
 			SoundManager3D.PlaySoundPool3D("SP_KeyPress", Global.controlRoomRef.global_position)
+	else:
+		print("failed to collect sample " + str(drone.active_map_node) + ", " + str(drone.active_map_node.special))
 
 # when the collect_samples_end signal is recieved
 func finish_collecting_sample() -> void:
@@ -301,7 +305,7 @@ func finish_collecting_sample() -> void:
 		signal_manager.emit_signal("unlock_final")
 		var str_array: Array[String] = ["Perfect!", "It looks like we've got all we need.", "...", "wait, hold on, your sensors are saying there's a tunnel that leads a bit deeper.", "Go see if you can find it, should be a giant hole."]
 		signal_manager.emit_signal("dialog_event", str_array)
-	MapScreenUI.updateSamplesStatus()
+	MapScreenUI.updateSamplesStatus(0,0)
 	
 
 # makes the player camera slightly follow their mouse 

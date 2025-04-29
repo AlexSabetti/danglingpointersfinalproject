@@ -556,7 +556,7 @@ shape = SubResource("BoxShape3D_1ojsd")
 
 [node name="DialogChanger" parent="." instance=ExtResource("21_pxcud")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.52795, -4.87929)
-newDialog = Array[String](["Looks old... Why hasn't this wreck been documented yet?", "Strange... I'll note it down.", "Make sure to take a sample."])
+newDialog = Array[String](["Looks old... Why hasn't this wreck been documented yet?", "Strange... I'll note it down.", "Make sure to take a sample [ENTER]."])
 
 [node name="Ship1_modified" parent="." instance=ExtResource("22_8xvrd")]
 transform = Transform3D(0.339285, -0.199883, 0.0702344, -0.0932788, -0.0218736, 0.388356, -0.190224, -0.345787, -0.0651655, 2.39636, 1, -2.14881)

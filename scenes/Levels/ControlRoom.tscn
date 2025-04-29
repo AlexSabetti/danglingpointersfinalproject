@@ -256,7 +256,7 @@ bus = &"DroneAudio"
 [node name="OceanCryPlayer" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.27056, 4.05913, 0.123776)
 stream = ExtResource("10_oppq0")
-volume_db = 15.0
+volume_db = -10.0
 pitch_scale = 0.8
 panning_strength = 0.3
 
