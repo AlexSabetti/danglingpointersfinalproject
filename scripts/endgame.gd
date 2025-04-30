@@ -20,11 +20,11 @@ func trigger_ending() -> void:
 	signal_manager.emit_signal("change_name", " ")
 	str_array = ["Do you ever wonder", "If people you used to know still remember you?"]
 	signal_manager.emit_signal("dialog_event", str_array)
-	await get_tree().create_timer(9).timeout
+	await get_tree().create_timer(7).timeout
 	signal_manager.emit_signal("change_name", "A D M I N I S T R A T I O N")
 	str_array = ["Sim Crash imminent - Are you sure you knew what you were doing?"]
 	signal_manager.emit_signal("dialog_event", str_array)
-	await get_tree().create_timer(10).timeout
+	await get_tree().create_timer(5).timeout
 	signal_manager.emit_signal("change_name, " ")
 	str_array = ["... A game by Colin and Alex"]
 	signal_manager.emit_signal("dialog_event", str_array)
