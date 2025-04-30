@@ -304,7 +304,7 @@ func finish_collecting_sample() -> void:
 	is_collecting_samples = false
 	samples_collected += 1
 	sample_locs.remove_at(sample_locs.find(Vector2i(drone.active_map_node.global_position.x / 20, drone.active_map_node.global_position.z / 20)))
-	if samples_collected >= total_samples:
+	if samples_collected >= 3:
 		signal_manager.emit_signal("unlock_final")
 		var str_array: Array[String] = ["Perfect!", "It looks like we've got all we need.", "...", "wait, hold on, your sensors are saying there's a tunnel that leads a bit deeper.", "Go see if you can find it, should be a giant hole."]
 		signal_manager.emit_signal("dialog_event", str_array)

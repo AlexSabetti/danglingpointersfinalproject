@@ -15,45 +15,45 @@ extends Node3D
 var sample_count: int = 0;
 
 # Starting area, all 4 directions open
-var room1_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room1_a1.tscn")
+@onready var room1_a1 : PackedScene = preload("res://scenes/Levels/Rooms/Room1_a1.tscn")
 
 # line, two openings, one pointing negative z and one pointing positive z
-var room2_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room2_a1.tscn")
+@onready var room2_a1 : PackedScene = preload("res://scenes/Levels/Rooms/Room2_a1.tscn")
 
 # T-shaped, three openings, POI, one negative x, one positive z, one negative z
-var room3_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room3_a1.tscn") 
+@onready var room3_a1 : PackedScene = preload("res://scenes/Levels/Rooms/Room3_a1.tscn") 
 
 # Corner, POI, two openings, one pointing negative x, one positive z
-var room4_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room4_a1.tscn") 
+@onready var room4_a1 : PackedScene = preload("res://scenes/Levels/Rooms/Room4_a1.tscn") 
 
 # Corner, two openings, one pointing positive x, one negative z
-var room5_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room5_a1.tscn")
+@onready var room5_a1 : PackedScene = preload("res://scenes/Levels/Rooms/Room5_a1.tscn")
 
 # T-shape, three openings, one pointing negative x, one pointing positive z, and the last one pointing negative z
-var room6_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room6_a1.tscn")
+@onready var room6_a1 : PackedScene = preload("res://scenes/Levels/Rooms/Room6_a1.tscn")
 
 # Dead end, one opening, pointing positive z
-var room7_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room7_a1.tscn")
+@onready var room7_a1 : PackedScene = preload("res://scenes/Levels/Rooms/Room7_a1.tscn")
 
 #line, two openings
-var room8_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room8_a1.tscn")
+@onready var room8_a1 : PackedScene = preload("res://scenes/Levels/Rooms/Room8_a1.tscn")
 
 # Cross, four openings
-var room9_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room9_a1.tscn")
+@onready var room9_a1 : PackedScene = preload("res://scenes/Levels/Rooms/Room9_a1.tscn")
 
 # T-shape, three openings
-var room10_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room10_a1.tscn")
+@onready var room10_a1 : PackedScene = preload("res://scenes/Levels/Rooms/Room10_a1.tscn")
 
 #line, two openings
-var room11_a1 : PackedScene = preload("res://scenes/Levels/Rooms/room11_a1.tscn")
+@onready var room11_a1 : PackedScene = preload("res://scenes/Levels/Rooms/Room11_a1.tscn")
 
-var room12_a1: PackedScene = preload("res://scenes/Levels/Rooms/room12_a1.tscn")
+@onready var room12_a1: PackedScene = preload("res://scenes/Levels/Rooms/Room12_a1.tscn")
 
-var room13_a1: PackedScene = preload("res://scenes/Levels/Rooms/room13_a1.tscn")
+@onready var room13_a1: PackedScene = preload("res://scenes/Levels/Rooms/Room13_a1.tscn")
 
-var room15_a1: PackedScene = preload("res://scenes/Levels/Rooms/room15_a1.tscn")
+@onready var room15_a1: PackedScene = preload("res://scenes/Levels/Rooms/Room15_a1.tscn")
 
-var room16_a1: PackedScene = preload("res://scenes/Levels/Rooms/room16_a1.tscn")
+@onready var room16_a1: PackedScene = preload("res://scenes/Levels/Rooms/Room16_a1.tscn")
 var signal_manager: SignalBus = SigBus
 signal continue_spread()
 signal map_created()
@@ -67,8 +67,6 @@ var crosses: Array[PackedScene] = []
 var dead_ends: Array[PackedScene] = []
 
 var sample_locs: Array[Vector2i] = []
-
-var endGameManager: PackedScene = preload("res://scenes/Entities/EndGameManager.tscn")
 
 # var key_areas: Array = []
 # var points_of_interest: Array = []
@@ -112,7 +110,6 @@ func _ready():
 	await map_created
 	
 	activate_nodes()
-	self.add_child(endGameManager.instantiate())
 	var starting_cam: CameraNode = get_child(0).get_child(1).get_node("CameraNodes").get_child(0) as CameraNode
 	signal_manager.emit_signal("camera_changed", starting_cam)
 	(get_child(0).get_child(1) as Room)._on_trigger() # triggers the room, setting it as the active room

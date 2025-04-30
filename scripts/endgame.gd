@@ -11,6 +11,9 @@ func _ready() -> void:
 	
 
 func trigger_ending() -> void:
+	var index = AudioServer.get_bus_index("DroneAudio")
+	AudioServer.set_bus_volume_db(index, -80.0)
+	
 	await get_tree().create_timer(4).timeout
 	# set the endgame state to true
 	# Global.gameControllerRef.is_endgame = true
@@ -25,11 +28,12 @@ func trigger_ending() -> void:
 	str_array = ["Sim Crash imminent - Are you sure you knew what you were doing?"]
 	signal_manager.emit_signal("dialog_event", str_array)
 	await get_tree().create_timer(5).timeout
-	signal_manager.emit_signal("change_name, " ")
+	signal_manager.emit_signal("change_name", " ")
 	str_array = ["... A game by Colin and Alex"]
 	signal_manager.emit_signal("dialog_event", str_array)
 	str_array = ["DEAD STICK"]
 	for i in range(manager.get_child_count()):
+		AudioServer.set_bus_volume_db(index, -80.0)
 		var child = manager.get_child(i)
 		signal_manager.emit_signal("dialog_event", str_array)
 		await get_tree().create_timer(1).timeout

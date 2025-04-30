@@ -1,7 +1,7 @@
 [gd_scene load_steps=44 format=3 uid="uid://vg2e6sfqcilt"]
 
-[ext_resource type="Script" path="res://scripts/Room.gd" id="1_qtgky"]
-[ext_resource type="Script" path="res://scripts/CameraChangeObject.gd" id="2_rqunv"]
+[ext_resource type="Script" uid="uid://br3bhxpyvy3lu" path="res://scripts/Room.gd" id="1_qtgky"]
+[ext_resource type="Script" uid="uid://bs8y8lrwcb8ml" path="res://scripts/CameraChangeObject.gd" id="2_rqunv"]
 [ext_resource type="PackedScene" uid="uid://c2uxpo5fna1nn" path="res://scenes/Entities/CamPosNode.tscn" id="3_g501n"]
 [ext_resource type="PackedScene" uid="uid://bd7icn4pwfdoi" path="res://scenes/Entities/Foliage.tscn" id="5_s5uts"]
 [ext_resource type="Texture2D" uid="uid://cealpeqkes7xo" path="res://resources/Textures/Sprites/SeaWeeds1_a1.png" id="6_qp3w2"]
@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://dhvn8d5topyjo" path="res://resources/Textures/NormalMaps/7864-normal.jpg" id="17_fyi1d"]
 [ext_resource type="Texture2D" uid="uid://chng0opds5tf2" path="res://resources/Textures/Sprites/Reeds2_b1.png" id="18_omtsb"]
 [ext_resource type="Texture2D" uid="uid://qh0vu3rhvrc7" path="res://resources/Textures/Sprites/SeaWeeds2_a1.png" id="19_qtgky"]
-[ext_resource type="Script" path="res://scripts/ClickableObject.gd" id="20_i7npb"]
+[ext_resource type="Script" uid="uid://b8260neigo27n" path="res://scripts/ClickableObject.gd" id="20_i7npb"]
 [ext_resource type="PackedScene" uid="uid://dybogvrii8h3g" path="res://scenes/Logic/dialog_changer.tscn" id="21_lrbht"]
 [ext_resource type="PackedScene" uid="uid://bp1atxghx5f0s" path="res://resources/Models/ds_drone_1_a_1.tscn" id="21_qtgky"]
 [ext_resource type="PackedScene" uid="uid://cp62xahvw7dgn" path="res://resources/Models/under_water_room_13_a_1.tscn" id="21_vq3jy"]
